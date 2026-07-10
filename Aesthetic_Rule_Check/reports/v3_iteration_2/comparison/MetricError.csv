@@ -1,0 +1,219 @@
+﻿sample_id,dimension,metric,metric_score,metric_value,overall_error_rule_minus_teacher
+battery,consistency,alignment,69.23,0.6923,-5.72
+battery,consistency,typography_rhythm,45.78,5,-5.72
+battery,consistency,corner_radius_consistency,36.79,"{""radii"": [6.72, 6.72, 6.48, 11.63, 43.03, 9.49], ""unique_radius_count"": 4}",-5.72
+battery,consistency,padding_consistency,11.35,0.777,-5.72
+battery,consistency,icon_size_consistency,29.88,0.3451,-5.72
+battery,consistency,grid,80.77,0.8077,-5.72
+battery,consistency,style_simplicity,88.25,5,-5.72
+battery,information,coverage,100.0,1.0,-5.72
+battery,information,truncation,100.0,0.0,-5.72
+battery,information,duplicate,85.71,0.1429,-5.72
+battery,layout,whitespace,90.99,0.4131,-5.72
+battery,layout,margin_consistency,20.98,0.7808,-5.72
+battery,layout,spacing_rhythm,35.41,0.5768,-5.72
+battery,layout,density,90.99,0.5869,-5.72
+battery,layout,overlap,90.85,0.0915,-5.72
+battery,layout,overflow,100.0,0.0,-5.72
+battery,visual,color_harmony,95.04,"{""avg_lab_distance"": 77.45, ""color_count"": 5}",-5.72
+battery,visual,contrast,24.79,2.39,-5.72
+battery,visual,visual_focus,85.46,0.3042,-5.72
+battery,visual,visual_balance,88.49,0.1384,-5.72
+battery,visual,text_image_ratio,66.29,0.2598,-5.72
+battery,visual,reading_flow,68.19,"{""backtracks"": 1, ""path_norm"": 1.1004}",-5.72
+battery,visual,hierarchy,96.75,0.2383,-5.72
+care,consistency,alignment,40.0,0.4,-20.72
+care,consistency,typography_rhythm,82.26,4,-20.72
+care,consistency,grid,60.0,0.6,-20.72
+care,consistency,style_simplicity,60.65,6,-20.72
+care,information,coverage,40.0,0.4,-20.72
+care,information,truncation,40.0,0.6,-20.72
+care,information,duplicate,100.0,0.0,-20.72
+care,layout,whitespace,19.69,0.8606,-20.72
+care,layout,margin_consistency,39.24,0.4677,-20.72
+care,layout,spacing_rhythm,28.38,0.6997,-20.72
+care,layout,density,19.69,0.1394,-20.72
+care,layout,overlap,100.0,0.0,-20.72
+care,layout,overflow,100.0,0.0,-20.72
+care,visual,color_harmony,67.43,"{""avg_lab_distance"": 97.96, ""color_count"": 6}",-20.72
+care,visual,contrast,16.64,1.889,-20.72
+care,visual,visual_focus,30.17,0.8525,-20.72
+care,visual,visual_balance,57.52,0.2945,-20.72
+care,visual,text_image_ratio,37.2,1.0,-20.72
+care,visual,reading_flow,85.39,"{""backtracks"": 0, ""path_norm"": 0.8114}",-20.72
+care,visual,hierarchy,99.72,0.3178,-20.72
+earbuds,consistency,alignment,90.91,0.9091,19.05
+earbuds,consistency,typography_rhythm,45.78,5,19.05
+earbuds,consistency,corner_radius_consistency,60.65,"{""radii"": [4.21, 8.04, 6.74], ""unique_radius_count"": 3}",19.05
+earbuds,consistency,padding_consistency,25.77,0.4843,19.05
+earbuds,consistency,icon_size_consistency,45.7,0.2237,19.05
+earbuds,consistency,grid,93.18,0.9318,19.05
+earbuds,consistency,style_simplicity,88.25,3,19.05
+earbuds,information,coverage,100.0,1.0,19.05
+earbuds,information,truncation,85.71,0.1429,19.05
+earbuds,information,duplicate,100.0,0.0,19.05
+earbuds,layout,whitespace,31.54,0.8038,19.05
+earbuds,layout,margin_consistency,31.08,0.5843,19.05
+earbuds,layout,spacing_rhythm,17.18,0.9786,19.05
+earbuds,layout,density,31.54,0.1962,19.05
+earbuds,layout,overlap,100.0,0.0,19.05
+earbuds,layout,overflow,100.0,0.0,19.05
+earbuds,visual,color_harmony,45.41,"{""avg_lab_distance"": 127.65, ""color_count"": 3}",19.05
+earbuds,visual,contrast,36.41,2.943,19.05
+earbuds,visual,visual_focus,97.44,0.5092,19.05
+earbuds,visual,visual_balance,89.8,0.1299,19.05
+earbuds,visual,text_image_ratio,58.66,0.8805,19.05
+earbuds,visual,reading_flow,79.1,"{""backtracks"": 0, ""path_norm"": 1.1613}",19.05
+earbuds,visual,hierarchy,95.58,0.3722,19.05
+focus,consistency,alignment,65.0,0.65,-2.53
+focus,consistency,typography_rhythm,82.26,2,-2.53
+focus,consistency,corner_radius_consistency,60.65,"{""radii"": [3.52, 4.13, 5.14, 7.04, 8.01], ""unique_radius_count"": 3}",-2.53
+focus,consistency,padding_consistency,18.67,0.5994,-2.53
+focus,consistency,icon_size_consistency,26.93,0.3748,-2.53
+focus,consistency,grid,62.5,0.625,-2.53
+focus,consistency,style_simplicity,60.65,6,-2.53
+focus,information,coverage,100.0,1.0,-2.53
+focus,information,truncation,100.0,0.0,-2.53
+focus,information,duplicate,100.0,0.0,-2.53
+focus,layout,whitespace,99.78,0.4867,-2.53
+focus,layout,margin_consistency,15.0,0.9487,-2.53
+focus,layout,spacing_rhythm,59.23,0.291,-2.53
+focus,layout,density,99.78,0.5133,-2.53
+focus,layout,overlap,100.0,0.0,-2.53
+focus,layout,overflow,100.0,0.0,-2.53
+focus,visual,color_harmony,80.09,"{""avg_lab_distance"": 81.47, ""color_count"": 6}",-2.53
+focus,visual,contrast,56.13,3.747,-2.53
+focus,visual,visual_focus,79.12,0.272,-2.53
+focus,visual,visual_balance,99.24,0.0345,-2.53
+focus,visual,text_image_ratio,98.83,0.5009,-2.53
+focus,visual,reading_flow,90.73,"{""backtracks"": 0, ""path_norm"": 0.5147}",-2.53
+focus,visual,hierarchy,96.98,0.2406,-2.53
+marathon,consistency,alignment,41.67,0.4167,-15.68
+marathon,consistency,typography_rhythm,45.78,5,-15.68
+marathon,consistency,grid,62.5,0.625,-15.68
+marathon,consistency,style_simplicity,60.65,6,-15.68
+marathon,information,coverage,100.0,1.0,-15.68
+marathon,information,truncation,100.0,0.0,-15.68
+marathon,information,duplicate,100.0,0.0,-15.68
+marathon,layout,whitespace,28.27,0.8179,-15.68
+marathon,layout,margin_consistency,34.81,0.5276,-15.68
+marathon,layout,spacing_rhythm,36.61,0.5582,-15.68
+marathon,layout,density,28.27,0.1821,-15.68
+marathon,layout,overlap,100.0,0.0,-15.68
+marathon,layout,overflow,100.0,0.0,-15.68
+marathon,visual,color_harmony,67.11,"{""avg_lab_distance"": 98.33, ""color_count"": 6}",-15.68
+marathon,visual,contrast,38.59,3.035,-15.68
+marathon,visual,visual_focus,93.6,0.3555,-15.68
+marathon,visual,visual_balance,90.43,0.1256,-15.68
+marathon,visual,text_image_ratio,37.2,1.0,-15.68
+marathon,visual,reading_flow,83.01,"{""backtracks"": 0, ""path_norm"": 0.9439}",-15.68
+marathon,visual,hierarchy,88.61,0.182,-15.68
+meeting,consistency,alignment,95.0,0.95,2.18
+meeting,consistency,typography_rhythm,82.26,4,2.18
+meeting,consistency,corner_radius_consistency,36.79,"{""radii"": [4.46, 5.25, 12.41, 10.31], ""unique_radius_count"": 4}",2.18
+meeting,consistency,padding_consistency,14.16,0.6982,2.18
+meeting,consistency,icon_size_consistency,95.12,0.0143,2.18
+meeting,consistency,grid,80.0,0.8,2.18
+meeting,consistency,style_simplicity,60.65,6,2.18
+meeting,information,coverage,100.0,1.0,2.18
+meeting,information,truncation,100.0,0.0,2.18
+meeting,information,duplicate,100.0,0.0,2.18
+meeting,layout,whitespace,88.67,0.5981,2.18
+meeting,layout,margin_consistency,24.48,0.7036,2.18
+meeting,layout,spacing_rhythm,54.44,0.3378,2.18
+meeting,layout,density,88.67,0.4019,2.18
+meeting,layout,overlap,100.0,0.0,2.18
+meeting,layout,overflow,100.0,0.0,2.18
+meeting,visual,color_harmony,70.39,"{""avg_lab_distance"": 94.49, ""color_count"": 6}",2.18
+meeting,visual,contrast,21.32,2.194,2.18
+meeting,visual,visual_focus,72.31,0.2406,2.18
+meeting,visual,visual_balance,95.28,0.087,2.18
+meeting,visual,text_image_ratio,99.23,0.5897,2.18
+meeting,visual,reading_flow,80.91,"{""backtracks"": 0, ""path_norm"": 1.0603}",2.18
+meeting,visual,hierarchy,99.04,0.2666,2.18
+sleep,consistency,alignment,50.0,0.5,-19.92
+sleep,consistency,typography_rhythm,82.26,4,-19.92
+sleep,consistency,grid,50.0,0.5,-19.92
+sleep,consistency,style_simplicity,60.65,6,-19.92
+sleep,information,coverage,33.33,0.3333,-19.92
+sleep,information,truncation,66.67,0.3333,-19.92
+sleep,information,duplicate,100.0,0.0,-19.92
+sleep,layout,whitespace,28.56,0.8166,-19.92
+sleep,layout,margin_consistency,29.77,0.6059,-19.92
+sleep,layout,spacing_rhythm,43.38,0.464,-19.92
+sleep,layout,density,28.56,0.1834,-19.92
+sleep,layout,overlap,100.0,0.0,-19.92
+sleep,layout,overflow,100.0,0.0,-19.92
+sleep,visual,color_harmony,55.97,"{""avg_lab_distance"": 111.56, ""color_count"": 6}",-19.92
+sleep,visual,contrast,52.7,3.608,-19.92
+sleep,visual,visual_focus,99.5,0.4239,-19.92
+sleep,visual,visual_balance,85.25,0.1582,-19.92
+sleep,visual,text_image_ratio,37.2,1.0,-19.92
+sleep,visual,reading_flow,88.7,"{""backtracks"": 0, ""path_norm"": 0.6278}",-19.92
+sleep,visual,hierarchy,72.95,0.1094,-19.92
+status,consistency,alignment,50.0,0.5,-11.26
+status,consistency,typography_rhythm,82.26,4,-11.26
+status,consistency,grid,50.0,0.5,-11.26
+status,consistency,style_simplicity,88.25,5,-11.26
+status,information,coverage,100.0,1.0,-11.26
+status,information,truncation,100.0,0.0,-11.26
+status,information,duplicate,100.0,0.0,-11.26
+status,layout,whitespace,19.65,0.8608,-11.26
+status,layout,margin_consistency,35.57,0.5168,-11.26
+status,layout,spacing_rhythm,50.92,0.375,-11.26
+status,layout,density,19.65,0.1392,-11.26
+status,layout,overlap,100.0,0.0,-11.26
+status,layout,overflow,100.0,0.0,-11.26
+status,visual,color_harmony,82.75,"{""avg_lab_distance"": 94.99, ""color_count"": 5}",-11.26
+status,visual,contrast,7.73,1.02,-11.26
+status,visual,visual_focus,48.68,0.762,-11.26
+status,visual,visual_balance,83.12,0.1703,-11.26
+status,visual,text_image_ratio,37.2,1.0,-11.26
+status,visual,reading_flow,91.31,"{""backtracks"": 0, ""path_norm"": 0.4828}",-11.26
+status,visual,hierarchy,97.75,0.3512,-11.26
+warn,consistency,alignment,68.18,0.6818,0.91
+warn,consistency,typography_rhythm,82.26,2,0.91
+warn,consistency,component_size,25.67,0.68,0.91
+warn,consistency,corner_radius_consistency,36.79,"{""radii"": [1.88, 8.87, 8.96, 5.62, 9.48], ""unique_radius_count"": 4}",0.91
+warn,consistency,padding_consistency,21.86,0.543,0.91
+warn,consistency,grid,75.0,0.75,0.91
+warn,consistency,style_simplicity,88.25,5,0.91
+warn,information,coverage,100.0,1.0,0.91
+warn,information,truncation,100.0,0.0,0.91
+warn,information,duplicate,100.0,0.0,0.91
+warn,layout,whitespace,99.78,0.4868,0.91
+warn,layout,margin_consistency,22.37,0.7488,0.91
+warn,layout,spacing_rhythm,51.51,0.3685,0.91
+warn,layout,density,99.78,0.5132,0.91
+warn,layout,overlap,98.74,0.0126,0.91
+warn,layout,overflow,100.0,0.0,0.91
+warn,visual,color_harmony,61.31,"{""avg_lab_distance"": 122.11, ""color_count"": 5}",0.91
+warn,visual,contrast,99.21,8.333,0.91
+warn,visual,visual_focus,80.88,0.2806,0.91
+warn,visual,visual_balance,98.65,0.0462,0.91
+warn,visual,text_image_ratio,77.45,0.3213,0.91
+warn,visual,reading_flow,74.11,"{""backtracks"": 0, ""path_norm"": 1.4382}",0.91
+warn,visual,hierarchy,85.09,0.1636,0.91
+weather,consistency,alignment,61.54,0.6154,-7.26
+weather,consistency,typography_rhythm,100.0,3,-7.26
+weather,consistency,corner_radius_consistency,13.53,"{""radii"": [3.47, 6.74, 6.35, 5.3, 13.28, 15.41, 8.15, 9.07], ""unique_radius_count"": 6}",-7.26
+weather,consistency,padding_consistency,16.25,0.649,-7.26
+weather,consistency,icon_size_consistency,15.81,0.5271,-7.26
+weather,consistency,grid,78.85,0.7885,-7.26
+weather,consistency,style_simplicity,60.65,6,-7.26
+weather,information,coverage,80.0,0.8,-7.26
+weather,information,truncation,80.0,0.2,-7.26
+weather,information,duplicate,100.0,0.0,-7.26
+weather,layout,whitespace,78.19,0.3597,-7.26
+weather,layout,margin_consistency,16.0,0.9164,-7.26
+weather,layout,spacing_rhythm,32.91,0.6174,-7.26
+weather,layout,density,78.19,0.6403,-7.26
+weather,layout,overlap,97.08,0.0292,-7.26
+weather,layout,overflow,100.0,0.0,-7.26
+weather,visual,color_harmony,84.49,"{""avg_lab_distance"": 71.46, ""color_count"": 6}",-7.26
+weather,visual,contrast,23.83,2.338,-7.26
+weather,visual,visual_focus,95.21,0.3685,-7.26
+weather,visual,visual_balance,95.94,0.0806,-7.26
+weather,visual,text_image_ratio,67.97,0.2688,-7.26
+weather,visual,reading_flow,88.73,"{""backtracks"": 0, ""path_norm"": 0.6261}",-7.26
+weather,visual,hierarchy,78.92,0.1349,-7.26

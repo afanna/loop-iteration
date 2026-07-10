@@ -1,0 +1,820 @@
+{
+  "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\status.png",
+  "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\status.dat",
+  "query": "",
+  "overall": 60.49,
+  "grade": "C",
+  "confidence": 0.7743,
+  "dimensions": [
+    {
+      "name": "information",
+      "label": "信息完整性",
+      "score": 100.0,
+      "weight": 8.0,
+      "metrics": [
+        {
+          "name": "coverage",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 1.0,
+          "ideal": 1.0,
+          "deviation": 0.0,
+          "confidence": 0.7742616534233093,
+          "formula": "score = 100 * coverage",
+          "status": "ok",
+          "details": {
+            "matched": [
+              "内存已使用",
+              "87%",
+              "一键清理"
+            ],
+            "missing": [],
+            "required_count": 3
+          }
+        },
+        {
+          "name": "truncation",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.7742616534233093,
+          "formula": "score = 100 * (1 - truncation_rate)",
+          "status": "ok",
+          "details": {
+            "truncated": [],
+            "ellipsis": [],
+            "low_confidence_texts": []
+          }
+        },
+        {
+          "name": "duplicate",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.7742616534233093,
+          "formula": "score = 100 * (1 - duplicate_rate)",
+          "status": "ok",
+          "details": {
+            "duplicates": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "label": "布局美学",
+      "score": 45.04,
+      "weight": 38.0,
+      "metrics": [
+        {
+          "name": "whitespace",
+          "dimension": "layout",
+          "score": 19.65,
+          "value": 0.8608,
+          "ideal": 0.5,
+          "deviation": 0.3608,
+          "confidence": 0.7742616534233093,
+          "formula": "Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "margin_consistency",
+          "dimension": "layout",
+          "score": 35.57,
+          "value": 0.5168,
+          "ideal": 0.0,
+          "deviation": 0.5168,
+          "confidence": 0.7742616534233093,
+          "formula": "100 * exp(-2.0 * CV)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "spacing_rhythm",
+          "dimension": "layout",
+          "score": 50.92,
+          "value": 0.375,
+          "ideal": 0.0,
+          "deviation": 0.375,
+          "confidence": 0.7742616534233093,
+          "formula": "100 * exp(-1.8 * CV)",
+          "status": "ok",
+          "details": {
+            "gap_count": 2
+          }
+        },
+        {
+          "name": "density",
+          "dimension": "layout",
+          "score": 19.65,
+          "value": 0.1392,
+          "ideal": 0.5,
+          "deviation": 0.3608,
+          "confidence": 0.7742616534233093,
+          "formula": "Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "overlap",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.7742616534233093,
+          "formula": "max(0, 100 - 100.0 * max_iou)",
+          "status": "ok",
+          "details": {
+            "pairs": []
+          }
+        },
+        {
+          "name": "overflow",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.7742616534233093,
+          "formula": "max(0, 100 - 100.0 * overflow)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "visual",
+      "label": "视觉设计",
+      "score": 67.53,
+      "weight": 25.0,
+      "metrics": [
+        {
+          "name": "color_harmony",
+          "dimension": "visual",
+          "score": 82.75,
+          "value": {
+            "color_count": 5,
+            "avg_lab_distance": 94.99
+          },
+          "ideal": {
+            "color_count": 4.5,
+            "avg_lab_distance": 65
+          },
+          "deviation": null,
+          "confidence": 0.7742616534233093,
+          "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+          "status": "ok",
+          "details": {
+            "colors": [
+              [
+                68,
+                134,
+                115
+              ],
+              [
+                38,
+                93,
+                90
+              ],
+              [
+                41,
+                223,
+                85
+              ],
+              [
+                248,
+                251,
+                250
+              ],
+              [
+                156,
+                194,
+                176
+              ]
+            ],
+            "proportions": [
+              0.391375,
+              0.2455,
+              0.16075,
+              0.145,
+              0.037
+            ]
+          }
+        },
+        {
+          "name": "contrast",
+          "dimension": "visual",
+          "score": 7.73,
+          "value": 1.02,
+          "ideal": 3.5,
+          "deviation": 2.48,
+          "confidence": 0.7742616534233093,
+          "formula": "Sigmoid(min_contrast)",
+          "status": "ok",
+          "details": {
+            "ratios": [
+              3.163,
+              4.524,
+              1.029,
+              1.02
+            ]
+          }
+        },
+        {
+          "name": "visual_focus",
+          "dimension": "visual",
+          "score": 48.68,
+          "value": 0.762,
+          "ideal": 0.45,
+          "deviation": 0.312,
+          "confidence": 0.7742616534233093,
+          "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "visual_balance",
+          "dimension": "visual",
+          "score": 83.12,
+          "value": 0.1703,
+          "ideal": 0.0,
+          "deviation": 0.1703,
+          "confidence": 0.7742616534233093,
+          "formula": "Euclidean distance + Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "text_image_ratio",
+          "dimension": "visual",
+          "score": 37.2,
+          "value": 1.0,
+          "ideal": 0.55,
+          "deviation": 0.45,
+          "confidence": 0.7742616534233093,
+          "formula": "Gaussian(text_area / occupied_area)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "reading_flow",
+          "dimension": "visual",
+          "score": 91.31,
+          "value": {
+            "path_norm": 0.4828,
+            "backtracks": 0
+          },
+          "ideal": {
+            "path_norm": "low",
+            "backtracks": 0
+          },
+          "deviation": null,
+          "confidence": 0.7742616534233093,
+          "formula": "100 - path_penalty - backtrack_penalty",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "hierarchy",
+          "dimension": "visual",
+          "score": 97.75,
+          "value": 0.3512,
+          "ideal": 0.3,
+          "deviation": 0.0512,
+          "confidence": 0.7742616534233093,
+          "formula": "Gaussian(Gini(text_visual_weight))",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "consistency",
+      "label": "设计一致性",
+      "score": 65.75,
+      "weight": 18.0,
+      "metrics": [
+        {
+          "name": "alignment",
+          "dimension": "consistency",
+          "score": 50.0,
+          "value": 0.5,
+          "ideal": 1.0,
+          "deviation": 0.5,
+          "confidence": 0.7742616534233093,
+          "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "typography_rhythm",
+          "dimension": "consistency",
+          "score": 82.26,
+          "value": 4,
+          "ideal": 3.0,
+          "deviation": 1.0,
+          "confidence": 0.7742616534233093,
+          "formula": "Gaussian(font_size_level_count)",
+          "status": "ok",
+          "details": {
+            "levels": [
+              16,
+              18,
+              20,
+              36
+            ]
+          }
+        },
+        {
+          "name": "component_size",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=2 components",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient component samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 detected components",
+            "component_count": 0
+          }
+        },
+        {
+          "name": "corner_radius_consistency",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=2 radius samples",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient radius samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 radius samples"
+          }
+        },
+        {
+          "name": "padding_consistency",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=1 component with text padding",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient padding samples",
+          "status": "skipped",
+          "details": {
+            "reason": "no component text padding samples"
+          }
+        },
+        {
+          "name": "icon_size_consistency",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=2 icons",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient icon samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 detected icons"
+          }
+        },
+        {
+          "name": "grid",
+          "dimension": "consistency",
+          "score": 50.0,
+          "value": 0.5,
+          "ideal": 1.0,
+          "deviation": 0.5,
+          "confidence": 0.7742616534233093,
+          "formula": "mean(x snap ratio, y snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "style_simplicity",
+          "dimension": "consistency",
+          "score": 88.25,
+          "value": 5,
+          "ideal": 4.0,
+          "deviation": 1.0,
+          "confidence": 0.7742616534233093,
+          "formula": "Gaussian(dominant_color_count)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "name": "alignment",
+      "dimension": "consistency",
+      "score": 50.0,
+      "value": 0.5,
+      "ideal": 1.0,
+      "deviation": 0.5,
+      "confidence": 0.7742616534233093,
+      "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "typography_rhythm",
+      "dimension": "consistency",
+      "score": 82.26,
+      "value": 4,
+      "ideal": 3.0,
+      "deviation": 1.0,
+      "confidence": 0.7742616534233093,
+      "formula": "Gaussian(font_size_level_count)",
+      "status": "ok",
+      "details": {
+        "levels": [
+          16,
+          18,
+          20,
+          36
+        ]
+      }
+    },
+    {
+      "name": "component_size",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=2 components",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient component samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 detected components",
+        "component_count": 0
+      }
+    },
+    {
+      "name": "corner_radius_consistency",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=2 radius samples",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient radius samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 radius samples"
+      }
+    },
+    {
+      "name": "padding_consistency",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=1 component with text padding",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient padding samples",
+      "status": "skipped",
+      "details": {
+        "reason": "no component text padding samples"
+      }
+    },
+    {
+      "name": "icon_size_consistency",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=2 icons",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient icon samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 detected icons"
+      }
+    },
+    {
+      "name": "grid",
+      "dimension": "consistency",
+      "score": 50.0,
+      "value": 0.5,
+      "ideal": 1.0,
+      "deviation": 0.5,
+      "confidence": 0.7742616534233093,
+      "formula": "mean(x snap ratio, y snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "style_simplicity",
+      "dimension": "consistency",
+      "score": 88.25,
+      "value": 5,
+      "ideal": 4.0,
+      "deviation": 1.0,
+      "confidence": 0.7742616534233093,
+      "formula": "Gaussian(dominant_color_count)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "coverage",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 1.0,
+      "ideal": 1.0,
+      "deviation": 0.0,
+      "confidence": 0.7742616534233093,
+      "formula": "score = 100 * coverage",
+      "status": "ok",
+      "details": {
+        "matched": [
+          "内存已使用",
+          "87%",
+          "一键清理"
+        ],
+        "missing": [],
+        "required_count": 3
+      }
+    },
+    {
+      "name": "truncation",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.7742616534233093,
+      "formula": "score = 100 * (1 - truncation_rate)",
+      "status": "ok",
+      "details": {
+        "truncated": [],
+        "ellipsis": [],
+        "low_confidence_texts": []
+      }
+    },
+    {
+      "name": "duplicate",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.7742616534233093,
+      "formula": "score = 100 * (1 - duplicate_rate)",
+      "status": "ok",
+      "details": {
+        "duplicates": []
+      }
+    },
+    {
+      "name": "whitespace",
+      "dimension": "layout",
+      "score": 19.65,
+      "value": 0.8608,
+      "ideal": 0.5,
+      "deviation": 0.3608,
+      "confidence": 0.7742616534233093,
+      "formula": "Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "margin_consistency",
+      "dimension": "layout",
+      "score": 35.57,
+      "value": 0.5168,
+      "ideal": 0.0,
+      "deviation": 0.5168,
+      "confidence": 0.7742616534233093,
+      "formula": "100 * exp(-2.0 * CV)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "spacing_rhythm",
+      "dimension": "layout",
+      "score": 50.92,
+      "value": 0.375,
+      "ideal": 0.0,
+      "deviation": 0.375,
+      "confidence": 0.7742616534233093,
+      "formula": "100 * exp(-1.8 * CV)",
+      "status": "ok",
+      "details": {
+        "gap_count": 2
+      }
+    },
+    {
+      "name": "density",
+      "dimension": "layout",
+      "score": 19.65,
+      "value": 0.1392,
+      "ideal": 0.5,
+      "deviation": 0.3608,
+      "confidence": 0.7742616534233093,
+      "formula": "Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "overlap",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.7742616534233093,
+      "formula": "max(0, 100 - 100.0 * max_iou)",
+      "status": "ok",
+      "details": {
+        "pairs": []
+      }
+    },
+    {
+      "name": "overflow",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.7742616534233093,
+      "formula": "max(0, 100 - 100.0 * overflow)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "color_harmony",
+      "dimension": "visual",
+      "score": 82.75,
+      "value": {
+        "color_count": 5,
+        "avg_lab_distance": 94.99
+      },
+      "ideal": {
+        "color_count": 4.5,
+        "avg_lab_distance": 65
+      },
+      "deviation": null,
+      "confidence": 0.7742616534233093,
+      "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+      "status": "ok",
+      "details": {
+        "colors": [
+          [
+            68,
+            134,
+            115
+          ],
+          [
+            38,
+            93,
+            90
+          ],
+          [
+            41,
+            223,
+            85
+          ],
+          [
+            248,
+            251,
+            250
+          ],
+          [
+            156,
+            194,
+            176
+          ]
+        ],
+        "proportions": [
+          0.391375,
+          0.2455,
+          0.16075,
+          0.145,
+          0.037
+        ]
+      }
+    },
+    {
+      "name": "contrast",
+      "dimension": "visual",
+      "score": 7.73,
+      "value": 1.02,
+      "ideal": 3.5,
+      "deviation": 2.48,
+      "confidence": 0.7742616534233093,
+      "formula": "Sigmoid(min_contrast)",
+      "status": "ok",
+      "details": {
+        "ratios": [
+          3.163,
+          4.524,
+          1.029,
+          1.02
+        ]
+      }
+    },
+    {
+      "name": "visual_focus",
+      "dimension": "visual",
+      "score": 48.68,
+      "value": 0.762,
+      "ideal": 0.45,
+      "deviation": 0.312,
+      "confidence": 0.7742616534233093,
+      "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "visual_balance",
+      "dimension": "visual",
+      "score": 83.12,
+      "value": 0.1703,
+      "ideal": 0.0,
+      "deviation": 0.1703,
+      "confidence": 0.7742616534233093,
+      "formula": "Euclidean distance + Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "text_image_ratio",
+      "dimension": "visual",
+      "score": 37.2,
+      "value": 1.0,
+      "ideal": 0.55,
+      "deviation": 0.45,
+      "confidence": 0.7742616534233093,
+      "formula": "Gaussian(text_area / occupied_area)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "reading_flow",
+      "dimension": "visual",
+      "score": 91.31,
+      "value": {
+        "path_norm": 0.4828,
+        "backtracks": 0
+      },
+      "ideal": {
+        "path_norm": "low",
+        "backtracks": 0
+      },
+      "deviation": null,
+      "confidence": 0.7742616534233093,
+      "formula": "100 - path_penalty - backtrack_penalty",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "hierarchy",
+      "dimension": "visual",
+      "score": 97.75,
+      "value": 0.3512,
+      "ideal": 0.3,
+      "deviation": 0.0512,
+      "confidence": 0.7742616534233093,
+      "formula": "Gaussian(Gini(text_visual_weight))",
+      "status": "ok",
+      "details": {}
+    }
+  ],
+  "required_texts": [
+    {
+      "text": "内存已使用",
+      "source": "text.content",
+      "component_id": "memoryTitle"
+    },
+    {
+      "text": "87%",
+      "source": "text.content",
+      "component_id": "memoryValue"
+    },
+    {
+      "text": "一键清理",
+      "source": "text.content",
+      "component_id": "actionLabel"
+    }
+  ],
+  "missing_texts": [],
+  "warnings": [
+    "指标跳过：组件尺寸一致性：检测到的组件少于 2 个",
+    "指标跳过：圆角一致性：可用圆角样本少于 2 个",
+    "指标跳过：内边距一致性：没有可估算文字内边距的组件",
+    "指标跳过：图标尺寸一致性：检测到的图标少于 2 个"
+  ]
+}

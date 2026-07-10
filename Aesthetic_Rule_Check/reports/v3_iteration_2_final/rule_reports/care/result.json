@@ -1,0 +1,892 @@
+{
+  "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\care.png",
+  "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\care.dat",
+  "query": "",
+  "overall": 70.56,
+  "grade": "B",
+  "confidence": 0.6998,
+  "dimensions": [
+    {
+      "name": "information",
+      "label": "信息完整性",
+      "score": 46.0,
+      "weight": 0.0,
+      "metrics": [
+        {
+          "name": "coverage",
+          "dimension": "information",
+          "score": 40.0,
+          "value": 0.4,
+          "ideal": 1.0,
+          "deviation": 0.6,
+          "confidence": 0.699779711663723,
+          "formula": "score = 100 * coverage",
+          "status": "ok",
+          "details": {
+            "matched": [
+              "Shenzhen",
+              "易发"
+            ],
+            "missing": [
+              "31°",
+              "🌡️ 高温预警",
+              "😷 感冒指数"
+            ],
+            "required_count": 5
+          }
+        },
+        {
+          "name": "truncation",
+          "dimension": "information",
+          "score": 40.0,
+          "value": 0.6,
+          "ideal": 0.0,
+          "deviation": 0.6,
+          "confidence": 0.699779711663723,
+          "formula": "score = 100 * (1 - truncation_rate)",
+          "status": "ok",
+          "details": {
+            "truncated": [
+              "31°",
+              "🌡️ 高温预警",
+              "😷 感冒指数"
+            ],
+            "ellipsis": [],
+            "low_confidence_texts": []
+          }
+        },
+        {
+          "name": "duplicate",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.699779711663723,
+          "formula": "score = 100 * (1 - duplicate_rate)",
+          "status": "ok",
+          "details": {
+            "duplicates": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "label": "布局美学",
+      "score": 82.55,
+      "weight": 46.0,
+      "metrics": [
+        {
+          "name": "whitespace",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.2084,
+          "ideal": {
+            "min": 0.1,
+            "max": 0.65
+          },
+          "deviation": 0.0,
+          "confidence": 0.699779711663723,
+          "formula": "BandGaussian",
+          "status": "ok",
+          "details": {
+            "element_occupied_ratio": 0.1394,
+            "pixel_foreground_ratio": 0.7916,
+            "combined_occupied_ratio": 0.7916
+          }
+        },
+        {
+          "name": "margin_consistency",
+          "dimension": "layout",
+          "score": 39.24,
+          "value": 0.4677,
+          "ideal": 0.0,
+          "deviation": 0.4677,
+          "confidence": 0.699779711663723,
+          "formula": "100 * exp(-2.0 * CV)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "spacing_rhythm",
+          "dimension": "layout",
+          "score": 28.38,
+          "value": 0.6997,
+          "ideal": 0.0,
+          "deviation": 0.6997,
+          "confidence": 0.699779711663723,
+          "formula": "100 * exp(-1.8 * CV)",
+          "status": "ok",
+          "details": {
+            "gap_count": 3
+          }
+        },
+        {
+          "name": "density",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.7916,
+          "ideal": {
+            "min": 0.35,
+            "max": 0.9
+          },
+          "deviation": 0.0,
+          "confidence": 0.699779711663723,
+          "formula": "BandGaussian",
+          "status": "ok",
+          "details": {
+            "element_occupied_ratio": 0.1394,
+            "pixel_foreground_ratio": 0.7916,
+            "combined_occupied_ratio": 0.7916
+          }
+        },
+        {
+          "name": "overlap",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.699779711663723,
+          "formula": "max(0, 100 - 100.0 * max_iou)",
+          "status": "ok",
+          "details": {
+            "pairs": []
+          }
+        },
+        {
+          "name": "overflow",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.699779711663723,
+          "formula": "max(0, 100 - 100.0 * overflow)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "visual",
+      "label": "视觉设计",
+      "score": 57.06,
+      "weight": 35.0,
+      "metrics": [
+        {
+          "name": "color_harmony",
+          "dimension": "visual",
+          "score": 67.43,
+          "value": {
+            "color_count": 6,
+            "avg_lab_distance": 97.96
+          },
+          "ideal": {
+            "color_count": 4.5,
+            "avg_lab_distance": 65
+          },
+          "deviation": null,
+          "confidence": 0.699779711663723,
+          "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+          "status": "ok",
+          "details": {
+            "colors": [
+              [
+                247,
+                249,
+                250
+              ],
+              [
+                88,
+                141,
+                246
+              ],
+              [
+                55,
+                101,
+                191
+              ],
+              [
+                16,
+                52,
+                128
+              ],
+              [
+                140,
+                175,
+                243
+              ],
+              [
+                126,
+                171,
+                101
+              ]
+            ],
+            "proportions": [
+              0.208375,
+              0.197375,
+              0.193125,
+              0.177,
+              0.153375,
+              0.07075
+            ]
+          }
+        },
+        {
+          "name": "contrast",
+          "dimension": "visual",
+          "score": 16.64,
+          "value": 1.889,
+          "ideal": 3.5,
+          "deviation": 1.611,
+          "confidence": 0.699779711663723,
+          "formula": "Sigmoid(min_contrast)",
+          "status": "ok",
+          "details": {
+            "ratios": [
+              8.732,
+              3.17,
+              4.608,
+              1.889,
+              2.149
+            ]
+          }
+        },
+        {
+          "name": "visual_focus",
+          "dimension": "visual",
+          "score": 30.17,
+          "value": 0.8525,
+          "ideal": 0.45,
+          "deviation": 0.4025,
+          "confidence": 0.699779711663723,
+          "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "visual_balance",
+          "dimension": "visual",
+          "score": 57.52,
+          "value": 0.2945,
+          "ideal": 0.0,
+          "deviation": 0.2945,
+          "confidence": 0.699779711663723,
+          "formula": "Euclidean distance + Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "text_image_ratio",
+          "dimension": "visual",
+          "score": 37.2,
+          "value": 1.0,
+          "ideal": 0.55,
+          "deviation": 0.45,
+          "confidence": 0.699779711663723,
+          "formula": "Gaussian(text_area / occupied_area)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "reading_flow",
+          "dimension": "visual",
+          "score": 85.39,
+          "value": {
+            "path_norm": 0.8114,
+            "backtracks": 0
+          },
+          "ideal": {
+            "path_norm": "low",
+            "backtracks": 0
+          },
+          "deviation": null,
+          "confidence": 0.699779711663723,
+          "formula": "100 - path_penalty - backtrack_penalty",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "hierarchy",
+          "dimension": "visual",
+          "score": 99.72,
+          "value": 0.3178,
+          "ideal": 0.3,
+          "deviation": 0.0178,
+          "confidence": 0.699779711663723,
+          "formula": "Gaussian(Gini(text_visual_weight))",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "consistency",
+      "label": "设计一致性",
+      "score": 60.73,
+      "weight": 8.0,
+      "metrics": [
+        {
+          "name": "alignment",
+          "dimension": "consistency",
+          "score": 40.0,
+          "value": 0.4,
+          "ideal": 1.0,
+          "deviation": 0.6,
+          "confidence": 0.699779711663723,
+          "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "typography_rhythm",
+          "dimension": "consistency",
+          "score": 82.26,
+          "value": 4,
+          "ideal": 3.0,
+          "deviation": 1.0,
+          "confidence": 0.699779711663723,
+          "formula": "Gaussian(font_size_level_count)",
+          "status": "ok",
+          "details": {
+            "levels": [
+              10,
+              12,
+              20,
+              36
+            ]
+          }
+        },
+        {
+          "name": "component_size",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=2 components",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient component samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 detected components",
+            "component_count": 0
+          }
+        },
+        {
+          "name": "corner_radius_consistency",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=2 radius samples",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient radius samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 radius samples"
+          }
+        },
+        {
+          "name": "padding_consistency",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=1 component with text padding",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient padding samples",
+          "status": "skipped",
+          "details": {
+            "reason": "no component text padding samples"
+          }
+        },
+        {
+          "name": "icon_size_consistency",
+          "dimension": "consistency",
+          "score": null,
+          "value": 0,
+          "ideal": ">=2 icons",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient icon samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 detected icons"
+          }
+        },
+        {
+          "name": "grid",
+          "dimension": "consistency",
+          "score": 60.0,
+          "value": 0.6,
+          "ideal": 1.0,
+          "deviation": 0.4,
+          "confidence": 0.699779711663723,
+          "formula": "mean(x snap ratio, y snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "style_simplicity",
+          "dimension": "consistency",
+          "score": 60.65,
+          "value": 6,
+          "ideal": 4.0,
+          "deviation": 2.0,
+          "confidence": 0.699779711663723,
+          "formula": "Gaussian(dominant_color_count)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "name": "alignment",
+      "dimension": "consistency",
+      "score": 40.0,
+      "value": 0.4,
+      "ideal": 1.0,
+      "deviation": 0.6,
+      "confidence": 0.699779711663723,
+      "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "typography_rhythm",
+      "dimension": "consistency",
+      "score": 82.26,
+      "value": 4,
+      "ideal": 3.0,
+      "deviation": 1.0,
+      "confidence": 0.699779711663723,
+      "formula": "Gaussian(font_size_level_count)",
+      "status": "ok",
+      "details": {
+        "levels": [
+          10,
+          12,
+          20,
+          36
+        ]
+      }
+    },
+    {
+      "name": "component_size",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=2 components",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient component samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 detected components",
+        "component_count": 0
+      }
+    },
+    {
+      "name": "corner_radius_consistency",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=2 radius samples",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient radius samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 radius samples"
+      }
+    },
+    {
+      "name": "padding_consistency",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=1 component with text padding",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient padding samples",
+      "status": "skipped",
+      "details": {
+        "reason": "no component text padding samples"
+      }
+    },
+    {
+      "name": "icon_size_consistency",
+      "dimension": "consistency",
+      "score": null,
+      "value": 0,
+      "ideal": ">=2 icons",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient icon samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 detected icons"
+      }
+    },
+    {
+      "name": "grid",
+      "dimension": "consistency",
+      "score": 60.0,
+      "value": 0.6,
+      "ideal": 1.0,
+      "deviation": 0.4,
+      "confidence": 0.699779711663723,
+      "formula": "mean(x snap ratio, y snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "style_simplicity",
+      "dimension": "consistency",
+      "score": 60.65,
+      "value": 6,
+      "ideal": 4.0,
+      "deviation": 2.0,
+      "confidence": 0.699779711663723,
+      "formula": "Gaussian(dominant_color_count)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "coverage",
+      "dimension": "information",
+      "score": 40.0,
+      "value": 0.4,
+      "ideal": 1.0,
+      "deviation": 0.6,
+      "confidence": 0.699779711663723,
+      "formula": "score = 100 * coverage",
+      "status": "ok",
+      "details": {
+        "matched": [
+          "Shenzhen",
+          "易发"
+        ],
+        "missing": [
+          "31°",
+          "🌡️ 高温预警",
+          "😷 感冒指数"
+        ],
+        "required_count": 5
+      }
+    },
+    {
+      "name": "truncation",
+      "dimension": "information",
+      "score": 40.0,
+      "value": 0.6,
+      "ideal": 0.0,
+      "deviation": 0.6,
+      "confidence": 0.699779711663723,
+      "formula": "score = 100 * (1 - truncation_rate)",
+      "status": "ok",
+      "details": {
+        "truncated": [
+          "31°",
+          "🌡️ 高温预警",
+          "😷 感冒指数"
+        ],
+        "ellipsis": [],
+        "low_confidence_texts": []
+      }
+    },
+    {
+      "name": "duplicate",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.699779711663723,
+      "formula": "score = 100 * (1 - duplicate_rate)",
+      "status": "ok",
+      "details": {
+        "duplicates": []
+      }
+    },
+    {
+      "name": "whitespace",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.2084,
+      "ideal": {
+        "min": 0.1,
+        "max": 0.65
+      },
+      "deviation": 0.0,
+      "confidence": 0.699779711663723,
+      "formula": "BandGaussian",
+      "status": "ok",
+      "details": {
+        "element_occupied_ratio": 0.1394,
+        "pixel_foreground_ratio": 0.7916,
+        "combined_occupied_ratio": 0.7916
+      }
+    },
+    {
+      "name": "margin_consistency",
+      "dimension": "layout",
+      "score": 39.24,
+      "value": 0.4677,
+      "ideal": 0.0,
+      "deviation": 0.4677,
+      "confidence": 0.699779711663723,
+      "formula": "100 * exp(-2.0 * CV)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "spacing_rhythm",
+      "dimension": "layout",
+      "score": 28.38,
+      "value": 0.6997,
+      "ideal": 0.0,
+      "deviation": 0.6997,
+      "confidence": 0.699779711663723,
+      "formula": "100 * exp(-1.8 * CV)",
+      "status": "ok",
+      "details": {
+        "gap_count": 3
+      }
+    },
+    {
+      "name": "density",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.7916,
+      "ideal": {
+        "min": 0.35,
+        "max": 0.9
+      },
+      "deviation": 0.0,
+      "confidence": 0.699779711663723,
+      "formula": "BandGaussian",
+      "status": "ok",
+      "details": {
+        "element_occupied_ratio": 0.1394,
+        "pixel_foreground_ratio": 0.7916,
+        "combined_occupied_ratio": 0.7916
+      }
+    },
+    {
+      "name": "overlap",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.699779711663723,
+      "formula": "max(0, 100 - 100.0 * max_iou)",
+      "status": "ok",
+      "details": {
+        "pairs": []
+      }
+    },
+    {
+      "name": "overflow",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.699779711663723,
+      "formula": "max(0, 100 - 100.0 * overflow)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "color_harmony",
+      "dimension": "visual",
+      "score": 67.43,
+      "value": {
+        "color_count": 6,
+        "avg_lab_distance": 97.96
+      },
+      "ideal": {
+        "color_count": 4.5,
+        "avg_lab_distance": 65
+      },
+      "deviation": null,
+      "confidence": 0.699779711663723,
+      "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+      "status": "ok",
+      "details": {
+        "colors": [
+          [
+            247,
+            249,
+            250
+          ],
+          [
+            88,
+            141,
+            246
+          ],
+          [
+            55,
+            101,
+            191
+          ],
+          [
+            16,
+            52,
+            128
+          ],
+          [
+            140,
+            175,
+            243
+          ],
+          [
+            126,
+            171,
+            101
+          ]
+        ],
+        "proportions": [
+          0.208375,
+          0.197375,
+          0.193125,
+          0.177,
+          0.153375,
+          0.07075
+        ]
+      }
+    },
+    {
+      "name": "contrast",
+      "dimension": "visual",
+      "score": 16.64,
+      "value": 1.889,
+      "ideal": 3.5,
+      "deviation": 1.611,
+      "confidence": 0.699779711663723,
+      "formula": "Sigmoid(min_contrast)",
+      "status": "ok",
+      "details": {
+        "ratios": [
+          8.732,
+          3.17,
+          4.608,
+          1.889,
+          2.149
+        ]
+      }
+    },
+    {
+      "name": "visual_focus",
+      "dimension": "visual",
+      "score": 30.17,
+      "value": 0.8525,
+      "ideal": 0.45,
+      "deviation": 0.4025,
+      "confidence": 0.699779711663723,
+      "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "visual_balance",
+      "dimension": "visual",
+      "score": 57.52,
+      "value": 0.2945,
+      "ideal": 0.0,
+      "deviation": 0.2945,
+      "confidence": 0.699779711663723,
+      "formula": "Euclidean distance + Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "text_image_ratio",
+      "dimension": "visual",
+      "score": 37.2,
+      "value": 1.0,
+      "ideal": 0.55,
+      "deviation": 0.45,
+      "confidence": 0.699779711663723,
+      "formula": "Gaussian(text_area / occupied_area)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "reading_flow",
+      "dimension": "visual",
+      "score": 85.39,
+      "value": {
+        "path_norm": 0.8114,
+        "backtracks": 0
+      },
+      "ideal": {
+        "path_norm": "low",
+        "backtracks": 0
+      },
+      "deviation": null,
+      "confidence": 0.699779711663723,
+      "formula": "100 - path_penalty - backtrack_penalty",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "hierarchy",
+      "dimension": "visual",
+      "score": 99.72,
+      "value": 0.3178,
+      "ideal": 0.3,
+      "deviation": 0.0178,
+      "confidence": 0.699779711663723,
+      "formula": "Gaussian(Gini(text_visual_weight))",
+      "status": "ok",
+      "details": {}
+    }
+  ],
+  "required_texts": [
+    {
+      "text": "31°",
+      "source": "text.content",
+      "component_id": "weather_temp"
+    },
+    {
+      "text": "🌡️ 高温预警",
+      "source": "text.content",
+      "component_id": "weather_warning"
+    },
+    {
+      "text": "Shenzhen",
+      "source": "text.content",
+      "component_id": "weather_city"
+    },
+    {
+      "text": "😷 感冒指数",
+      "source": "text.content",
+      "component_id": "cold_label"
+    },
+    {
+      "text": "易发",
+      "source": "text.content",
+      "component_id": "cold_value"
+    }
+  ],
+  "missing_texts": [
+    "31°",
+    "🌡️ 高温预警",
+    "😷 感冒指数"
+  ],
+  "warnings": [
+    "指标跳过：组件尺寸一致性：检测到的组件少于 2 个",
+    "指标跳过：圆角一致性：可用圆角样本少于 2 个",
+    "指标跳过：内边距一致性：没有可估算文字内边距的组件",
+    "指标跳过：图标尺寸一致性：检测到的图标少于 2 个",
+    "指标权重未配置为正数：视觉焦点",
+    "指标权重未配置为正数：视觉层级"
+  ]
+}

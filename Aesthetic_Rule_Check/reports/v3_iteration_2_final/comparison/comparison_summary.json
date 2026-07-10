@@ -1,0 +1,2184 @@
+{
+  "bias": 0.67,
+  "dimensions": [
+    {
+      "abs_error": 13.69,
+      "dimension": "information",
+      "error_rule_minus_teacher": 13.69,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 98.57,
+      "sample_id": "battery",
+      "teacher_mapped_score": 84.88
+    },
+    {
+      "abs_error": 0.94,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 0.94,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 79.5,
+      "sample_id": "battery",
+      "teacher_mapped_score": 78.56
+    },
+    {
+      "abs_error": 0.39,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -0.39,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 76.42,
+      "sample_id": "battery",
+      "teacher_mapped_score": 76.81
+    },
+    {
+      "abs_error": 18.33,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -18.33,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 54.11,
+      "sample_id": "battery",
+      "teacher_mapped_score": 72.44
+    },
+    {
+      "abs_error": 31.5,
+      "dimension": "information",
+      "error_rule_minus_teacher": -31.5,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 46.0,
+      "sample_id": "care",
+      "teacher_mapped_score": 77.5
+    },
+    {
+      "abs_error": 12.49,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 12.49,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 82.55,
+      "sample_id": "care",
+      "teacher_mapped_score": 70.06
+    },
+    {
+      "abs_error": 15.32,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -15.32,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 57.06,
+      "sample_id": "care",
+      "teacher_mapped_score": 72.38
+    },
+    {
+      "abs_error": 8.02,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -8.02,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 60.73,
+      "sample_id": "care",
+      "teacher_mapped_score": 68.75
+    },
+    {
+      "abs_error": 59.64,
+      "dimension": "information",
+      "error_rule_minus_teacher": 59.64,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 97.14,
+      "sample_id": "earbuds",
+      "teacher_mapped_score": 37.5
+    },
+    {
+      "abs_error": 13.15,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 13.15,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 51.59,
+      "sample_id": "earbuds",
+      "teacher_mapped_score": 38.44
+    },
+    {
+      "abs_error": 3.21,
+      "dimension": "visual",
+      "error_rule_minus_teacher": 3.21,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 49.46,
+      "sample_id": "earbuds",
+      "teacher_mapped_score": 46.25
+    },
+    {
+      "abs_error": 19.3,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": 19.3,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 66.49,
+      "sample_id": "earbuds",
+      "teacher_mapped_score": 47.19
+    },
+    {
+      "abs_error": 14.75,
+      "dimension": "information",
+      "error_rule_minus_teacher": 14.75,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 100.0,
+      "sample_id": "focus",
+      "teacher_mapped_score": 85.25
+    },
+    {
+      "abs_error": 2.3,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 2.3,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 82.86,
+      "sample_id": "focus",
+      "teacher_mapped_score": 80.56
+    },
+    {
+      "abs_error": 2.46,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -2.46,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 78.04,
+      "sample_id": "focus",
+      "teacher_mapped_score": 80.5
+    },
+    {
+      "abs_error": 21.47,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -21.47,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 56.65,
+      "sample_id": "focus",
+      "teacher_mapped_score": 78.12
+    },
+    {
+      "abs_error": 15.5,
+      "dimension": "information",
+      "error_rule_minus_teacher": 15.5,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 100.0,
+      "sample_id": "marathon",
+      "teacher_mapped_score": 84.5
+    },
+    {
+      "abs_error": 4.68,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 4.68,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 82.93,
+      "sample_id": "marathon",
+      "teacher_mapped_score": 78.25
+    },
+    {
+      "abs_error": 14.05,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -14.05,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 62.39,
+      "sample_id": "marathon",
+      "teacher_mapped_score": 76.44
+    },
+    {
+      "abs_error": 22.2,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -22.2,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 51.92,
+      "sample_id": "marathon",
+      "teacher_mapped_score": 74.12
+    },
+    {
+      "abs_error": 20.62,
+      "dimension": "information",
+      "error_rule_minus_teacher": 20.62,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 100.0,
+      "sample_id": "meeting",
+      "teacher_mapped_score": 79.38
+    },
+    {
+      "abs_error": 9.57,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 9.57,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 83.63,
+      "sample_id": "meeting",
+      "teacher_mapped_score": 74.06
+    },
+    {
+      "abs_error": 11.38,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -11.38,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 64.0,
+      "sample_id": "meeting",
+      "teacher_mapped_score": 75.38
+    },
+    {
+      "abs_error": 0.53,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -0.53,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 69.72,
+      "sample_id": "meeting",
+      "teacher_mapped_score": 70.25
+    },
+    {
+      "abs_error": 37.46,
+      "dimension": "information",
+      "error_rule_minus_teacher": -37.46,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 46.66,
+      "sample_id": "sleep",
+      "teacher_mapped_score": 84.12
+    },
+    {
+      "abs_error": 5.65,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 5.65,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 83.03,
+      "sample_id": "sleep",
+      "teacher_mapped_score": 77.38
+    },
+    {
+      "abs_error": 18.59,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -18.59,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 58.85,
+      "sample_id": "sleep",
+      "teacher_mapped_score": 77.44
+    },
+    {
+      "abs_error": 13.89,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -13.89,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 60.73,
+      "sample_id": "sleep",
+      "teacher_mapped_score": 74.62
+    },
+    {
+      "abs_error": 20.62,
+      "dimension": "information",
+      "error_rule_minus_teacher": 20.62,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 100.0,
+      "sample_id": "status",
+      "teacher_mapped_score": 79.38
+    },
+    {
+      "abs_error": 9.6,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 9.6,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 84.79,
+      "sample_id": "status",
+      "teacher_mapped_score": 75.19
+    },
+    {
+      "abs_error": 6.39,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -6.39,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 66.17,
+      "sample_id": "status",
+      "teacher_mapped_score": 72.56
+    },
+    {
+      "abs_error": 5.37,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -5.37,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 65.75,
+      "sample_id": "status",
+      "teacher_mapped_score": 71.12
+    },
+    {
+      "abs_error": 15.5,
+      "dimension": "information",
+      "error_rule_minus_teacher": 15.5,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 100.0,
+      "sample_id": "warn",
+      "teacher_mapped_score": 84.5
+    },
+    {
+      "abs_error": 4.73,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 4.73,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 82.79,
+      "sample_id": "warn",
+      "teacher_mapped_score": 78.06
+    },
+    {
+      "abs_error": 3.86,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -3.86,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 72.58,
+      "sample_id": "warn",
+      "teacher_mapped_score": 76.44
+    },
+    {
+      "abs_error": 15.39,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -15.39,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 58.17,
+      "sample_id": "warn",
+      "teacher_mapped_score": 73.56
+    },
+    {
+      "abs_error": 1.75,
+      "dimension": "information",
+      "error_rule_minus_teacher": -1.75,
+      "mapping": "{\"basic_usability\": 0.7, \"composition_hierarchy\": 0.3}",
+      "rule_score": 82.0,
+      "sample_id": "weather",
+      "teacher_mapped_score": 83.75
+    },
+    {
+      "abs_error": 3.06,
+      "dimension": "layout",
+      "error_rule_minus_teacher": 3.06,
+      "mapping": "{\"basic_usability\": 0.15, \"composition_hierarchy\": 0.7, \"detail_finish\": 0.15}",
+      "rule_score": 79.37,
+      "sample_id": "weather",
+      "teacher_mapped_score": 76.31
+    },
+    {
+      "abs_error": 3.21,
+      "dimension": "visual",
+      "error_rule_minus_teacher": -3.21,
+      "mapping": "{\"color_material\": 0.55, \"composition_hierarchy\": 0.3, \"typography\": 0.15}",
+      "rule_score": 72.29,
+      "sample_id": "weather",
+      "teacher_mapped_score": 75.5
+    },
+    {
+      "abs_error": 18.2,
+      "dimension": "consistency",
+      "error_rule_minus_teacher": -18.2,
+      "mapping": "{\"color_material\": 0.2, \"detail_finish\": 0.45, \"typography\": 0.35}",
+      "rule_score": 54.92,
+      "sample_id": "weather",
+      "teacher_mapped_score": 73.12
+    }
+  ],
+  "mae": 2.76,
+  "metrics": [
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 69.23,
+      "metric_value": "0.6923",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 45.78,
+      "metric_value": "5",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "corner_radius_consistency",
+      "metric_score": 36.79,
+      "metric_value": "{\"radii\": [6.72, 6.72, 6.48, 11.63, 43.03, 9.49], \"unique_radius_count\": 4}",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "padding_consistency",
+      "metric_score": 11.35,
+      "metric_value": "0.777",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "icon_size_consistency",
+      "metric_score": 29.88,
+      "metric_value": "0.3451",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 80.77,
+      "metric_value": "0.8077",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 88.25,
+      "metric_value": "5",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 100.0,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 85.71,
+      "metric_value": "0.1429",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.4131",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 20.98,
+      "metric_value": "0.7808",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 35.41,
+      "metric_value": "0.5768",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.5869",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 90.85,
+      "metric_value": "0.0915",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 95.04,
+      "metric_value": "{\"avg_lab_distance\": 77.45, \"color_count\": 5}",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 24.79,
+      "metric_value": "2.39",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 85.46,
+      "metric_value": "0.3042",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 88.49,
+      "metric_value": "0.1384",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 66.29,
+      "metric_value": "0.2598",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 68.19,
+      "metric_value": "{\"backtracks\": 1, \"path_norm\": 1.1004}",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 96.75,
+      "metric_value": "0.2383",
+      "overall_error_rule_minus_teacher": -0.37,
+      "sample_id": "battery"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 40.0,
+      "metric_value": "0.4",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 82.26,
+      "metric_value": "4",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 60.0,
+      "metric_value": "0.6",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 60.65,
+      "metric_value": "6",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 40.0,
+      "metric_value": "0.4",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 40.0,
+      "metric_value": "0.6",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.2084",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 39.24,
+      "metric_value": "0.4677",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 28.38,
+      "metric_value": "0.6997",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.7916",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 67.43,
+      "metric_value": "{\"avg_lab_distance\": 97.96, \"color_count\": 6}",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 16.64,
+      "metric_value": "1.889",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 30.17,
+      "metric_value": "0.8525",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 57.52,
+      "metric_value": "0.2945",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 37.2,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 85.39,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 0.8114}",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 99.72,
+      "metric_value": "0.3178",
+      "overall_error_rule_minus_teacher": -0.5,
+      "sample_id": "care"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 90.91,
+      "metric_value": "0.9091",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 45.78,
+      "metric_value": "5",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "corner_radius_consistency",
+      "metric_score": 60.65,
+      "metric_value": "{\"radii\": [4.21, 8.04, 6.74], \"unique_radius_count\": 3}",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "padding_consistency",
+      "metric_score": 25.77,
+      "metric_value": "0.4843",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "icon_size_consistency",
+      "metric_score": 45.7,
+      "metric_value": "0.2237",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 93.18,
+      "metric_value": "0.9318",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 88.25,
+      "metric_value": "3",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 100.0,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 85.71,
+      "metric_value": "0.1429",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 43.97,
+      "metric_value": "0.8038",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 31.08,
+      "metric_value": "0.5843",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 17.18,
+      "metric_value": "0.9786",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 30.63,
+      "metric_value": "0.1962",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 45.41,
+      "metric_value": "{\"avg_lab_distance\": 127.65, \"color_count\": 3}",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 36.41,
+      "metric_value": "2.943",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 97.44,
+      "metric_value": "0.5092",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 89.8,
+      "metric_value": "0.1299",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 58.66,
+      "metric_value": "0.8805",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 79.1,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 1.1613}",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 95.58,
+      "metric_value": "0.3722",
+      "overall_error_rule_minus_teacher": 9.9,
+      "sample_id": "earbuds"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 65.0,
+      "metric_value": "0.65",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 82.26,
+      "metric_value": "2",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "corner_radius_consistency",
+      "metric_score": 60.65,
+      "metric_value": "{\"radii\": [3.52, 4.13, 5.14, 7.04, 8.01], \"unique_radius_count\": 3}",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "padding_consistency",
+      "metric_score": 18.67,
+      "metric_value": "0.5994",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "icon_size_consistency",
+      "metric_score": 26.93,
+      "metric_value": "0.3748",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 62.5,
+      "metric_value": "0.625",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 60.65,
+      "metric_value": "6",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 100.0,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.4867",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 15.0,
+      "metric_value": "0.9487",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 59.23,
+      "metric_value": "0.291",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.5133",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 80.09,
+      "metric_value": "{\"avg_lab_distance\": 81.47, \"color_count\": 6}",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 56.13,
+      "metric_value": "3.747",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 79.12,
+      "metric_value": "0.272",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 99.24,
+      "metric_value": "0.0345",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 98.83,
+      "metric_value": "0.5009",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 90.73,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 0.5147}",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 96.98,
+      "metric_value": "0.2406",
+      "overall_error_rule_minus_teacher": -0.45,
+      "sample_id": "focus"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 41.67,
+      "metric_value": "0.4167",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 45.78,
+      "metric_value": "5",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 62.5,
+      "metric_value": "0.625",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 60.65,
+      "metric_value": "6",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 100.0,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.1801",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 34.81,
+      "metric_value": "0.5276",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 36.61,
+      "metric_value": "0.5582",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.8199",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 67.11,
+      "metric_value": "{\"avg_lab_distance\": 98.33, \"color_count\": 6}",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 38.59,
+      "metric_value": "3.035",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 93.6,
+      "metric_value": "0.3555",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 90.43,
+      "metric_value": "0.1256",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 37.2,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 83.01,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 0.9439}",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 88.61,
+      "metric_value": "0.182",
+      "overall_error_rule_minus_teacher": -3.87,
+      "sample_id": "marathon"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 95.0,
+      "metric_value": "0.95",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 82.26,
+      "metric_value": "4",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "corner_radius_consistency",
+      "metric_score": 36.79,
+      "metric_value": "{\"radii\": [4.46, 5.25, 12.41, 10.31], \"unique_radius_count\": 4}",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "padding_consistency",
+      "metric_score": 14.16,
+      "metric_value": "0.6982",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "icon_size_consistency",
+      "metric_score": 95.12,
+      "metric_value": "0.0143",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 80.0,
+      "metric_value": "0.8",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 60.65,
+      "metric_value": "6",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 100.0,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.5981",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 24.48,
+      "metric_value": "0.7036",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 54.44,
+      "metric_value": "0.3378",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.4019",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 70.39,
+      "metric_value": "{\"avg_lab_distance\": 94.49, \"color_count\": 6}",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 21.32,
+      "metric_value": "2.194",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 72.31,
+      "metric_value": "0.2406",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 95.28,
+      "metric_value": "0.087",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 99.23,
+      "metric_value": "0.5897",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 80.91,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 1.0603}",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 99.04,
+      "metric_value": "0.2666",
+      "overall_error_rule_minus_teacher": 1.6,
+      "sample_id": "meeting"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 50.0,
+      "metric_value": "0.5",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 82.26,
+      "metric_value": "4",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 50.0,
+      "metric_value": "0.5",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 60.65,
+      "metric_value": "6",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 33.33,
+      "metric_value": "0.3333",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 66.67,
+      "metric_value": "0.3333",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.1814",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 29.77,
+      "metric_value": "0.6059",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 43.38,
+      "metric_value": "0.464",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.8186",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 55.97,
+      "metric_value": "{\"avg_lab_distance\": 111.56, \"color_count\": 6}",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 52.7,
+      "metric_value": "3.608",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 99.5,
+      "metric_value": "0.4239",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 85.25,
+      "metric_value": "0.1582",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 37.2,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 88.7,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 0.6278}",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 72.95,
+      "metric_value": "0.1094",
+      "overall_error_rule_minus_teacher": -5.29,
+      "sample_id": "sleep"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 50.0,
+      "metric_value": "0.5",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 82.26,
+      "metric_value": "4",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 50.0,
+      "metric_value": "0.5",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 88.25,
+      "metric_value": "5",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 100.0,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.1587",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 35.57,
+      "metric_value": "0.5168",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 50.92,
+      "metric_value": "0.375",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.8413",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 82.75,
+      "metric_value": "{\"avg_lab_distance\": 94.99, \"color_count\": 5}",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 7.73,
+      "metric_value": "1.02",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 48.68,
+      "metric_value": "0.762",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 83.12,
+      "metric_value": "0.1703",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 37.2,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 91.31,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 0.4828}",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 97.75,
+      "metric_value": "0.3512",
+      "overall_error_rule_minus_teacher": 4.01,
+      "sample_id": "status"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 68.18,
+      "metric_value": "0.6818",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 82.26,
+      "metric_value": "2",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "component_size",
+      "metric_score": 25.67,
+      "metric_value": "0.68",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "corner_radius_consistency",
+      "metric_score": 36.79,
+      "metric_value": "{\"radii\": [1.88, 8.87, 8.96, 5.62, 9.48], \"unique_radius_count\": 4}",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "padding_consistency",
+      "metric_score": 21.86,
+      "metric_value": "0.543",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 75.0,
+      "metric_value": "0.75",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 88.25,
+      "metric_value": "5",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 100.0,
+      "metric_value": "1.0",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.4868",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 22.37,
+      "metric_value": "0.7488",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 51.51,
+      "metric_value": "0.3685",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.5132",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 98.74,
+      "metric_value": "0.0126",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 61.31,
+      "metric_value": "{\"avg_lab_distance\": 122.11, \"color_count\": 5}",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 99.21,
+      "metric_value": "8.333",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 80.88,
+      "metric_value": "0.2806",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 98.65,
+      "metric_value": "0.0462",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 77.45,
+      "metric_value": "0.3213",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 74.11,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 1.4382}",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 85.09,
+      "metric_value": "0.1636",
+      "overall_error_rule_minus_teacher": 1.56,
+      "sample_id": "warn"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "alignment",
+      "metric_score": 61.54,
+      "metric_value": "0.6154",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "typography_rhythm",
+      "metric_score": 100.0,
+      "metric_value": "3",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "corner_radius_consistency",
+      "metric_score": 13.53,
+      "metric_value": "{\"radii\": [3.47, 6.74, 6.35, 5.3, 13.28, 15.41, 8.15, 9.07], \"unique_radius_count\": 6}",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "padding_consistency",
+      "metric_score": 16.25,
+      "metric_value": "0.649",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "icon_size_consistency",
+      "metric_score": 15.81,
+      "metric_value": "0.5271",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "grid",
+      "metric_score": 78.85,
+      "metric_value": "0.7885",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "consistency",
+      "metric": "style_simplicity",
+      "metric_score": 60.65,
+      "metric_value": "6",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "information",
+      "metric": "coverage",
+      "metric_score": 80.0,
+      "metric_value": "0.8",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "information",
+      "metric": "truncation",
+      "metric_score": 80.0,
+      "metric_value": "0.2",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "information",
+      "metric": "duplicate",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "layout",
+      "metric": "whitespace",
+      "metric_score": 100.0,
+      "metric_value": "0.3597",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "layout",
+      "metric": "margin_consistency",
+      "metric_score": 16.0,
+      "metric_value": "0.9164",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "layout",
+      "metric": "spacing_rhythm",
+      "metric_score": 32.91,
+      "metric_value": "0.6174",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "layout",
+      "metric": "density",
+      "metric_score": 100.0,
+      "metric_value": "0.6403",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overlap",
+      "metric_score": 97.08,
+      "metric_value": "0.0292",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "layout",
+      "metric": "overflow",
+      "metric_score": 100.0,
+      "metric_value": "0.0",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "visual",
+      "metric": "color_harmony",
+      "metric_score": 84.49,
+      "metric_value": "{\"avg_lab_distance\": 71.46, \"color_count\": 6}",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "visual",
+      "metric": "contrast",
+      "metric_score": 23.83,
+      "metric_value": "2.338",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_focus",
+      "metric_score": 95.21,
+      "metric_value": "0.3685",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "visual",
+      "metric": "visual_balance",
+      "metric_score": 95.94,
+      "metric_value": "0.0806",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "visual",
+      "metric": "text_image_ratio",
+      "metric_score": 67.97,
+      "metric_value": "0.2688",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "visual",
+      "metric": "reading_flow",
+      "metric_score": 88.73,
+      "metric_value": "{\"backtracks\": 0, \"path_norm\": 0.6261}",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    },
+    {
+      "dimension": "visual",
+      "metric": "hierarchy",
+      "metric_score": 78.92,
+      "metric_value": "0.1349",
+      "overall_error_rule_minus_teacher": 0.08,
+      "sample_id": "weather"
+    }
+  ],
+  "samples": [
+    {
+      "abs_error": 0.37,
+      "error_rule_minus_teacher": -0.37,
+      "rule_overall": 76.01,
+      "sample_id": "battery",
+      "teacher_overall": 76.38
+    },
+    {
+      "abs_error": 0.5,
+      "error_rule_minus_teacher": -0.5,
+      "rule_overall": 70.56,
+      "sample_id": "care",
+      "teacher_overall": 71.06
+    },
+    {
+      "abs_error": 9.9,
+      "error_rule_minus_teacher": 9.9,
+      "rule_overall": 52.09,
+      "sample_id": "earbuds",
+      "teacher_overall": 42.19
+    },
+    {
+      "abs_error": 0.45,
+      "error_rule_minus_teacher": -0.45,
+      "rule_overall": 78.61,
+      "sample_id": "focus",
+      "teacher_overall": 79.06
+    },
+    {
+      "abs_error": 3.87,
+      "error_rule_minus_teacher": -3.87,
+      "rule_overall": 72.07,
+      "sample_id": "marathon",
+      "teacher_overall": 75.94
+    },
+    {
+      "abs_error": 1.6,
+      "error_rule_minus_teacher": 1.6,
+      "rule_overall": 74.66,
+      "sample_id": "meeting",
+      "teacher_overall": 73.06
+    },
+    {
+      "abs_error": 5.29,
+      "error_rule_minus_teacher": -5.29,
+      "rule_overall": 71.52,
+      "sample_id": "sleep",
+      "teacher_overall": 76.81
+    },
+    {
+      "abs_error": 4.01,
+      "error_rule_minus_teacher": 4.01,
+      "rule_overall": 75.76,
+      "sample_id": "status",
+      "teacher_overall": 71.75
+    },
+    {
+      "abs_error": 1.56,
+      "error_rule_minus_teacher": 1.56,
+      "rule_overall": 76.56,
+      "sample_id": "warn",
+      "teacher_overall": 75.0
+    },
+    {
+      "abs_error": 0.08,
+      "error_rule_minus_teacher": 0.08,
+      "rule_overall": 74.39,
+      "sample_id": "weather",
+      "teacher_overall": 74.31
+    }
+  ]
+}

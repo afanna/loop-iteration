@@ -44,43 +44,55 @@ layout:
     # score = Gaussian(whitespace, mean, sigma)
     # mean 调大：更偏好空一些的卡片；mean 调小：更偏好信息密一些的卡片。
     whitespace:
-      weight: 22
-      mean: 0.50
-      sigma: 0.20
+      weight: 20
+      min: 0.10
+      max: 0.65
+      sigma_low: 0.18
+      sigma_high: 0.12
+      pixel_foreground_enabled: true
+      pixel_foreground_lab_threshold: 35
+      background_border_ratio: 0.05
+      pixel_foreground_open_kernel: 2
 
     # 边距一致性：CV = std(all_edge_distances) / mean(all_edge_distances)
     # score = 100 * exp(-cv_k * CV)
     # cv_k 调大：左右/上下边距不一致时扣分更重。
     margin_consistency:
-      weight: 20
+      weight: 14
       cv_k: 2.0
 
     # 间距节奏：CV = std(vertical_gaps) / mean(vertical_gaps)
     # score = 100 * exp(-cv_k * CV)
     # 少于 2 个有效间距样本时跳过，不参与维度加权，避免虚高。
     spacing_rhythm:
-      weight: 18
+      weight: 12
       cv_k: 1.8
 
     # 元素密度：density = occupied_area / card_area
     # score = Gaussian(density, mean, sigma)
     # 和 whitespace 使用同一占用面积，但关注角度不同。
     density:
-      weight: 18
-      mean: 0.50
-      sigma: 0.20
+      weight: 24
+      min: 0.35
+      max: 0.90
+      sigma_low: 0.10
+      sigma_high: 0.20
+      pixel_foreground_enabled: true
+      pixel_foreground_lab_threshold: 35
+      background_border_ratio: 0.05
+      pixel_foreground_open_kernel: 2
 
     # 元素重叠：max_iou = max(IoU(element_i, element_j))
     # score = max(0, 100 - penalty_k * max_iou)
     # 少于 2 个元素时跳过。
     overlap:
-      weight: 10
+      weight: 14
       penalty_k: 100
 
     # 元素溢出：overflow = outside_element_area / total_element_area
     # score = max(0, 100 - penalty_k * overflow)
     overflow:
-      weight: 10
+      weight: 14
       penalty_k: 100
 
 visual:
@@ -104,7 +116,7 @@ visual:
     # distance_score = Gaussian(avg_lab_distance, lab_distance_mean, lab_distance_sigma)
     # score = mean(color_count_score, distance_score)
     color_harmony:
-      weight: 15
+      weight: 60
       color_count_mean: 4.5
       color_count_sigma: 1.8
       lab_distance_mean: 65
@@ -116,7 +128,7 @@ visual:
     # target 通常参考 WCAG 普通文字 4.5。
     # 无 OCR 文本时给 0，避免空白图虚高。
     contrast:
-      weight: 10
+      weight: 20
       target: 3.5
       k: 1.0
 
@@ -125,7 +137,7 @@ visual:
     # score = Gaussian(focus, mean, sigma)
     # mean 太低会鼓励平均无重点；mean 太高会鼓励单元素压制。
     visual_focus:
-      weight: 15
+      weight: 0
       mean: 0.45
       sigma: 0.26
 
@@ -133,7 +145,7 @@ visual:
     # offset = distance(weighted_center, geometric_center) / image_size
     # score = Gaussian(offset, 0, sigma)
     visual_balance:
-      weight: 15
+      weight: 4
       sigma: 0.28
 
     # 图文比例：
@@ -141,7 +153,7 @@ visual:
     # score = Gaussian(ratio, mean, sigma)
     # 无 OCR 文本时给 0。
     text_image_ratio:
-      weight: 6
+      weight: 5
       mean: 0.55
       sigma: 0.32
 
@@ -156,7 +168,7 @@ visual:
     # hierarchy = Gini(text_visual_weight)
     # score = Gaussian(hierarchy, mean, sigma)
     hierarchy:
-      weight: 12
+      weight: 0
       mean: 0.30
       sigma: 0.24
 

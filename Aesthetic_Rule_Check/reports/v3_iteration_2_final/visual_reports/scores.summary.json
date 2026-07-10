@@ -1,0 +1,28 @@
+{
+  "anchors": 0,
+  "avg_record_seconds": 16.616,
+  "avg_scored_view_seconds": 16.614,
+  "backend": "command",
+  "elapsed_seconds": 166.16,
+  "finished_at": "2026-07-10T06:12:33.120084+00:00",
+  "formal_report": false,
+  "occlusion_overlap_check": "always_on",
+  "out": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_2\\visual_reports\\scores.jsonl",
+  "quality_config": {
+    "adaptive_viewports": "off",
+    "designer_review": "on",
+    "occlusion_overlap_check": "always_on",
+    "score_breakdown": "on"
+  },
+  "records": 10,
+  "scored": 10,
+  "scored_viewport_counts": {
+    "image": 10
+  },
+  "started_at": "2026-07-10T06:09:46.959084+00:00",
+  "target_viewport_counts": {
+    "image": 10
+  },
+  "viewport_selection": "auto",
+  "workers": 1
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\battery.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\battery.png",
+    "query": "",
+    "sample_id": "battery"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\care.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\care.png",
+    "query": "",
+    "sample_id": "care"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\earbuds.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\earbuds.png",
+    "query": "",
+    "sample_id": "earbuds"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\focus.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\focus.png",
+    "query": "",
+    "sample_id": "focus"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\marathon.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\marathon.png",
+    "query": "",
+    "sample_id": "marathon"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\meeting.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\meeting.png",
+    "query": "",
+    "sample_id": "meeting"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\sleep.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\sleep.png",
+    "query": "",
+    "sample_id": "sleep"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\status.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\status.png",
+    "query": "",
+    "sample_id": "status"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\warn.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\warn.png",
+    "query": "",
+    "sample_id": "warn"
+  },
+  {
+    "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\weather.dat",
+    "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\weather.png",
+    "query": "",
+    "sample_id": "weather"
+  }
+]

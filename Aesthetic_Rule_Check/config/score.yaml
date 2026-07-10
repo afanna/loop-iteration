@@ -13,26 +13,26 @@ dimensions:
   # 数据来源：DSL + OCR。
   # 缺失 DSL、DSL 文件不存在、DSL 无必要展示文本时，本维度为 0 分。
   information:
-    weight: 8
+    weight: 0
     label: "信息完整性"
 
   # 布局美学：留白、边距、间距、密度、重叠、溢出。
   # 数据来源：截图中的 OCR 文本框和 CV 检测到的视觉元素。
   layout:
-    weight: 38
+    weight: 46
     label: "布局美学"
 
   # 视觉设计：色彩协调、文字对比、视觉焦点、视觉重心、图文比例、阅读路径、层级。
   # 数据来源：截图。
   visual:
-    weight: 25
+    weight: 35
     label: "视觉设计"
 
   # 设计一致性：对齐、字号节奏、组件尺寸、圆角、Padding、图标尺寸、网格、色彩数量简洁度。
   # 当前全部来自截图检测特征，不读取 DSL 样式字段。
   # 字体族、图标风格、复杂装饰一致性后续可继续增强。
   consistency:
-    weight: 18
+    weight: 8
     label: "设计一致性"
 
 # 等级阈值，只影响报告展示，不影响分数计算。

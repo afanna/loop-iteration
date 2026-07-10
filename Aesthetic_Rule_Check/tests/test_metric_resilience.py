@@ -1,5 +1,8 @@
 from pathlib import Path
 
+import cv2
+import numpy as np
+
 from aesthetic_rule_check.config import Config
 from aesthetic_rule_check.metrics import MetricContext, create_metrics
 from aesthetic_rule_check.metrics.consistency import (
@@ -9,7 +12,7 @@ from aesthetic_rule_check.metrics.consistency import (
     PaddingConsistencyMetric,
 )
 from aesthetic_rule_check.metrics.information import DuplicateMetric, TruncationMetric
-from aesthetic_rule_check.metrics.layout import SpacingRhythmMetric
+from aesthetic_rule_check.metrics.layout import SpacingRhythmMetric, occupied_mask_ratio
 from aesthetic_rule_check.metrics.visual import ContrastMetric, visual_weight
 from aesthetic_rule_check.models import DslInfo, Rect, RequiredText, VisionContext, VisualElement
 
@@ -103,3 +106,28 @@ def test_visual_weight_uses_text_contrast_and_font_size() -> None:
     )
 
     assert visual_weight(strong, context) > visual_weight(small, context)
+
+
+def test_layout_occupancy_uses_pixel_foreground_when_elements_miss_large_shapes(tmp_path: Path) -> None:
+    image_path = tmp_path / "foreground.png"
+    image = np.full((100, 100, 3), 255, dtype=np.uint8)
+    image[10:90, 10:90] = (32, 160, 64)
+    assert cv2.imwrite(str(image_path), image)
+
+    context = make_context()
+    vision = VisionContext(
+        image_path=image_path,
+        width=100,
+        height=100,
+        card_bbox=Rect(0, 0, 100, 100),
+        text_blocks=[],
+        elements=[VisualElement(kind="icon", bbox=Rect(45, 45, 10, 10))],
+        dominant_colors=[(255, 255, 255), (64, 160, 32)],
+        color_proportions=[0.36, 0.64],
+        confidence=1.0,
+    )
+    context = MetricContext(query=context.query, dsl=context.dsl, vision=vision, config=context.config)
+
+    ratio = occupied_mask_ratio(context, {"pixel_foreground_lab_threshold": 35})
+
+    assert ratio > 0.6

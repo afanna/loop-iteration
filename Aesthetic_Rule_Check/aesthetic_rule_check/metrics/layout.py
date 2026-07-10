@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from pathlib import Path
+
+import cv2
 import numpy as np
 
 from ..math_utils import coefficient_of_variation, gaussian_score, rect_contains, rect_iou
@@ -7,7 +10,7 @@ from ..models import MetricResult, Rect, VisualElement
 from .base import BaseMetric, MetricContext, register_metric
 
 
-def occupied_mask_ratio(context: MetricContext) -> float:
+def element_occupied_mask_ratio(context: MetricContext) -> float:
     mask = np.zeros((context.vision.height, context.vision.width), dtype=np.uint8)
     for element in context.vision.elements:
         x1 = max(0, int(element.bbox.x))
@@ -17,6 +20,86 @@ def occupied_mask_ratio(context: MetricContext) -> float:
         if x2 > x1 and y2 > y1:
             mask[y1:y2, x1:x2] = 1
     return float(mask.mean())
+
+
+def pixel_foreground_ratio(context: MetricContext, cfg: dict | None = None) -> float | None:
+    cfg = cfg or {}
+    if not bool(cfg.get("pixel_foreground_enabled", True)):
+        return None
+    image_path = Path(context.vision.image_path)
+    if not image_path.exists():
+        return None
+    data = np.fromfile(str(image_path), dtype=np.uint8)
+    image = cv2.imdecode(data, cv2.IMREAD_COLOR)
+    if image is None or image.size == 0:
+        return None
+    height, width = image.shape[:2]
+    border_px = max(1, int(min(width, height) * float(cfg.get("background_border_ratio", 0.05))))
+    border = np.concatenate(
+        [
+            image[:border_px, :, :].reshape(-1, 3),
+            image[-border_px:, :, :].reshape(-1, 3),
+            image[:, :border_px, :].reshape(-1, 3),
+            image[:, -border_px:, :].reshape(-1, 3),
+        ],
+        axis=0,
+    )
+    lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB).astype(np.float32)
+    bg_lab = cv2.cvtColor(np.median(border, axis=0).reshape(1, 1, 3).astype(np.uint8), cv2.COLOR_BGR2LAB).astype(
+        np.float32
+    )[0, 0]
+    distance = np.linalg.norm(lab - bg_lab, axis=2)
+    threshold = float(cfg.get("pixel_foreground_lab_threshold", 35))
+    mask = (distance > threshold).astype(np.uint8)
+    kernel_size = int(cfg.get("pixel_foreground_open_kernel", 2))
+    if kernel_size > 1:
+        kernel = np.ones((kernel_size, kernel_size), dtype=np.uint8)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+    return float(mask.mean())
+
+
+def occupied_mask_ratio(context: MetricContext, cfg: dict | None = None) -> float:
+    element_ratio = element_occupied_mask_ratio(context)
+    pixel_ratio = pixel_foreground_ratio(context, cfg)
+    if pixel_ratio is None:
+        return element_ratio
+    return max(element_ratio, pixel_ratio)
+
+
+def occupied_ratio_details(context: MetricContext, cfg: dict | None = None) -> dict[str, float | None]:
+    element_ratio = element_occupied_mask_ratio(context)
+    pixel_ratio = pixel_foreground_ratio(context, cfg)
+    combined = max(element_ratio, pixel_ratio) if pixel_ratio is not None else element_ratio
+    return {
+        "element_occupied_ratio": round(element_ratio, 4),
+        "pixel_foreground_ratio": round(pixel_ratio, 4) if pixel_ratio is not None else None,
+        "combined_occupied_ratio": round(combined, 4),
+    }
+
+
+def band_score(value: float, lower: float, upper: float, sigma_low: float, sigma_high: float) -> float:
+    if lower <= value <= upper:
+        return 100.0
+    if value < lower:
+        return gaussian_score(value, lower, sigma_low)
+    return gaussian_score(value, upper, sigma_high)
+
+
+def configured_density_score(value: float, cfg: dict) -> tuple[float, str, object, float]:
+    if "min" in cfg and "max" in cfg:
+        lower = float(cfg.get("min", 0.0))
+        upper = float(cfg.get("max", 1.0))
+        sigma_low = float(cfg.get("sigma_low", cfg.get("sigma", 0.16)))
+        sigma_high = float(cfg.get("sigma_high", cfg.get("sigma", 0.16)))
+        score = band_score(value, lower, upper, sigma_low, sigma_high)
+        if lower <= value <= upper:
+            deviation = 0.0
+        else:
+            deviation = min(abs(value - lower), abs(value - upper))
+        return score, "BandGaussian", {"min": lower, "max": upper}, deviation
+    mean = float(cfg.get("mean", 0.55))
+    sigma = float(cfg.get("sigma", 0.16))
+    return gaussian_score(value, mean, sigma), "Gaussian", mean, abs(value - mean)
 
 
 def vertical_gaps(elements: list[VisualElement]) -> list[float]:
@@ -36,20 +119,19 @@ class WhitespaceMetric(BaseMetric):
 
     def evaluate(self, context: MetricContext) -> MetricResult:
         cfg = self.cfg(context)
-        occupied = occupied_mask_ratio(context)
+        occupied = occupied_mask_ratio(context, cfg)
         whitespace = 1.0 - occupied
-        mean = float(cfg.get("mean", 0.45))
-        sigma = float(cfg.get("sigma", 0.16))
-        score = gaussian_score(whitespace, mean, sigma)
+        score, formula, ideal, deviation = configured_density_score(whitespace, cfg)
         return MetricResult(
             name=self.name,
             dimension=self.dimension,
             score=round(score, 2),
             value=round(whitespace, 4),
-            ideal=mean,
-            deviation=round(abs(whitespace - mean), 4),
-            formula="Gaussian",
+            ideal=ideal,
+            deviation=round(deviation, 4),
+            formula=formula,
             confidence=context.vision.confidence,
+            details=occupied_ratio_details(context, cfg),
         )
 
 
@@ -139,19 +221,18 @@ class DensityMetric(BaseMetric):
 
     def evaluate(self, context: MetricContext) -> MetricResult:
         cfg = self.cfg(context)
-        density = occupied_mask_ratio(context)
-        mean = float(cfg.get("mean", 0.55))
-        sigma = float(cfg.get("sigma", 0.16))
-        score = gaussian_score(density, mean, sigma)
+        density = occupied_mask_ratio(context, cfg)
+        score, formula, ideal, deviation = configured_density_score(density, cfg)
         return MetricResult(
             name=self.name,
             dimension=self.dimension,
             score=round(score, 2),
             value=round(density, 4),
-            ideal=mean,
-            deviation=round(abs(density - mean), 4),
-            formula="Gaussian",
+            ideal=ideal,
+            deviation=round(deviation, 4),
+            formula=formula,
             confidence=context.vision.confidence,
+            details=occupied_ratio_details(context, cfg),
         )
 
 
