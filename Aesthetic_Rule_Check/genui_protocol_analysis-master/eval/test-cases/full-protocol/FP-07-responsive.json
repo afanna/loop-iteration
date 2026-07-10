@@ -1,0 +1,183 @@
+[
+  {
+    "id": "FP0701",
+    "name": "Responsive padding with breakpoint",
+    "category": "responsive",
+    "complexity": "simple",
+    "task": "生成一个Extended.Column组件，id为'container'，宽度matchParent，内边距padding根据断点动态设置：$__widthBreakpoint为'sm'时padding为8，否则padding为16。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["id", "component", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "padding", "description": "必须包含padding样式属性"},
+      {"type": "contains", "field": "$output", "value": "?", "description": "padding必须使用三元表达式"}
+    ],
+    "hints": ["使用$__widthBreakpoint断点变量判断屏幕大小", "padding使用三元表达式：sm时8，其他时16"]
+  },
+  {
+    "id": "FP0702",
+    "name": "Responsive fontSize with breakpoint",
+    "category": "responsive",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，id为'responsive_text'，内容为'自适应文字'，字号fontSize根据$__widthBreakpoint动态设置：sm及以下时fontSize为14，md及以上时fontSize为18。",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "fontSize", "description": "必须包含fontSize样式属性"},
+      {"type": "contains", "field": "$output", "value": "?", "description": "fontSize必须使用三元表达式"}
+    ],
+    "hints": ["使用$__widthBreakpoint断点变量判断屏幕大小", "fontSize用三元表达式根据断点动态选择"]
+  },
+  {
+    "id": "FP0703",
+    "name": "Responsive display show/hide",
+    "category": "responsive",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，id为'banner'，内容为'推广横幅'，display样式根据$__widthBreakpoint动态设置：lg及以上时display为'flex'显示，md及以下时display为'none'隐藏。",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "display", "description": "必须包含display样式属性"},
+      {"type": "contains", "field": "$output", "value": "none", "description": "小屏时display必须为none"}
+    ],
+    "hints": ["使用display属性控制组件的显示与隐藏", "三元表达式：$__widthBreakpoint == 'lg' || $__widthBreakpoint == 'xl' ? 'flex' : 'none'"]
+  },
+  {
+    "id": "FP0704",
+    "name": "Layout switch with Extended.If",
+    "category": "responsive",
+    "complexity": "medium",
+    "task": "生成一组组件：一个Extended.If组件id为'responsive_nav'，条件为$__widthBreakpoint == 'sm'，sm断点时显示mobile_navbar（childrenIf），否则显示desktop_navbar（childrenElse）。同时生成mobile_navbar（Extended.Text组件，内容'移动导航'）和desktop_navbar（Extended.Text组件，内容'桌面导航'）共三个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "必须包含Extended.If组件"},
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "条件必须使用$__widthBreakpoint变量"},
+      {"type": "contains", "field": "$output", "value": "childrenIf", "description": "Extended.If必须有childrenIf分支"},
+      {"type": "contains", "field": "$output", "value": "childrenElse", "description": "Extended.If必须有childrenElse分支"}
+    ],
+    "hints": ["输出为JSON数组，包含多个组件", "Extended.If用condition判断断点", "childrenIf和childrenElse分别指定两个分支的子组件ID"]
+  },
+  {
+    "id": "FP0705",
+    "name": "Multi-breakpoint chain ternary",
+    "category": "responsive",
+    "complexity": "complex",
+    "task": "生成一个Extended.Text组件，id为'adaptive_title'，内容为'响应式标题'，字号fontSize根据$__widthBreakpoint使用链式三元表达式动态设置：sm时20，md时24，其余（lg及以上）时32。",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "fontSize", "description": "必须包含fontSize样式属性"},
+      {"type": "matches_regex", "field": "$output", "value": "\\?.*\\?.*:", "description": "必须使用链式三元表达式处理多个断点"}
+    ],
+    "hints": ["使用链式三元运算符处理sm/md/lg多个断点", "格式：$__widthBreakpoint == 'sm' ? 20 : $__widthBreakpoint == 'md' ? 24 : 32"]
+  },
+  {
+    "id": "FP0706",
+    "name": "Responsive Grid columns",
+    "category": "responsive",
+    "complexity": "complex",
+    "task": "生成一个Extended.Grid组件，id为'product_grid'，包含四个子组件card1、card2、card3、card4，columnsTemplate根据$__widthBreakpoint动态设置：sm及以下时两列'1fr 1fr'，md时三列'1fr 1fr 1fr'，lg及以上时四列'1fr 1fr 1fr 1fr'。",
+    "expected": {
+      "component": "Extended.Grid",
+      "required_fields": ["id", "component", "children"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "columnsTemplate", "description": "必须包含columnsTemplate属性"},
+      {"type": "contains", "field": "$output", "value": "1fr", "description": "columnsTemplate必须包含1fr单位"},
+      {"type": "matches_regex", "field": "$output", "value": "\\?.*\\?.*:", "description": "必须使用链式三元表达式处理多断点"}
+    ],
+    "hints": ["Grid的columnsTemplate定义列布局", "使用$__widthBreakpoint判断断点", "链式三元：sm及以下两列，md三列，lg及以上四列"]
+  },
+  {
+    "id": "FP0707",
+    "name": "Responsive visibility",
+    "category": "responsive",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，id为'sidebar_label'，内容为'侧边栏'，visibility属性根据$__widthBreakpoint动态设置：lg及以上时为'visible'，md及以下时为'none'。",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "visibility", "description": "必须包含visibility属性"},
+      {"type": "contains", "field": "$output", "value": "none", "description": "小屏时visibility必须为none"}
+    ],
+    "hints": ["visibility属性控制组件可见性", "三元表达式根据断点切换visible/none"]
+  },
+  {
+    "id": "FP0708",
+    "name": "Sidebar show/hide by breakpoint",
+    "category": "responsive",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件，id为'sidebar'，宽度为28%，display样式根据$__widthBreakpoint动态控制：lg及以上时display为'flex'显示侧边栏，md及以下时display为'none'隐藏。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["id", "component", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "display", "description": "必须包含display样式属性"},
+      {"type": "contains", "field": "$output", "value": "28%", "description": "宽度必须为28%"}
+    ],
+    "hints": ["侧边栏宽度使用百分比28%", "display根据$__widthBreakpoint切换显示隐藏"]
+  },
+  {
+    "id": "FP0709",
+    "name": "Responsive full page layout",
+    "category": "responsive",
+    "complexity": "complex",
+    "task": "生成一组组件构成响应式页面：根组件Extended.Column，id为'root'，宽度matchParent，padding根据$__widthBreakpoint动态设置（sm时8，其他时16）。包含一个Extended.If组件id为'page_layout'，条件为$__widthBreakpoint != 'sm' && $__widthBreakpoint != 'xs'，md及以上时childrenIf显示two_column（双列布局），否则childrenElse显示single_column（单列布局）。再生成two_column（Extended.Row）和single_column（Extended.Column）共四个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "必须包含Extended.If条件组件"},
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint变量"},
+      {"type": "contains", "field": "$output", "value": "childrenIf", "description": "If组件必须有childrenIf分支"},
+      {"type": "contains", "field": "$output", "value": "matchParent", "description": "根组件宽度必须为matchParent"}
+    ],
+    "hints": ["输出为JSON数组，包含4个组件", "根Column使用$__widthBreakpoint设置padding", "Extended.If用$__widthBreakpoint判断布局切换"]
+  },
+  {
+    "id": "FP0710",
+    "name": "Responsive font scale with breakpoint",
+    "category": "responsive",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，id为'scaled_text'，内容引用数据模型变量$title，fontSize根据$__widthBreakpoint动态设置：sm断点时14，md断点时16，lg及以上时18。",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint断点变量"},
+      {"type": "contains", "field": "$output", "value": "fontSize", "description": "必须包含fontSize样式属性"},
+      {"type": "contains", "field": "$output", "value": "?", "description": "fontSize必须使用三元表达式"}
+    ],
+    "hints": ["text用表达式引用数据模型变量$title", "fontSize用链式三元根据断点选择14/16/18"]
+  }
+]

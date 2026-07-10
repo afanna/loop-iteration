@@ -1,0 +1,47 @@
+{
+  "name": "harmonyos-a2ui-eval",
+  "version": "1.0.0",
+  "description": "鸿蒙智能体UI协议v2.0 模型亲和性评估工具",
+  "type": "module",
+  "scripts": {
+    "eval": "tsx src/cli/index.ts",
+    "eval:comparison": "tsx src/cli/comparison.ts",
+    "eval:chain": "tsx src/cli/eval-chain.ts",
+    "eval:expr-wrap": "tsx src/cli/eval-expr-wrap.ts",
+    "eval:type-conv": "tsx src/cli/eval-type-conversion.ts",
+    "eval:datatype": "tsx src/cli/eval-expr-datatype.ts",
+    "eval:operator-scope": "tsx src/cli/eval-operator-scope.ts",
+    "eval:expr-scope": "tsx src/cli/eval-expr-scope.ts",
+    "eval:builtin-func": "tsx src/cli/eval-builtin-func.ts",
+    "eval:func-call": "tsx src/cli/eval-func-call.ts",
+    "eval:style-type": "tsx src/cli/eval-style-value-type.ts",
+    "eval:action-struct": "tsx src/cli/eval-action-structure.ts",
+    "eval:style-org": "tsx src/cli/eval-style-organization.ts",
+    "eval:data-model": "tsx src/cli/eval-data-model-access.ts",
+    "eval:cond-render": "tsx src/cli/eval-conditional-rendering.ts",
+    "eval:comp-naming": "tsx src/cli/eval-component-naming.ts",
+    "eval:cond-render-rerun": "tsx src/cli/eval-cond-render-rerun.ts",
+    "eval:datatype-v2": "tsx src/cli/eval-expr-datatype-v2.ts",
+    "eval:json-pointer": "tsx src/cli/eval-json-pointer-ref.ts",
+    "eval:template-interpolation": "tsx src/cli/eval-template-interpolation.ts",
+    "eval:responsive-bp": "tsx src/cli/eval-responsive-breakpoint.ts",
+    "eval:color-gradient": "tsx src/cli/eval-color-gradient-property.ts",
+    "eval:select-component": "tsx src/cli/eval-select-component.ts",
+    "eval:variable-system": "tsx src/cli/eval-variable-system.ts",
+    "eval:full-protocol": "tsx src/cli/eval-full-protocol.ts",
+    "eval:button-action": "tsx src/cli/eval-button-action.ts",
+    "eval:button-action-ab": "tsx src/cli/eval-button-action-ab.ts",
+    "eval:interaction-restructure": "tsx src/cli/eval-interaction-restructure.ts",
+    "eval:interaction-function-wrapper": "tsx src/cli/eval-interaction-function-wrapper.ts",
+    "eval:nav-container": "tsx src/cli/eval-nav-container.ts"
+  },
+  "dependencies": {
+    "openai": "^4.91.0",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "@types/node": "^22.14.0",
+    "tsx": "^4.19.3"
+  }
+}

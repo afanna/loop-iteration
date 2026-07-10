@@ -1,0 +1,185 @@
+[
+  {
+    "id": "FP0801",
+    "name": "Login form",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成登录表单页面：根组件Extended.Column，id为'login_page'，宽度matchParent，高度matchParent，居中对齐。包含username_input（Extended.TextInput，placeholder'请输入用户名'，text绑定$username）、password_input（Extended.TextInput，placeholder'请输入密码'，type为'password'，text绑定$password）、login_button（Extended.Button，label'登录'，onClick事件中调用login动作传入username为$username和password为$password，成功后调用navigate跳转到NavContainer组件'app_nav'的子页面'home_page'）。共四个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "TextInput", "description": "必须包含TextInput输入组件"},
+      {"type": "contains", "field": "$output", "value": "Button", "description": "必须包含Button按钮组件"},
+      {"type": "contains", "field": "$output", "value": "onClick", "description": "按钮必须包含onClick事件处理"},
+      {"type": "contains", "field": "$output", "value": "login", "description": "必须包含login动作"},
+      {"type": "contains", "field": "$output", "value": "$username", "description": "必须引用$username数据绑定"}
+    ],
+    "hints": ["输出为JSON数组，包含4个组件", "TextInput用text属性绑定数据模型变量", "Button的onClick事件使用行为数组组织行为链", "login动作通过args传入$username和$password"]
+  },
+  {
+    "id": "FP0802",
+    "name": "Product list page",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成商品列表页：根组件Extended.Column，id为'product_page'，宽度matchParent。包含product_list（Extended.List，使用模板productItem渲染$products数组，space为12）。包含productItem模板组件（Extended.Row，id为'productItem'，包含$item.name的Text和$item.price的Text）。商品列表的padding根据$__widthBreakpoint动态设置，sm时8否则16。共三个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "List", "description": "必须包含List列表组件"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "List的children必须指定componentId模板"},
+      {"type": "contains", "field": "$output", "value": "$products", "description": "List的children必须指定path为$products"},
+      {"type": "contains", "field": "$output", "value": "$item", "description": "模板中必须使用$item引用当前项数据"}
+    ],
+    "hints": ["输出为JSON数组", "List的children使用对象格式指定componentId和path", "模板组件中用$item访问当前项的字段", "使用$__widthBreakpoint设置响应式padding"]
+  },
+  {
+    "id": "FP0803",
+    "name": "Settings page",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成设置页面：根组件Extended.Column，id为'settings_page'，宽度matchParent。包含notification_toggle（Extended.Toggle，isOn绑定$notificationsEnabled，onChange事件中调用setDataModel设置/notificationsEnabled为新值$context.value）。包含theme_select（Extended.Select，options绑定$themeOptions，selected绑定$currentTheme，onChange事件中调用setDataModel设置/theme为$context.value）。共三个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Toggle", "description": "必须包含Toggle开关组件"},
+      {"type": "contains", "field": "$output", "value": "Select", "description": "必须包含Select选择器组件"},
+      {"type": "contains", "field": "$output", "value": "onChange", "description": "必须有onChange事件处理"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "onChange事件中必须使用setDataModel更新数据模型"}
+    ],
+    "hints": ["输出为JSON数组", "Toggle的isOn用表达式绑定数据模型", "Select的selected用表达式绑定当前选中值", "onChange事件通过行为数组调用setDataModel更新数据", "使用$context.value获取事件新值"]
+  },
+  {
+    "id": "FP0804",
+    "name": "Dashboard layout",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成仪表盘页面：根组件Extended.Column，id为'dashboard'，宽度matchParent。包含一个Extended.If组件id为'layout_switch'，条件为$__widthBreakpoint == 'lg' || $__widthBreakpoint == 'xl'，大屏时childrenIf包含grid_content（Extended.Grid，columnsTemplate根据$__widthBreakpoint动态设置列数，2-4列自适应），小屏时childrenElse包含list_content（Extended.List，使用模板cardItem渲染$cards数组）。包含grid_content和list_content组件。共五个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "必须包含Extended.If条件渲染组件"},
+      {"type": "contains", "field": "$output", "value": "Grid", "description": "必须包含Grid网格组件"},
+      {"type": "contains", "field": "$output", "value": "List", "description": "必须包含List列表组件"},
+      {"type": "contains", "field": "$output", "value": "$__widthBreakpoint", "description": "必须使用$__widthBreakpoint响应式变量"},
+      {"type": "contains", "field": "$output", "value": "childrenIf", "description": "If组件必须有childrenIf分支"}
+    ],
+    "hints": ["输出为JSON数组，包含5个组件", "Extended.If根据$__widthBreakpoint判断布局模式", "Grid的columnsTemplate用三元表达式动态设置列数", "List使用模板渲染数据数组"]
+  },
+  {
+    "id": "FP0805",
+    "name": "Form with conditional fields",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成条件表单：根组件Extended.Column，id为'reg_form'，宽度matchParent。包含email_input（Extended.TextInput，placeholder'邮箱'，text绑定$email）、一个Extended.If组件id为'show_phone'，条件为$needPhone，true时childrenIf包含phone_input（Extended.TextInput，placeholder'手机号'，text绑定$phone）、submit_button（Extended.Button，label'注册'，onClick事件中先validateForm，验证成功后调用register传入$email和$phone）。共五个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "TextInput", "description": "必须包含TextInput输入组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "必须包含Extended.If条件渲染"},
+      {"type": "contains", "field": "$output", "value": "childrenIf", "description": "If组件必须有childrenIf分支"},
+      {"type": "contains", "field": "$output", "value": "onClick", "description": "提交按钮必须有onClick事件处理"}
+    ],
+    "hints": ["输出为JSON数组，包含5个组件", "Extended.If根据$needPhone条件决定是否显示手机号输入框", "Button的onClick使用行为数组实现验证+注册行为链", "TextInput的text属性用表达式绑定数据模型"]
+  },
+  {
+    "id": "FP0806",
+    "name": "Tab-based view",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成标签页视图：根组件Extended.Column，id为'tab_view'，宽度matchParent。包含tabs组件（Extended.Tabs，tabContent为tab_profile和tab_settings两个标签页内容）。包含tab_profile（Extended.TabContent，内部显示用户信息：用Text组件显示$user.name和$user.email）。包含tab_settings（Extended.TabContent，内部包含一个Toggle组件绑定$darkMode，onChange事件中调用setDataModel设置/darkMode）。共四个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Tabs", "description": "必须包含Tabs标签页组件"},
+      {"type": "contains", "field": "$output", "value": "TabContent", "description": "必须包含TabContent标签内容组件"},
+      {"type": "contains", "field": "$output", "value": "$user", "description": "必须引用$user数据模型变量"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "Toggle的onChange必须调用setDataModel"}
+    ],
+    "hints": ["输出为JSON数组，包含4个组件", "Tabs组件管理多个TabContent", "TabContent中嵌套其他组件", "Toggle的onChange通过行为数组调用setDataModel"]
+  },
+  {
+    "id": "FP0807",
+    "name": "Shopping cart",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成购物车页面：根组件Extended.Column，id为'cart_page'，宽度matchParent。包含cart_list（Extended.List，使用模板cartItem渲染$cartItems数组，space为8）。包含cartItem模板组件（Extended.Row，id为'cartItem'，包含显示$item.name的Text、显示$item.price的Text、一个Extended.Button标签'删除'，onClick事件中调用setDataModel删除对应$item对应的数据项，path使用表达式拼接'/cartItems/' + $index）。包含cart_total（Extended.Text，内容为总价表达式，使用formatCurrency格式化$total）。共四个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "List", "description": "必须包含List列表组件"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "List的children必须指定componentId"},
+      {"type": "contains", "field": "$output", "value": "$item", "description": "模板中必须使用$item引用当前项"},
+      {"type": "contains", "field": "$output", "value": "$index", "description": "删除操作必须使用$index定位项"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "删除按钮必须调用setDataModel"}
+    ],
+    "hints": ["输出为JSON数组，包含4个组件", "List用componentId和path指定模板和数据源", "模板中用$item/$index引用当前项和索引", "删除按钮的行为数组中调用setDataModel", "path用表达式拼接'/cartItems/' + $index"]
+  },
+  {
+    "id": "FP0808",
+    "name": "Profile card",
+    "category": "integration",
+    "complexity": "medium",
+    "task": "生成一组组件构成个人卡片：根组件Extended.Card，id为'profile_card'，使用card主题，child为profile_content。包含profile_content（Extended.Column，id为'profile_content'，包含avatar的Image组件显示$user.avatarUrl、显示$user.displayName的Text组件、显示$user.bio的Text组件）。共三个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Card", "description": "必须包含Card卡片容器组件"},
+      {"type": "contains", "field": "$output", "value": "Image", "description": "必须包含Image图片组件"},
+      {"type": "contains", "field": "$output", "value": "$user", "description": "必须引用$user数据模型变量"}
+    ],
+    "hints": ["输出为JSON数组，包含3个组件", "Card用child引用子组件（单子节点）", "Image的src用表达式绑定$user.avatarUrl", "Text的text用表达式绑定用户信息字段"]
+  },
+  {
+    "id": "FP0809",
+    "name": "Search with filters",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成搜索筛选页：根组件Extended.Column，id为'search_page'，宽度matchParent。包含search_input（Extended.TextInput，placeholder'搜索关键词'，text绑定$keyword，onChange事件中调用search动作传入keyword为$event.value）。包含filter_select（Extended.Select，options绑定$categoryOptions，selected绑定$selectedCategory，onChange事件中调用filterByCategory传入category为$context.value）。包含results_list（Extended.List，使用模板resultItem渲染$searchResults数组）。共四个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "TextInput", "description": "必须包含TextInput搜索框组件"},
+      {"type": "contains", "field": "$output", "value": "Select", "description": "必须包含Select筛选器组件"},
+      {"type": "contains", "field": "$output", "value": "List", "description": "必须包含List结果列表组件"},
+      {"type": "contains", "field": "$output", "value": "onChange", "description": "必须有onChange事件处理"}
+    ],
+    "hints": ["输出为JSON数组，包含4个组件", "TextInput的onChange事件触发搜索", "Select的onChange事件触发筛选", "List使用模板渲染搜索结果数组", "使用行为数组组织事件行为"]
+  },
+  {
+    "id": "FP0810",
+    "name": "Full page structure",
+    "category": "integration",
+    "complexity": "complex",
+    "task": "生成一组组件构成完整页面结构：根组件Extended.Column，id为'app_root'，宽度matchParent，高度matchParent。包含header（Extended.Row，id为'header'，justifyContent为spaceBetween，包含logo的Text组件内容为'AppName'和user_menu的Text组件内容引用$user.name）。包含一个Extended.If组件id为'body_switch'，条件为$isAuthenticated，已登录时childrenIf显示main_content（Extended.Column），未登录时childrenElse显示login_prompt（Extended.Column，包含提示文字和登录按钮）。包含footer（Extended.Text，id为'footer'，内容为'版权所有'）。共七个组件。",
+    "expected": {
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "必须包含Extended.If条件渲染"},
+      {"type": "contains", "field": "$output", "value": "childrenIf", "description": "If组件必须有childrenIf分支"},
+      {"type": "contains", "field": "$output", "value": "childrenElse", "description": "If组件必须有childrenElse分支"},
+      {"type": "contains", "field": "$output", "value": "$isAuthenticated", "description": "条件必须引用$isAuthenticated变量"},
+      {"type": "contains", "field": "$output", "value": "$user", "description": "header中必须引用$user数据模型"}
+    ],
+    "hints": ["输出为JSON数组，包含7个组件", "根Column用children引用header、body_switch、footer", "Extended.If根据$isAuthenticated条件切换主体内容", "header中用表达式引用$user.name", "未登录分支包含登录提示和按钮"]
+  }
+]

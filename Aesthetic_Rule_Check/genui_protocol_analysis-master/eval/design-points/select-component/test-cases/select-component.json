@@ -1,0 +1,1874 @@
+[
+  {
+    "id": "SC001",
+    "name": "基本静态下拉选择",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Select下拉选择组件，选项为'北京'和'上海'，默认选中'北京'。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options字段",
+        "field": "options"
+      },
+      {
+        "type": "has_field",
+        "description": "必须包含id字段",
+        "field": "id"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "options[0].label",
+          "value": "北京",
+          "description": "选项label为北京"
+        },
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "beijing",
+          "description": "选项value为beijing"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "北京",
+          "description": "选项value为北京"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "北京",
+          "description": "选项value为北京"
+        },
+        {
+          "type": "has_field",
+          "field": "selected",
+          "description": "必须包含selected索引字段"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "Extended.Select使用options数组定义下拉选项"
+    ]
+  },
+  {
+    "id": "SC002",
+    "name": "三选项下拉选择",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Select下拉选择组件，包含三个选项：'苹果'、'香蕉'、'橘子'。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options字段",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "options[0].label",
+          "value": "苹果",
+          "description": "第一选项label"
+        },
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "apple",
+          "description": "第一选项value"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "苹果",
+          "description": "第一选项value"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "苹果",
+          "description": "第一选项value"
+        },
+        {
+          "type": "has_field",
+          "field": "selected",
+          "description": "必须包含selected字段"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "每个选项在options数组中定义"
+    ]
+  },
+  {
+    "id": "SC003",
+    "name": "带占位文本的下拉选择",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Select下拉选择组件，按钮显示占位文字'请选择城市'，选项为'北京'和'上海'。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options字段",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "placeholder",
+          "value": "请选择城市",
+          "description": "placeholder显示请选择城市"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "placeholder",
+          "value": "请选择城市",
+          "description": "placeholder显示请选择城市"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "请选择城市",
+          "description": "value字段显示请选择城市"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "label-value和value-flat策略用placeholder字段表示按钮占位文本",
+      "index-based策略用value字段表示按钮文本"
+    ]
+  },
+  {
+    "id": "SC004",
+    "name": "DataModel绑定选中值",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Select下拉选择组件，选项为'男'和'女'，选中值绑定到DataModel的$formData.gender。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options字段",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "{{ $formData.gender }}",
+          "description": "value用{{ }}绑定$formData.gender"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "{{ $formData.gender }}",
+          "description": "value用{{ }}绑定$formData.gender"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "has_field",
+          "field": "selected",
+          "description": "使用selected索引字段"
+        },
+        {
+          "type": "contains",
+          "field": "selected",
+          "value": "0",
+          "description": "selected为数值0"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "label-value和value-flat策略用顶层value绑定DataModel",
+      "动态值用{{ }}包裹表达式",
+      "index-based策略用selected=0设置默认索引"
+    ]
+  },
+  {
+    "id": "SC005",
+    "name": "onChange事件处理",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select下拉选择组件，选项为'北京'和'上海'，包含onChange事件监听，当选中值变化时触发setDataModel更新$formData.city。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options",
+        "onChange"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options字段",
+        "field": "options"
+      },
+      {
+        "type": "has_field",
+        "description": "必须包含事件属性字段",
+        "field": "onChange"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "action",
+          "description": "onChange使用flat-array action格式"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "action调用setDataModel"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "action",
+          "description": "onChange使用flat-array action格式"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "action调用setDataModel"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "action",
+          "description": "onChange使用flat-array action格式"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "onChange是EventHandler数组，每项包含id和call字段"
+    ]
+  },
+  {
+    "id": "SC006",
+    "name": "表单行布局中的下拉选择",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个表单行布局，包含一个Extended.Text标签'城市'和一个Extended.Select下拉选择组件（选项为'北京'和'上海'）。使用Extended.Row布局，children包含label_text和city_select两个组件。",
+    "expected": {
+      "component": "Extended.Row",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Row必须包含children",
+        "field": "children"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "city_select",
+          "description": "children包含city_select组件ID"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "city_select",
+          "description": "children包含city_select组件ID"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "city_select",
+          "description": "children包含city_select组件ID"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "表单行用Extended.Row布局，children列出子组件ID"
+    ]
+  },
+  {
+    "id": "SC007",
+    "name": "带icon的多模态选项",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select下拉选择组件，选项包含图标。第一个选项显示文本'WiFi'，图标为sys.symbol.ohos_wifi；第二个选项显示文本'蓝牙'，图标为sys.symbol.ohos_bluetooth。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options字段",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "options[0].label",
+          "value": "WiFi",
+          "description": "label为WiFi"
+        },
+        {
+          "type": "has_field",
+          "field": "options[0].symbolIcon",
+          "description": "包含symbolIcon字段"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "WiFi",
+          "description": "value为WiFi"
+        },
+        {
+          "type": "has_field",
+          "field": "options[0].symbolIcon",
+          "description": "包含symbolIcon字段"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "WiFi",
+          "description": "value为WiFi"
+        },
+        {
+          "type": "has_field",
+          "field": "options[0].symbolIcon",
+          "description": "包含symbolIcon字段"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "选项的symbolIcon优先级高于icon"
+    ]
+  },
+  {
+    "id": "SC008",
+    "name": "带默认值的下拉选择",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Select下拉选择组件，选项为'启用'和'禁用'，默认选中'启用'（即第一个选项）。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options字段",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "{{ $",
+          "description": "value使用{{ }}表达式绑定默认值"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "{{ $",
+          "description": "value使用{{ }}表达式绑定默认值"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "has_field",
+          "field": "selected",
+          "description": "使用selected指定默认索引"
+        },
+        {
+          "type": "contains",
+          "field": "selected",
+          "value": "0",
+          "description": "selected为0（第一个选项）"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "label-value和value-flat策略通过顶层value绑定DataModel设置默认值",
+      "动态值用{{ }}包裹",
+      "index-based策略通过selected=0设置默认选项"
+    ]
+  },
+  {
+    "id": "SC009",
+    "name": "表单提交时引用Select选中值",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个表单布局（Extended.Column），包含：一个Extended.Select（选项为'北京'和'上海'，选中值绑定$formData.city）和一个Extended.Button提交按钮。按钮的onClick用flat-array格式调用request，body中包含选中的city值。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Column必须包含children",
+        "field": "children"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Select",
+        "description": "输出包含Select组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Button",
+        "description": "输出包含Button组件"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.city",
+          "description": "body中引用$formData.city"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.city",
+          "description": "body中引用$formData.city"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "city",
+          "description": "body中包含city相关数据"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "表单提交时从DataModel读取Select的选中值",
+      "onClick使用EventHandler数组格式: [{id, call, args, condition?}]",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "SC010",
+    "name": "onChange更新DataModel后链式处理",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select组件（城市选择），onChange时先用setDataModel更新$formData.city，然后通过$变量名判断更新成功后再执行后续请求。使用flat-array的if/then实现条件链式处理。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含事件属性",
+        "field": "onChange"
+      },
+      {
+        "type": "contains",
+        "field": "onChange",
+        "value": "if",
+        "description": "使用if条件action"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "$context.eventData.value",
+          "description": "引用$context.eventData.value获取选中值"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "调用setDataModel"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "$context.eventData.value",
+          "description": "引用$context.eventData.value获取选中值"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "调用setDataModel"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "$context.eventData.value",
+          "description": "引用$context.eventData.value"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "调用setDataModel"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "flat-array中通过as绑定action返回值到$变量名",
+      "后续action通过if引用$变量名判断",
+      "$context.eventData是onChange事件的上下文变量"
+    ]
+  },
+  {
+    "id": "SC011",
+    "name": "Select选中值控制条件渲染",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个条件渲染表单布局（Extended.Column），包含：一个Extended.Select（选项为'中国'和'其他'，选中值绑定$formData.country）和一个Extended.If条件组件。当选中'中国'时显示省份选择器，选中'其他'时显示Extended.TextInput输入框。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Column必须包含children",
+        "field": "children"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Select",
+        "description": "输出包含Select组件"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "{{ $formData.country }}",
+          "description": "value用{{ }}绑定$formData.country"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "{{ $formData.country }}",
+          "description": "value用{{ }}绑定$formData.country"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "selected",
+          "description": "Select使用selected索引"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "条件渲染用Extended.If，condition用{{ }}包裹表达式",
+      "动态值用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "SC012",
+    "name": "多选项下拉选择（8个城市）",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select下拉选择组件，包含8个城市选项：'北京'、'上海'、'广州'、'深圳'、'杭州'、'南京'、'成都'、'武汉'。默认选中'北京'（第一个）。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "options[0].label",
+          "value": "北京",
+          "description": "第一选项label为北京"
+        },
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "beijing",
+          "description": "第一选项value为beijing"
+        },
+        {
+          "type": "contains",
+          "field": "options",
+          "value": "武汉",
+          "description": "options包含武汉（验证全部8个选项）"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "北京",
+          "description": "第一选项value为北京"
+        },
+        {
+          "type": "contains",
+          "field": "options",
+          "value": "武汉",
+          "description": "options包含武汉"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "北京",
+          "description": "第一选项value为北京"
+        },
+        {
+          "type": "has_field",
+          "field": "selected",
+          "description": "使用selected索引"
+        },
+        {
+          "type": "contains",
+          "field": "selected",
+          "value": "0",
+          "description": "默认选中第0个（北京）"
+        },
+        {
+          "type": "contains",
+          "field": "options",
+          "value": "武汉",
+          "description": "options包含武汉"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "Extended.Select的options是静态数组，每项包含value字段表示选项显示文本",
+      "选项按顺序排列，默认选中通过selected=0设置"
+    ]
+  },
+  {
+    "id": "SC013",
+    "name": "显示文本与提交值分离（国际化场景）",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个语言选择Extended.Select，显示中文名称（'中文'、'英文'、'日文'）但提交时发送对应的语言代码（'zh'、'en'、'ja'）。选中值绑定到$formData.language，表单提交时发送的是语言代码而非中文名称。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "options[0].label",
+          "value": "中文",
+          "description": "label为显示文本中文"
+        },
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "zh",
+          "description": "value为提交代码zh"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "中文",
+          "description": "value为显示文本也是提交值"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "中文",
+          "description": "value为显示文本"
+        },
+        {
+          "type": "has_field",
+          "field": "selected",
+          "description": "使用selected索引"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "label-value策略通过label/value分离实现显示与提交的不同值",
+      "value-flat策略无法区分显示和提交值",
+      "index-based策略需要额外逻辑将索引映射到提交值"
+    ]
+  },
+  {
+    "id": "SC014",
+    "name": "基于选中值的条件action",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select（选择操作类型：'查询'和'删除'），onChange时根据选中的值执行不同的action：选中'查询'时调用search action，选中'删除'时先弹出确认再调用delete action。使用flat-array的if/then实现条件执行。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含事件属性",
+        "field": "onChange"
+      },
+      {
+        "type": "contains",
+        "field": "onChange",
+        "value": "action",
+        "description": "使用flat-array action格式"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "query",
+          "description": "条件判断使用选项的value值query"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "delete",
+          "description": "条件判断使用选项的value值delete"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "查询",
+          "description": "条件判断使用显示文本查询"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "删除",
+          "description": "条件判断使用显示文本删除"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "查询",
+          "description": "条件判断使用选项value值"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "flat-array中通过if引用$context.eventData.value判断选中值（$context.eventData.value为选项value文本，非索引）",
+      "then/else执行不同action分支"
+    ]
+  },
+  {
+    "id": "SC015",
+    "name": "多Select表单联动",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个联动表单布局（Extended.Column），包含两个Extended.Select：第一个选择省份（'北京'、'广东'），第二个选择城市。当省份变化时，城市选项联动更新。两个Select都用flat-array格式的setDataModel更新DataModel。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Column必须包含children",
+        "field": "children"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "Extended.Select",
+        "description": "children包含Select组件"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "{{ $",
+          "description": "value用{{ }}绑定DataModel"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "setDataModel",
+          "description": "onChange调用setDataModel"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "{{ $",
+          "description": "value用{{ }}绑定DataModel"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "setDataModel",
+          "description": "onChange调用setDataModel"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "selected",
+          "description": "Select使用selected索引"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "省份onChange更新DataModel，城市选项根据DataModel动态变化",
+      "事件属性使用EventHandler数组格式"
+    ]
+  },
+  {
+    "id": "SC016",
+    "name": "symbolIcon完整配置选项",
+    "category": "select-component",
+    "complexity": "complex",
+    "task": "生成一个Extended.Select，包含两个带完整symbolIcon配置的选项。选项1：显示WiFi，symbolIcon包含src(sys.symbol.ohos_wifi)、fontSize(20)、fontColor(#FF11BF82)、renderingStrategy(single)、effectStrategy(none)。选项2：显示蓝牙，symbolIcon类似配置。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "has_field",
+          "field": "options[0].label",
+          "description": "包含label显示文本"
+        },
+        {
+          "type": "has_field",
+          "field": "options[0].symbolIcon",
+          "description": "包含symbolIcon"
+        },
+        {
+          "type": "has_field",
+          "field": "options[0].symbolIcon.src",
+          "description": "symbolIcon包含src"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "has_field",
+          "field": "options[0].value",
+          "description": "包含value显示文本"
+        },
+        {
+          "type": "has_field",
+          "field": "options[0].symbolIcon",
+          "description": "包含symbolIcon"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "has_field",
+          "field": "options[0].value",
+          "description": "包含value显示文本"
+        },
+        {
+          "type": "has_field",
+          "field": "options[0].symbolIcon",
+          "description": "包含symbolIcon"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "symbolIcon是对象，包含src, fontSize, fontWeight, fontColor, renderingStrategy, effectStrategy"
+    ]
+  },
+  {
+    "id": "SC017",
+    "name": "Select+TextInput+Button完整表单提交",
+    "category": "select-component",
+    "complexity": "complex",
+    "task": "生成一个完整的用户信息表单布局（Extended.Column）：Extended.Select选择部门（'技术部'、'市场部'），Extended.TextInput输入姓名，Extended.Button提交。提交按钮onClick用flat-array格式：先validate验证，再request发送POST到/api/user，body中包含部门、姓名和提交时间。所有表单字段绑定到$formData。表达式用{{ }}包裹。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Column必须包含children",
+        "field": "children"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "Extended.Select",
+        "description": "children包含Select"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "Extended.TextInput",
+        "description": "children包含TextInput"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "Extended.Button",
+        "description": "children包含Button"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "request",
+        "description": "调用request action"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "POST",
+        "description": "POST请求"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$formData.department",
+          "description": "body引用部门value"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$formData.name",
+          "description": "body引用姓名"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$formData.department",
+          "description": "body引用部门value"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$formData.name",
+          "description": "body引用姓名"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$formData",
+          "description": "body引用formData"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "完整表单提交时所有字段从DataModel读取",
+      "onClick是EventHandler数组: [{id, call, ...}, {id, call, ...}]",
+      "表达式用{{ }}包裹",
+      "flat-array中用as绑定返回值，if引用"
+    ]
+  },
+  {
+    "id": "SC018",
+    "name": "Select在复杂嵌套布局中",
+    "category": "select-component",
+    "complexity": "complex",
+    "task": "生成一个Extended.Column布局，包含标题Extended.Text、Extended.Select（性别选择）和Extended.Row（包含两个操作按钮）。Select的选项为'男'和'女'，选中值绑定$formData.gender。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Column必须包含children",
+        "field": "children"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "gender",
+          "description": "children包含Select相关组件ID"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "gender",
+          "description": "children包含Select相关组件ID"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "gender",
+          "description": "children包含Select相关组件ID"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "嵌套布局中Select作为children的一部分"
+    ]
+  },
+  {
+    "id": "SC019",
+    "name": "Tabs中集成Select",
+    "category": "select-component",
+    "complexity": "complex",
+    "task": "生成一个Extended.Tabs组件，包含两个Extended.TabContent页签。第一个页签'基本信息'包含Extended.Select（城市选择），第二个页签'高级设置'包含另一个Extended.Select（语言选择）。每个Select的选中值绑定到$formData对应字段。",
+    "expected": {
+      "component": "Extended.Tabs",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Tabs必须包含children",
+        "field": "children"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "TabContent",
+          "description": "children包含TabContent"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "TabContent",
+          "description": "children包含TabContent"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "TabContent",
+          "description": "children包含TabContent"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "TabContent的children包含Select等表单组件"
+    ]
+  },
+  {
+    "id": "SC020",
+    "name": "Select通过as绑定实现链式处理",
+    "category": "select-component",
+    "complexity": "complex",
+    "task": "生成一个Extended.Select（选项为'审批通过'和'审批拒绝'），onChange时用flat-array格式：先调用validate验证，通过as绑定结果到$valid，再if判断$valid==0后then执行sendToLLM通知，最后else执行setDataModel更新状态。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含事件属性",
+        "field": "onChange"
+      },
+      {
+        "type": "contains",
+        "field": "onChange",
+        "value": "if",
+        "description": "使用if条件action"
+      },
+      {
+        "type": "contains",
+        "field": "onChange",
+        "value": "as",
+        "description": "使用as绑定返回值"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "approved",
+          "description": "条件判断审批通过value值"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "审批通过",
+          "description": "条件判断审批通过显示文本"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "0",
+          "description": "条件判断使用索引"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "flat-array中通过as绑定action返回值",
+      "后续action通过if: {{ $变量名 }}引用",
+      "then执行成功分支，else执行失败分支"
+    ]
+  },
+  {
+    "id": "SC021",
+    "name": "数字型选项值的选择",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Select下拉选择组件，选项为数值范围：'10条/页'、'20条/页'、'50条/页'，对应的提交值为10、20、50。选中值绑定到$formData.pageSize。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "options[0].label",
+          "value": "10条/页",
+          "description": "label为显示文本"
+        },
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "10",
+          "description": "value为数字10"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "10条/页",
+          "description": "value为显示文本"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "10条/页",
+          "description": "value为显示文本"
+        },
+        {
+          "type": "has_field",
+          "field": "selected",
+          "description": "使用selected索引"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "label-value策略可区分显示文本和提交的数字值"
+    ]
+  },
+  {
+    "id": "SC022",
+    "name": "无默认选中的下拉选择",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select下拉选择组件，选项为'请选择'、'选项A'、'选项B'、'选项C'。不设置默认选中值，按钮显示占位文本'请选择'（第一个选项同时作为占位提示）。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": [
+        {
+          "field": "options",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "options[0].label",
+          "value": "请选择",
+          "description": "第一选项label为请选择"
+        },
+        {
+          "type": "contains",
+          "field": "placeholder",
+          "value": "请选择",
+          "description": "占位文本为请选择"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "请选择",
+          "description": "第一选项value为请选择"
+        },
+        {
+          "type": "contains",
+          "field": "placeholder",
+          "value": "请选择",
+          "description": "占位文本为请选择"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "options[0].value",
+          "value": "请选择",
+          "description": "第一选项value为请选择"
+        },
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "请选择",
+          "description": "按钮文本为请选择（无selected时由value字段充当占位）"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "index-based策略中，不设置selected表示无默认选中",
+      "按钮占位文本通过顶层value设置",
+      "第一个选项可以作为占位提示选项"
+    ]
+  },
+  {
+    "id": "SC023",
+    "name": "禁用状态的下拉选择",
+    "category": "select-component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Select组件，选项为'开启'和'关闭'，组件处于禁用状态（不可交互），禁用状态由$formData.readonly控制。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含options",
+        "field": "options"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "has_field",
+          "field": "enabled",
+          "description": "包含enabled属性控制禁用状态"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "has_field",
+          "field": "enabled",
+          "description": "包含enabled属性控制禁用状态"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "has_field",
+          "field": "enabled",
+          "description": "包含enabled属性控制禁用状态"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "enabled属性控制组件是否可交互",
+      "enabled支持{{ }}表达式绑定DataModel"
+    ]
+  },
+  {
+    "id": "SC024",
+    "name": "Select onChange事件中获取选中项完整信息",
+    "category": "select-component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select组件（选项为'杭州'和'南京'），onChange时需要同时获取$context.eventData.value和$context.eventData.oldValue，并将新值存入DataModel。使用flat-array格式的setDataModel action。",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": [
+        "component",
+        "id",
+        "options",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "必须包含事件属性",
+        "field": "onChange"
+      },
+      {
+        "type": "contains",
+        "field": "onChange",
+        "value": "$context.eventData",
+        "description": "引用$context.eventData"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "hangzhou",
+          "description": "$context.eventData.value为提交值hangzhou"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "调用setDataModel存储"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "$context.eventData.value",
+          "description": "$context.eventData.value为显示文本"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "调用setDataModel存储"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "$context.eventData.value",
+          "description": "$context.eventData.value为索引"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "调用setDataModel存储"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "$context.eventData.value在label-value策略传递选项的value",
+      "$context.eventData.value在index-based策略传递索引",
+      "onChange事件数据为{value, oldValue}",
+      "事件属性使用EventHandler数组格式"
+    ]
+  },
+  {
+    "id": "SC025",
+    "name": "完整注册表单（Select+多个表单控件+验证提交）",
+    "category": "select-component",
+    "complexity": "complex",
+    "task": "生成一个完整的注册表单布局（Extended.Column），包含：Extended.Select选择角色（'开发者'→dev、'设计师'→design、'产品经理'→pm）、Extended.TextInput输入用户名、Extended.Radio选择性别、Extended.Button提交。提交onClick用flat-array格式：先validate验证，再as绑定结果，if判断成功后then执行request POST到/api/register，body包含role、username、gender。所有表达式用{{ }}包裹。",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "description": "Column必须包含children",
+        "field": "children"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Select",
+        "description": "输出包含Select"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.TextInput",
+        "description": "输出包含TextInput"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Button",
+        "description": "输出包含Button"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "request",
+        "description": "调用request"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/api/register",
+        "description": "提交到注册API"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "POST",
+        "description": "POST请求"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "validate",
+        "description": "包含validate验证步骤"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "使用as绑定返回值"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "if",
+        "description": "使用if条件判断"
+      }
+    ],
+    "strategy_rules": {
+      "label-value": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.role",
+          "description": "body引用role（提交值dev/design/pm）"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.username",
+          "description": "body引用username"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.gender",
+          "description": "body引用gender"
+        }
+      ],
+      "value-flat": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.role",
+          "description": "body引用role"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.username",
+          "description": "body引用username"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData.gender",
+          "description": "body引用gender"
+        }
+      ],
+      "index-based": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$formData",
+          "description": "body引用formData"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "label-value策略提交的是role的value（如dev）而非label（如开发者）",
+      "完整表单模式：Select+TextInput+Radio+Button+Validate+Request",
+      "flat-array: onClick后是actions数组",
+      "表达式用{{ }}包裹",
+      "as绑定validate结果，if判断条件，then执行request"
+    ]
+  }
+]

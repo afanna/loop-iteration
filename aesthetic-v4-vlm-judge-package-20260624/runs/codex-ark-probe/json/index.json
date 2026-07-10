@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "record_count": 1,
+  "records": [
+    {
+      "id": "weather",
+      "qid": "weather",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\aesthetic-v4-vlm-judge-package-20260624\\runs\\codex-ark-probe\\json\\weather.json",
+      "score": 44.501,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\weather.png"
+      ]
+    }
+  ]
+}

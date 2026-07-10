@@ -1,0 +1,764 @@
+[
+  {
+    "id": "FP0401",
+    "name": "Simple $__dataModel reference",
+    "category": "expression",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，内容引用数据模型中的$userName变量",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "$userName"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$userName",
+        "description": "content必须引用$userName变量"
+      }
+    ],
+    "hints": [
+      "使用{{ }}语法包裹表达式",
+      "变量引用以$开头"
+    ]
+  },
+  {
+    "id": "FP0402",
+    "name": "Nested property access",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，内容引用嵌套属性$__dataModel.user.address.city",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "$__dataModel.user.address.city"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$__dataModel.user.address.city",
+        "description": "必须使用嵌套属性访问$__dataModel.user.address.city"
+      }
+    ],
+    "hints": [
+      "$__dataModel是数据模型的绝对路径",
+      "使用.进行嵌套属性访问"
+    ]
+  },
+  {
+    "id": "FP0403",
+    "name": "Arithmetic expression",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，内容为价格计算表达式：$price * $quantity，显示总价",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "$price"
+        },
+        {
+          "field": "content",
+          "must_contain": "*"
+        },
+        {
+          "field": "content",
+          "must_contain": "$quantity"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$price",
+        "description": "必须引用$price变量"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "*",
+        "description": "必须使用乘法运算符*"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$quantity",
+        "description": "必须引用$quantity变量"
+      }
+    ],
+    "hints": [
+      "在表达式中使用算术运算符进行计算",
+      "支持的运算符：+、-、*、/、%"
+    ]
+  },
+  {
+    "id": "FP0404",
+    "name": "Comparison + ternary",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，$age >= 18时显示'成年人'，否则显示'未成年'，使用三元运算符",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "?"
+        },
+        {
+          "field": "content",
+          "must_contain": ":"
+        },
+        {
+          "field": "content",
+          "must_contain": "$age"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$age",
+        "description": "必须引用$age变量"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": ">=",
+        "description": "必须使用比较运算符>="
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "?",
+        "description": "必须使用三元运算符?"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": ":",
+        "description": "必须使用三元运算符:"
+      }
+    ],
+    "hints": [
+      "三元运算符格式：条件 ? 真值 : 假值",
+      "比较运算符有>、>=、<、<=、==、!="
+    ]
+  },
+  {
+    "id": "FP0405",
+    "name": "Logical operators",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，当$isAdmin && $isActive都为true时显示'管理员在线'，否则显示'管理员离线'",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "$isAdmin"
+        },
+        {
+          "field": "content",
+          "must_contain": "&&"
+        },
+        {
+          "field": "content",
+          "must_contain": "$isActive"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$isAdmin",
+        "description": "必须引用$isAdmin变量"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "&&",
+        "description": "必须使用逻辑与运算符&&"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$isActive",
+        "description": "必须引用$isActive变量"
+      }
+    ],
+    "hints": [
+      "逻辑运算符有&&（与）、||（或）、!（非）",
+      "可以与三元运算符组合使用"
+    ]
+  },
+  {
+    "id": "FP0406",
+    "name": "Nested ternary (multi-branch)",
+    "category": "expression",
+    "complexity": "complex",
+    "task": "生成一个Extended.Text组件，根据$__widthBreakpoint断点显示不同布局标签：sm时显示'移动端'、md时显示'平板'、其他显示'桌面端'，使用嵌套三元运算符",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "$__widthBreakpoint"
+        },
+        {
+          "field": "content",
+          "must_contain": "sm"
+        },
+        {
+          "field": "content",
+          "must_contain": "md"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$__widthBreakpoint",
+        "description": "必须引用$__widthBreakpoint全局变量"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "sm",
+        "description": "必须包含sm断点判断"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "md",
+        "description": "必须包含md断点判断"
+      }
+    ],
+    "hints": [
+      "嵌套三元运算符格式：条件1 ? 值1 : 条件2 ? 值2 : 值3",
+      "$__widthBreakpoint是全局响应式变量"
+    ]
+  },
+  {
+    "id": "FP0407",
+    "name": "Array indexing",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，内容引用数组第一个元素的名字$__dataModel.items[0].name",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "$__dataModel.items[0].name"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "items[0]",
+        "description": "必须使用数组索引[0]访问元素"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$__dataModel",
+        "description": "必须使用$__dataModel绝对路径"
+      }
+    ],
+    "hints": [
+      "使用[index]语法访问数组元素",
+      "支持链式访问如$items[0].user.name"
+    ]
+  },
+  {
+    "id": "FP0408",
+    "name": "Expression in styles",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，内容为'动态字号文本'，设置fontSize使用表达式：$__widthBreakpoint == 'sm'时为14，其他情况为18",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content",
+        "styles"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "动态字号文本"
+        },
+        {
+          "field": "styles.fontSize",
+          "must_contain": "{{"
+        },
+        {
+          "field": "styles.fontSize",
+          "must_contain": "$__widthBreakpoint"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles对象"
+      },
+      {
+        "type": "has_field",
+        "field": "styles.fontSize",
+        "description": "styles中必须有fontSize"
+      },
+      {
+        "type": "contains",
+        "field": "styles.fontSize",
+        "value": "{{",
+        "description": "styles.fontSize必须使用{{}}表达式"
+      },
+      {
+        "type": "contains",
+        "field": "styles.fontSize",
+        "value": "$__widthBreakpoint",
+        "description": "fontSize表达式必须引用$__widthBreakpoint"
+      }
+    ],
+    "hints": [
+      "styles中的属性也可以使用{{}}表达式",
+      "样式属性值可以是表达式字符串"
+    ]
+  },
+  {
+    "id": "FP0409",
+    "name": "Expression in enabled",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，标签为'提交'，enabled属性使用表达式：$isFormValid为true时按钮可点击",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "id",
+        "component",
+        "label",
+        "enabled"
+      ],
+      "patterns": [
+        {
+          "field": "label",
+          "must_contain": "提交"
+        },
+        {
+          "field": "enabled",
+          "must_contain": "{{"
+        },
+        {
+          "field": "enabled",
+          "must_contain": "$isFormValid"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "enabled",
+        "value": "{{",
+        "description": "enabled必须使用{{}}表达式"
+      },
+      {
+        "type": "contains",
+        "field": "enabled",
+        "value": "$isFormValid",
+        "description": "enabled表达式必须引用$isFormValid"
+      }
+    ],
+    "hints": [
+      "enabled属性可以使用{{}}表达式动态控制",
+      "表达式求值为true时按钮可点击"
+    ]
+  },
+  {
+    "id": "FP0410",
+    "name": "$index loop variable",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.List组件，使用模板listItem渲染$items数组。在模板中生成一个Extended.Text组件，内容为序号拼接项名称，使用($index + 1)拼接'.'和$item.name",
+    "expected": {
+      "component": "Extended.List",
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children.componentId",
+          "must_contain": "listItem"
+        },
+        {
+          "field": "children.path",
+          "must_contain": "$items"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "children.componentId",
+        "description": "children必须有componentId"
+      },
+      {
+        "type": "has_field",
+        "field": "children.path",
+        "description": "children必须有path"
+      }
+    ],
+    "hints": [
+      "$index是循环变量，表示当前项的索引（从0开始）",
+      "List的children使用对象形式{componentId, path}"
+    ]
+  },
+  {
+    "id": "FP0411",
+    "name": "$item loop variable",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.List组件，使用模板productCard渲染$products数组。在模板中生成一个Extended.Text组件，内容引用$item.name显示产品名称",
+    "expected": {
+      "component": "Extended.List",
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children.componentId",
+          "must_contain": "productCard"
+        },
+        {
+          "field": "children.path",
+          "must_contain": "$products"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "children.componentId",
+        "description": "children必须有componentId"
+      },
+      {
+        "type": "has_field",
+        "field": "children.path",
+        "description": "children必须有path"
+      }
+    ],
+    "hints": [
+      "$item是循环变量，表示当前项的数据对象",
+      "可以通过$item.name访问当前项的属性"
+    ]
+  },
+  {
+    "id": "FP0412",
+    "name": "size() built-in function",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，内容使用size()函数显示$items数组的长度，格式为'共X件商品'",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "size("
+        },
+        {
+          "field": "content",
+          "must_contain": "$items"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "size(",
+        "description": "必须调用size()内置函数"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$items",
+        "description": "size()参数必须引用$items数组"
+      }
+    ],
+    "hints": [
+      "size(arr)返回数组长度",
+      "可以在表达式中拼接字符串如size($items) + ' 件商品'"
+    ]
+  },
+  {
+    "id": "FP0413",
+    "name": "Complex expression chain",
+    "category": "expression",
+    "complexity": "complex",
+    "task": "生成一个Extended.Text组件，内容为复杂表达式：$isVip为true时显示'VIP价格：'拼接$price * 0.8的结果，否则显示'普通价格：'拼接$price原价。使用三元运算符、算术运算和属性访问组合",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "id",
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "{{"
+        },
+        {
+          "field": "content",
+          "must_contain": "$isVip"
+        },
+        {
+          "field": "content",
+          "must_contain": "?"
+        },
+        {
+          "field": "content",
+          "must_contain": "$price"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "content必须使用{{}}表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$isVip",
+        "description": "必须引用$isVip变量"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "?",
+        "description": "必须使用三元运算符"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": ":",
+        "description": "必须使用三元运算符else分支"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "$price",
+        "description": "必须引用$price变量"
+      }
+    ],
+    "hints": [
+      "三元运算符 + 算术运算 + 属性访问的组合",
+      "使用字符串拼接连接标签和计算结果"
+    ]
+  },
+  {
+    "id": "FP0414",
+    "name": "as 绑定行为结果引用",
+    "category": "expression",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button组件，标签为'确认删除'。点击时onClick事件触发行为数组，包含两个行为：第一个执行showConfirm行为（通过as绑定为confirmed），第二个通过condition判断$confirmed == 0，为true时执行deleteItem行为",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "id",
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "label",
+          "must_contain": "确认删除"
+        },
+        {
+          "field": "onClick",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "chain_format",
+        "description": "onClick必须是行为数组格式"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "前置行为必须通过as绑定结果变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "condition",
+        "description": "后续行为必须通过condition引用as绑定的变量"
+      }
+    ],
+    "hints": [
+      "通过as（如as:'confirmed'）绑定前置行为返回值",
+      "后续行为用condition引用$confirmed == 0",
+      "行为数组中的condition使用{{}}表达式"
+    ]
+  }
+]

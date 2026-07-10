@@ -1,0 +1,616 @@
+[
+  {
+    "id": "IR001",
+    "name": "基础onClick单行为",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'btn'，label为'点击我'，点击后执行showToast显示'hello'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "label", "description": "必须有label字段"},
+      {"type": "contains", "field": "$output", "value": "showToast", "description": "必须包含showToast行为"},
+      {"type": "contains", "field": "$output", "value": "hello", "description": "消息内容为hello"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：必须使用listeners对象"},
+        {"type": "contains", "field": "listeners", "value": "onClick", "description": "listeners中必须包含onClick事件"},
+        {"type": "not_contains", "field": "$output", "value": "\"onClick\"", "description": "onClick不能直接作为组件属性（必须在listeners内部）"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接作为组件属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["点击事件是onClick", "showToast用于显示提示消息"]
+  },
+  {
+    "id": "IR002",
+    "name": "onClick多行为链",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，点击后先执行validate验证，再执行sendToLLM发送消息'value'为'submit'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "必须包含validate行为"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "必须包含sendToLLM行为"},
+      {"type": "contains", "field": "$output", "value": "submit", "description": "sendToLLM的value为submit"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：必须使用listeners对象"},
+        {"type": "contains", "field": "listeners", "value": "onClick", "description": "listeners中包含onClick"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接作为组件属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["多个行为按顺序执行，形成行为链"]
+  },
+  {
+    "id": "IR003",
+    "name": "onAppear显示事件",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Text组件，id为'welcomeText'，content为'欢迎'，当组件显示时执行sendToLLM发送'pageView'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "onAppear", "description": "必须包含onAppear事件"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "必须包含sendToLLM"},
+      {"type": "contains", "field": "$output", "value": "pageView", "description": "发送内容为pageView"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"},
+        {"type": "contains", "field": "listeners", "value": "onAppear", "description": "listeners中包含onAppear"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onAppear", "description": "策略B：onAppear直接作为组件属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["onAppear是组件显示时触发的事件"]
+  },
+  {
+    "id": "IR004",
+    "name": "TextInput的onChange",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个TextInput组件，id为'nameInput'，placeholder为'请输入姓名'，当值变化时执行setDataModel设置'user.name'为事件数据中的value",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "placeholder", "description": "必须有placeholder"},
+      {"type": "contains", "field": "$output", "value": "onChange", "description": "必须包含onChange事件"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "必须使用setDataModel"},
+      {"type": "contains", "field": "$output", "value": "user.name", "description": "path为user.name"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"},
+        {"type": "contains", "field": "listeners", "value": "onChange", "description": "listeners中包含onChange"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onChange", "description": "策略B：onChange直接作为组件属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["TextInput值变化触发onChange事件", "setDataModel用于设置数据模型"]
+  },
+  {
+    "id": "IR005",
+    "name": "condition条件执行",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'deleteBtn'，label为'删除'，点击后先执行validate验证表单数据绑定到'check'，然后条件执行sendToLLM发送'deleteConfirm'（条件：check等于0）",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "先验证"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "后发送"},
+      {"type": "contains", "field": "$output", "value": "condition", "description": "必须有condition字段"},
+      {"type": "contains", "field": "$output", "value": "deleteConfirm", "description": "发送内容为deleteConfirm"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接作为组件属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["condition字段用于条件执行", "as绑定validate返回值"]
+  },
+  {
+    "id": "IR006",
+    "name": "as变量绑定与引用",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'checkBtn'，label为'检查'，点击后执行validate验证数据模型中的form，将结果绑定为'validResult'，然后条件执行showToast显示'验证通过'（条件：validResult等于0）",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "必须包含validate"},
+      {"type": "contains", "field": "$output", "value": "validResult", "description": "as绑定为validResult"},
+      {"type": "contains", "field": "$output", "value": "condition", "description": "必须有condition"},
+      {"type": "contains", "field": "$output", "value": "showToast", "description": "执行showToast"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接作为组件属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["as字段将行为返回值绑定为局部变量", "后续行为通过$varName引用"]
+  },
+  {
+    "id": "IR007",
+    "name": "多条件分支链",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'actionBtn'，label为'操作'，点击后先执行validate绑定到'result'，然后条件执行sendToLLM发送'success'（条件result等于0），再条件执行showToast显示'失败'（条件result不等于0）",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "先验证"},
+      {"type": "contains", "field": "$output", "value": "result", "description": "绑定到result"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "成功分支"},
+      {"type": "contains", "field": "$output", "value": "showToast", "description": "失败分支"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接作为组件属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["多个带不同condition的行为实现分支逻辑"]
+  },
+  {
+    "id": "IR008",
+    "name": "同一组件多事件onClick加onChange",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个TextInput组件，id为'searchInput'，placeholder为'搜索'，点击时执行setDataModel设置'search.focused'为true，值变化时执行sendToLLM发送'searchChange'",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "onClick", "description": "有点击事件"},
+      {"type": "contains", "field": "$output", "value": "onChange", "description": "有变化事件"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "onClick中执行setDataModel"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "onChange中执行sendToLLM"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"},
+        {"type": "contains", "field": "listeners", "value": "onClick", "description": "listeners中有onClick"},
+        {"type": "contains", "field": "listeners", "value": "onChange", "description": "listeners中有onChange"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接属性"},
+        {"type": "has_field", "field": "onChange", "description": "策略B：onChange直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["TextInput可以同时响应onClick和onChange事件"]
+  },
+  {
+    "id": "IR009",
+    "name": "Button action表单提交",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交订单'，使用action属性提交表单，事件名为'submitOrder'，携带context包含orderId",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "action", "description": "Button表单提交使用action属性"},
+      {"type": "contains", "field": "action", "value": "submitOrder", "description": "事件名为submitOrder"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "contains", "field": "action", "value": "event", "description": "策略A：action.event格式"}
+      ],
+      "direct-action": [
+        {"type": "contains", "field": "action", "value": "event", "description": "策略B：action.event格式（action不变）"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Button表单提交使用action属性而非事件监听", "action与事件监听是两种独立机制"]
+  },
+  {
+    "id": "IR010",
+    "name": "Button action与onClick共存",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成两个Button组件：第一个id为'submitBtn'，label为'提交'，使用action提交表单事件名'submitForm'；第二个id为'tipBtn'，label为'提示'，点击时showToast显示'操作成功'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "submitBtn", "description": "第一个按钮id"},
+      {"type": "contains", "field": "$output", "value": "tipBtn", "description": "第二个按钮id"},
+      {"type": "contains", "field": "$output", "value": "action", "description": "第一个按钮有action"},
+      {"type": "contains", "field": "$output", "value": "showToast", "description": "第二个按钮有showToast"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "contains", "field": "$output", "value": "listeners", "description": "策略A：tipBtn使用listeners"},
+        {"type": "contains", "field": "$output", "value": "submitForm", "description": "action中事件名为submitForm"}
+      ],
+      "direct-action": [
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B：tipBtn的onClick直接作为属性，无listeners"},
+        {"type": "contains", "field": "$output", "value": "submitForm", "description": "action中事件名为submitForm"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Button的action用于表单提交，onClick用于通用交互", "多组件输出JSON数组"]
+  },
+  {
+    "id": "IR011",
+    "name": "复杂链式行为4步",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'regBtn'，label为'注册'，点击后依次执行：1) validate验证数据模型中的regForm绑定到'check' 2) 条件执行setDataModel设置'reg.status'为'pending'（条件check等于0） 3) 条件执行sendToLLM发送'register'（条件check等于0） 4) 条件执行showToast显示'格式错误'（条件check不等于0）",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "步骤1：validate"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "步骤2：setDataModel"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "步骤3：sendToLLM"},
+      {"type": "contains", "field": "$output", "value": "showToast", "description": "步骤4：showToast"},
+      {"type": "contains", "field": "$output", "value": "pending", "description": "设置status为pending"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["4个行为形成复杂链，带条件分支"]
+  },
+  {
+    "id": "IR012",
+    "name": "setAttributes修改属性",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'toggleBtn'，label为'切换'，点击后执行setAttributes修改目标组件'statusText'的content为'已启用'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "setAttributes", "description": "使用setAttributes"},
+      {"type": "contains", "field": "$output", "value": "statusText", "description": "目标组件id为statusText"},
+      {"type": "contains", "field": "$output", "value": "已启用", "description": "设置内容为'已启用'"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["setAttributes用于修改其他组件的属性", "args中id指定目标组件"]
+  },
+  {
+    "id": "IR013",
+    "name": "navigate导航跳转",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'navBtn'，label为'下一页'，点击后执行navigate跳转Navigation组件'mainNav'的第2个子页面",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "navigate", "description": "使用navigate"},
+      {"type": "contains", "field": "$output", "value": "mainNav", "description": "目标Navigation为mainNav"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["navigate用于Navigation子页面跳转", "args中componentId指定目标Navigation"]
+  },
+  {
+    "id": "IR014",
+    "name": "break跳出链",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id as 'processBtn'，label为'处理'，点击后依次：1) validate验证绑定到'result' 2) 条件执行break跳出（条件result不等于0） 3) 条件执行sendToLLM发送'processOk'（条件result等于0）",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "先验证"},
+      {"type": "contains", "field": "$output", "value": "break", "description": "有break跳出"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "有sendToLLM"},
+      {"type": "contains", "field": "$output", "value": "processOk", "description": "发送内容processOk"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["break用于跳出当前事件的行为链", "break后面的行为不会执行"]
+  },
+  {
+    "id": "IR015",
+    "name": "Radio onChange",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Radio组件，id为'agreeRadio'，label为'同意'，选中状态变化时执行setDataModel设置'form.agreed'为事件数据中的value",
+    "expected": {
+      "component": "Radio",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "onChange", "description": "有onChange事件"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "使用setDataModel"},
+      {"type": "contains", "field": "$output", "value": "form.agreed", "description": "设置form.agreed"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onChange", "description": "策略B：onChange直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Radio选中状态变化触发onChange"]
+  },
+  {
+    "id": "IR016",
+    "name": "Toggle onChange带条件",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Toggle组件，id为'notifyToggle'，label为'通知'，状态变化时执行setDataModel设置'settings.notify'为事件数据中的value，然后条件执行sendToLLM发送'notifyChanged'（条件value等于true）",
+    "expected": {
+      "component": "Toggle",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "先setDataModel"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "后sendToLLM"},
+      {"type": "contains", "field": "$output", "value": "notifyChanged", "description": "发送notifyChanged"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onChange", "description": "策略B：onChange直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Toggle状态变化触发onChange", "可链式执行多个行为"]
+  },
+  {
+    "id": "IR017",
+    "name": "Select onChange选择",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Select组件，id为'citySelect'，options包含'北京'和'上海'，选中项变化时执行setDataModel设置'form.city'为事件数据中的value",
+    "expected": {
+      "component": "Select",
+      "required_fields": ["component", "options"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "options", "description": "必须有options"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "使用setDataModel"},
+      {"type": "contains", "field": "$output", "value": "form.city", "description": "设置form.city"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onChange", "description": "策略B：onChange直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Select选中项变化触发onChange"]
+  },
+  {
+    "id": "IR018",
+    "name": "scrollTo滚动列表",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'scrollBtn'，label为'滚动到底部'，点击后执行scrollTo滚动List组件'itemList'的yOffset到500位置",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "scrollTo", "description": "使用scrollTo"},
+      {"type": "contains", "field": "$output", "value": "itemList", "description": "目标List为itemList"},
+      {"type": "contains", "field": "$output", "value": "500", "description": "yOffset为500"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onClick", "description": "策略B：onClick直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["scrollTo用于滚动List组件", "componentId指定目标List"]
+  },
+  {
+    "id": "IR019",
+    "name": "CheckboxGroup onChange",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个CheckboxGroup组件，id为'hobbyGroup'，label为'兴趣爱好'，选中项变化时执行sendToLLM发送'selectionChanged'",
+    "expected": {
+      "component": "CheckboxGroup",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "使用sendToLLM"},
+      {"type": "contains", "field": "$output", "value": "selectionChanged", "description": "发送selectionChanged"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "has_field", "field": "listeners", "description": "策略A：使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "has_field", "field": "onChange", "description": "策略B：onChange直接属性"},
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B不应有listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["CheckboxGroup选中项变化触发onChange"]
+  },
+  {
+    "id": "IR020",
+    "name": "完整表单场景多组件",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成三个组件：1) TextInput id为'emailInput' placeholder为'邮箱' 值变化时setDataModel设置'email' 2) TextInput id为'passInput' placeholder为'密码' 值变化时setDataModel设置'password' 3) Button id为'loginBtn' label为'登录' 使用action提交表单事件名'login'",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "emailInput", "description": "邮箱输入框"},
+      {"type": "contains", "field": "$output", "value": "passInput", "description": "密码输入框"},
+      {"type": "contains", "field": "$output", "value": "loginBtn", "description": "登录按钮"},
+      {"type": "contains", "field": "$output", "value": "action", "description": "登录按钮使用action"},
+      {"type": "contains", "field": "$output", "value": "login", "description": "事件名login"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "输入框使用setDataModel"}
+    ],
+    "strategy_rules": {
+      "listeners-handler": [
+        {"type": "contains", "field": "$output", "value": "listeners", "description": "策略A：TextInput使用listeners"}
+      ],
+      "direct-action": [
+        {"type": "not_contains", "field": "$output", "value": "\"listeners\"", "description": "策略B：TextInput的onChange直接属性，无listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["表单输入框用onChange + setDataModel同步数据", "提交按钮用action提交表单", "多组件输出JSON数组"]
+  }
+]

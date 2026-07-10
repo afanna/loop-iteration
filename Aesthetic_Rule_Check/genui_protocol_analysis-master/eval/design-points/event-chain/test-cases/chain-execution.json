@@ -1,0 +1,1694 @@
+[
+  {
+    "id": "CE001",
+    "name": "单行为-sendToLLM",
+    "category": "event-chain",
+    "complexity": "simple",
+    "chain_depth": 1,
+    "chain_type": "single",
+    "task": "生成一个Button组件，标签为\"确认\"，点击时发送消息给LLM，内容为\"用户确认操作\"",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "label",
+        "value": "确认",
+        "description": "标签为确认"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "handlerGroups",
+          "description": "包含handlerGroups"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "调用sendToLLM行为"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "action",
+          "description": "包含action字段"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "调用sendToLLM行为"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE002",
+    "name": "单行为-setDataModel",
+    "category": "event-chain",
+    "complexity": "simple",
+    "chain_depth": 1,
+    "chain_type": "single",
+    "task": "生成一个Button组件，标签为\"加载\"，点击时设置数据模型/ui/isLoading为true",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "label",
+        "value": "加载",
+        "description": "标签为加载"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "setDataModel",
+          "description": "调用setDataModel行为"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "isLoading",
+          "description": "设置isLoading"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "setDataModel",
+          "description": "调用setDataModel行为"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "isLoading",
+          "description": "设置isLoading"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE003",
+    "name": "单行为-navigate",
+    "category": "event-chain",
+    "complexity": "simple",
+    "chain_depth": 1,
+    "chain_type": "single",
+    "task": "生成一个Button组件，标签为\"下一步\"，点击时跳转到Navigation组件main_nav的第2个子页面",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "label",
+        "value": "下一步",
+        "description": "标签为下一步"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "navigate",
+        "description": "调用navigate行为"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "main_nav",
+          "description": "目标Navigation组件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "main_nav",
+          "description": "目标Navigation组件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE004",
+    "name": "单行为-onChange事件",
+    "category": "event-chain",
+    "complexity": "simple",
+    "chain_depth": 1,
+    "chain_type": "single",
+    "task": "生成一个TextInput组件，placeholder为\"输入邮箱\"，onChange时调用updateField，传入新值为$event",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": [
+        "component",
+        "placeholder",
+        "onChange"
+      ],
+      "patterns": [
+        {
+          "field": "onChange",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "placeholder",
+        "value": "输入邮箱",
+        "description": "placeholder为输入邮箱"
+      },
+      {
+        "type": "contains",
+        "field": "onChange",
+        "value": "updateField",
+        "description": "调用updateField"
+      },
+      {
+        "type": "contains",
+        "field": "onChange",
+        "value": "$event",
+        "description": "使用$event"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onChange必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "handlerGroups",
+          "description": "包含handlerGroups"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onChange必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "action",
+          "description": "包含action字段"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE005",
+    "name": "顺序两步-设置状态后发送",
+    "category": "event-chain",
+    "complexity": "medium",
+    "chain_depth": 2,
+    "chain_type": "sequential",
+    "task": "生成一个Button组件，标签为\"提交\"，点击时先设置数据模型/ui/submitting为true，然后发送消息给LLM内容为\"提交中\"",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "setDataModel",
+        "description": "包含setDataModel"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "sendToLLM",
+        "description": "包含sendToLLM"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "submitting",
+        "description": "设置submitting"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "handlerGroups",
+          "description": "包含handlerGroups"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "setDataModel",
+          "description": "第一个行为是setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "第二个行为是sendToLLM"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "action",
+          "description": "包含action字段"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "setDataModel",
+          "description": "第一个action是setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "第二个action是sendToLLM"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE006",
+    "name": "条件两步-验证后提交",
+    "category": "event-chain",
+    "complexity": "medium",
+    "chain_depth": 2,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"提交\"，点击时先调用validate绑定结果到validResult，validResult等于0时调用submit",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "submit",
+        "description": "调用submit"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "handlerGroups",
+          "description": "包含handlerGroups"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用验证结果"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "as",
+          "description": "使用as绑定变量"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validResult",
+          "description": "绑定到validResult"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE007",
+    "name": "条件两步-检查登录",
+    "category": "event-chain",
+    "complexity": "medium",
+    "chain_depth": 2,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"查看\"，点击时调用checkLogin绑定到isLoggedIn，isLoggedIn为true时调用showProfile",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "checkLogin",
+        "description": "调用checkLogin"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "showProfile",
+        "description": "调用showProfile"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "as",
+          "description": "使用as绑定"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "isLoggedIn",
+          "description": "绑定到isLoggedIn"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE008",
+    "name": "条件两步-验证失败提示",
+    "category": "event-chain",
+    "complexity": "medium",
+    "chain_depth": 2,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"保存\"，点击时调用validateForm绑定到result，result不等于0时调用showError",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validateForm",
+        "description": "调用validateForm"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "showError",
+        "description": "调用showError"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "as",
+          "description": "使用as绑定"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showError",
+          "description": "条件为真调用showError"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE009",
+    "name": "分支两步-登录检查带分支",
+    "category": "event-chain",
+    "complexity": "medium",
+    "chain_depth": 2,
+    "chain_type": "branching",
+    "task": "生成一个Button组件，标签为\"查看\"，点击时调用checkLogin绑定到loggedIn，loggedIn为true时调用showProfile，否则调用navigateLogin",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "checkLogin",
+        "description": "调用checkLogin"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "showProfile",
+        "description": "条件真调用showProfile"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "navigateLogin",
+        "description": "条件假调用navigateLogin"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE010",
+    "name": "分支两步-验证结果分支",
+    "category": "event-chain",
+    "complexity": "medium",
+    "chain_depth": 2,
+    "chain_type": "branching",
+    "task": "生成一个Button组件，标签为\"提交\"，点击时调用validate绑定到isValid，isValid等于0时调用submitForm，否则调用showValidationError",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "submitForm",
+        "description": "条件真调用submitForm"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "showValidationError",
+        "description": "条件假调用showValidationError"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE011",
+    "name": "三步链式-验证提交跳转",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 3,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"提交\"，点击时先调用validate绑定到validResult，validResult等于0时调用submitData绑定到submitResult，submitResult等于0时调用navigate跳转到main_nav的第1页",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "submitData",
+        "description": "调用submitData"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "navigate",
+        "description": "调用navigate"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用前序结果"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "as",
+          "description": "使用as绑定变量"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE012",
+    "name": "三步链式-验证保存通知",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 3,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"保存\"，点击时先调用validate绑定到valid，valid等于0时调用saveData绑定到saveResult，saveResult等于0时调用sendToLLM发送\"保存成功\"",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "saveData",
+        "description": "调用saveData"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "sendToLLM",
+        "description": "调用sendToLLM"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "as",
+          "description": "使用as绑定"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE013",
+    "name": "三步链式-获取校验展示",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 3,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"查询\"，点击时先调用fetchData绑定到fetchResult，fetchResult等于0时调用validateData绑定到validResult，validResult等于0时调用displayResult",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "fetchData",
+        "description": "调用fetchData"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validateData",
+        "description": "调用validateData"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "displayResult",
+        "description": "调用displayResult"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "as",
+          "description": "使用as绑定"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE014",
+    "name": "三步带分支-提交成功失败",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 3,
+    "chain_type": "branching",
+    "task": "生成一个Button组件，标签为\"提交\"，点击时先调用validate绑定到valid，valid等于0时调用submit绑定到result，result等于0时调用sendToLLM发送\"成功\"，否则调用sendToLLM发送\"失败\"",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "submit",
+        "description": "调用submit"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "成功",
+        "description": "成功消息"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "失败",
+        "description": "失败消息"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE015",
+    "name": "三步带分支-库存检查",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 3,
+    "chain_type": "branching",
+    "task": "生成一个Button组件，标签为\"购买\"，点击时先调用checkStock绑定到hasStock，hasStock为true时调用checkLogin绑定到loggedIn，loggedIn为true时调用addToCart，否则调用navigateLogin",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "checkStock",
+        "description": "调用checkStock"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "checkLogin",
+        "description": "调用checkLogin"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "addToCart",
+        "description": "调用addToCart"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "navigateLogin",
+        "description": "调用navigateLogin"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE016",
+    "name": "四步链式-完整审批流程",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 4,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"提交审批\"，点击时先调用validate绑定到valid，valid等于0时调用saveDraft绑定到saveResult，saveResult等于0时调用checkAdmin绑定到needApproval，needApproval等于0时调用requestApproval",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "saveDraft",
+        "description": "调用saveDraft"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "checkAdmin",
+        "description": "调用checkAdmin"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "requestApproval",
+        "description": "调用requestApproval"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE017",
+    "name": "四步带分支-获取空判断",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 4,
+    "chain_type": "branching",
+    "task": "生成一个Button组件，标签为\"刷新\"，点击时先调用fetchList绑定到fetchResult，fetchResult等于0时调用checkEmpty绑定到isEmpty，isEmpty为true时调用showEmptyTip，否则调用displayList",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "fetchList",
+        "description": "调用fetchList"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "checkEmpty",
+        "description": "调用checkEmpty"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "showEmptyTip",
+        "description": "调用showEmptyTip"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "displayList",
+        "description": "调用displayList"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE018",
+    "name": "四步链式-权限检查提交流程",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 4,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"发布\"，点击时先调用checkAuth绑定到hasAuth，hasAuth为true时调用fetchData绑定到fetchResult，fetchResult等于0时调用validate绑定到valid，valid等于0时调用publish",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "checkAuth",
+        "description": "调用checkAuth"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "fetchData",
+        "description": "调用fetchData"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "publish",
+        "description": "调用publish"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE019",
+    "name": "四步带分支-完整表单流程",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 4,
+    "chain_type": "branching",
+    "task": "生成一个Button组件，标签为\"提交\"，点击时先调用validate绑定到valid，valid等于0时调用submit绑定到submitResult，submitResult等于0时调用sendToLLM发送\"提交成功\"，否则调用sendToLLM发送\"提交失败请重试\"",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "submit",
+        "description": "调用submit"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "提交成功",
+        "description": "成功消息"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "提交失败",
+        "description": "失败消息"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  },
+  {
+    "id": "CE020",
+    "name": "四步链式-数据管道处理",
+    "category": "event-chain",
+    "complexity": "complex",
+    "chain_depth": 4,
+    "chain_type": "conditional",
+    "task": "生成一个Button组件，标签为\"处理\"，点击时先调用loadData绑定到loaded，loaded等于0时调用transform绑定到transformed，transformed等于0时调用validate绑定到valid，valid等于0时调用save",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_type": "object"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "loadData",
+        "description": "调用loadData"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "transform",
+        "description": "调用transform"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "validate",
+        "description": "调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "save",
+        "description": "调用save"
+      }
+    ],
+    "strategy_rules": {
+      "handlerGroups": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是handlerGroups对象格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$handlerResult",
+          "description": "使用$handlerResult引用"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "包含condition条件"
+        }
+      ],
+      "flat-array": [
+        {
+          "type": "chain_format",
+          "description": "onClick必须是数组格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "condition",
+          "description": "使用condition条件"
+        }
+      ]
+    }
+  }
+]

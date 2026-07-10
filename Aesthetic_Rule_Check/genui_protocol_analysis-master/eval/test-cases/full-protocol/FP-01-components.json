@@ -1,0 +1,296 @@
+[
+  {
+    "id": "FP0101",
+    "name": "Extended.Text 静态文本",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，id为welcome-text，content为\"欢迎使用鸿蒙\"",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "欢迎使用鸿蒙"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Text", "description": "必须使用Extended.Text组件"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "hints": ["Extended.Text组件用content字段表示文本内容", "扩展组件使用Extended.前缀命名"]
+  },
+  {
+    "id": "FP0102",
+    "name": "Extended.Text 使用主题",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，id为page-title，content为\"设置中心\"，使用heading1主题",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "theme"],
+      "patterns": [
+        {"field": "content", "must_contain": "设置中心"},
+        {"field": "theme", "must_contain": "heading1"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Text", "description": "必须使用Extended.Text组件"},
+      {"type": "has_field", "field": "theme", "description": "必须有theme字段"},
+      {"type": "contains", "field": "theme", "value": "heading1", "description": "theme必须为heading1"}
+    ],
+    "hints": ["主题通过theme字段设置", "文本主题有heading1、heading2、body、caption等"]
+  },
+  {
+    "id": "FP0103",
+    "name": "Extended.Button 带标签",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件，id为submit-btn，label为\"提交\"",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label"],
+      "patterns": [
+        {"field": "label", "must_contain": "提交"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Button", "description": "必须使用Extended.Button组件"},
+      {"type": "has_field", "field": "label", "description": "必须有label字段"}
+    ],
+    "hints": ["Extended.Button使用label字段显示按钮文本", "不是text也不是child"]
+  },
+  {
+    "id": "FP0104",
+    "name": "Extended.Button enabled绑定表达式",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为confirm-btn，label为\"确认\"，enabled属性绑定表达式判断$formValid是否为true，使用buttonPrimary主题",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "enabled"],
+      "patterns": [
+        {"field": "label", "must_contain": "确认"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Button", "description": "必须使用Extended.Button组件"},
+      {"type": "has_field", "field": "enabled", "description": "必须有enabled字段"},
+      {"type": "contains", "field": "enabled", "value": "$formValid", "description": "enabled应使用表达式引用$formValid"},
+      {"type": "contains", "field": "$output", "value": "buttonPrimary", "description": "必须使用buttonPrimary主题"}
+    ],
+    "hints": ["enabled是布尔属性，支持动态表达式", "表达式使用双花括号{{}}包裹"]
+  },
+  {
+    "id": "FP0105",
+    "name": "Extended.TextInput 基础输入框",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.TextInput组件，id为username-input，text为\"\"，placeholder为\"请输入用户名\"",
+    "expected": {
+      "component": "Extended.TextInput",
+      "required_fields": ["id", "component", "text", "placeholder"],
+      "patterns": [
+        {"field": "placeholder", "must_contain": "请输入用户名"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.TextInput", "description": "必须使用Extended.TextInput组件"},
+      {"type": "has_field", "field": "placeholder", "description": "必须有placeholder字段"}
+    ],
+    "hints": ["Extended.TextInput用text字段表示默认文本，placeholder表示提示文本"]
+  },
+  {
+    "id": "FP0106",
+    "name": "Extended.TextInput 带maxLength限制",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成一个Extended.TextInput组件，id为phone-input，text为空字符串，placeholder为\"请输入手机号\"，maxLength为11，type为number",
+    "expected": {
+      "component": "Extended.TextInput",
+      "required_fields": ["id", "component", "text", "placeholder", "maxLength"],
+      "patterns": [
+        {"field": "placeholder", "must_contain": "手机号"},
+        {"field": "maxLength", "must_be_type": "number"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.TextInput", "description": "必须使用Extended.TextInput组件"},
+      {"type": "has_field", "field": "maxLength", "description": "必须有maxLength字段"},
+      {"type": "matches_regex", "field": "maxLength", "value": "^\\d+$", "description": "maxLength必须是数字"}
+    ],
+    "hints": ["maxLength是数字类型，限制最大输入字符数", "type字段可设置输入类型如number"]
+  },
+  {
+    "id": "FP0107",
+    "name": "Extended.Image 图片展示",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Image组件，id为avatar-img，src为\"https://example.com/avatar.png\"",
+    "expected": {
+      "component": "Extended.Image",
+      "required_fields": ["id", "component", "src"],
+      "patterns": [
+        {"field": "src", "must_contain": "avatar"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Image", "description": "必须使用Extended.Image组件"},
+      {"type": "has_field", "field": "src", "description": "必须有src字段"}
+    ],
+    "hints": ["Extended.Image用src字段指定图片路径", "不是url字段"]
+  },
+  {
+    "id": "FP0108",
+    "name": "Extended.Toggle 开关",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Toggle组件，id为notify-toggle，isOn为true",
+    "expected": {
+      "component": "Extended.Toggle",
+      "required_fields": ["id", "component", "isOn"],
+      "patterns": [
+        {"field": "isOn", "must_be_type": "boolean"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Toggle", "description": "必须使用Extended.Toggle组件"},
+      {"type": "has_field", "field": "isOn", "description": "必须有isOn字段"}
+    ],
+    "hints": ["Extended.Toggle用isOn布尔字段表示开关状态"]
+  },
+  {
+    "id": "FP0109",
+    "name": "Extended.Select 下拉选择",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成一个Extended.Select组件，id为city-select，options包含三个选项(value分别为\"北京\"、\"上海\"、\"广州\")，selected为0，value为\"北京\"",
+    "expected": {
+      "component": "Extended.Select",
+      "required_fields": ["id", "component", "options", "selected", "value"],
+      "patterns": [
+        {"field": "options", "must_be_type": "array"},
+        {"field": "selected", "must_be_type": "number"},
+        {"field": "value", "must_contain": "北京"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Select", "description": "必须使用Extended.Select组件"},
+      {"type": "has_field", "field": "options", "description": "必须有options字段"},
+      {"type": "has_field", "field": "selected", "description": "必须有selected字段"},
+      {"type": "has_field", "field": "value", "description": "必须有value字段"}
+    ],
+    "hints": ["options是对象数组，每个对象有value属性", "selected是数字索引，value是下拉按钮的文本"]
+  },
+  {
+    "id": "FP0110",
+    "name": "Extended.Radio 单选组",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成两个Extended.Radio组件。第一个id为radio-male，value为\"male\"，group为\"gender\"，checked为true。第二个id为radio-female，value为\"female\"，group为\"gender\"，checked为false",
+    "expected": {
+      "required_fields": ["id", "component"],
+      "patterns": [
+        {"field": "component", "must_contain": "Extended.Radio"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "Extended.Radio", "description": "必须使用Extended.Radio组件"},
+      {"type": "contains", "field": "$output", "value": "gender", "description": "必须包含group字段值为gender"},
+      {"type": "contains", "field": "$output", "value": "male", "description": "必须包含value为male的选项"}
+    ],
+    "hints": ["Extended.Radio用value表示选项值，group表示所属组名", "相同group的Radio只能选中一个", "checked布尔值表示选中状态"]
+  },
+  {
+    "id": "FP0111",
+    "name": "Extended.Checkbox 多选框",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成两个Extended.Checkbox组件。第一个id为cb-agree，value为\"agree\"，group为\"terms\"，select为true。第二个id为cb-marketing，value为\"marketing\"，group为\"terms\"，select为false",
+    "expected": {
+      "required_fields": ["id", "component"],
+      "patterns": [
+        {"field": "component", "must_contain": "Extended.Checkbox"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "Extended.Checkbox", "description": "必须使用Extended.Checkbox组件"},
+      {"type": "contains", "field": "$output", "value": "value", "description": "必须包含value字段作为语义化标识"},
+      {"type": "contains", "field": "$output", "value": "terms", "description": "必须包含group字段值为terms"},
+      {"type": "contains", "field": "$output", "value": "select", "description": "必须包含select字段"}
+    ],
+    "hints": ["Extended.Checkbox用value作为语义化标识（不绘制显示），label为展示文本", "Extended.Checkbox用group指定所属群组", "select布尔值表示选中状态"]
+  },
+  {
+    "id": "FP0112",
+    "name": "Extended.Slider 滑块范围",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Slider组件，id为volume-slider，value为50，min为0，max为100",
+    "expected": {
+      "component": "Extended.Slider",
+      "required_fields": ["id", "component", "value", "min", "max"],
+      "patterns": [
+        {"field": "value", "must_be_type": "number"},
+        {"field": "min", "must_be_type": "number"},
+        {"field": "max", "must_be_type": "number"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Slider", "description": "必须使用Extended.Slider组件"},
+      {"type": "has_field", "field": "value", "description": "必须有value字段"},
+      {"type": "has_field", "field": "min", "description": "必须有min字段"},
+      {"type": "has_field", "field": "max", "description": "必须有max字段"}
+    ],
+    "hints": ["Extended.Slider用value表示当前值，min和max表示范围"]
+  },
+  {
+    "id": "FP0113",
+    "name": "Extended.Progress 进度条",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Progress组件，id为download-progress，value为65，total为100",
+    "expected": {
+      "component": "Extended.Progress",
+      "required_fields": ["id", "component", "value", "total"],
+      "patterns": [
+        {"field": "value", "must_be_type": "number"},
+        {"field": "total", "must_be_type": "number"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Progress", "description": "必须使用Extended.Progress组件"},
+      {"type": "has_field", "field": "value", "description": "必须有value字段"},
+      {"type": "has_field", "field": "total", "description": "必须有total字段"}
+    ],
+    "hints": ["Extended.Progress用value表示当前进度，total表示总进度"]
+  },
+  {
+    "id": "FP0114",
+    "name": "Extended.Divider 分割线",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Extended.Divider组件，id为section-divider",
+    "expected": {
+      "component": "Extended.Divider",
+      "required_fields": ["id", "component"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Divider", "description": "必须使用Extended.Divider组件"}
+    ],
+    "hints": ["Extended.Divider是简单的分割线组件", "只需要id和component字段即可"]
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "id": "C006",
+    "name": "扩展Button+原生Text同页面",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Button组件（标签'提交'）和一个Text组件（内容'表单'），Button是鸿蒙扩展组件（catalogId为harmonyos），Text是原生组件",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": [
+        {"field": "label", "must_contain": "提交"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "第一个组件必须有catalogId=harmonyos", "field": "catalogId"},
+      {"type": "value_equals", "description": "catalogId为harmonyos", "field": "catalogId", "value": "harmonyos"}
+    ],
+    "hints": [
+      "扩展组件需要catalogId字段标识来源",
+      "catalogId: 'harmonyos' 表示鸿蒙扩展组件",
+      "原生组件不需要catalogId或为'a2ui'"
+    ]
+  },
+  {
+    "id": "C007",
+    "name": "Radio单选组使用统一命名",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成一个Radio单选组（选项为'男'、'女'），group为'gender'，默认选中'男'。使用统一组件名（不含Extended.前缀），catalogId为harmonyos",
+    "expected": {
+      "component": "Radio",
+      "required_fields": ["component", "value", "group"],
+      "patterns": [
+        {"field": "value", "must_contain": "男"},
+        {"field": "group", "must_contain": "gender"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "必须有catalogId=harmonyos", "field": "catalogId"},
+      {"type": "value_equals", "description": "catalogId为harmonyos", "field": "catalogId", "value": "harmonyos"}
+    ],
+    "hints": [
+      "组件名统一，无Extended.前缀",
+      "catalogId区分来源"
+    ]
+  },
+  {
+    "id": "C008",
+    "name": "条件渲染If组件+catalogId",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成一个If条件组件，condition为'{{ $user.isAdmin }}'，childrenIf包含一个Text（内容'管理员面板'），childrenElse包含一个Text（内容'普通用户'）。所有组件catalogId为harmonyos",
+    "expected": {
+      "component": "If",
+      "required_fields": ["component", "condition", "childrenIf", "childrenElse"],
+      "patterns": [
+        {"field": "condition", "must_contain": "$user.isAdmin"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "If组件catalogId=harmonyos", "field": "catalogId"},
+      {"type": "value_equals", "description": "catalogId为harmonyos", "field": "catalogId", "value": "harmonyos"}
+    ],
+    "hints": [
+      "If是条件组件，不是Extended.If",
+      "扩展组件统一使用catalogId: 'harmonyos'"
+    ]
+  },
+  {
+    "id": "C009",
+    "name": "Select下拉选择+onChange+DataModel绑定",
+    "category": "component",
+    "complexity": "complex",
+    "task": "生成一个Select组件（catalogId为harmonyos），选项列表包含'选项A'和'选项B'，默认选中第一个，value绑定$formData.selection，onChange事件调用setDataModel更新/formData/selection路径",
+    "expected": {
+      "component": "Select",
+      "required_fields": ["component", "options", "selected", "value", "listeners"],
+      "patterns": [
+        {"field": "value", "must_contain": "$formData.selection"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "catalogId=harmonyos", "field": "catalogId"},
+      {"type": "value_equals", "description": "catalogId为harmonyos", "field": "catalogId", "value": "harmonyos"},
+      {"type": "has_field", "description": "有onChange监听器", "field": "listeners.onChange"},
+      {"type": "has_field", "description": "有setDataModel action", "field": "listeners.onChange[0].action"}
+    ],
+    "hints": [
+      "Select组件名，无前缀",
+      "onChange事件通过listeners.onChange定义"
+    ]
+  }
+]

@@ -1,0 +1,246 @@
+[
+  {
+    "id": "D001",
+    "name": "TextInput双向绑定",
+    "category": "mixed",
+    "complexity": "simple",
+    "task": "生成一个TextInput组件，text绑定$username，placeholder'输入用户名'",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": [
+        "component",
+        "text",
+        "placeholder"
+      ],
+      "patterns": [
+        {
+          "field": "text",
+          "must_be_type": "string"
+        },
+        {
+          "field": "text",
+          "must_contain": "$username"
+        },
+        {
+          "field": "placeholder",
+          "must_contain": "输入用户名"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "value": "{{",
+        "description": "text必须用{{ }}包裹格式绑定$username",
+        "field": "text"
+      }
+    ],
+    "hints": [
+      "text字段用expr绑定数据模型变量"
+    ]
+  },
+  {
+    "id": "M001",
+    "name": "TextInput+表达式+事件",
+    "category": "mixed",
+    "complexity": "medium",
+    "task": "生成一个TextInput组件，text绑定$username，placeholder'输入用户名'，onChange时调用updateField",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": [
+        "component",
+        "text",
+        "placeholder",
+        "onChange"
+      ],
+      "patterns": [
+        {
+          "field": "text",
+          "must_be_type": "string"
+        },
+        {
+          "field": "text",
+          "must_contain": "$username"
+        },
+        {
+          "field": "placeholder",
+          "must_contain": "输入用户名"
+        },
+        {
+          "field": "onChange",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "value": "{{",
+        "description": "text必须用{{ }}绑定$username",
+        "field": "text"
+      },
+      {
+        "type": "events_format",
+        "description": "必须有onChange事件"
+      }
+    ],
+    "hints": [
+      "数据绑定用expr，事件名直接作为组件属性"
+    ]
+  },
+  {
+    "id": "M002",
+    "name": "动态文本+动态样式",
+    "category": "mixed",
+    "complexity": "medium",
+    "task": "生成一个Text组件显示$score，$score>60时字体绿色#00AA00否则红色#FF0000",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content",
+        "styles"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_be_type": "string"
+        },
+        {
+          "field": "content",
+          "must_contain": "$score"
+        },
+        {
+          "field": "styles.fontColor",
+          "must_be_type": "string"
+        },
+        {
+          "field": "styles.fontColor",
+          "must_contain": "$score"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "value": "{{",
+        "description": "content必须用{{ }}引用$score",
+        "field": "content"
+      },
+      {
+        "type": "contains",
+        "value": "{{",
+        "description": "styles.fontColor必须用{{ }}包裹",
+        "field": "styles.fontColor"
+      }
+    ],
+    "hints": [
+      "content和styles中的动态值都使用expr",
+      "fontColor用三元运算符选择颜色"
+    ]
+  },
+  {
+    "id": "M003",
+    "name": "Button条件EventHandler链",
+    "category": "mixed",
+    "complexity": "complex",
+    "task": "生成一个Button，标签'删除'，先showConfirm绑定confirmed，confirmed为true时deleteItem",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "label",
+          "must_contain": "删除"
+        },
+        {
+          "field": "onClick[0].call",
+          "must_contain": "showConfirm"
+        },
+        {
+          "field": "onClick[0].as",
+          "must_contain": "confirmed"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "events_format",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "has_field",
+        "description": "第一个EventHandler必须有as绑定",
+        "field": "onClick[0].as"
+      },
+      {
+        "type": "has_field",
+        "description": "第二个EventHandler必须有condition条件",
+        "field": "onClick[1].condition"
+      }
+    ],
+    "hints": [
+      "as绑定 + condition条件 的组合"
+    ]
+  },
+  {
+    "id": "M004",
+    "name": "Toggle开关+条件显示",
+    "category": "mixed",
+    "complexity": "complex",
+    "task": "生成一个Toggle组件，isOn绑定$notificationsEnabled，onChange时调用toggleNotifications。同时，组件visibility根据$hasPermission动态控制，$hasPermission为true时visible否则none。",
+    "expected": {
+      "component": "Toggle",
+      "required_fields": [
+        "component",
+        "isOn",
+        "onChange",
+        "styles.visibility"
+      ],
+      "patterns": [
+        {
+          "field": "isOn",
+          "must_be_type": "string"
+        },
+        {
+          "field": "isOn",
+          "must_contain": "$notificationsEnabled"
+        },
+        {
+          "field": "onChange",
+          "must_be_type": "array"
+        },
+        {
+          "field": "styles.visibility",
+          "must_be_type": "string"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "value": "{{",
+        "description": "isOn必须用{{ }}绑定",
+        "field": "isOn"
+      },
+      {
+        "type": "events_format",
+        "description": "必须有onChange事件"
+      },
+      {
+        "type": "contains",
+        "value": "{{",
+        "description": "visibility必须用{{ }}包裹",
+        "field": "styles.visibility"
+      }
+    ],
+    "hints": [
+      "Toggle用isOn绑定布尔值",
+      "visibility可以用expr动态控制显示隐藏"
+    ]
+  }
+]

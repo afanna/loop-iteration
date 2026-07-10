@@ -1,0 +1,14 @@
+{
+  "note": "GAP-043 未新增测试用例。as 绑定行为已被现有的变量体系评估用例完整覆盖。",
+  "covered_by": [
+    "affinity-design/variable-system/test-cases/t4-action-chain.json (10 用例)",
+    "affinity-design/variable-system/test-cases/t5-conflict.json (10 用例，含同名冲突)",
+    "affinity-design/variable-system/test-cases/t6-mixed-complex.json (6 用例)"
+  ],
+  "total": 26,
+  "verification": "26/26 双模型 100% 通过 (DeepSeek + GLM, 3-shot)",
+  "reports": [
+    "affinity-design/variable-system/reports/variable-system-deepseek-2026-05-01T06-52-16.json",
+    "affinity-design/variable-system/reports/variable-system-glm-2026-05-01T08-39-59.json"
+  ]
+}

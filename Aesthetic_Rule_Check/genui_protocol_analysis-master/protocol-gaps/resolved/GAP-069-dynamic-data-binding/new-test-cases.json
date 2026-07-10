@@ -1,0 +1,84 @@
+[
+  {
+    "id": "E008",
+    "name": "路径绑定属性值",
+    "category": "expression",
+    "complexity": "simple",
+    "task": "生成一个Text组件，content用路径绑定形式 {\"path\":\"/user/name\"} 绑定到数据模型的/user/name",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "path"},
+        {"field": "content", "must_contain": "/user/name"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content使用path绑定对象", "field": "content", "value": "path"},
+      {"type": "contains", "description": "路径为/user/name", "field": "content", "value": "/user/name"}
+    ],
+    "hints": ["路径绑定用 {\"path\":\"...\"} 对象形式", "与表达式{{ }}不同"]
+  },
+  {
+    "id": "E009",
+    "name": "函数绑定属性值",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content用函数绑定形式调用formatString，将数据模型/user/name格式化为 Hello, 名字!",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "call"},
+        {"field": "content", "must_contain": "formatString"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content使用call函数绑定对象", "field": "content", "value": "call"},
+      {"type": "contains", "description": "调用formatString函数", "field": "content", "value": "formatString"}
+    ],
+    "hints": ["函数绑定用 {\"call\":\"函数名\",\"args\":{...}} 对象形式", "formatString支持 ${/path} 插值"]
+  },
+  {
+    "id": "E010",
+    "name": "路径绑定样式值",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content为'标题'，fontSize用路径绑定形式 {\"path\":\"/config/fontSize\"} 绑定到数据模型",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": [
+        {"field": "styles.fontSize", "must_contain": "path"},
+        {"field": "styles.fontSize", "must_contain": "/config/fontSize"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "styles.fontSize使用path绑定", "field": "styles.fontSize", "value": "path"},
+      {"type": "contains", "description": "路径为/config/fontSize", "field": "styles.fontSize", "value": "/config/fontSize"}
+    ],
+    "hints": ["样式值也支持路径绑定", "放在styles对象内"]
+  },
+  {
+    "id": "E011",
+    "name": "三种绑定机制共存(单组件)",
+    "category": "expression",
+    "complexity": "complex",
+    "task": "生成一个Text组件，三种绑定机制共存于同一组件：content 用函数绑定调用 formatString 将数据模型 /user/name 格式化为 Hello, 名字；styles 中 fontColor 用路径绑定 {\"path\":\"/user/color\"}；fontSize 用表达式 $__dataModel.fontSize 动态设置",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "call"},
+        {"field": "styles", "must_contain": "path"},
+        {"field": "styles", "must_contain": "{{"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content 使用函数绑定", "field": "content", "value": "call"},
+      {"type": "contains", "description": "styles 使用路径绑定", "field": "styles", "value": "path"},
+      {"type": "contains", "description": "styles 使用表达式", "field": "styles", "value": "{{"}
+    ],
+    "hints": ["三种绑定机制可在同一组件的不同字段共存", "函数绑定{\"call\":}、路径绑定{\"path\":}、表达式{{ }}"]
+  }
+]

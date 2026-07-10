@@ -1,0 +1,275 @@
+[
+  {
+    "id": "VS001",
+    "name": "$__WidthBreakpoint 在表达式中",
+    "category": "t1-global-vars",
+    "complexity": "simple",
+    "task": "生成一个Extended.Column组件，align属性根据$__WidthBreakpoint动态设置：sm时'center'，否则'start'",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "align"
+      ],
+      "patterns": [
+        {
+          "field": "align",
+          "must_contain": "$__WidthBreakpoint"
+        },
+        {
+          "field": "align",
+          "must_contain": "?"
+        },
+        {
+          "field": "align",
+          "must_contain": "sm"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WidthBreakpoint",
+        "description": "必须引用$__WidthBreakpoint"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "sm",
+        "description": "断点值sm应出现在表达式中"
+      }
+    ],
+    "hints": [
+      "$__WidthBreakpoint是响应式全局变量，值为'sm'/'md'/'lg'/'xl'",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS002",
+    "name": "$__WindowSize.width 在条件表达式中",
+    "category": "t1-global-vars",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，fontSize根据$__WindowSize.width动态设置：宽度>600时18，否则14",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "styles"
+      ],
+      "patterns": [
+        {
+          "field": "styles.fontSize",
+          "must_contain": "$__WindowSize"
+        },
+        {
+          "field": "styles.fontSize",
+          "must_contain": "600"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles对象"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WindowSize",
+        "description": "必须引用$__WindowSize"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "600",
+        "description": "表达式应包含宽度阈值600"
+      }
+    ],
+    "hints": [
+      "$__WindowSize是全局变量，包含width和height属性",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS003",
+    "name": "$__ColorMode 三元表达式",
+    "category": "t1-global-vars",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，fontColor根据$__ColorMode动态设置：'dark'时'#FFFFFF'，否则'#000000'",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "styles"
+      ],
+      "patterns": [
+        {
+          "field": "styles.fontColor",
+          "must_contain": "$__ColorMode"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles对象"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__ColorMode",
+        "description": "必须引用$__ColorMode"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "dark",
+        "description": "表达式应判断dark模式"
+      }
+    ],
+    "hints": [
+      "$__ColorMode是全局变量，值为'light'或'dark'",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS004",
+    "name": "多全局变量组合使用",
+    "category": "t1-global-vars",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件，padding根据$__WidthBreakpoint和$__WindowSize.width组合设置：sm断点或宽度<400时8，否则16",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "styles"
+      ],
+      "patterns": [
+        {
+          "field": "styles.padding",
+          "must_contain": "$__WidthBreakpoint"
+        },
+        {
+          "field": "styles.padding",
+          "must_contain": "$__WindowSize"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles对象"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WidthBreakpoint",
+        "description": "必须引用$__WidthBreakpoint"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WindowSize",
+        "description": "必须引用$__WindowSize"
+      }
+    ],
+    "hints": [
+      "两个全局变量可以在同一个表达式中组合使用，用||或&&连接",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS005",
+    "name": "全局变量在样式表达式",
+    "category": "t1-global-vars",
+    "complexity": "medium",
+    "task": "生成一个Extended.Row组件，space属性根据$__WidthBreakpoint设置：'sm'时4，'md'时8，其他16",
+    "expected": {
+      "component": "Extended.Row",
+      "required_fields": [
+        "component",
+        "space"
+      ],
+      "patterns": [
+        {
+          "field": "space",
+          "must_contain": "$__WidthBreakpoint"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "space",
+        "description": "必须有space字段"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WidthBreakpoint",
+        "description": "必须引用$__WidthBreakpoint"
+      }
+    ],
+    "hints": [
+      "可以用嵌套三元表达式处理多个断点值",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS006",
+    "name": "全局变量+DataModel同表达式混合",
+    "category": "t1-global-vars",
+    "complexity": "complex",
+    "task": "生成一个Extended.Text组件，content显示用户$__DataModel.user.name，fontColor根据$__ColorMode设置暗色/亮色",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content",
+        "styles"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "$__DataModel"
+        },
+        {
+          "field": "styles.fontColor",
+          "must_contain": "$__ColorMode"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles对象"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel",
+        "description": "content必须引用$__DataModel"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__ColorMode",
+        "description": "fontColor必须引用$__ColorMode"
+      }
+    ],
+    "hints": [
+      "全局变量$__ColorMode和DataModel变量$__DataModel是不同的变量源",
+      "表达式用{{ }}包裹"
+    ]
+  }
+]

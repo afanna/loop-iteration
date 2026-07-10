@@ -1,0 +1,1193 @@
+[
+  {
+    "id": "DM001",
+    "name": "读取-单一字段",
+    "category": "var-ref-syntax",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示数据模型中的用户名，用户名路径为 user.name",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.user.name",
+          "description": "使用$__DataModel.user.name点号路径"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "path",
+          "description": "使用path字段"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/name",
+          "description": "路径为/user/name"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM002",
+    "name": "读取-嵌套字段",
+    "category": "var-ref-syntax",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示数据模型中的用户城市，路径为 user.address.city",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.user.address.city",
+          "description": "使用$__DataModel.user.address.city"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "path",
+          "description": "使用path字段"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/address/city",
+          "description": "路径为/user/address/city"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM003",
+    "name": "读取-TextInput绑定",
+    "category": "var-ref-syntax",
+    "complexity": "simple",
+    "task": "生成一个TextInput组件，text绑定到数据模型的searchQuery字段，placeholder为\"搜索\"",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": [
+        "component",
+        "text",
+        "placeholder"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      },
+      {
+        "type": "contains",
+        "field": "placeholder",
+        "value": "搜索",
+        "description": "placeholder为搜索"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$__DataModel.searchQuery",
+          "description": "使用$__DataModel.searchQuery"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "path",
+          "description": "使用path字段"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "/searchQuery",
+          "description": "路径为/searchQuery"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM004",
+    "name": "读取-Progress值",
+    "category": "var-ref-syntax",
+    "complexity": "simple",
+    "task": "生成一个Progress组件，value绑定到数据模型的progress字段，total为100",
+    "expected": {
+      "component": "Progress",
+      "required_fields": [
+        "component",
+        "value",
+        "total"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "value",
+        "description": "必须有value字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "$__DataModel.progress",
+          "description": "使用$__DataModel.progress"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "path",
+          "description": "使用path字段"
+        },
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "/progress",
+          "description": "路径为/progress"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM005",
+    "name": "读取-模板字符串",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示\"你好, \"加上数据模型中的user.name",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.user.name",
+          "description": "使用$__DataModel.user.name"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "你好",
+          "description": "包含你好文字"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/name",
+          "description": "路径为/user/name"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "你好",
+          "description": "包含你好文字"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM006",
+    "name": "读取-条件渲染",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个If组件，判断数据模型中的isLoggedIn字段，为true时显示welcome组件，否则显示loginPrompt组件",
+    "expected": {
+      "component": "If",
+      "required_fields": [
+        "component",
+        "condition",
+        "childrenIf",
+        "childrenElse"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "condition",
+        "description": "必须有condition字段"
+      },
+      {
+        "type": "contains",
+        "field": "childrenIf",
+        "value": "welcome",
+        "description": "条件真显示welcome"
+      },
+      {
+        "type": "contains",
+        "field": "childrenElse",
+        "value": "loginPrompt",
+        "description": "条件假显示loginPrompt"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "$__DataModel.isLoggedIn",
+          "description": "使用$__DataModel.isLoggedIn"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "path",
+          "description": "使用path字段"
+        },
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "/isLoggedIn",
+          "description": "路径为/isLoggedIn"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM007",
+    "name": "读取-样式动态值",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content为\"标题\"，fontSize动态设置为数据模型中config.fontSize的值",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "标题",
+        "description": "content为标题"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$__DataModel.config.fontSize",
+          "description": "样式使用$__DataModel.config.fontSize"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "/config/fontSize",
+          "description": "路径为/config/fontSize"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM008",
+    "name": "写入-setDataModel",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个Button组件，label为\"保存\"，点击时调用setDataModel将数据模型中user.name更新为newValue",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "label",
+        "value": "保存",
+        "description": "label为保存"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "setDataModel",
+        "description": "调用setDataModel"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/user/name",
+          "description": "写入路径使用/user/name"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/user/name",
+          "description": "写入路径使用JSON Pointer格式/user/name"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM009",
+    "name": "读取-多字段模板",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示数据模型中user.name得了score.value分",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.user.name",
+          "description": "引用user.name"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.score.value",
+          "description": "引用score.value"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/name",
+          "description": "路径/user/name"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/score/value",
+          "description": "路径/score/value"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM010",
+    "name": "读取-getDataModel",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个Button组件，label为\"加载\"，点击时调用getDataModel读取user.profile数据，结果绑定到profileData",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "label",
+        "value": "加载",
+        "description": "label为加载"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "getDataModel",
+        "description": "调用getDataModel"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "profileData",
+        "description": "绑定结果到profileData"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/user/profile",
+          "description": "读取路径使用/user/profile"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/user/profile",
+          "description": "路径使用JSON Pointer格式/user/profile"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM011",
+    "name": "读取-数据模型加局部变量",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示数据模型中user.name加上局部变量$greeting，格式为\"greeting的值, username的值\"",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$greeting",
+          "description": "引用局部变量$greeting"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.user.name",
+          "description": "引用数据模型user.name"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$greeting",
+          "description": "引用局部变量$greeting"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/name",
+          "description": "数据模型路径/user/name"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM012",
+    "name": "读取-List路径绑定",
+    "category": "var-ref-syntax",
+    "complexity": "medium",
+    "task": "生成一个List组件，用模板productItem渲染数据模型中的products数组，间距12",
+    "expected": {
+      "component": "List",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "productItem",
+        "description": "使用productItem模板"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$__DataModel.products",
+          "description": "路径使用$__DataModel.products"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/products",
+          "description": "路径使用/products"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "DM013",
+    "name": "读取-深层嵌套",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示数据模型中app.settings.theme.primaryColor的值",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.app.settings.theme.primaryColor",
+          "description": "使用4层点号路径"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/app/settings/theme/primaryColor",
+          "description": "使用4层JSON Pointer路径"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "DM014",
+    "name": "复杂-多数据模型字段加样式",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个Text组件，content显示数据模型中user.name，fontColor根据数据模型中config.isDark为true时为#FFFFFF否则为#000000",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.user.name",
+          "description": "引用user.name"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$__DataModel.config.isDark",
+          "description": "引用config.isDark"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/name",
+          "description": "路径/user/name"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "/config/isDark",
+          "description": "路径/config/isDark"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "DM015",
+    "name": "复杂-数据模型加算术",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示\"总计: \"加上数据模型中price乘以数据模型中quantity的结果",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "总计",
+        "description": "包含总计文字"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.price",
+          "description": "引用price"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.quantity",
+          "description": "引用quantity"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/price",
+          "description": "路径/price"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/quantity",
+          "description": "路径/quantity"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "DM016",
+    "name": "复杂-条件样式",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个Text组件，content为\"状态\"，fontColor根据数据模型中status大于0为#00AA00否则为#FF0000",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "状态",
+        "description": "content为状态"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$__DataModel.status",
+          "description": "引用status"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "/status",
+          "description": "路径/status"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "DM017",
+    "name": "复杂-事件链读写",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个Button组件，label为\"提交\"，点击调用getDataModel读取order.amount绑定到amount，amount大于100时调用setDataModel更新order.discount为0.1",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "label",
+        "value": "提交",
+        "description": "label为提交"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "getDataModel",
+        "description": "调用getDataModel"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "setDataModel",
+        "description": "调用setDataModel"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "discount",
+        "description": "涉及discount"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/order/amount",
+          "description": "读取路径使用/order/amount"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/order/discount",
+          "description": "写入路径使用/order/discount"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/order/amount",
+          "description": "读取路径使用JSON Pointer"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/order/discount",
+          "description": "写入路径使用JSON Pointer"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "DM018",
+    "name": "复杂-List渲染加数据访问",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个List组件，用模板orderItem渲染数据模型中orders.list数组，space为8，点击某项时调用setDataModel更新selected.orderId为$item.id",
+    "expected": {
+      "component": "List",
+      "required_fields": [
+        "component",
+        "children",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "orderItem",
+        "description": "使用orderItem模板"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "setDataModel",
+        "description": "调用setDataModel"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "selected",
+        "description": "涉及selected"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$__DataModel.orders.list",
+          "description": "路径使用$__DataModel.orders.list"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/selected/orderId",
+          "description": "写入路径使用/selected/orderId"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/orders/list",
+          "description": "路径/orders/list"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/selected/orderId",
+          "description": "写入路径使用JSON Pointer"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "DM019",
+    "name": "复杂-数据模型加格式化",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示\"价格: \"加上formatNumber格式化数据模型中product.price的结果，保留2位小数",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "formatNumber",
+        "description": "使用formatNumber函数"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "价格",
+        "description": "包含价格文字"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel.product.price",
+          "description": "引用product.price"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/product/price",
+          "description": "路径/product/price"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "DM020",
+    "name": "极端-四字段模板加写入",
+    "category": "var-ref-syntax",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示数据模型中employee.name在department.name工作了employee.years年，评分employee.rating。下方一个Button，点击时调用setDataModel更新employee.rated为true",
+    "expected": {
+      "component": "Column",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "setDataModel",
+        "description": "调用setDataModel"
+      },
+      {
+        "type": "contains",
+        "field": "children",
+        "value": "employee",
+        "description": "涉及employee数据"
+      }
+    ],
+    "strategy_rules": {
+      "dot-path": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$__DataModel.employee.name",
+          "description": "引用employee.name"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$__DataModel.department.name",
+          "description": "引用department.name"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$__DataModel.employee.years",
+          "description": "引用employee.years"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "$__DataModel.employee.rating",
+          "description": "引用employee.rating"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/employee/rated",
+          "description": "写入路径使用/employee/rated"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/employee/name",
+          "description": "路径/employee/name"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/department/name",
+          "description": "路径/department/name"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/employee/years",
+          "description": "路径/employee/years"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/employee/rating",
+          "description": "路径/employee/rating"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "/employee/rated",
+          "description": "写入路径使用JSON Pointer"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

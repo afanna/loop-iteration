@@ -1,0 +1,1177 @@
+[
+  {
+    "id": "BA01",
+    "name": "简单表单提交",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，点击后提交表单，事件名为'submitForm'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：表单提交使用action属性"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "event",
+          "description": "action中必须包含event字段"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "submitForm",
+          "description": "event.name必须是submitForm"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "onClick",
+          "description": "有action时不应有onClick事件属性（互斥）"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性 + sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "必须包含onClick事件"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "必须使用sendToLLM提交"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "submitForm",
+          "description": "必须包含事件名submitForm"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "action",
+          "description": "方案B不使用action属性"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "提交表单是Button的表单提交场景"
+    ]
+  },
+  {
+    "id": "BA02",
+    "name": "表单提交携带上下文",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交订单'，点击后提交表单，事件名为'submitOrder'，携带数据：orderId为'12345'，amount为99.9",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：使用action"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "submitOrder",
+          "description": "event.name必须是submitOrder"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "orderId",
+          "description": "context中必须包含orderId"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "99.9",
+          "description": "context中必须包含amount值99.9"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性 + sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "submitOrder",
+          "description": "必须包含事件名submitOrder"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "orderId",
+          "description": "必须包含orderId"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "99.9",
+          "description": "必须包含amount值99.9"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA03",
+    "name": "表单提交-本地函数调用",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'saveBtn'，label为'保存'，点击后调用本地函数'formatDate'，参数value为'2026-05-06'，format为'YYYY-MM-DD'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：使用action.functionCall"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "functionCall",
+          "description": "action中必须包含functionCall"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "formatDate",
+          "description": "call必须是formatDate"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "formatDate",
+          "description": "必须调用formatDate函数"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA04",
+    "name": "普通按钮交互-非表单提交",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'toastBtn'，label为'提示'，点击后显示Toast提示'操作成功'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "非表单提交使用onClick事件属性"
+      },
+      {
+        "type": "not_contains",
+        "field": "$output",
+        "value": "action",
+        "description": "非表单提交不应使用action"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "必须包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "必须包含showToast"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "必须包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "必须包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA05",
+    "name": "导航按钮-非表单提交",
+    "category": "variable-scope",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'goDetail'，label为'查看详情'，点击后导航到'/product/123'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "导航使用onClick事件属性"
+      },
+      {
+        "type": "not_contains",
+        "field": "$output",
+        "value": "action",
+        "description": "导航不应使用action"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "navigate",
+          "description": "必须包含navigate"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "navigate",
+          "description": "必须包含navigate"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA06",
+    "name": "动态上下文表单提交",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交订单'，点击后提交表单，事件名为'submitOrder'，携带数据：productId引用$__DataModel.currentProduct.id，quantity引用$__DataModel.cart.quantity",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：使用action"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "submitOrder",
+          "description": "事件名必须是submitOrder"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "productId",
+          "description": "必须包含productId"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "quantity",
+          "description": "必须包含quantity"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "$__DataModel",
+          "description": "必须使用DataModel引用"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "onClick",
+          "description": "有action时不应有onClick事件属性"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性 + sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "submitOrder",
+          "description": "必须包含事件名submitOrder"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "productId",
+          "description": "必须包含productId"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "quantity",
+          "description": "必须包含quantity"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$__DataModel",
+          "description": "必须使用DataModel引用"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA07",
+    "name": "表单提交+验证-分两个按钮",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成两个Button：1) 提交按钮id为'submitBtn'，label为'提交'，提交表单（事件名'submitForm'，携带context: email引用$__DataModel.form.email）；2) 验证按钮id为'validateBtn'，label为'验证'，验证$__DataModel.form数据存为$validResult",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "submitForm",
+          "description": "提交按钮必须包含submitForm"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "validate",
+          "description": "验证按钮必须包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "email",
+          "description": "提交按钮的context中必须包含email"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "sendToLLM",
+          "description": "提交按钮必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "submitForm",
+          "description": "必须包含事件名submitForm"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "validate",
+          "description": "验证按钮必须包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "email",
+          "description": "提交数据中必须包含email"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA08",
+    "name": "取消按钮-非表单提交",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成两个Button：提交按钮id为'submitBtn'，label为'提交'，提交表单（事件名'submitForm'）；取消按钮id为'cancelBtn'，label为'取消'，发送消息'用户取消操作'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "submitForm",
+          "description": "提交按钮必须包含submitForm"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "sendToLLM",
+          "description": "取消按钮必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "用户取消操作",
+          "description": "取消消息必须是'用户取消操作'"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "submitForm",
+          "description": "提交按钮必须包含submitForm事件名"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "sendToLLM",
+          "description": "两个按钮都用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "用户取消操作",
+          "description": "取消消息必须是'用户取消操作'"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA09",
+    "name": "Toggle交互-不使用action",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Toggle组件，id为'notifyToggle'，切换时将$__DataModel.settings.enableNotification更新为当前值",
+    "expected": {
+      "component": "Toggle",
+      "required_fields": [
+        "component",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件属性"
+      },
+      {
+        "type": "not_contains",
+        "field": "$output",
+        "value": "action",
+        "description": "Toggle没有action属性"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "必须包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "必须使用setDataModel"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "必须包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "必须使用setDataModel"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA10",
+    "name": "混淆测试-非表单场景不应提交",
+    "category": "variable-scope",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'settingsBtn'，label为'设置'，点击后通过setDataModel将$__DataModel.ui.showSettings设为true，然后显示Toast'已打开设置'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "非表单场景使用onClick事件属性"
+      },
+      {
+        "type": "not_contains",
+        "field": "$output",
+        "value": "action",
+        "description": "不是表单提交，不应使用action"
+      },
+      {
+        "type": "not_contains",
+        "field": "$output",
+        "value": "sendToLLM",
+        "description": "不是表单提交，不应使用sendToLLM"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "setDataModel",
+          "description": "必须使用setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "必须使用showToast"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "setDataModel",
+          "description": "必须使用setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "必须使用showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "BA11",
+    "name": "支付表单提交-复杂上下文",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'payBtn'，label为'支付'，点击后提交支付表单，事件名为'processPayment'，携带数据：orderId引用$__DataModel.order.id，amount引用$__DataModel.order.totalAmount，paymentMethod引用$__DataModel.payment.selectedMethod",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：使用action"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "processPayment",
+          "description": "事件名必须是processPayment"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "orderId",
+          "description": "必须包含orderId"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "amount",
+          "description": "必须包含amount"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "paymentMethod",
+          "description": "必须包含paymentMethod"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "onClick",
+          "description": "有action时不应有onClick事件属性"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性 + sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "processPayment",
+          "description": "必须包含事件名processPayment"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "orderId",
+          "description": "必须包含orderId"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "amount",
+          "description": "必须包含amount"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "paymentMethod",
+          "description": "必须包含paymentMethod"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "BA12",
+    "name": "登录表单提交",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'loginBtn'，label为'登录'，点击后提交登录表单，事件名为'login'，携带数据：username引用$__DataModel.login.username，password引用$__DataModel.login.password",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：使用action"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "login",
+          "description": "事件名必须是login"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "username",
+          "description": "必须包含username"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "password",
+          "description": "必须包含password"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "onClick",
+          "description": "有action时不应有onClick事件属性"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性 + sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "login",
+          "description": "必须包含事件名login"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "username",
+          "description": "必须包含username"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "password",
+          "description": "必须包含password"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "BA13",
+    "name": "混淆测试-表单提交不应混用validate",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，提交表单（事件名'submitForm'）。注意：这是表单提交场景，应使用专门的提交机制，不要混用validate等通用行为",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：使用action"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "submitForm",
+          "description": "事件名必须是submitForm"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "validate",
+          "description": "纯表单提交不应混入validate"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性 + sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "submitForm",
+          "description": "必须包含事件名submitForm"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "validate",
+          "description": "纯表单提交不应混入validate"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "BA14",
+    "name": "表单提交后Toast-通过服务端响应触发",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，点击后提交表单（事件名'submitFeedback'，携带context: message引用$__DataModel.feedback.message）",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "has_field",
+          "field": "action",
+          "description": "方案A：使用action"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "submitFeedback",
+          "description": "事件名必须是submitFeedback"
+        },
+        {
+          "type": "contains",
+          "field": "action",
+          "value": "message",
+          "description": "context中必须包含message"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "onClick",
+          "description": "有action时不应有onClick事件属性"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "has_field",
+          "field": "onClick",
+          "description": "方案B：使用onClick事件属性 + sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "submitFeedback",
+          "description": "必须包含事件名submitFeedback"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "message",
+          "description": "必须包含message"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "BA15",
+    "name": "表单重置-非提交场景",
+    "category": "variable-scope",
+    "complexity": "complex",
+    "task": "生成两个Button：1) 提交按钮id为'submitBtn'，label为'提交'，提交表单（事件名'registerUser'，携带username引用$__DataModel.form.username，email引用$__DataModel.form.email）；2) 重置按钮id为'resetBtn'，label为'重置'，通过setDataModel将$__DataModel.form的所有字段清空",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      }
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "registerUser",
+          "description": "提交按钮必须包含registerUser"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "setDataModel",
+          "description": "重置按钮必须使用setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "username",
+          "description": "提交必须携带username"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "email",
+          "description": "提交必须携带email"
+        }
+      ],
+      "listeners-sendtollm": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "sendToLLM",
+          "description": "提交按钮必须使用sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "registerUser",
+          "description": "必须包含事件名registerUser"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "setDataModel",
+          "description": "重置按钮必须使用setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "username",
+          "description": "提交必须携带username"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "email",
+          "description": "提交必须携带email"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

@@ -1,0 +1,1397 @@
+[
+  {
+    "id": "AS01",
+    "name": "简单点击-Toast",
+    "category": "action-structure",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，点击后显示Toast提示'提交成功'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "提交成功",
+          "description": "包含'提交成功'"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "提交成功",
+          "description": "包含'提交成功'"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "提交成功",
+          "description": "包含'提交成功'"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS02",
+    "name": "点击导航",
+    "category": "action-structure",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'goDetail'，label为'查看详情'，点击后导航到'/detail'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "navigate",
+          "description": "包含navigate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/detail",
+          "description": "包含/detail"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "navigate",
+          "description": "包含navigate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/detail",
+          "description": "包含/detail"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "navigate",
+          "description": "包含navigate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/detail",
+          "description": "包含/detail"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS03",
+    "name": "更新数据模型",
+    "category": "action-structure",
+    "complexity": "simple",
+    "task": "生成一个Toggle组件，id为'darkMode'，切换时将$__DataModel.darkMode更新为当前值",
+    "expected": {
+      "component": "Toggle",
+      "required_fields": [
+        "component",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "darkMode",
+          "description": "包含darkMode"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "darkMode",
+          "description": "包含darkMode"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "darkMode",
+          "description": "包含darkMode"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS04",
+    "name": "TextInput-onChange更新",
+    "category": "action-structure",
+    "complexity": "simple",
+    "task": "生成一个TextInput组件，id为'usernameInput'，placeholder为'请输入用户名'，输入变化时将值更新到$__DataModel.username",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": [
+        "component",
+        "placeholder",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "username",
+          "description": "包含username"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "username",
+          "description": "包含username"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "username",
+          "description": "包含username"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS05",
+    "name": "点击打开链接",
+    "category": "action-structure",
+    "complexity": "simple",
+    "task": "生成一个Button组件，id为'openLink'，label为'了解更多'，点击后打开'https://example.com'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "openUrl",
+          "description": "包含openUrl"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "https://example.com",
+          "description": "包含URL"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "openUrl",
+          "description": "包含openUrl"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "https://example.com",
+          "description": "包含URL"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "openUrl",
+          "description": "包含openUrl"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "https://example.com",
+          "description": "包含URL"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS06",
+    "name": "验证+条件提交",
+    "category": "action-structure",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，点击后先验证$form数据，如果验证通过则提交（showToast'提交成功'），否则显示'验证失败'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS07",
+    "name": "条件setDataModel",
+    "category": "action-structure",
+    "complexity": "medium",
+    "task": "生成一个Radio组件，id为'planSelect'，选项为'basic'和'pro'，切换时如果选'pro'则设置$__DataModel.plan为'pro'，否则设置为'basic'",
+    "expected": {
+      "component": "Radio",
+      "required_fields": [
+        "component",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS08",
+    "name": "双action链-读取后显示",
+    "category": "action-structure",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'loadBtn'，label为'加载数据'，点击后先读取$__DataModel.userInfo保存为$userInfo，然后显示Toast'已加载$userInfo'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "as",
+          "description": "包含as字段"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS09",
+    "name": "onAppear事件",
+    "category": "action-structure",
+    "complexity": "medium",
+    "task": "生成一个Column组件，id为'mainPage'，子组件为'header'和'content'，页面出现时读取$__DataModel.config保存为$config",
+    "expected": {
+      "component": "Column",
+      "required_fields": [
+        "component",
+        "children",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onAppear",
+          "description": "包含onAppear"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "config",
+          "description": "包含config"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onAppear",
+          "description": "包含onAppear"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "config",
+          "description": "包含config"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onAppear",
+          "description": "包含onAppear"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "config",
+          "description": "包含config"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS10",
+    "name": "Select onChange+条件导航",
+    "category": "action-structure",
+    "complexity": "medium",
+    "task": "生成一个Select组件，id为'langSelect'，options为'zh'和'en'，切换时如果选'en'则导航到'/en'，否则导航到'/zh'",
+    "expected": {
+      "component": "Select",
+      "required_fields": [
+        "component",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "navigate",
+          "description": "包含navigate"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "navigate",
+          "description": "包含navigate"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "navigate",
+          "description": "包含navigate"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "AS11",
+    "name": "三步action链",
+    "category": "action-structure",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'buyBtn'，label为'购买'，点击后先读取$__DataModel.product存为$product，再验证$product数据，验证通过则showToast'购买成功'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "AS12",
+    "name": "条件分支+as变量绑定",
+    "category": "action-structure",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'checkBtn'，label为'检查'，点击后先验证$form数据存为$isValid，如果$isValid为0（成功）则showToast'校验通过'并发送$form数据给LLM，否则showToast'请检查输入'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "AS13",
+    "name": "Checkbox多选+批量更新",
+    "category": "action-structure",
+    "complexity": "complex",
+    "task": "生成一个Checkbox组件，id为'agreeTerms'，勾选时设置$__DataModel.agreed为true并showToast'已同意条款'，取消勾选时设置$__DataModel.agreed为false",
+    "expected": {
+      "component": "Checkbox",
+      "required_fields": [
+        "component",
+        "onChange"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "onChange",
+          "description": "包含onChange"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "setDataModel",
+          "description": "包含setDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onChange",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "AS14",
+    "name": "List onReachEnd+加载更多",
+    "category": "action-structure",
+    "complexity": "complex",
+    "task": "生成一个List组件，id为'feedList'，子组件绑定'$items'，滚动到底部时读取$__DataModel.nextPage存为$pageData，然后showToast'加载更多'",
+    "expected": {
+      "component": "List",
+      "required_fields": [
+        "component",
+        "children",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onReachEnd",
+          "description": "包含onReachEnd"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onReachEnd",
+          "description": "包含onReachEnd"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onReachEnd",
+          "description": "包含onReachEnd"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "AS15",
+    "name": "复杂表单提交+验证+条件+多action",
+    "category": "action-structure",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'registerBtn'，label为'注册'，点击后：先验证$form存为$result，如果$result为0则读取$__DataModel.user存为$user，然后发送$user给LLM，最后showToast'注册成功'，如果验证失败则showToast'请完善信息'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "flat-action": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "包含sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "handler-format": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "包含sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ],
+      "event-context": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "onClick",
+          "description": "包含onClick"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "validate",
+          "description": "包含validate"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "getDataModel",
+          "description": "包含getDataModel"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "sendToLLM",
+          "description": "包含sendToLLM"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "showToast",
+          "description": "包含showToast"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

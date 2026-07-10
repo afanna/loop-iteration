@@ -1,0 +1,1030 @@
+[
+  {
+    "id": "VS015",
+    "name": "列表-简单相对路径引用",
+    "category": "t3-list-relative",
+    "complexity": "simple",
+    "task": "生成List组件(id=userList)，数据路径/users，模板组件显示每个用户的name字段",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/users",
+        "description": "path使用JSON Pointer /users"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "模板使用$item.name相对路径"
+      }
+    ],
+    "hints": [
+      "List的children用{componentId, path}格式",
+      "模板中用$item.fieldName通过$item.fieldName引用当前项字段"
+    ]
+  },
+  {
+    "id": "VS016",
+    "name": "列表-多字段相对路径",
+    "category": "t3-list-relative",
+    "complexity": "simple",
+    "task": "生成List组件(id=productList)，数据路径/products，模板组件显示每个商品的name和price字段",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/products",
+        "description": "path使用JSON Pointer /products"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "使用$item.name相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.price",
+        "description": "使用$item.price相对路径"
+      }
+    ],
+    "hints": [
+      "多个字段分别用$item.fieldName引用",
+      "模板组件为兄弟节点，用id匹配componentId"
+    ]
+  },
+  {
+    "id": "VS017",
+    "name": "列表-$index内置变量",
+    "category": "t3-list-relative",
+    "complexity": "simple",
+    "task": "生成List组件(id=todoList)，数据路径/todos，模板组件显示'序号. 内容'格式，其中序号用$index+1",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/todos",
+        "description": "path使用JSON Pointer /todos"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$index",
+        "description": "使用$index内置变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.text",
+        "description": "使用$item.text相对路径"
+      }
+    ],
+    "hints": [
+      "$index从0开始，通常用$index+1显示",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS018",
+    "name": "列表-$item引用当前项",
+    "category": "t3-list-relative",
+    "complexity": "simple",
+    "task": "生成List组件(id=itemList)，数据路径/items，模板组件显示$item.name",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/items",
+        "description": "path使用JSON Pointer /items"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item",
+        "description": "使用$item引用当前项"
+      }
+    ],
+    "hints": [
+      "$item是当前迭代项对象，通过$item.name访问其属性"
+    ]
+  },
+  {
+    "id": "VS019",
+    "name": "列表-嵌套属性相对路径",
+    "category": "t3-list-relative",
+    "complexity": "simple",
+    "task": "生成List组件(id=orderList)，数据路径/orders，模板组件显示$item.product.name和$item.product.price",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/orders",
+        "description": "path使用JSON Pointer /orders"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.product.name",
+        "description": "使用$item.product.name嵌套路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.product.price",
+        "description": "使用$item.product.price嵌套路径"
+      }
+    ],
+    "hints": [
+      "$item.product.name访问当前项的嵌套属性，用.分隔",
+      "当前项数据中product是嵌套对象"
+    ]
+  },
+  {
+    "id": "VS020",
+    "name": "列表-绝对路径与相对路径混合",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成List组件(id=commentList)，数据路径/comments，模板组件显示$item.text和$item.author，同时显示$__DataModel.currentUser.name作为当前用户名",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/comments",
+        "description": "path使用JSON Pointer /comments"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.author",
+        "description": "使用$item.author相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.text",
+        "description": "使用$item.text相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.currentUser.name",
+        "description": "使用$__DataModel绝对路径"
+      }
+    ],
+    "hints": [
+      "相对路径$item.author从当前评论获取",
+      "绝对路径$__DataModel.currentUser.name从根获取"
+    ]
+  },
+  {
+    "id": "VS021",
+    "name": "列表-自定义indexVar和itemVar",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成List组件(id=productList2)，数据路径/products，自定义indexVar='i'和itemVar='product'，模板中显示'$i: $product.name - $product.price'",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "indexVar",
+        "description": "使用indexVar自定义索引变量名"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "itemVar",
+        "description": "使用itemVar自定义项变量名"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$i",
+        "description": "模板使用$i引用自定义索引变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$product",
+        "description": "模板使用$product引用自定义项变量"
+      }
+    ],
+    "hints": [
+      "indexVar和itemVar是List children的属性",
+      "自定义后仍用$前缀引用"
+    ]
+  },
+  {
+    "id": "VS022",
+    "name": "列表-嵌套列表与外层变量访问",
+    "category": "t3-list-relative",
+    "complexity": "complex",
+    "task": "生成List组件(id=classList)，数据路径/classes，indexVar='classIdx', itemVar='classInfo'。模板为Column包含：Text显示$classInfo.name、嵌套List(id=studentList)数据路径/students显示每个学生的$item.name。在内层List模板中同时显示外层$classIdx",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含外层List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "indexVar",
+        "description": "外层使用indexVar"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "itemVar",
+        "description": "外层使用itemVar"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$classInfo.name",
+        "description": "使用外层自定义项变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$classIdx",
+        "description": "内层模板中访问外层自定义索引变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "内层使用相对路径$item.name"
+      }
+    ],
+    "hints": [
+      "嵌套列表时，内层模板可访问外层循环变量",
+      "外层用自定义变量名，内层用默认$item.name"
+    ]
+  },
+  {
+    "id": "VS023",
+    "name": "列表-条件渲染相对路径",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成List组件(id=taskList)，数据路径/tasks，模板组件中如果$item.done为true显示'已完成'否则显示'进行中'",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/tasks",
+        "description": "path使用JSON Pointer /tasks"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.done",
+        "description": "使用$item.done相对路径做条件判断"
+      }
+    ],
+    "hints": [
+      "三元表达式: $item.done ? '已完成' : '进行中'",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS024",
+    "name": "列表-样式绑定相对路径",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成List组件(id=msgList)，数据路径/messages，模板组件根据$item.isRead设置backgroundColor：已读'#F5F5F5'未读'#FFFFFF'",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/messages",
+        "description": "path使用JSON Pointer /messages"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.isRead",
+        "description": "使用$item.isRead相对路径做样式条件"
+      }
+    ],
+    "hints": [
+      "backgroundColor在styles对象中",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS025",
+    "name": "列表-带点击事件+相对路径",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成List组件(id=contactList)，数据路径/contacts，模板组件显示$item.name，点击时showToast显示$item.phone",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/contacts",
+        "description": "path使用JSON Pointer /contacts"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "showToast",
+        "description": "包含showToast事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "模板使用$item.name相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.phone",
+        "description": "事件中使用$item.phone相对路径"
+      }
+    ],
+    "hints": [
+      "列表模板中也可添加事件属性(如onClick)",
+      "事件args中引用$item.fieldName"
+    ]
+  },
+  {
+    "id": "VS026",
+    "name": "列表-条件+$index+$item.score组合",
+    "category": "t3-list-relative",
+    "complexity": "complex",
+    "task": "生成List组件(id=scoreList)，数据路径/students，模板显示'第X名：name（score分）'（X=$index+1），$item.score>=60显示'及格'否则'不及格'",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/students",
+        "description": "path使用JSON Pointer /students"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$index",
+        "description": "使用$index显示排名"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.score",
+        "description": "使用$item.score相对路径做条件判断"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "使用$item.name相对路径"
+      }
+    ],
+    "hints": [
+      "$index+1计算排名",
+      "三元表达式根据$item.score条件判断",
+      "表达式用{{ }}包裹"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS027",
+    "name": "列表-多层嵌套+setDataModel",
+    "category": "t3-list-relative",
+    "complexity": "complex",
+    "task": "生成List组件(id=shopList)，数据路径/shops，模板为Row包含Text($item.shopName)和Button('收藏')，点击Button时setDataModel设置/favoriteShop为$item.id",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/shops",
+        "description": "path使用JSON Pointer /shops"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.shopName",
+        "description": "使用$item.shopName相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "setDataModel",
+        "description": "包含setDataModel事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.id",
+        "description": "事件中使用$item.id相对路径"
+      }
+    ],
+    "hints": [
+      "模板中Button的事件属性(如onClick)使用EventHandler数组格式",
+      "setDataModel的path参数用JSON Pointer"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS028",
+    "name": "列表-三元+formatNumber+$index+绝对路径混合",
+    "category": "t3-list-relative",
+    "complexity": "complex",
+    "task": "生成List组件(id=orderList2)，数据路径/orders，模板：显示$item.orderNo，formatCurrency($total)，$item.status=='paid'显示Button'查看详情'navigate到'/order/'+$item.id否则'待付款'，同时显示$__DataModel.currentUser.name",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/orders",
+        "description": "path使用JSON Pointer /orders"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.orderNo",
+        "description": "使用$item.orderNo相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.status",
+        "description": "使用$item.status相对路径做条件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "navigate",
+        "description": "包含navigate事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.id",
+        "description": "事件中使用$item.id相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel",
+        "description": "混合使用$__DataModel绝对路径"
+      }
+    ],
+    "hints": [
+      "绝对路径$__DataModel.currentUser.name和相对路径可在同一模板中混合",
+      "事件args支持表达式拼接URL"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS029",
+    "name": "列表-动态样式+$item.isMine条件+$index奇偶",
+    "category": "t3-list-relative",
+    "complexity": "complex",
+    "task": "生成List组件(id=chatList)，数据路径/messages，模板：$index偶行backgroundColor='#F0F0F0'奇行'#FFFFFF'，$item.isMine为true显示'我：'+$item.text否则$item.sender+': '+$item.text",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/messages",
+        "description": "path使用JSON Pointer /messages"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$index",
+        "description": "使用$index做奇偶判断"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.isMine",
+        "description": "使用$item.isMine相对路径条件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.text",
+        "description": "使用$item.text相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.sender",
+        "description": "使用$item.sender相对路径"
+      }
+    ],
+    "hints": [
+      "$index % 2 == 0判断偶数行",
+      "模板字符串拼接显示内容"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS030",
+    "name": "列表-Grid模板+相对路径",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成Grid组件(id=photoGrid)，数据路径/photos，模板组件显示Image($item.url)和Text($item.caption)",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Grid",
+        "description": "包含Grid组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "Grid也使用componentId引用模板"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/photos",
+        "description": "path使用JSON Pointer /photos"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.url",
+        "description": "使用$item.url相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.caption",
+        "description": "使用$item.caption相对路径"
+      }
+    ],
+    "hints": [
+      "Grid的children格式与List相同",
+      "模板中Image的src用表达式引用$item.url"
+    ]
+  },
+  {
+    "id": "VS057",
+    "name": "Column模板渲染-简单字段",
+    "category": "t3-list-relative",
+    "complexity": "simple",
+    "task": "生成Column组件(id=userColumn)，children使用模板渲染{componentId:'user_tpl', path:'/users'}，模板组件显示每个用户的$item.name",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Column",
+        "description": "包含Column组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "Column的children使用componentId模板引用"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/users",
+        "description": "path使用JSON Pointer /users"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "模板使用$item.name引用当前项字段"
+      }
+    ],
+    "hints": [
+      "Column也支持children: {componentId, path}模板渲染格式",
+      "模板中用$item.fieldName引用当前项字段"
+    ]
+  },
+  {
+    "id": "VS058",
+    "name": "Row模板渲染-多字段+$index",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成Row组件(id=productRow)，children模板渲染{componentId:'product_tpl', path:'/products'}，模板显示'$index+1. $item.name - ¥$item.price'格式内容",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Row",
+        "description": "包含Row组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "Row的children使用componentId模板引用"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/products",
+        "description": "path使用JSON Pointer /products"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$index",
+        "description": "模板使用$index内置变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "模板使用$item.name"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.price",
+        "description": "模板使用$item.price"
+      }
+    ],
+    "hints": [
+      "Row也支持模板渲染，$index从0开始",
+      "多字段用$item.fieldName引用"
+    ]
+  },
+  {
+    "id": "VS059",
+    "name": "Column模板-嵌套对象访问",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成Column组件(id=orderColumn)，children模板渲染{componentId:'order_tpl', path:'/orders'}，模板显示$item.product.name和$item.product.price（订单数据中product是嵌套对象）",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Column",
+        "description": "包含Column组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId模板引用"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/orders",
+        "description": "path为/orders"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.product.name",
+        "description": "模板使用$item.product.name嵌套路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.product.price",
+        "description": "模板使用$item.product.price嵌套路径"
+      }
+    ],
+    "hints": [
+      "Column模板渲染中支持$item.product.name嵌套对象属性访问",
+      "当前项数据中product是嵌套对象"
+    ]
+  },
+  {
+    "id": "VS060",
+    "name": "Column模板-条件渲染",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成Column组件(id=taskColumn)，children模板渲染{componentId:'task_tpl', path:'/tasks'}，模板中根据$item.done条件显示：为true时Text显示'已完成'，为false时Text显示'进行中'",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Column",
+        "description": "包含Column组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId模板引用"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/tasks",
+        "description": "path为/tasks"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.done",
+        "description": "模板使用$item.done做条件判断"
+      }
+    ],
+    "hints": [
+      "模板内三元表达式: $item.done ? '已完成' : '进行中'",
+      "Column模板渲染中也可使用条件表达式"
+    ]
+  },
+  {
+    "id": "VS061",
+    "name": "Column模板-混合$__DataModel绝对路径",
+    "category": "t3-list-relative",
+    "complexity": "complex",
+    "task": "生成Column组件(id=commentColumn)，children模板渲染{componentId:'cmt_tpl', path:'/comments'}，模板显示$item.author+': '+$item.text，同时在模板中显示$__DataModel.app.name作为来源标记",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.Column",
+        "description": "包含Column组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "使用componentId模板引用"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "/comments",
+        "description": "path为/comments"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.author",
+        "description": "模板使用$item.author"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.text",
+        "description": "模板使用$item.text"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel",
+        "description": "模板中混合使用$__DataModel绝对路径"
+      }
+    ],
+    "hints": [
+      "Column模板中可混合$item.fieldName和$__DataModel.xxx",
+      "模板字符串拼接: $item.author + ': ' + $item.text"
+    ],
+    "is_edge": true
+  }
+]

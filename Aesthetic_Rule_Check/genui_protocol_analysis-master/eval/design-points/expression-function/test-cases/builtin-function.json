@@ -1,0 +1,758 @@
+[
+  {
+    "id": "BF01",
+    "name": "简单变量插值",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示用户名$username，文本格式为'Hello'后面跟用户名",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$username" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "content必须包含变量$username", "field": "content", "value": "$username" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "contains", "description": "format使用槽位占位符", "field": "content", "value": "{}" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["动态值用{{ }}包裹", "Text组件的文本用content字段"]
+  },
+  {
+    "id": "BF02",
+    "name": "双变量拼接",
+    "complexity": "simple",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示用户的全名：$firstName和$lastName之间用空格分隔",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$firstName" },
+        { "field": "content", "must_contain": "$lastName" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "content必须包含$firstName", "field": "content", "value": "$firstName" },
+      { "type": "contains", "description": "content必须包含$lastName", "field": "content", "value": "$lastName" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "contains", "description": "format需要两个槽位", "field": "content", "value": "{}" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["两个变量之间需要空格", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF03",
+    "name": "数字变量+文字后缀",
+    "complexity": "simple",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示购物车商品数量$count后面跟'件商品'字样",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$count" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "content必须包含$count变量", "field": "content", "value": "$count" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "contains", "description": "format使用槽位占位符", "field": "content", "value": "{}" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["数字变量和中文文字拼接", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF04",
+    "name": "价格格式化",
+    "complexity": "simple",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示价格$price后面跟'元'字样",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$price" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "content必须包含$price变量", "field": "content", "value": "$price" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "contains", "description": "format使用槽位占位符", "field": "content", "value": "{}" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["价格是数字变量，拼接'元'字", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF05",
+    "name": "路径拼接",
+    "complexity": "simple",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示API路径，格式为'/api/users/'后面跟$userId",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$userId" },
+        { "field": "content", "must_contain": "/api/users/" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "content必须包含$userId", "field": "content", "value": "$userId" },
+      { "type": "contains", "description": "content必须包含路径前缀", "field": "content", "value": "/api/users/" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["路径拼接场景", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF06",
+    "name": "多变量消息",
+    "complexity": "medium",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示消息内容：'$userName有$messageCount条消息'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$userName" },
+        { "field": "content", "must_contain": "$messageCount" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "content必须包含$userName", "field": "content", "value": "$userName" },
+      { "type": "contains", "description": "content必须包含$messageCount", "field": "content", "value": "$messageCount" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["两个变量嵌入中文句子", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF07",
+    "name": "size函数+文字",
+    "complexity": "medium",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示数组$items的长度，后面跟'件商品'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "size(" },
+        { "field": "content", "must_contain": "$items" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须使用size函数", "field": "content", "value": "size(" },
+      { "type": "contains", "description": "必须引用$items数组", "field": "content", "value": "$items" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数来拼接文字", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一来拼接", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["先用size()获取数组长度，再和文字拼接", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF08",
+    "name": "三元条件+文字拼接",
+    "complexity": "medium",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，根据$isVip判断，VIP显示'尊贵的$username'，非VIP显示'欢迎$username'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$isVip" },
+        { "field": "content", "must_contain": "$username" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含条件变量$isVip", "field": "content", "value": "$isVip" },
+      { "type": "contains", "description": "必须包含$username", "field": "content", "value": "$username" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["需要三元表达式+变量插值", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF09",
+    "name": "三元+format嵌套",
+    "complexity": "medium",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示订单状态：如果$paid为true显示'已支付 ¥$amount'，否则显示'待支付 ¥$amount'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$paid" },
+        { "field": "content", "must_contain": "$amount" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含$paid条件", "field": "content", "value": "$paid" },
+      { "type": "contains", "description": "必须包含$amount", "field": "content", "value": "$amount" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["三元判断+金额显示", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF10",
+    "name": "嵌套属性插值",
+    "complexity": "medium",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示'城市：$user.address.city，邮编：$user.address.zip'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$user" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含嵌套属性", "field": "content", "value": "$user" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["两个嵌套属性变量", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF11",
+    "name": "三变量路径拼接",
+    "complexity": "medium",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示API路径：'/api/users/' + $userId + '/posts/' + $postId，其中$userId和$postId是变量",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$userId" },
+        { "field": "content", "must_contain": "$postId" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含$userId", "field": "content", "value": "$userId" },
+      { "type": "contains", "description": "必须包含$postId", "field": "content", "value": "$postId" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["三个变量需要拼接进路径", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "BF12",
+    "name": "size函数+三元+文字",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，如果$items数组长度为0显示'暂无商品'，否则显示'$count件商品'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$items" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须引用$items", "field": "content", "value": "$items" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["size() + 三元判断 + 文字拼接的组合", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF13",
+    "name": "多变量+运算+格式化",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示'合计：$price × $quantity = '后跟计算结果，最终显示为'合计：价格 × 数量 = 总价'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$price" },
+        { "field": "content", "must_contain": "$quantity" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含$price", "field": "content", "value": "$price" },
+      { "type": "contains", "description": "必须包含$quantity", "field": "content", "value": "$quantity" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["需要算术运算+变量插值", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF14",
+    "name": "全局变量插值",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示当前窗口断点信息：'当前断点：$__WidthBreakpoint，窗口大小：$__WindowSize'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$__WidthBreakpoint" },
+        { "field": "content", "must_contain": "$__WindowSize" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含$__WidthBreakpoint", "field": "content", "value": "$__WidthBreakpoint" },
+      { "type": "contains", "description": "必须包含$__WindowSize", "field": "content", "value": "$__WindowSize" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["两个全局系统变量", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF15",
+    "name": "三元+多函数组合",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，显示商品信息：如果$inStock为true显示'$productName - 库存：size($stockList)件'，否则显示'$productName - 暂无库存'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$inStock" },
+        { "field": "content", "must_contain": "$productName" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含$inStock条件", "field": "content", "value": "$inStock" },
+      { "type": "contains", "description": "必须包含$productName", "field": "content", "value": "$productName" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["三元+size函数+format/模板的组合", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF16",
+    "name": "多层嵌套三元+多变量",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，根据$status显示不同文字：'active'显示'$name 正在营业（评分$rating）'，'closed'显示'$name 已歇业'，其他显示'$name 状态未知'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$status" },
+        { "field": "content", "must_contain": "$name" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须包含$status", "field": "content", "value": "$status" },
+      { "type": "contains", "description": "必须包含$name", "field": "content", "value": "$name" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["嵌套三元+多变量+条件文字", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF17",
+    "name": "Button标签动态拼接",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Button组件，按钮文字为'删除$selectedCount个选中项'，其中$selectedCount是动态变量",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": [
+        { "field": "label", "must_contain": "{{" },
+        { "field": "label", "must_contain": "$selectedCount" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "Button必须有label字段", "field": "label" },
+      { "type": "contains", "description": "label必须包含$selectedCount", "field": "label", "value": "$selectedCount" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "label", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "label", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "label", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "label", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "label", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "label", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Button组件用label字段", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF18",
+    "name": "条件+count+format三重组合",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Text组件，如果$notifications数组长度大于0显示'您有N条通知'（N为$notifications数组长度），否则显示'没有新通知'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        { "field": "content", "must_contain": "{{" },
+        { "field": "content", "must_contain": "$notifications" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "必须有content字段", "field": "content" },
+      { "type": "contains", "description": "必须引用$notifications", "field": "content", "value": "$notifications" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "content", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "content", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "content", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "content", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "content", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "content", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["size()+比较+三元+format/模板的组合", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF19",
+    "name": "TextInput占位符动态文本",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个TextInput组件，placeholder为'搜索$categoryName相关商品'，其中$categoryName是动态变量",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder"],
+      "patterns": [
+        { "field": "placeholder", "must_contain": "{{" },
+        { "field": "placeholder", "must_contain": "$categoryName" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "TextInput必须有placeholder字段", "field": "placeholder" },
+      { "type": "contains", "description": "placeholder必须包含$categoryName", "field": "placeholder", "value": "$categoryName" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "必须使用format函数", "field": "placeholder", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "placeholder", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "必须使用模板字符串（反引号）", "field": "placeholder", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "placeholder", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "placeholder", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "使用format函数或模板字符串之一", "field": "placeholder", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["TextInput用placeholder字段", "动态值用{{ }}包裹"],
+    "is_edge": true
+  },
+  {
+    "id": "BF20",
+    "name": "多组件多字段动态文本",
+    "complexity": "complex",
+    "category": "expression-wrapping",
+    "task": "生成一个Column组件，内含两个子组件：第一个Text显示'$shopName - 营业中'，第二个Text显示'今日订单：size($orders)单'",
+    "expected": {
+      "component": "Column",
+      "required_fields": ["component", "children"],
+      "patterns": [
+        { "field": "children", "must_contain": "$shopName" },
+        { "field": "children", "must_contain": "$orders" }
+      ]
+    },
+    "shared_rules": [
+      { "type": "has_field", "description": "必须有component字段", "field": "component" },
+      { "type": "has_field", "description": "Column必须有children字段", "field": "children" },
+      { "type": "contains", "description": "children必须包含$shopName", "field": "children", "value": "$shopName" },
+      { "type": "contains", "description": "children必须包含$orders", "field": "children", "value": "$orders" }
+    ],
+    "strategy_rules": {
+      "format": [
+        { "type": "contains", "description": "子组件中必须使用format函数", "field": "children", "value": "format(" },
+        { "type": "not_contains", "description": "不能使用模板字符串反引号", "field": "children", "value": "`" }
+      ],
+      "template-literal": [
+        { "type": "contains", "description": "子组件中必须使用模板字符串", "field": "children", "value": "`" },
+        { "type": "contains", "description": "模板字符串内使用${}插值", "field": "children", "value": "${" },
+        { "type": "not_contains", "description": "不能使用format函数", "field": "children", "value": "format(" }
+      ],
+      "coexist": [
+        { "type": "matches_regex", "description": "子组件使用format函数或模板字符串之一", "field": "children", "value": "(format\\(|`)" }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Column包含children数组", "子组件分别是Text", "动态值用{{ }}包裹"],
+    "is_edge": true
+  }
+]

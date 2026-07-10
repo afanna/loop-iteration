@@ -1,0 +1,176 @@
+[
+  {
+    "id": "EV001",
+    "name": "简单点击事件",
+    "category": "event",
+    "complexity": "simple",
+    "task": "生成一个Button组件，标签'提交'，点击时执行submit动作",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "提交"},
+        {"field": "onClick", "must_be_type": "array"},
+        {"field": "onClick[0].call", "must_contain": "submit"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "events_format", "description": "必须有onClick事件"}
+    ],
+    "hints": ["事件名直接作为组件属性，值是EventHandler数组", "EventHandler格式：{\"call\": \"函数名\"}"]
+  },
+  {
+    "id": "EV002",
+    "name": "带参数的call",
+    "category": "event",
+    "complexity": "simple",
+    "task": "生成一个Button组件，标签'跳转'，点击时执行navigate动作，componentId为'app_nav'，targetComponentId为'home_page'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "跳转"},
+        {"field": "onClick", "must_be_type": "array"},
+        {"field": "onClick[0].call", "must_contain": "navigate"},
+        {"field": "onClick[0].args.componentId", "must_contain": "app_nav"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "events_format", "description": "必须有onClick事件"},
+      {"type": "has_field", "description": "call必须有args参数", "field": "onClick[0].args"}
+    ],
+    "hints": ["EventHandler参数放在args字段中", "navigate需要componentId指定NavContainer，targetComponentId指定子页面"]
+  },
+  {
+    "id": "EV003",
+    "name": "条件执行EventHandler",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Button，标签'提交'，先validate绑定isValid，isValid为true时submit",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "提交"},
+        {"field": "onClick[0].call", "must_contain": "validate"},
+        {"field": "onClick[0].as", "must_contain": "isValid"},
+        {"field": "onClick[1].condition", "must_be_type": "string"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "events_format", "description": "必须有onClick事件"},
+      {"type": "has_field", "description": "第一个EventHandler必须有as绑定", "field": "onClick[0].as"},
+      {"type": "has_field", "description": "第二个EventHandler必须有condition条件", "field": "onClick[1].condition"}
+    ],
+    "hints": ["as绑定EventHandler返回值", "condition条件引用$绑定名"]
+  },
+  {
+    "id": "EV004",
+    "name": "分支逻辑",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Button，标签'查看'，$loggedIn为true时执行showProfile，否则navigate到NavContainer组件'app_nav'的子页面'login_page'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "查看"},
+        {"field": "onClick[0].condition", "must_be_type": "string"},
+        {"field": "onClick[1].condition", "must_be_type": "string"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "events_format", "description": "必须有onClick事件"},
+      {"type": "has_field", "description": "第一个EventHandler必须有condition条件", "field": "onClick[0].condition"},
+      {"type": "has_field", "description": "第二个EventHandler必须有condition条件", "field": "onClick[1].condition"}
+    ],
+    "hints": ["通过互斥的condition实现分支逻辑", "两个EventHandler分别对应true和false分支"]
+  },
+  {
+    "id": "EV005",
+    "name": "多事件监听",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个TextInput组件，placeholder'搜索'，onChange时调用search，onSubmit时调用submitSearch",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder", "onChange"],
+      "patterns": [
+        {"field": "placeholder", "must_contain": "搜索"},
+        {"field": "onChange", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "events_format", "description": "必须同时包含onChange和onSubmit事件"},
+      {"type": "contains", "description": "onChange的call为search", "field": "onChange[0].call", "value": "search"}
+    ],
+    "hints": ["一个组件可以有多个事件属性", "每个事件对应独立的EventHandler数组"]
+  },
+  {
+    "id": "EV006",
+    "name": "复杂EventHandler链",
+    "category": "event",
+    "complexity": "complex",
+    "task": "生成一个Button，标签'删除'，点击时先showConfirm绑定confirmed，confirmed为true时deleteItem传入$itemId，删除成功后showToast消息'删除成功'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "删除"},
+        {"field": "onClick[0].call", "must_contain": "showConfirm"},
+        {"field": "onClick[0].as", "must_contain": "confirmed"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "events_format", "description": "必须有onClick事件"},
+      {"type": "has_field", "description": "第一个EventHandler必须有as绑定confirmed", "field": "onClick[0].as"},
+      {"type": "has_field", "description": "第二个EventHandler必须有condition条件", "field": "onClick[1].condition"}
+    ],
+    "hints": ["3个步骤的EventHandler链：确认→条件删除→提示", "每个步骤是数组中的一个元素"]
+  },
+  {
+    "id": "EV007",
+    "name": "嵌套条件EventHandler",
+    "category": "event",
+    "complexity": "complex",
+    "task": "生成一个Button，标签'保存'，先checkPermission绑定hasPermission，hasPermission为true时validate绑定isValid，isValid为true时saveData，否则showToast'验证失败'，hasPermission为false时showToast'无权限'",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "保存"},
+        {"field": "onClick[0].call", "must_contain": "checkPermission"},
+        {"field": "onClick[0].as", "must_contain": "hasPermission"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "events_format", "description": "必须有onClick事件"},
+      {"type": "has_field", "description": "第一个EventHandler必须as绑定hasPermission", "field": "onClick[0].as"},
+      {"type": "has_field", "description": "第二个EventHandler必须有condition条件", "field": "onClick[1].condition"}
+    ],
+    "hints": ["嵌套条件：权限检查→验证→保存", "每层条件都用condition"]
+  },
+  {
+    "id": "EV008",
+    "name": "onChange带事件参数",
+    "category": "event",
+    "complexity": "complex",
+    "task": "生成一个TextInput，placeholder'用户名'，text绑定$username，onChange时调用updateField，传入字段名field为'username'、值value为事件参数（新输入值）",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder", "text", "onChange"],
+      "patterns": [
+        {"field": "placeholder", "must_contain": "用户名"},
+        {"field": "text", "must_be_type": "string"},
+        {"field": "text", "must_contain": "username"},
+        {"field": "onChange", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "value": "{{", "description": "text必须用{{ }}引用$username", "field": "text"},
+      {"type": "events_format", "description": "必须有onChange事件"},
+      {"type": "has_field", "description": "EventHandler必须有args", "field": "onChange[0].args"}
+    ],
+    "hints": ["onChange事件参数是输入框的新值", "用$context.eventData引用事件参数", "args中可以传递$context.eventData"]
+  }
+]

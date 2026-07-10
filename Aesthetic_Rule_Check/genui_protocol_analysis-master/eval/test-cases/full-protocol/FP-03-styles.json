@@ -1,0 +1,279 @@
+[
+  {
+    "id": "FP0301",
+    "name": "Text with fontSize and fontColor",
+    "category": "style",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，显示文字'商品名称'，设置字体大小为14fp，字体颜色为#333333",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "商品名称"},
+        {"field": "styles.fontSize", "must_contain": "14"},
+        {"field": "styles.fontColor", "must_contain": "#333333"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.fontSize", "description": "styles中必须有fontSize"},
+      {"type": "has_field", "field": "styles.fontColor", "description": "styles中必须有fontColor"},
+      {"type": "contains", "field": "styles.fontSize", "value": "14", "description": "fontSize应为14"},
+      {"type": "contains", "field": "styles.fontColor", "value": "#333333", "description": "fontColor应为#333333"}
+    ],
+    "hints": ["样式属性放在styles对象中", "fontSize为数字类型，单位fp", "fontColor为16进制字符串"]
+  },
+  {
+    "id": "FP0302",
+    "name": "Padding numeric",
+    "category": "style",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，显示文字'卡片内容'，设置内边距padding为16",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "卡片内容"},
+        {"field": "styles.padding", "must_contain": "16"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.padding", "description": "styles中必须有padding"},
+      {"type": "contains", "field": "styles.padding", "value": "16", "description": "padding应为16"}
+    ],
+    "hints": ["padding为数字时表示四边统一内边距", "默认单位vp"]
+  },
+  {
+    "id": "FP0303",
+    "name": "Padding object form",
+    "category": "style",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，显示文字'用户信息'，设置内边距padding为对象形式：上8、下12、左16、右16",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "用户信息"},
+        {"field": "styles.padding", "must_be_type": "object"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.padding", "description": "styles中必须有padding"},
+      {"type": "has_field", "field": "styles.padding.top", "description": "padding对象中必须有top"},
+      {"type": "has_field", "field": "styles.padding.bottom", "description": "padding对象中必须有bottom"},
+      {"type": "has_field", "field": "styles.padding.left", "description": "padding对象中必须有left"},
+      {"type": "has_field", "field": "styles.padding.right", "description": "padding对象中必须有right"},
+      {"type": "contains", "field": "styles.padding.top", "value": "8", "description": "padding.top应为8"},
+      {"type": "contains", "field": "styles.padding.bottom", "value": "12", "description": "padding.bottom应为12"}
+    ],
+    "hints": ["padding可以设置为对象{top, right, bottom, left}", "四个属性都是可选的", "默认单位vp"]
+  },
+  {
+    "id": "FP0304",
+    "name": "Width/height with units",
+    "category": "style",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件，设置宽度width为100%（占满父容器），高度height为matchParent",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["id", "component", "styles"],
+      "patterns": [
+        {"field": "styles.width", "must_contain": "100%"},
+        {"field": "styles.height", "must_contain": "matchParent"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.width", "description": "styles中必须有width"},
+      {"type": "has_field", "field": "styles.height", "description": "styles中必须有height"},
+      {"type": "contains", "field": "styles.width", "value": "100%", "description": "width应为100%"},
+      {"type": "contains", "field": "styles.height", "value": "matchParent", "description": "height应为matchParent"}
+    ],
+    "hints": ["width/height支持数字（vp）、字符串（带单位如'100fp'、'100%'）或枚举值", "枚举值有matchParent、wrapContent、fixAtIdealSize"]
+  },
+  {
+    "id": "FP0305",
+    "name": "Border and borderRadius",
+    "category": "style",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，显示文字'标签'，设置边框宽度borderWidth为1、边框圆角borderRadius为8、边框颜色borderColor为#CCCCCC",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "标签"},
+        {"field": "styles.borderWidth", "must_contain": "1"},
+        {"field": "styles.borderRadius", "must_contain": "8"},
+        {"field": "styles.borderColor", "must_contain": "#CCCCCC"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.borderWidth", "description": "styles中必须有borderWidth"},
+      {"type": "has_field", "field": "styles.borderRadius", "description": "styles中必须有borderRadius"},
+      {"type": "has_field", "field": "styles.borderColor", "description": "styles中必须有borderColor"},
+      {"type": "contains", "field": "styles.borderWidth", "value": "1", "description": "borderWidth应为1"},
+      {"type": "contains", "field": "styles.borderRadius", "value": "8", "description": "borderRadius应为8"}
+    ],
+    "hints": ["borderWidth为边框宽度，数值类型，单位vp", "borderRadius为圆角半径，支持数字或对象{topLeft,topRight,bottomLeft,bottomRight}", "borderColor为16进制颜色字符串"]
+  },
+  {
+    "id": "FP0306",
+    "name": "Visibility control",
+    "category": "style",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，显示文字'隐藏提示'，设置可见性visibility为hidden（不可见但占位）",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "隐藏提示"},
+        {"field": "styles.visibility", "must_contain": "hidden"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.visibility", "description": "styles中必须有visibility"},
+      {"type": "contains", "field": "styles.visibility", "value": "hidden", "description": "visibility应为hidden"}
+    ],
+    "hints": ["visibility有三个枚举值：visible（可见）、hidden（不可见但占位）、none（不可见也不占位）"]
+  },
+  {
+    "id": "FP0307",
+    "name": "Layout weight in Row child",
+    "category": "style",
+    "complexity": "medium",
+    "task": "生成一个Extended.Row组件，包含子组件left和right。为left设置layoutWeight为2，为right设置layoutWeight为1，使左侧占2/3、右侧占1/3空间",
+    "expected": {
+      "component": "Extended.Row",
+      "required_fields": ["id", "component", "children", "styles"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "children", "description": "必须有children字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"}
+    ],
+    "hints": ["layoutWeight仅在父节点为Row或Column时生效", "layoutWeight设置布局权重，数值越大占比越大"]
+  },
+  {
+    "id": "FP0308",
+    "name": "Text maxLines and textOverflow",
+    "category": "style",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，显示文字'这是一段很长的描述文本，需要在超长时自动截断显示省略号'，设置最大行数maxLines为2，文本溢出处理textOverflow为ellipsis（省略号）",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "styles.maxLines", "must_contain": "2"},
+        {"field": "styles.textOverflow", "must_contain": "ellipsis"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.maxLines", "description": "styles中必须有maxLines"},
+      {"type": "has_field", "field": "styles.textOverflow", "description": "styles中必须有textOverflow"},
+      {"type": "contains", "field": "styles.maxLines", "value": "2", "description": "maxLines应为2"},
+      {"type": "contains", "field": "styles.textOverflow", "value": "ellipsis", "description": "textOverflow应为ellipsis"}
+    ],
+    "hints": ["maxLines设置文本最大行数，数值类型", "textOverflow需配合maxLines使用，枚举值有none、clip、ellipsis、marquee"]
+  },
+  {
+    "id": "FP0309",
+    "name": "Row with justifyContent",
+    "category": "style",
+    "complexity": "simple",
+    "task": "生成一个Extended.Row组件，包含title和action两个子组件，设置主轴对齐方式justifyContent为spaceBetween（两端对齐）",
+    "expected": {
+      "component": "Extended.Row",
+      "required_fields": ["id", "component", "children", "styles"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"},
+        {"field": "styles.justifyContent", "must_contain": "spaceBetween"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "children_format", "description": "children必须是字符串数组"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.justifyContent", "description": "styles中必须有justifyContent"},
+      {"type": "contains", "field": "styles.justifyContent", "value": "spaceBetween", "description": "justifyContent应为spaceBetween"}
+    ],
+    "hints": ["Extended.Row的justifyContent控制水平方向对齐", "枚举值有start、center、end、spaceBetween、spaceAround、spaceEvenly"]
+  },
+  {
+    "id": "FP0310",
+    "name": "Column with alignItems",
+    "category": "style",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件，包含header和body两个子组件，设置交叉轴对齐方式alignItems为center（居中对齐）",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["id", "component", "children", "styles"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"},
+        {"field": "styles.alignItems", "must_contain": "center"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "children_format", "description": "children必须是字符串数组"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.alignItems", "description": "styles中必须有alignItems"},
+      {"type": "contains", "field": "styles.alignItems", "value": "center", "description": "alignItems应为center"}
+    ],
+    "hints": ["Extended.Column的alignItems控制水平方向对齐", "枚举值有start、center、end"]
+  },
+  {
+    "id": "FP0311",
+    "name": "backgroundColor and opacity",
+    "category": "style",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，显示文字'半透明背景'，设置背景色backgroundColor为#FF007AFF，背景透明度通过opacity设为0.8",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "半透明背景"},
+        {"field": "styles.backgroundColor", "must_contain": "#FF007AFF"},
+        {"field": "styles.opacity", "must_contain": "0.8"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.backgroundColor", "description": "styles中必须有backgroundColor"},
+      {"type": "has_field", "field": "styles.opacity", "description": "styles中必须有opacity"},
+      {"type": "contains", "field": "styles.backgroundColor", "value": "#FF007AFF", "description": "backgroundColor应为#FF007AFF"},
+      {"type": "contains", "field": "styles.opacity", "value": "0.8", "description": "opacity应为0.8"}
+    ],
+    "hints": ["backgroundColor为16进制颜色字符串，格式为#ARGB", "opacity为数值类型，范围0-1"]
+  },
+  {
+    "id": "FP0312",
+    "name": "Margin object form",
+    "category": "style",
+    "complexity": "medium",
+    "task": "生成一个Extended.Text组件，显示文字'带外边距的文本'，设置外边距margin为对象形式：上4、下4、左12、右12",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["id", "component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "带外边距的文本"},
+        {"field": "styles.margin", "must_be_type": "object"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles对象"},
+      {"type": "has_field", "field": "styles.margin", "description": "styles中必须有margin"},
+      {"type": "has_field", "field": "styles.margin.top", "description": "margin对象中必须有top"},
+      {"type": "has_field", "field": "styles.margin.bottom", "description": "margin对象中必须有bottom"},
+      {"type": "has_field", "field": "styles.margin.left", "description": "margin对象中必须有left"},
+      {"type": "has_field", "field": "styles.margin.right", "description": "margin对象中必须有right"},
+      {"type": "contains", "field": "styles.margin.left", "value": "12", "description": "margin.left应为12"},
+      {"type": "contains", "field": "styles.margin.right", "value": "12", "description": "margin.right应为12"}
+    ],
+    "hints": ["margin可以设置为对象{top, right, bottom, left}", "四个属性都是可选的", "默认单位vp"]
+  }
+]

@@ -1,0 +1,158 @@
+{
+  "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-declarations",
+  "title": "5. Generics¶",
+  "content": "Class, interface, method, constructor, and function are program entities that can be generalized in the ArkTS language. Generalization is parameterizing an entity by one or several types. A generalized entity is introduced by a generic declaration (called generic for brevity).\n\nTypes used as generic parameters in a generic are called type parameters.\n\nA generic must be instantiated in order to be used. Generic instantiation is the action that converts a generic into a real program entity: ordinary class, interface, function, etc. Instantiation can be performed either explicitly or implicitly.\n\nExplicit generic instantiation is the language construct that specifies real types, which substitute type parameters of a generic. Real types specified in the instantiation are called type arguments.\n\nIn an implicit instantiation, type arguments are not specified explicitly. They are inferred from the context the generic is referred in. Implicit instantiation is possible only for functions and methods.\n\nThe result of instantiation is a real, non-parameterized program entity: class, interface, method, constructor, or function. The entity is handled exactly as an ordinary class, interface, method, constructor, or function.\n\nConceptually, a generic class, an interface, a method, a constructor, or a function defines a set of classes, interfaces, methods, constructors, or functions respectively (see Generic Instantiations).\n\nA class, an interface, or a function must be parameterized by at least one type parameter to be a generic. The type parameter is declared in the type parameter section. It can be used as an ordinary type inside a generic.\n\nSyntactically, a type parameter is an unqualified identifier (see Scopes for the scope of type parameters). Each type parameter can have a constraint (see Type Parameter Constraint). A type parameter can have a default type (see Type Parameter Default).\n\nA generic class, interface, method, constructor, or function defines a set of parameterized classes, interfaces, methods, constructors, or functions respectively (see Generic Instantiations). One type argument can define only one set for each possible parameterization of the type parameter section.\n\nIf a type parameter has restrictions, or constraints, then such constraints must be followed by the corresponding type argument in a generic instantiation.\n\nIn every type parameter, a constraint can follow the keyword extends. The constraint is denoted as a single type parameter T. If no constraint is declared, then the type parameter is not compatible with Object, and has no methods or fields available for use. Lack of constraint effectively means extends Object|null|undefined. If type parameter T has type constraint S, then the actual type of the generic instantiation must be a subtype of S. If the constraint S is a non-nullish type (see Nullish Types), then T is non-nullish too. If the type parameter is constrained with the keyof T, then valid instantiations of this parameter can be the values of the union type created from string names of T or the union type itself:\n\nA type parameter of a generic can depend on another type parameter of the same generic.\n\nIf S constrains T, then the type parameter T directly depends on the type parameter S, while T directly depends on the following:\n\nType parameter U that depends on S.\n\nA compile-time error occurs if a type parameter in the type parameter section depends on itself.\n\nAs mentioned before, a generic class, interface, or function declaration defines a set of corresponding non-generic entities. A generic entity must be instantiated in order to get a non-generic entity out of it. The explicit instantiation is specified by providing a list of type arguments that substitute corresponding type parameters of the generic:\n\n—where <T1, ..., Tn> is the list of type arguments for the generic declaration G.\n\nIf C1, ..., Cn is the constraint for the corresponding type parameters T1, ..., Tn of a generic declaration, then Ti is a subtype of each constraint type Ci (see Subtyping). All subtypes of the type listed in the corresponding constraint have each type argument Ti of the parameterized declaration ranging over them.\n\nA generic instantiation G < T1, ..., Tn> is well-formed if all of the following is true:\n\nThe generic declaration name is G.\n\nThe number of type arguments equals that of G’s type parameters.\n\nAll type arguments are subtypes of a corresponding type parameter constraint.\n\nA compile-time error occurs if an instantiation is not well-formed.\n\nUnless explicitly stated otherwise in appropriate sections, this specification discusses generic versions of class type, interface type, or function.\n\nAny two generic instantiations are considered provably distinct if:\n\nBoth are parameterizations of distinct generic declarations; or\n\nAny of their type arguments is provably distinct.\n\nType parameters of generic types can have defaults. This situation allows dropping a type argument when a particular type of instantiation is used. However, a compile-time error occurs if a type parameter without a default value follows a type parameter with a default value in the declaration of a generic type.\n\nThe examples below illustrate this for both classes and functions:\n\nType arguments can be reference types or wildcards.\n\nIf a value type is specified as a type argument in the generic instantiation, then the boxing conversion applies to the type (see Boxing Conversions).\n\nA compile-time error occurs if type arguments are omitted in a parameterized function.\n\nThe variance for type arguments can be specified with wildcards (use-site variance). It allows changing type variance of an invariant type parameter.\n\nNote: This description of use-site variance modifiers is tentative. The details are to be specified in the future versions of ArkTS.\n\nThe syntax to signify a covariant type argument, or a wildcard with an upper bound (T is a typeReference) is as follows:\n\nThis syntax restricts the methods available, and allows accessing only the methods that do not use T, or use T in out-position.\n\nThe syntax to signify a contravariant type argument, or a wildcard with a lower bound (T is a typeReference) is as follows:\n\nThis syntax restricts the methods available, and allows accessing only the methods that do not use T, or use T in in-position.\n\nThe unbounded wildcard out, and the wildcard out Object | null are equivalent.\n\nA compile-time error occurs if:\n\nA wildcard is used in a parameterization of a function; or\n\nA covariant wildcard is specified for a contravariant type parameter; or\n\nA contravariant wildcard is specified for a covariant type parameter.\n\nThe rules below apply to the subtyping (see Subtyping) of two non-equivalent types A <: B, and an invariant type parameter F in case of use-site variance:\n\nT <out A> <: T <out B>;\n\nT <in A> :> T <in B>;\n\nAny two type arguments are considered provably distinct if:\n\nThe two arguments are not of the same type, and neither is a type parameter nor a wildcard; or\n\nOne type argument is a type parameter or a wildcard with an upper bound of S, the other T is not a type parameter and not a wildcard, and neither is a subtype of the other (see Subtyping); or\n\nEach type argument is a type parameter, or wildcard with upper bounds S and T, and neither is a subtype of the other (see Subtyping).\n\nArkTS supports several embedded types, called ‘utility’ types. They allow constructing new types, and extend their functionality.\n\nThe type Partial<T> constructs a type with all properties of T set to optional. T must be a class or an interface type:\n\nIn the example above, the type Partial<Issue> is transformed to a distinct type that is analogous:\n\nThe type Required<T> is opposite to Partial<T>. It constructs a type with all properties of T set to be required (not optional). T must be a class or an interface type.\n\nThe type defined in the example above, the type Required<Issue> is transformed to a distinct type that is analogous:\n\nThe type Readonly<T> constructs a type with all properties of T set to readonly. It means that the properties of the constructed value cannot be reassigned. T must be a class or an interface type:\n\nThe type Record<K, V> constructs a container that maps keys (of type K) to values (of type V).\n\nThe type K is restricted to number types, string types, union types constructed from these types, and also literals of these types.\n\nA compile-time error occurs if any other type, or literal of any other type is used in place of this type:\n\nThere are no restrictions on type V.\n\nA special form of object literals is supported for instances of Record types (see Object Literal of Record Type).\n\nAccess to Record<K, V> values is performed by an indexing expression like r[index], where r is an instance of the type Record, and index is the expression of type K. The result of an indexing expression is of type V if K is a union that contains literal types only; otherwise, it is of type V | undefined. See Record Indexing Expression for details.\n\nIn the example above, K is a union of literal types. The result of an indexing expression is of type V. In this case it is number.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "5. Generics¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "5.1. Generic Declarations¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "5.2. Generic Parameters¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "5.3. Type Parameter Constraint¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "5.4. Generic Instantiations¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "5.5. Type Parameter Default¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "5.6. Type Arguments¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "5.7. Utility Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "5.7.1. Partial Utility Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "5.7.2. Required Utility Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "5.7.3. Readonly Utility Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "5.7.4. Record Utility Type¶",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "typeParameters:\n    '<' typeParameterList '>'\n    ;\n\ntypeParameterList:\n    typeParameter (',' typeParameter)*\n    ;\n\ntypeParameter:\n    ('in' | 'out')? identifier constraint? typeParameterDefault?\n    ;\n\nconstraint:\n    'extends' typeReference | keyofType\n    ;\n\ntypeParameterDefault:\n    '=' typeReference\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "extends Object|null|undefined",
+      "language": "unknown"
+    },
+    {
+      "code": "1 class Base {}\n 2 class Derived extends Base { }\n 3 class SomeType { }\n 4\n 5 class G<T extends Base> { }\n 6\n 7 let x: G<Base>      // correct\n 8 let y: G<Derived>   // also correct\n 9 let z: G<SomeType>  // error: SomeType is not a subtype of Base\n10\n11 class A {\n12   f1: number = 0\n13   f2: string = \"\"\n14   f3: boolean = false\n15 }\n16 class B<T extends keyof A> {}\n17 let b1 = new B<'f1'>    // OK\n18 let b2 = new B<'f0'>    // Compile-time error as \"f0\" does not satisfy the constraint 'keyof A'\n19 let b3 = new B<keyof A> // OK",
+      "language": "javascript"
+    },
+    {
+      "code": "1 class Base {}\n 2 class Derived { }\n 3 class SomeType { }\n 4\n 5 class G<T, S extends T> {}\n 6\n 7 let x: G<Base, Derived>  // correct: the second argument directly\n 8                         // depends on the first one\n 9 let y: G<Base, SomeType> // error: SomeType doesn't depend on Base\n10\n11 class A0<T> {\n12    data: T\n13    constructor (p: T) { this.data = p }\n14    foo () {\n15       let o: Object = this.data // error: as type T is not compatible with Object\n16       console.log (this.data.toString()) // error: type T has no methods or fields\n17    }\n18 }\n19\n20 class A1<T extends Object> extends A0<T> {\n21    constructor (p: T) { this.data = p }\n22    override foo () {\n23       let o: Object = this.data // OK!\n24       console.log (this.data.toString()) // OK!\n25    }\n26 }",
+      "language": "javascript"
+    },
+    {
+      "code": "1 class SomeType {}\n 2 interface Interface <T1 = SomeType> { }\n 3 class Base <T2 = SomeType> { }\n 4 class Derived1 extends Base implements Interface { }\n 5 // Derived1 is semantically equivalent to Derived2\n 6 class Derived2 extends Base<SomeType> implements Interface<SomeType> { }\n 7\n 8 function foo<T = number>(): T {\n 9     // ...\n10 }\n11 foo() // this call is semantically equivalent to the call below\n12 foo<number>()\n13\n14 class C1 <T1, T2 = number, T3> {}\n15 // That is a compile-time error, as T2 has default but T3 does not\n16\n17 class C2 <T1, T2 = number, T3 = string> {}\n18 let c1 = new C2<number>          // equal to C2<number, number, string>\n19 let c2 = new C2<number, string>  // equal to C2<number, string, string>\n20 let c3 = new C2<number, Object, number> // all 3 type arguments provided",
+      "language": "javascript"
+    },
+    {
+      "code": "typeArguments:\n    '<' typeArgumentList '>'\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "typeArgumentList:\n    typeArgument (',' typeArgument)*\n    ;\n\ntypeArgument:\n    typeReference\n    | arrayType\n    | wildcardType\n    ;\n\nwildcardType:\n    'in' typeReference\n    | 'out' typeReference?\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "out Object | null",
+      "language": "unknown"
+    },
+    {
+      "code": "1 interface Issue {\n 2     title: string\n 3     description: string\n 4 }\n 5\n 6 function process(issue: Partial<Issue>) {\n 7     if (issue.title != undefined) {\n 8         /* process title */\n 9     }\n10 }\n11\n12 process({title: \"aa\"}) // description is undefined",
+      "language": "unknown"
+    },
+    {
+      "code": "1 interface /*some name*/ {\n2     title?: string\n3     description?: string\n4 }",
+      "language": "unknown"
+    },
+    {
+      "code": "1 interface Issue {\n2     title?: string\n3     description?: string\n4 }\n5\n6 let c: Required<Issue> = { // CTE: 'description' should be defined\n7     title: \"aa\"\n8 }",
+      "language": "javascript"
+    },
+    {
+      "code": "1 interface /*some name*/ {\n2     title: string\n3     description: string\n4 }",
+      "language": "unknown"
+    },
+    {
+      "code": "1 interface Issue {\n2     title: string\n3 }\n4\n5 const myIssue: Readonly<Issue> = {\n6     title: \"One\"\n7 };\n8\n9 myIssue.title = \"Two\" // compile-time error: readonly property",
+      "language": "javascript"
+    },
+    {
+      "code": "1 type R1 = Record<number, string> // ok\n2 type R2 = Record<boolean, string> // compile-time error\n3 type R3 = Record<1 | 2, string> // ok\n4 type R4 = Record<\"salary\" | \"bonus\", number> // ok\n5 type R4 = Record<1 | true, number> // compile-time error",
+      "language": "unknown"
+    },
+    {
+      "code": "Record<K, V>",
+      "language": "unknown"
+    },
+    {
+      "code": "1 type Keys = 'key1' | 'key2' | 'key3'\n 2\n 3 let x: Record<Keys, number> = {\n 4     'key1': 1,\n 5     'key2': 2,\n 6     'key3': 4,\n 7 }\n 8 console.log(x['key2']) // prints 2\n 9 x['key2'] = 8\n10 console.log(x['key2']) // prints 8",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generics",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-declarations",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-instantiations",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-parameters",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#scopes",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-parameter-constraint",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-parameter-default",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-instantiations",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-parameter-constraint",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#nullish-types",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-instantiations",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#subtyping",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-parameter-default",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-arguments",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#subtyping",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#subtyping",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#subtyping",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#utility-types",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#partial-utility-type",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#required-utility-type",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#readonly-utility-type",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#record-utility-type"
+  ]
+}

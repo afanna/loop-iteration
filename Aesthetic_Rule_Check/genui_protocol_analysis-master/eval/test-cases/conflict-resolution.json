@@ -1,0 +1,143 @@
+[
+  {
+    "id": "CR001",
+    "name": "as绑定与数据模型同名-result",
+    "category": "mixed",
+    "complexity": "complex",
+    "task": "生成一个Button组件，标签\"提交\"，点击时先调用validateForm绑定返回值为result，如果$result.valid为true则调用submit传入$result，否则调用showToast传入消息\"验证失败\"。注意：数据模型中已有$result字段表示上次的提交结果，这里$result应引用validateForm的返回值。",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "提交"},
+        {"field": "onClick", "must_be_type": "array"},
+        {"field": "onClick[0].call", "must_contain": "validateForm"},
+        {"field": "onClick[0].as", "must_contain": "result"},
+        {"field": "onClick[1].condition", "must_be_type": "string"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick[0].as", "description": "第一个EventHandler必须有as绑定"},
+      {"type": "contains", "field": "onClick[0].as", "value": "result", "description": "as绑定名为result"},
+      {"type": "events_format", "description": "必须有onClick事件"}
+    ],
+    "hints": [
+      "as绑定的result会创建局部变量$result，与数据模型中的$result同名",
+      "在EventHandler链内，$result应引用as绑定的局部变量（validateForm的返回值）",
+      "$result.valid 表示验证结果中的valid字段"
+    ]
+  },
+  {
+    "id": "CR002",
+    "name": "事件参数$context.eventData与数据模型区分",
+    "category": "mixed",
+    "complexity": "medium",
+    "task": "生成一个TextInput组件，text绑定$content，placeholder\"请输入\"，onChange事件中获取事件参数（新输入值），调用updateContent传入两个参数：newValue为事件参数，oldValue为数据模型中的$content（旧值）。",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "text", "placeholder", "onChange"],
+      "patterns": [
+        {"field": "text", "must_be_type": "string"},
+        {"field": "text", "must_contain": "$content"},
+        {"field": "placeholder", "must_contain": "请输入"},
+        {"field": "onChange", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "value": "{{", "field": "text", "description": "text字段必须用{{ }}包裹格式"},
+      {"type": "events_format", "description": "必须有onChange事件"},
+      {"type": "contains", "field": "onChange[0].args.newValue", "value": "$context.eventData", "description": "newValue参数应引用$context.eventData"},
+      {"type": "contains", "field": "onChange[0].args.oldValue", "value": "$content", "description": "oldValue参数应引用数据模型$content"}
+    ],
+    "hints": [
+      "onChange事件会传入事件参数，使用$context.eventData引用",
+      "$content是数据模型中的变量（旧值）",
+      "$context.eventData是事件参数（新输入的值）",
+      "需要在EventHandler的args中同时使用$context.eventData和$content"
+    ]
+  },
+  {
+    "id": "CR003",
+    "name": "as绑定名status与数据模型$status冲突",
+    "category": "mixed",
+    "complexity": "complex",
+    "task": "生成一个Button组件，标签\"检查\"，点击时先调用checkStatus绑定返回值为status，然后条件判断：如果数据模型中原始的$status（注意不是checkStatus的返回值，是数据模型中的状态字段）为'active'，则调用proceed传入$context.eventData，否则调用showToast传入checkStatus返回的$status。数据模型中有$status表示用户状态。",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "检查"},
+        {"field": "onClick", "must_be_type": "array"},
+        {"field": "onClick[0].call", "must_contain": "checkStatus"},
+        {"field": "onClick[0].as", "must_contain": "status"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick[0].as", "description": "第一个EventHandler必须有as绑定"},
+      {"type": "events_format", "description": "必须有onClick事件"}
+    ],
+    "hints": [
+      "数据模型中有$status，as绑定也用了status",
+      "这是同名冲突场景——需要区分数据模型的$status和as绑定的$status",
+      "think carefully about how to reference each one correctly"
+    ]
+  },
+  {
+    "id": "CR004",
+    "name": "多层as绑定同名覆盖",
+    "category": "mixed",
+    "complexity": "complex",
+    "task": "生成一个Button组件，标签\"操作\"，点击时执行以下EventHandler链：第一步调用fetchData绑定返回值为data，第二步调用processData绑定返回值也为data（覆盖第一步的），第三步条件判断$data.success为true则调用showResult传入$data。",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": [
+        {"field": "label", "must_contain": "操作"},
+        {"field": "onClick", "must_be_type": "array"},
+        {"field": "onClick[0].call", "must_contain": "fetchData"},
+        {"field": "onClick[0].as", "must_contain": "data"},
+        {"field": "onClick[1].call", "must_contain": "processData"},
+        {"field": "onClick[1].as", "must_contain": "data"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick[0].as", "description": "fetchData必须有as绑定"},
+      {"type": "has_field", "field": "onClick[1].as", "description": "processData必须有as绑定"},
+      {"type": "events_format", "description": "必须有onClick事件"}
+    ],
+    "hints": [
+      "两个连续的EventHandler都绑定了as: data",
+      "后一个as绑定会覆盖前一个同名的绑定",
+      "$data在第三步中应引用processData的返回值"
+    ]
+  },
+  {
+    "id": "CR005",
+    "name": "事件参数+as绑定+数据模型三重引用",
+    "category": "mixed",
+    "complexity": "complex",
+    "task": "生成一个TextInput组件，text绑定$keyword，placeholder\"搜索\"，onChange事件中：获取事件参数作为输入值，调用search绑定返回值为results，条件判断$results.length > 0时调用showResults传入$results，同时调用saveToHistory传入数据模型中的$keyword（原始关键词，非事件参数）。",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "text", "placeholder", "onChange"],
+      "patterns": [
+        {"field": "text", "must_be_type": "string"},
+        {"field": "text", "must_contain": "$keyword"},
+        {"field": "placeholder", "must_contain": "搜索"},
+        {"field": "onChange", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "value": "{{", "field": "text", "description": "text必须用{{ }}包裹引用$keyword"},
+      {"type": "events_format", "description": "必须有onChange事件"},
+      {"type": "has_field", "field": "onChange[0].call", "description": "第一个EventHandler调用search"},
+      {"type": "has_field", "field": "onChange[0].as", "description": "search必须有as绑定"}
+    ],
+    "hints": [
+      "$context.eventData = 事件参数（新输入值）",
+      "$keyword = 数据模型变量（原始关键词）",
+      "$results = as绑定的search返回值",
+      "saveToHistory需要传入$keyword（数据模型），不是$context.eventData"
+    ]
+  }
+]

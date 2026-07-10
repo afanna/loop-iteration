@@ -1,0 +1,407 @@
+{
+  "name": "arkts",
+  "total_pages": 100,
+  "base_url": "https://yoyocat.github.io/ArkTSSpec/",
+  "pages": [
+    {
+      "title": "ArkTS Specification¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/"
+    },
+    {
+      "title": "1. Introduction¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/1_intro.html"
+    },
+    {
+      "title": "1. Introduction¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/1_intro.html#common-description"
+    },
+    {
+      "title": "1. Introduction¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/1_intro.html#lexical-and-syntactic-notation"
+    },
+    {
+      "title": "1. Introduction¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/1_intro.html#terms-and-definitions"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#use-of-unicode-characters"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#lexical-input-elements"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#white-spaces"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#line-separators"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#tokens"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#identifiers"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#keywords"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#operators-and-punctuators"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#literals"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#integer-literals"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#floating-point-literals"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#bigint-literals"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#boolean-literals"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#string-literals"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#template-literals"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#null-literal"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#undefined-literal"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#comments"
+    },
+    {
+      "title": "2. Lexical Elements¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#semicolons"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#predefined-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#user-defined-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#types-by-category"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#using-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#named-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#type-references"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#value-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#integer-types-and-operations"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#floating-point-types-and-operations"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#numeric-types-hierarchy"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#boolean-types-and-operations"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#reference-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#objects"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#object-class-type"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#string-type"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#never-type"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#void-type"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#array-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#function-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#null-type"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#undefined-type"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#tuple-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#nullish-types"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#dynamicobject-type"
+    },
+    {
+      "title": "3. Types¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#default-values-for-types"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#names"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#declarations"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#distinguishable-declarations"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#scopes"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-declarations"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-alias-declaration"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#recursive-type-aliases"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#variable-and-constant-declarations"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#variable-declarations"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#constant-declarations"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-compatibility-with-initializer"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-inference-from-initializer"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#function-declarations"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#signatures"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#parameter-list"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#readonly-parameters"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#optional-parameters"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#rest-parameter"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#shadowing-parameters"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#return-type"
+    },
+    {
+      "title": "4. Names, Declarations and Scopes¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/4_names.html#function-overload-signatures"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-declarations"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-parameters"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-parameter-constraint"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-instantiations"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-parameter-default"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-arguments"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#utility-types"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#partial-utility-type"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#required-utility-type"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#readonly-utility-type"
+    },
+    {
+      "title": "5. Generics¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/5_generics.html#record-utility-type"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#separate-modules"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#compilation-units-in-host-system"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#import-directives"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#bind-all-with-qualified-access"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#simple-name-binding"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#several-bindings-for-one-import-path"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#default-import-binding"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#type-binding"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#import-path"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#default-import"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#top-level-declarations"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#exported-declarations"
+    },
+    {
+      "title": "13. Compilation Units, Packages, and Modules¶",
+      "url": "https://yoyocat.github.io/ArkTSSpec/13_modules.html#export-directives"
+    }
+  ]
+}

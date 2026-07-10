@@ -1,0 +1,1606 @@
+[
+  {
+    "id": "ES01",
+    "name": "扩展组件-文本属性用表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，id为greeting，显示用户名$user.name",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "id",
+        "text"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$user.name",
+          "description": "引用$user.name"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$user.name",
+          "description": "引用$user.name"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "Extended组件的text属性可以使用表达式"
+    ]
+  },
+  {
+    "id": "ES02",
+    "name": "id属性禁止表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，id为user-text，显示$user.name。注意id必须用固定字符串，不能使用表达式",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "id",
+        "text"
+      ],
+      "patterns": [
+        {
+          "field": "id",
+          "must_be_type": "string"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "id",
+        "value": "{{",
+        "description": "id字段不能使用表达式{{}}"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "id",
+          "value": "user-text",
+          "description": "id使用固定值user-text"
+        },
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$user.name",
+          "description": "引用$user.name"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "id",
+          "value": "user-text",
+          "description": "id使用固定值user-text"
+        },
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$user.name",
+          "description": "引用$user.name"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "id属性不能使用表达式，必须是固定字符串"
+    ]
+  },
+  {
+    "id": "ES03",
+    "name": "component属性禁止表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件，id为submit-btn，label为'提交'，点击时触发validate action。注意component必须是固定字符串",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "id",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "component",
+          "must_be_type": "string"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "component",
+        "value": "{{",
+        "description": "component字段不能使用表达式"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Button",
+        "description": "component必须是Extended.Button"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "not_contains",
+          "field": "id",
+          "value": "{{",
+          "description": "id不能使用表达式"
+        },
+        {
+          "type": "not_contains",
+          "field": "label",
+          "value": "{{",
+          "description": "label不能使用表达式"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "not_contains",
+          "field": "id",
+          "value": "{{",
+          "description": "id不能使用表达式"
+        },
+        {
+          "type": "not_contains",
+          "field": "label",
+          "value": "{{",
+          "description": "label不能使用表达式"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "component和id都必须是固定字符串"
+    ]
+  },
+  {
+    "id": "ES04",
+    "name": "样式属性值可用表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，id为title，显示$titleText，styles中fontSize用$fontSize变量动态控制",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "id",
+        "text",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$titleText",
+          "description": "引用$titleText"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$fontSize",
+          "description": "fontSize引用$fontSize"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$titleText",
+          "description": "引用$titleText"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$fontSize",
+          "description": "fontSize引用$fontSize"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "styles内的属性值可以使用表达式"
+    ]
+  },
+  {
+    "id": "ES05",
+    "name": "事件行为args参数值可用表达式",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为delete-btn，label为'删除'。点击时调用setDataModel，path参数用表达式'/items/' + $index，value参数为null",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "id",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "not_contains",
+        "field": "onClick[0].call",
+        "value": "{{",
+        "description": "action字段不能用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "onClick[0].args.path",
+          "value": "$index",
+          "description": "path引用$index"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "onClick[0].args.path",
+          "value": "$index",
+          "description": "path引用$index"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "args参数值可以使用表达式",
+      "但action字段名称不能用表达式"
+    ]
+  },
+  {
+    "id": "ES06",
+    "name": "action字段禁止表达式",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为nav-btn，label为'跳转'。点击时调用navigate action，url参数为$pageUrl变量",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "id",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "not_contains",
+        "field": "onClick[0].call",
+        "value": "{{",
+        "description": "action字段不能用表达式"
+      },
+      {
+        "type": "contains",
+        "field": "onClick[0].call",
+        "value": "navigate",
+        "description": "action固定为navigate"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "onClick[0].args.url",
+          "value": "$pageUrl",
+          "description": "url引用$pageUrl"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "onClick[0].args.url",
+          "value": "$pageUrl",
+          "description": "url引用$pageUrl"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "action字段（函数名）不能用表达式，必须是固定字符串"
+    ]
+  },
+  {
+    "id": "ES07",
+    "name": "If组件condition可用表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.If组件，id为auth-check，condition为$isLoggedIn，为true时显示userPanel否则显示loginForm",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": [
+        "component",
+        "id",
+        "condition",
+        "childrenIf",
+        "childrenElse"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "condition",
+        "description": "必须有condition字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "childrenIf",
+        "value": "{{",
+        "description": "childrenIf不能使用表达式"
+      },
+      {
+        "type": "not_contains",
+        "field": "childrenElse",
+        "value": "{{",
+        "description": "childrenElse不能使用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "condition",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "condition使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "$isLoggedIn",
+          "description": "引用$isLoggedIn"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "condition",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "condition使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "$isLoggedIn",
+          "description": "引用$isLoggedIn"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "condition属性可以使用表达式",
+      "childrenIf和childrenElse是id引用不能用表达式"
+    ]
+  },
+  {
+    "id": "ES08",
+    "name": "theme属性禁止表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件，id为heading，显示$title变量，theme为heading1。注意theme必须是固定的主题名称",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "id",
+        "text",
+        "theme"
+      ],
+      "patterns": [
+        {
+          "field": "theme",
+          "must_be_type": "string"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      },
+      {
+        "type": "has_field",
+        "field": "theme",
+        "description": "必须有theme字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "theme",
+        "value": "{{",
+        "description": "theme不能使用表达式"
+      },
+      {
+        "type": "contains",
+        "field": "theme",
+        "value": "heading1",
+        "description": "theme固定为heading1"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$title",
+          "description": "引用$title"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$title",
+          "description": "引用$title"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "theme属性不能使用表达式，必须是预设主题名称"
+    ]
+  },
+  {
+    "id": "ES09",
+    "name": "label属性禁止表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件，id为action-btn，label固定为'提交'，点击时调用submitData action",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "id",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "label",
+          "must_be_type": "string"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "label",
+        "value": "{{",
+        "description": "label不能使用表达式"
+      },
+      {
+        "type": "contains",
+        "field": "label",
+        "value": "提交",
+        "description": "label固定为'提交'"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [],
+      "wrapped": []
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "label属性不能使用表达式"
+    ]
+  },
+  {
+    "id": "ES10",
+    "name": "placeholder禁止表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Extended.TextInput组件，id为search-input，text绑定为$searchText变量，placeholder固定为'请输入搜索内容'",
+    "expected": {
+      "component": "Extended.TextInput",
+      "required_fields": [
+        "component",
+        "id",
+        "text",
+        "placeholder"
+      ],
+      "patterns": [
+        {
+          "field": "placeholder",
+          "must_be_type": "string"
+        }
+      ]
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      },
+      {
+        "type": "has_field",
+        "field": "placeholder",
+        "description": "必须有placeholder字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "placeholder",
+        "value": "{{",
+        "description": "placeholder不能使用表达式"
+      },
+      {
+        "type": "contains",
+        "field": "placeholder",
+        "value": "请输入搜索内容",
+        "description": "placeholder固定值"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$searchText",
+          "description": "引用$searchText"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$searchText",
+          "description": "引用$searchText"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "text可以用表达式但placeholder不能"
+    ]
+  },
+  {
+    "id": "ES11",
+    "name": "条件行为if字段可用表达式",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为del-btn，label为'删除'。点击时：第一个action调用confirmDelete，第二个action当$confirmed==1时调用deleteItem",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "id",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$confirmed",
+          "description": "条件中引用$confirmed"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$confirmed",
+          "description": "条件中引用$confirmed"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "action的if字段可以使用表达式",
+      "但action名称必须是固定字符串"
+    ]
+  },
+  {
+    "id": "ES12",
+    "name": "children禁止表达式",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件，id为main-layout，children包含三个子组件id引用：header、content、footer",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "children",
+        "value": "{{",
+        "description": "children不能使用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "header",
+          "description": "children包含header"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "content",
+          "description": "children包含content"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "footer",
+          "description": "children包含footer"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "header",
+          "description": "children包含header"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "content",
+          "description": "children包含content"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "footer",
+          "description": "children包含footer"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "children是组件id引用数组，不能使用表达式"
+    ]
+  },
+  {
+    "id": "ES13",
+    "name": "综合-混合可表达式和禁止字段",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成Extended.Column(id为user-card)包含Extended.Text(id为user-info)显示$user.name和Extended.Button(id为edit-btn)label为'编辑'。Button点击调用setDataModel，path为'/users/' + $userId，value为$updateData",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "component",
+        "value": "{{",
+        "description": "component不能用表达式"
+      },
+      {
+        "type": "not_contains",
+        "field": "id",
+        "value": "{{",
+        "description": "id不能用表达式"
+      },
+      {
+        "type": "not_contains",
+        "field": "children",
+        "value": "{{",
+        "description": "children不能用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "user-info",
+          "description": "children包含user-info"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "edit-btn",
+          "description": "children包含edit-btn"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "user-info",
+          "description": "children包含user-info"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "edit-btn",
+          "description": "children包含edit-btn"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "component/id/label/children固定值",
+      "text/styles/args可用表达式"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "ES14",
+    "name": "styles混合表达式和固定值",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成Extended.Text(id为styled-text)，text显示$label，styles中backgroundColor固定#FFFFFF，fontSize用$fontSize变量，padding固定16",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "id",
+        "text",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "styles.backgroundColor",
+        "value": "{{",
+        "description": "backgroundColor应为固定值"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$label",
+          "description": "引用$label"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$fontSize",
+          "description": "fontSize引用$fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "styles.backgroundColor",
+          "value": "#FFFFFF",
+          "description": "backgroundColor固定为#FFFFFF"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$label",
+          "description": "引用$label"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$fontSize",
+          "description": "fontSize引用$fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "styles.backgroundColor",
+          "value": "#FFFFFF",
+          "description": "backgroundColor固定为#FFFFFF"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "同一styles中有些属性用表达式(fontSize)有些用固定值(backgroundColor/padding)"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "ES15",
+    "name": "Toggle组件isOn可用表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成Extended.Toggle组件，id为theme-toggle，isOn绑定$isDarkMode变量，selectedColor固定为#FF9500",
+    "expected": {
+      "component": "Extended.Toggle",
+      "required_fields": [
+        "component",
+        "id",
+        "isOn"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "isOn",
+        "description": "必须有isOn字段"
+      },
+      {
+        "type": "contains",
+        "field": "selectedColor",
+        "value": "#FF9500",
+        "description": "selectedColor固定为#FF9500"
+      },
+      {
+        "type": "not_contains",
+        "field": "selectedColor",
+        "value": "{{",
+        "description": "selectedColor不能用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "isOn",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "isOn使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "isOn",
+          "value": "$isDarkMode",
+          "description": "引用$isDarkMode"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "isOn",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "isOn使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "isOn",
+          "value": "$isDarkMode",
+          "description": "引用$isDarkMode"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "isOn属性可以使用表达式",
+      "selectedColor是固定值"
+    ]
+  },
+  {
+    "id": "ES16",
+    "name": "Slider组件value可用表达式",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成Extended.Slider组件，id为volume-slider，value绑定$volume变量，min固定为0，max固定为100",
+    "expected": {
+      "component": "Extended.Slider",
+      "required_fields": [
+        "component",
+        "id",
+        "value"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "value",
+        "description": "必须有value字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "value",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "value使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "$volume",
+          "description": "引用$volume"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "value",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "value使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "value",
+          "value": "$volume",
+          "description": "引用$volume"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "value属性可以用表达式",
+      "min/max是固定数值"
+    ]
+  },
+  {
+    "id": "ES17",
+    "name": "表达式禁止在key位置",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成Extended.Text组件，id为msg，显示$message变量。关键注意：表达式只能用在JSON的value位置，绝对不能出现在key位置（不能写 '{{ $key }}': 'value'）",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "id",
+        "text"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$message",
+          "description": "引用$message"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$message",
+          "description": "引用$message"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "表达式只能出现在JSON的value位置",
+      "JSON的key必须是固定字符串"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "ES18",
+    "name": "多属性混合-正面",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成Extended.Text(id为price-display)，text显示$price，styles中fontColor根据$isDiscount为true时#FF0000否则#333333，fontSize用$fontSize",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "id",
+        "text",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "text",
+        "description": "必须有text字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$price",
+          "description": "引用$price"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor",
+          "value": "$isDiscount",
+          "description": "fontColor引用$isDiscount"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "matches_regex",
+          "field": "text",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "text使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "text",
+          "value": "$price",
+          "description": "引用$price"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor",
+          "value": "$isDiscount",
+          "description": "fontColor引用$isDiscount"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "text和styles中fontColor/fontSize可以用表达式",
+      "id固定值"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "ES19",
+    "name": "嵌套组件-正确边界",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成Extended.Row(id为toolbar)包含Extended.Text(id为status-text)显示$status和Extended.Image(id为icon)src为$iconUrl。toolbar的styles中justifyContent固定为spaceBetween",
+    "expected": {
+      "component": "Extended.Row",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "children",
+        "value": "{{",
+        "description": "children不能用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "status-text",
+          "description": "children包含status-text"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "icon",
+          "description": "children包含icon"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "status-text",
+          "description": "children包含status-text"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "icon",
+          "description": "children包含icon"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "children是id引用不能用表达式",
+      "子组件的text和src可以用表达式",
+      "justifyContent是固定枚举值"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "ES20",
+    "name": "综合场景-购物车",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成购物车：Extended.Column(id为cart)包含cart-items和cart-summary。Extended.Text(id为cart-summary)text为$price * $quantity。Extended.Button(id为checkout-btn)label为'去结算'，点击validate验证$cartData",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "id",
+        "children"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "not_contains",
+        "field": "component",
+        "value": "{{",
+        "description": "component不能用表达式"
+      },
+      {
+        "type": "not_contains",
+        "field": "id",
+        "value": "{{",
+        "description": "id不能用表达式"
+      },
+      {
+        "type": "not_contains",
+        "field": "children",
+        "value": "{{",
+        "description": "children不能用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "cart-items",
+          "description": "children包含cart-items"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "cart-summary",
+          "description": "children包含cart-summary"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "cart-items",
+          "description": "children包含cart-items"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "cart-summary",
+          "description": "children包含cart-summary"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "text/args可用表达式",
+      "label/children/id/component/action固定值"
+    ],
+    "is_edge": true
+  }
+]

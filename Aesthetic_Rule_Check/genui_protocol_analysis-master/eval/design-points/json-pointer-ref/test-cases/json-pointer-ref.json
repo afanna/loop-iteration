@@ -1,0 +1,1140 @@
+[
+  {
+    "id": "JP01",
+    "name": "显示用户名",
+    "category": "json-pointer-ref",
+    "complexity": "simple",
+    "task": "生成Extended.Text组件，显示数据模型中的用户名，路径为/user/name",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "使用表达式语法"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "user",
+          "description": "引用user路径"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "name",
+          "description": "引用name字段"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/",
+          "description": "JSON Pointer包含/user/"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "name",
+          "description": "引用name字段"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP02",
+    "name": "显示商品价格",
+    "category": "json-pointer-ref",
+    "complexity": "simple",
+    "task": "生成Extended.Text组件，显示数据模型中的商品价格，路径为/product/price，前面加上'¥'符号",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "使用表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "price",
+        "description": "引用price字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/product/",
+          "description": "JSON Pointer包含/product/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP03",
+    "name": "条件判断-VIP",
+    "category": "json-pointer-ref",
+    "complexity": "simple",
+    "task": "生成Extended.Text组件，根据数据模型中路径/user/isVip的值，显示'VIP用户'或'普通用户'",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "使用表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "isVip",
+        "description": "引用isVip字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "VIP",
+        "description": "包含VIP文本"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/",
+          "description": "JSON Pointer包含/user/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP04",
+    "name": "问候语模板",
+    "category": "json-pointer-ref",
+    "complexity": "simple",
+    "task": "生成Extended.Text组件，显示'你好, '加上数据模型中的用户名（路径/user/name），用模板字符串格式",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "使用表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "name",
+        "description": "引用name字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/",
+          "description": "JSON Pointer包含/user/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP05",
+    "name": "多字段拼接",
+    "category": "json-pointer-ref",
+    "complexity": "simple",
+    "task": "生成Extended.Text组件，显示数据模型中用户的名和姓拼接，路径分别为/user/firstName和/user/lastName，中间加空格",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "使用表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "firstName",
+        "description": "引用firstName字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "lastName",
+        "description": "引用lastName字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/",
+          "description": "JSON Pointer包含/user/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP06",
+    "name": "嵌套属性访问",
+    "category": "json-pointer-ref",
+    "complexity": "medium",
+    "task": "生成Extended.Text组件，显示数据模型中用户所在城市，路径为/user/profile/address/city",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "city",
+        "description": "引用city字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "profile",
+          "description": "通过点分访问profile"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "address",
+          "description": "通过点分访问address"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/profile/address/city",
+          "description": "完整JSON Pointer路径"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP07",
+    "name": "数组元素访问",
+    "category": "json-pointer-ref",
+    "complexity": "medium",
+    "task": "生成Extended.Text组件，显示数据模型中第一个订单的名称，路径为/orders/0/name",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "orders",
+        "description": "引用orders字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "name",
+        "description": "引用name字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "[0]",
+          "description": "使用[0]数组索引"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/orders/0/",
+          "description": "JSON Pointer包含/orders/0/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP08",
+    "name": "动态样式绑定",
+    "category": "json-pointer-ref",
+    "complexity": "medium",
+    "task": "生成Extended.Text组件，显示数据模型中的标题（路径/article/title），字体大小根据数据模型中的配置路径/ui/fontSize动态设置",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "contains",
+        "field": "styles",
+        "value": "fontSize",
+        "description": "样式中有fontSize"
+      },
+      {
+        "type": "contains",
+        "field": "styles",
+        "value": "{{",
+        "description": "fontSize使用表达式"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "content使用$__DataModel"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$__DataModel",
+          "description": "styles中使用$__DataModel"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "content使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "${/",
+          "description": "styles中使用${/json_pointer}语法"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP09",
+    "name": "条件+样式组合",
+    "category": "json-pointer-ref",
+    "complexity": "medium",
+    "task": "生成Extended.Text组件，当数据模型路径/settings/isDark为true时显示'深色模式'否则显示'浅色模式'，并且字体颜色根据同一路径的值设置（深色模式白色#FFFFFF，浅色模式黑色#000000）",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "isDark",
+        "description": "引用isDark字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "$__DataModel",
+          "description": "styles中也使用$__DataModel"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "${/",
+          "description": "styles中也使用${/json_pointer}语法"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP10",
+    "name": "事件处理参数",
+    "category": "json-pointer-ref",
+    "complexity": "medium",
+    "task": "生成Extended.Button组件，文本为'提交'，点击时触发sendToLLM行为，发送的value为数据模型路径/form/message的值",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Button",
+        "description": "使用Extended.Button组件"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "sendToLLM",
+        "description": "使用sendToLLM行为"
+      },
+      {
+        "type": "contains",
+        "field": "onClick",
+        "value": "message",
+        "description": "引用message字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "$__DataModel",
+          "description": "handler参数使用$__DataModel"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "${/",
+          "description": "handler参数使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "onClick",
+          "value": "/form/",
+          "description": "JSON Pointer包含/form/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "JP11",
+    "name": "格式化函数",
+    "category": "json-pointer-ref",
+    "complexity": "complex",
+    "task": "生成Extended.Text组件，使用format函数格式化数据模型中用户的名字（路径/user/name），显示为'你好, {name}！欢迎回来'",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "{{",
+        "description": "使用表达式语法"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "format",
+        "description": "使用format函数"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "name",
+        "description": "引用name字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/user/",
+          "description": "JSON Pointer包含/user/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "JP12",
+    "name": "复杂表达式",
+    "category": "json-pointer-ref",
+    "complexity": "complex",
+    "task": "生成Extended.Text组件，显示商品总价，计算方式为数据模型路径/cart/itemPrice乘以/cart/quantity，再乘以折扣系数/cart/discount，格式为'总价: {result}'",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Text",
+        "description": "使用Extended.Text组件"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "itemPrice",
+        "description": "引用itemPrice"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "quantity",
+        "description": "引用quantity"
+      },
+      {
+        "type": "contains",
+        "field": "content",
+        "value": "discount",
+        "description": "引用discount"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__DataModel",
+          "description": "使用$__DataModel点分语法"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "${/",
+          "description": "使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "/cart/",
+          "description": "JSON Pointer包含/cart/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "JP13",
+    "name": "Extended.If条件",
+    "category": "json-pointer-ref",
+    "complexity": "complex",
+    "task": "生成Extended.If组件，判断数据模型路径/user/isLoggedIn是否为true，为true时显示欢迎Text（路径/user/nickname），为false时显示登录Button",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": [
+        "component",
+        "condition"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.If",
+        "description": "使用Extended.If组件"
+      },
+      {
+        "type": "has_field",
+        "field": "condition",
+        "description": "必须有condition字段"
+      },
+      {
+        "type": "contains",
+        "field": "condition",
+        "value": "isLoggedIn",
+        "description": "条件引用isLoggedIn"
+      },
+      {
+        "type": "has_field",
+        "field": "childrenIf",
+        "description": "必须有childrenIf字段"
+      },
+      {
+        "type": "has_field",
+        "field": "childrenElse",
+        "description": "必须有childrenElse字段"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "$__DataModel",
+          "description": "条件使用$__DataModel点分语法"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "${/",
+          "description": "条件使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "/user/",
+          "description": "JSON Pointer包含/user/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "JP14",
+    "name": "混合绝对+相对路径",
+    "category": "json-pointer-ref",
+    "complexity": "complex",
+    "task": "生成Extended.List组件，数据路径/products，模板为Extended.Column包含两个Text：第一个显示当前商品的$name（相对路径），第二个显示数据模型中路径/config/currency（绝对路径）拼接商品$price",
+    "expected": {
+      "component": "Extended.List",
+      "required_fields": [
+        "component"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.List",
+        "description": "使用Extended.List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$name",
+        "description": "使用相对路径$name"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$price",
+        "description": "使用相对路径$price"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$__DataModel",
+          "description": "绝对路径使用$__DataModel"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "currency",
+          "description": "引用currency字段"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "${/",
+          "description": "绝对路径使用${/json_pointer}语法"
+        },
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "/config/",
+          "description": "JSON Pointer包含/config/"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "JP15",
+    "name": "复合业务场景",
+    "category": "json-pointer-ref",
+    "complexity": "complex",
+    "task": "生成一个Extended.Column布局，包含：1) Extended.Text显示数据模型路径/app/title；2) Extended.Text根据路径/user/level显示'黄金会员'或'普通用户'，字体大小根据路径/ui/headingSize设置；3) Extended.Button文本'查看订单'，点击时navigate到订单页，目标Navigation组件id为mainNav，跳转索引为路径/user/lastOrderIndex",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Extended.Column",
+        "description": "使用Extended.Column组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "title",
+        "description": "引用title"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "level",
+        "description": "引用level"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "navigate",
+        "description": "使用navigate行为"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "mainNav",
+        "description": "引用目标Navigation组件"
+      }
+    ],
+    "strategy_rules": {
+      "dot-notation": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "$__DataModel",
+          "description": "绝对路径使用$__DataModel"
+        }
+      ],
+      "json-pointer": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "${/",
+          "description": "绝对路径使用${/json_pointer}语法"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

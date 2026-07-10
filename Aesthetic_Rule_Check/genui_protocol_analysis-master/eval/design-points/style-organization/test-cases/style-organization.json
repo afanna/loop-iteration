@@ -1,0 +1,1393 @@
+[
+  {
+    "id": "SO01",
+    "name": "基础布局样式-padding",
+    "category": "style-organization",
+    "complexity": "simple",
+    "task": "生成一个Column组件，id为'container'，包含子组件'header'和'body'，padding为16",
+    "expected": {
+      "component": "Column",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "padding",
+          "description": "styles中包含padding"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "padding",
+          "value": "16",
+          "description": "组件上直接包含padding属性"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "padding",
+          "description": "styleOverrides中包含padding"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO02",
+    "name": "文本样式-字号+颜色",
+    "category": "style-organization",
+    "complexity": "simple",
+    "task": "生成一个Text组件，id为'title'，content为'标题文本'，字号为24，字体颜色为'#333333'",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "fontSize",
+          "description": "styles中包含fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "fontColor",
+          "description": "styles中包含fontColor"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "fontSize",
+          "value": "24",
+          "description": "组件上直接包含fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "fontColor",
+          "value": "#333333",
+          "description": "组件上直接包含fontColor"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "fontSize",
+          "description": "styleOverrides中包含fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "fontColor",
+          "description": "styleOverrides中包含fontColor"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO03",
+    "name": "背景色+圆角",
+    "category": "style-organization",
+    "complexity": "simple",
+    "task": "生成一个Card组件，id为'card'，子组件为'cardContent'，背景色为'#FFFFFF'，圆角为12",
+    "expected": {
+      "component": "Card",
+      "required_fields": [
+        "component",
+        "child"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "backgroundColor",
+          "description": "styles中包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "borderRadius",
+          "description": "styles中包含borderRadius"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "backgroundColor",
+          "value": "#FFFFFF",
+          "description": "组件上直接包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "borderRadius",
+          "value": "12",
+          "description": "组件上直接包含borderRadius"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "backgroundColor",
+          "description": "styleOverrides中包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "borderRadius",
+          "description": "styleOverrides中包含borderRadius"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO04",
+    "name": "图片样式-宽高+objectFit",
+    "category": "style-organization",
+    "complexity": "simple",
+    "task": "生成一个Image组件，id为'banner'，src为'$bannerUrl'，宽度为'matchParent'，高度为200，objectFit为'cover'",
+    "expected": {
+      "component": "Image",
+      "required_fields": [
+        "component",
+        "src"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "src",
+        "description": "必须有src字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "width",
+          "description": "styles中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "height",
+          "description": "styles中包含height"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "width",
+          "value": "matchParent",
+          "description": "组件上直接包含width"
+        },
+        {
+          "type": "contains",
+          "field": "height",
+          "value": "200",
+          "description": "组件上直接包含height"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "width",
+          "description": "styleOverrides中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "height",
+          "description": "styleOverrides中包含height"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO05",
+    "name": "透明度+边距",
+    "category": "style-organization",
+    "complexity": "simple",
+    "task": "生成一个Image组件，id为'avatar'，src为'$avatarUrl'，透明度为0.8，margin底部为12",
+    "expected": {
+      "component": "Image",
+      "required_fields": [
+        "component",
+        "src"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "src",
+        "description": "必须有src字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "opacity",
+          "description": "styles中包含opacity"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "margin",
+          "description": "styles中包含margin"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "opacity",
+          "value": "0.8",
+          "description": "组件上直接包含opacity"
+        },
+        {
+          "type": "contains",
+          "field": "margin",
+          "value": "bottom",
+          "description": "组件上直接包含margin"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "opacity",
+          "description": "styleOverrides中包含opacity"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "margin",
+          "description": "styleOverrides中包含margin"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO06",
+    "name": "布局对齐-justifyContent+alignItems",
+    "category": "style-organization",
+    "complexity": "medium",
+    "task": "生成一个Row组件，id为'actionBar'，子组件为'btn1'和'btn2'，主轴两端对齐，交叉轴居中",
+    "expected": {
+      "component": "Row",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "justifyContent",
+          "description": "styles中包含justifyContent"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "alignItems",
+          "description": "styles中包含alignItems"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "spaceBetween",
+          "description": "包含spaceBetween"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "justifyContent",
+          "value": "spaceBetween",
+          "description": "组件上直接包含justifyContent"
+        },
+        {
+          "type": "contains",
+          "field": "alignItems",
+          "value": "center",
+          "description": "组件上直接包含alignItems"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "justifyContent",
+          "description": "styleOverrides中包含justifyContent"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "alignItems",
+          "description": "styleOverrides中包含alignItems"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO07",
+    "name": "多样式组合-padding+圆角+背景色",
+    "category": "style-organization",
+    "complexity": "medium",
+    "task": "生成一个Column组件，id为'section'，子组件为'title'和'content'，padding为16，圆角为8，背景色为'#F5F5F5'",
+    "expected": {
+      "component": "Column",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "padding",
+          "description": "styles中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "borderRadius",
+          "description": "styles中包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "backgroundColor",
+          "description": "styles中包含backgroundColor"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "padding",
+          "value": "16",
+          "description": "组件上直接包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "borderRadius",
+          "value": "8",
+          "description": "组件上直接包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "backgroundColor",
+          "value": "#F5F5F5",
+          "description": "组件上直接包含backgroundColor"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "padding",
+          "description": "styleOverrides中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "borderRadius",
+          "description": "styleOverrides中包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "backgroundColor",
+          "description": "styleOverrides中包含backgroundColor"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO08",
+    "name": "文本多样式-fontSize+fontWeight+fontColor+textAlign",
+    "category": "style-organization",
+    "complexity": "medium",
+    "task": "生成一个Text组件，id为'heading'，content为'{{$title}}'，字号为20，字重为600，字体颜色为'#1A1A1A'，文本居中",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "fontSize",
+          "description": "styles中包含fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "fontWeight",
+          "description": "styles中包含fontWeight"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "fontColor",
+          "description": "styles中包含fontColor"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "textAlign",
+          "description": "styles中包含textAlign"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "fontSize",
+          "value": "20",
+          "description": "组件上直接包含fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "fontWeight",
+          "value": "600",
+          "description": "组件上直接包含fontWeight"
+        },
+        {
+          "type": "contains",
+          "field": "fontColor",
+          "value": "#1A1A1A",
+          "description": "组件上直接包含fontColor"
+        },
+        {
+          "type": "contains",
+          "field": "textAlign",
+          "value": "center",
+          "description": "组件上直接包含textAlign"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "fontSize",
+          "description": "styleOverrides中包含fontSize"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "fontWeight",
+          "description": "styleOverrides中包含fontWeight"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "fontColor",
+          "description": "styleOverrides中包含fontColor"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "textAlign",
+          "description": "styleOverrides中包含textAlign"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO09",
+    "name": "List组件space+padding",
+    "category": "style-organization",
+    "complexity": "medium",
+    "task": "生成一个List组件，id为'feedList'，子组件绑定到'$items'，space为8，padding为12",
+    "expected": {
+      "component": "List",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "space",
+          "description": "styles中包含space"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "padding",
+          "description": "styles中包含padding"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "space",
+          "value": "8",
+          "description": "组件上直接包含space"
+        },
+        {
+          "type": "contains",
+          "field": "padding",
+          "value": "12",
+          "description": "组件上直接包含padding"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "space",
+          "description": "styleOverrides中包含space"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "padding",
+          "description": "styleOverrides中包含padding"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO10",
+    "name": "Stack对齐+尺寸",
+    "category": "style-organization",
+    "complexity": "medium",
+    "task": "生成一个Stack组件，id为'overlay'，子组件为'bg'和'fg'，alignContent为'center'，宽高都为200",
+    "expected": {
+      "component": "Stack",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "alignContent",
+          "description": "styles中包含alignContent"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "width",
+          "description": "styles中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "height",
+          "description": "styles中包含height"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "alignContent",
+          "value": "center",
+          "description": "组件上直接包含alignContent"
+        },
+        {
+          "type": "contains",
+          "field": "width",
+          "value": "200",
+          "description": "组件上直接包含width"
+        },
+        {
+          "type": "contains",
+          "field": "height",
+          "value": "200",
+          "description": "组件上直接包含height"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "alignContent",
+          "description": "styleOverrides中包含alignContent"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "width",
+          "description": "styleOverrides中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "height",
+          "description": "styleOverrides中包含height"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SO11",
+    "name": "完整卡片组件-多属性+样式+事件",
+    "category": "style-organization",
+    "complexity": "complex",
+    "task": "生成一个Card组件，id为'productCard'，子组件为'productImg'，padding为16，圆角为12，背景色为'#FFFFFF'，宽度为'matchParent'，margin底部为8",
+    "expected": {
+      "component": "Card",
+      "required_fields": [
+        "component",
+        "child"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "padding",
+          "description": "styles中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "borderRadius",
+          "description": "styles中包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "backgroundColor",
+          "description": "styles中包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "width",
+          "description": "styles中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "margin",
+          "description": "styles中包含margin"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "padding",
+          "value": "16",
+          "description": "组件上直接包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "borderRadius",
+          "value": "12",
+          "description": "组件上直接包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "backgroundColor",
+          "value": "#FFFFFF",
+          "description": "组件上直接包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "width",
+          "value": "matchParent",
+          "description": "组件上直接包含width"
+        },
+        {
+          "type": "contains",
+          "field": "margin",
+          "value": "bottom",
+          "description": "组件上直接包含margin"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "padding",
+          "description": "styleOverrides中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "borderRadius",
+          "description": "styleOverrides中包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "backgroundColor",
+          "description": "styleOverrides中包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "width",
+          "description": "styleOverrides中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "margin",
+          "description": "styleOverrides中包含margin"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SO12",
+    "name": "按钮样式+事件-多样式属性",
+    "category": "style-organization",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，padding为12，圆角为8，背景色为'#007AFF'，宽度为'matchParent'，点击事件调用submit动作",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "padding",
+          "description": "styles中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "borderRadius",
+          "description": "styles中包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "backgroundColor",
+          "description": "styles中包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "width",
+          "description": "styles中包含width"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "padding",
+          "value": "12",
+          "description": "组件上直接包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "borderRadius",
+          "value": "8",
+          "description": "组件上直接包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "backgroundColor",
+          "value": "#007AFF",
+          "description": "组件上直接包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "width",
+          "value": "matchParent",
+          "description": "组件上直接包含width"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "padding",
+          "description": "styleOverrides中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "borderRadius",
+          "description": "styleOverrides中包含borderRadius"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "backgroundColor",
+          "description": "styleOverrides中包含backgroundColor"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "width",
+          "description": "styleOverrides中包含width"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SO13",
+    "name": "复杂布局-多层级样式+动态表达式",
+    "category": "style-organization",
+    "complexity": "complex",
+    "task": "生成一个Column组件，id为'page'，子组件为'header'、'list'和'footer'，padding为16，space为12，宽度为'matchParent'，justifyContent为'start'，背景色为'{{$bgColor}}'",
+    "expected": {
+      "component": "Column",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "padding",
+          "description": "styles中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "space",
+          "description": "styles中包含space"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "width",
+          "description": "styles中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "justifyContent",
+          "description": "styles中包含justifyContent"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "padding",
+          "value": "16",
+          "description": "组件上直接包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "space",
+          "value": "12",
+          "description": "组件上直接包含space"
+        },
+        {
+          "type": "contains",
+          "field": "width",
+          "value": "matchParent",
+          "description": "组件上直接包含width"
+        },
+        {
+          "type": "contains",
+          "field": "justifyContent",
+          "value": "start",
+          "description": "组件上直接包含justifyContent"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "padding",
+          "description": "styleOverrides中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "space",
+          "description": "styleOverrides中包含space"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "width",
+          "description": "styleOverrides中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "justifyContent",
+          "description": "styleOverrides中包含justifyContent"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SO14",
+    "name": "Toggle组件样式+数据绑定",
+    "category": "style-organization",
+    "complexity": "complex",
+    "task": "生成一个Toggle组件，id为'darkMode'，isOn为'{{$isDarkMode}}'，selectedColor为'#007AFF'，宽度为50，高度为28",
+    "expected": {
+      "component": "Toggle",
+      "required_fields": [
+        "component",
+        "isOn"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "isOn",
+        "description": "必须有isOn字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "selectedColor",
+          "description": "styles中包含selectedColor"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "width",
+          "description": "styles中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "height",
+          "description": "styles中包含height"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "selectedColor",
+          "value": "#007AFF",
+          "description": "组件上直接包含selectedColor"
+        },
+        {
+          "type": "contains",
+          "field": "width",
+          "value": "50",
+          "description": "组件上直接包含width"
+        },
+        {
+          "type": "contains",
+          "field": "height",
+          "value": "28",
+          "description": "组件上直接包含height"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "selectedColor",
+          "description": "styleOverrides中包含selectedColor"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "width",
+          "description": "styleOverrides中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "height",
+          "description": "styleOverrides中包含height"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SO15",
+    "name": "Grid布局-完整样式组合",
+    "category": "style-organization",
+    "complexity": "complex",
+    "task": "生成一个Grid组件，id为'photoGrid'，子组件为'p1'、'p2'、'p3'、'p4'，columnsTemplate为'1fr 1fr'，rowsTemplate为'1fr 1fr'，space为8，padding为12，宽高都为300",
+    "expected": {
+      "component": "Grid",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      }
+    ],
+    "strategy_rules": {
+      "styles-object": [
+        {
+          "type": "has_field",
+          "field": "styles",
+          "description": "必须有styles字段"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "space",
+          "description": "styles中包含space"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "padding",
+          "description": "styles中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "width",
+          "description": "styles中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styles",
+          "value": "height",
+          "description": "styles中包含height"
+        }
+      ],
+      "flat-props": [
+        {
+          "type": "contains",
+          "field": "space",
+          "value": "8",
+          "description": "组件上直接包含space"
+        },
+        {
+          "type": "contains",
+          "field": "padding",
+          "value": "12",
+          "description": "组件上直接包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "width",
+          "value": "300",
+          "description": "组件上直接包含width"
+        },
+        {
+          "type": "contains",
+          "field": "height",
+          "value": "300",
+          "description": "组件上直接包含height"
+        }
+      ],
+      "theme-override": [
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "space",
+          "description": "styleOverrides中包含space"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "padding",
+          "description": "styleOverrides中包含padding"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "width",
+          "description": "styleOverrides中包含width"
+        },
+        {
+          "type": "contains",
+          "field": "styleOverrides",
+          "value": "height",
+          "description": "styleOverrides中包含height"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

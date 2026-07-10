@@ -1,0 +1,57 @@
+[
+  {
+    "id": "FP0501",
+    "name": "onClick 单行为无条件执行",
+    "category": "event",
+    "complexity": "simple",
+    "gap_ref": "GAP-003",
+    "task": "生成一个 Extended.Button，onClick 时执行一个 sendToLLM 行为，无 condition",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "listeners"],
+      "patterns": [
+        {"field": "listeners.onClick", "must_be_array": true},
+        {"field": "listeners.onClick[0].call", "must_contain": "sendToLLM"}
+      ]
+    }
+  },
+  {
+    "id": "FP0502",
+    "name": "onClick 两步条件链",
+    "category": "event",
+    "complexity": "medium",
+    "gap_ref": "GAP-003",
+    "task": "生成 Extended.Button，onClick 先校验、校验成功则提交、提交成功后通知 LLM",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "listeners"],
+      "patterns": [
+        {"field": "listeners.onClick", "must_be_array": true},
+        {"field": "listeners.onClick", "must_have_length": 3},
+        {"field": "listeners.onClick[0].call", "must_contain": "validate"},
+        {"field": "listeners.onClick[1].condition", "must_contain": "handlerResult"},
+        {"field": "listeners.onClick[2].call", "must_contain": "sendToLLM"}
+      ]
+    }
+  },
+  {
+    "id": "FP0503",
+    "name": "onClick 条件分支（成功/失败两条路径）",
+    "category": "event",
+    "complexity": "complex",
+    "gap_ref": "GAP-003",
+    "task": "生成 Extended.Button，onClick 校验 → 成功则 setDataModel、失败则 sendToLLM 报错",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "listeners"],
+      "patterns": [
+        {"field": "listeners.onClick", "must_be_array": true},
+        {"field": "listeners.onClick[0].call", "must_contain": "validate"},
+        {"field": "listeners.onClick[1].condition", "must_contain": "== 0"},
+        {"field": "listeners.onClick[1].call", "must_contain": "setDataModel"},
+        {"field": "listeners.onClick[2].condition", "must_contain": "!= 0"},
+        {"field": "listeners.onClick[2].call", "must_contain": "sendToLLM"}
+      ]
+    }
+  }
+]

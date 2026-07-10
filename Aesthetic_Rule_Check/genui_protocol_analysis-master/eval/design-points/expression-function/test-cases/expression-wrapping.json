@@ -1,0 +1,1480 @@
+[
+  {
+    "id": "EW01",
+    "name": "简单变量绑定",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示用户名$username",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$username",
+          "description": "引用$username"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$username",
+          "description": "引用$username"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "动态值用对应语法包裹"
+    ]
+  },
+  {
+    "id": "EW02",
+    "name": "嵌套属性绑定",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示用户的城市$user.address.city",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$user.address.city",
+          "description": "引用$user.address.city"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$user.address.city",
+          "description": "引用$user.address.city"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "支持多级属性访问"
+    ]
+  },
+  {
+    "id": "EW03",
+    "name": "全局变量绑定",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示当前窗口断点$__WidthBreakpoint",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$__WidthBreakpoint",
+          "description": "引用$__WidthBreakpoint"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$__WidthBreakpoint",
+          "description": "引用$__WidthBreakpoint"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "$__前缀表示全局系统变量"
+    ]
+  },
+  {
+    "id": "EW04",
+    "name": "If条件绑定",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个If组件，条件为$isLoggedIn（为true时显示userPanel，否则显示loginForm）",
+    "expected": {
+      "component": "If",
+      "required_fields": [
+        "component",
+        "condition",
+        "childrenIf",
+        "childrenElse"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "condition",
+        "description": "必须有condition字段"
+      },
+      {
+        "type": "has_field",
+        "field": "childrenIf",
+        "description": "必须有childrenIf字段"
+      },
+      {
+        "type": "has_field",
+        "field": "childrenElse",
+        "description": "必须有childrenElse字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "condition",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "condition使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "condition",
+          "value": "$isLoggedIn",
+          "description": "引用$isLoggedIn"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "condition",
+          "description": "condition使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "condition.expr",
+          "value": "$isLoggedIn",
+          "description": "引用$isLoggedIn"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "If组件的condition字段使用动态值"
+    ]
+  },
+  {
+    "id": "EW05",
+    "name": "样式动态值绑定",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，内容为'标题'，字号fontSize动态绑定$config.fontSize",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles.fontSize",
+        "description": "styles中必须有fontSize"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "styles.fontSize",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "fontSize使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontSize",
+          "value": "$config.fontSize",
+          "description": "引用$config.fontSize"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "styles.fontSize",
+          "description": "fontSize使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontSize.expr",
+          "value": "$config.fontSize",
+          "description": "引用$config.fontSize"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "styles中的属性也可以使用动态值"
+    ]
+  },
+  {
+    "id": "EW06",
+    "name": "混合文本-简单拼接",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'Hello, '加上$user.name，如'Hello, Alice'",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹单个表达式"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$user.name",
+          "description": "引用$user.name"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "Hello",
+          "description": "包含Hello文本"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$user.name",
+          "description": "引用$user.name"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "Hello",
+          "description": "包含Hello文本"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "混合文本需要在表达式中使用字符串拼接"
+    ]
+  },
+  {
+    "id": "EW07",
+    "name": "函数调用-formatNumber",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$price格式化为2位小数的结果（使用formatNumber函数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "formatNumber",
+          "description": "调用formatNumber函数"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$price",
+          "description": "引用$price"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "formatNumber",
+          "description": "调用formatNumber函数"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$price",
+          "description": "引用$price"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "内置函数直接调用，无前缀"
+    ]
+  },
+  {
+    "id": "EW08",
+    "name": "函数调用-formatCurrency",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$amount的货币格式（使用formatCurrency函数，货币单位CNY）",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "formatCurrency",
+          "description": "调用formatCurrency函数"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$amount",
+          "description": "引用$amount"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "formatCurrency",
+          "description": "调用formatCurrency函数"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$amount",
+          "description": "引用$amount"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "货币格式化函数接受(值, 货币代码)两个参数"
+    ]
+  },
+  {
+    "id": "EW09",
+    "name": "函数调用-formatDate",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$date格式化为yyyy-MM-dd的结果（使用formatDate函数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "formatDate",
+          "description": "调用formatDate函数"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$date",
+          "description": "引用$date"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "formatDate",
+          "description": "调用formatDate函数"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$date",
+          "description": "引用$date"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "日期格式化函数接受(值, 格式模式)两个参数"
+    ]
+  },
+  {
+    "id": "EW10",
+    "name": "双变量拼接",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$firstName和$lastName，中间用空格连接",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹单个表达式"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$firstName",
+          "description": "引用$firstName"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$lastName",
+          "description": "引用$lastName"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$firstName",
+          "description": "引用$firstName"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$lastName",
+          "description": "引用$lastName"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "两个变量需要用+号拼接"
+    ]
+  },
+  {
+    "id": "EW11",
+    "name": "逻辑NOT运算",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$isVip取反后的值（!$isVip）",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$isVip",
+          "description": "引用$isVip"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$isVip",
+          "description": "引用$isVip"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "使用!运算符取反"
+    ]
+  },
+  {
+    "id": "EW12",
+    "name": "比较运算",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$score是否大于60的判断结果（$score > 60）",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$score",
+          "description": "引用$score"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$score",
+          "description": "引用$score"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "比较运算符：> < >= <= == !="
+    ]
+  },
+  {
+    "id": "EW13",
+    "name": "三元条件表达式",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，根据$isVip判断显示'VIP'或'Normal'（三元表达式）",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$isVip",
+          "description": "引用$isVip"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "VIP",
+          "description": "包含VIP"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "Normal",
+          "description": "包含Normal"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$isVip",
+          "description": "引用$isVip"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "VIP",
+          "description": "包含VIP"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "Normal",
+          "description": "包含Normal"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "三元运算符：条件 ? 真值 : 假值"
+    ]
+  },
+  {
+    "id": "EW14",
+    "name": "逻辑AND+OR组合",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示复杂逻辑：$a为true且（$b或$c为true），即$a && ($b || $c)的值",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$a",
+          "description": "引用$a"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$b",
+          "description": "引用$b"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$c",
+          "description": "引用$c"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$a",
+          "description": "引用$a"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$b",
+          "description": "引用$b"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$c",
+          "description": "引用$c"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "使用&&和||运算符组合逻辑条件，注意括号优先级"
+    ]
+  },
+  {
+    "id": "EW15",
+    "name": "算术运算",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示$price乘以$quantity的结果（$price * $quantity）",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$price",
+          "description": "引用$price"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$quantity",
+          "description": "引用$quantity"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$price",
+          "description": "引用$price"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$quantity",
+          "description": "引用$quantity"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": [
+      "算术运算符：+ - * / %"
+    ]
+  },
+  {
+    "id": "EW16",
+    "name": "混合文本+函数+三元",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示'共X.XX元'（用formatNumber格式化$total为2位小数），如果有$discount则追加'(已优惠)'，否则不追加",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "formatNumber",
+          "description": "调用formatNumber"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$total",
+          "description": "引用$total"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$discount",
+          "description": "引用$discount"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "formatNumber",
+          "description": "调用formatNumber"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$total",
+          "description": "引用$total"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$discount",
+          "description": "引用$discount"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": [
+      "复杂表达式：字符串拼接+函数调用+三元条件"
+    ]
+  },
+  {
+    "id": "EW17",
+    "name": "多变量拼接+运算",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示'$firstName $lastName ($age岁)'，如'Alice Smith (25岁)'",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$firstName",
+          "description": "引用$firstName"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$lastName",
+          "description": "引用$lastName"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$age",
+          "description": "引用$age"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$firstName",
+          "description": "引用$firstName"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$lastName",
+          "description": "引用$lastName"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$age",
+          "description": "引用$age"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": [
+      "需要拼接多个变量和固定文本"
+    ]
+  },
+  {
+    "id": "EW18",
+    "name": "嵌套函数+条件",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，如果$items存在则显示'X件商品'（用size获取$items长度，再用formatNumber格式化），否则显示'暂无商品'",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "content",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "content使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "$items",
+          "description": "引用$items"
+        },
+        {
+          "type": "contains",
+          "field": "content",
+          "value": "size",
+          "description": "调用size函数"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "content",
+          "description": "content使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "$items",
+          "description": "引用$items"
+        },
+        {
+          "type": "contains",
+          "field": "content.expr",
+          "value": "size",
+          "description": "调用size函数"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": [
+      "嵌套函数调用：size($items)作为formatNumber的参数"
+    ]
+  },
+  {
+    "id": "EW19",
+    "name": "多层嵌套三元",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，字号16，字体颜色根据$status动态设置：active为#00AA00，pending为#FFAA00，其他为#FF0000",
+    "expected": {
+      "component": "Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles.fontColor",
+        "description": "styles中必须有fontColor"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "styles.fontColor",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "fontColor使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor",
+          "value": "$status",
+          "description": "引用$status"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor",
+          "value": "#00AA00",
+          "description": "包含active颜色"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor",
+          "value": "#FFAA00",
+          "description": "包含pending颜色"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor",
+          "value": "#FF0000",
+          "description": "包含默认颜色"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "styles.fontColor",
+          "description": "fontColor使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor.expr",
+          "value": "$status",
+          "description": "引用$status"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor.expr",
+          "value": "#00AA00",
+          "description": "包含active颜色"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor.expr",
+          "value": "#FFAA00",
+          "description": "包含pending颜色"
+        },
+        {
+          "type": "contains",
+          "field": "styles.fontColor.expr",
+          "value": "#FF0000",
+          "description": "包含默认颜色"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": [
+      "多层嵌套三元：$status == 'active' ? '#00AA00' : $status == 'pending' ? '#FFAA00' : '#FF0000'"
+    ]
+  },
+  {
+    "id": "EW20",
+    "name": "Button条件action",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Button组件，标签为'提交'，点击后先调用validate绑定到$confirmed，然后$confirmed为true时执行submit",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "events_format",
+        "description": "必须有onClick事件监听"
+      }
+    ],
+    "strategy_rules": {
+      "inline": [
+        {
+          "type": "matches_regex",
+          "field": "onClick[1].condition",
+          "value": "^\\{\\{.*\\}\\}$",
+          "description": "if条件使用{{}}包裹"
+        },
+        {
+          "type": "contains",
+          "field": "onClick[1].condition",
+          "value": "$confirmed",
+          "description": "引用$confirmed"
+        }
+      ],
+      "wrapped": [
+        {
+          "type": "field_is_expr",
+          "field": "onClick[1].condition",
+          "description": "if条件使用expr格式"
+        },
+        {
+          "type": "contains",
+          "field": "onClick[1].condition.expr",
+          "value": "$confirmed",
+          "description": "引用$confirmed"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": [
+      "action链：第一个action validate用as绑定confirmed，第二个action用if条件判断$confirmed"
+    ]
+  }
+]

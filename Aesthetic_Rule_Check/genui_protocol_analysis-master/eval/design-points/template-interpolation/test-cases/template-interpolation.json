@@ -1,0 +1,478 @@
+[
+  {
+    "id": "TI01",
+    "name": "模板中简单$var插值",
+    "category": "template-interpolation",
+    "complexity": "simple",
+    "task": "生成一个Text组件，内容为'你好，用户名！'，其中用户名是$name变量。用模板字符串（反引号）实现。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$name"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "contains", "description": "$name直接嵌入模板文本即可", "field": "content", "value": "$name"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "必须用${}包裹变量引用", "field": "content", "value": "${"},
+        {"type": "contains", "description": "变量$name在${}内部", "field": "content", "value": "$name"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["动态值用{{ }}包裹", "用反引号模板字符串"]
+  },
+  {
+    "id": "TI02",
+    "name": "${}包裹简单变量",
+    "category": "template-interpolation",
+    "complexity": "simple",
+    "task": "生成一个Text组件，内容为'欢迎，用户名！'，其中用户名是$userName变量。要求用${}语法包裹变量。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$userName"},
+        {"field": "content", "must_contain": "${"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须包含$userName", "field": "content", "value": "$userName"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "matches_regex", "description": "${}包裹$userName或直接用$userName均可", "field": "content", "value": "\\$\\{|\\$userName"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "必须用${}包裹", "field": "content", "value": "${"},
+        {"type": "matches_regex", "description": "${}内必须包含$userName", "field": "content", "value": "\\$\\{[^}]*\\$userName"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["动态值用{{ }}包裹", "用${}语法明确插值"]
+  },
+  {
+    "id": "TI03",
+    "name": "数字变量+文字后缀",
+    "category": "template-interpolation",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示购物车商品数量$count后面跟'件商品'字样。用模板字符串实现。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$count"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须包含$count", "field": "content", "value": "$count"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "matches_regex", "description": "模板中可含$count直接在文本中", "field": "content", "value": "`[^`]*\\$count"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "必须用${}包裹变量", "field": "content", "value": "${"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$count是数字变量，拼接'件商品'", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI04",
+    "name": "${}中算术表达式",
+    "category": "template-interpolation",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'合计：价格 × 数量 = 总价元'，其中$price和$quantity相乘的结果作为总价。用模板字符串${}实现。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$price"},
+        {"field": "content", "must_contain": "$quantity"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须包含${}", "field": "content", "value": "${"},
+      {"type": "matches_regex", "description": "${}内必须含算术运算*", "field": "content", "value": "\\$\\{[^}]*\\*[^}]*\\}"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "contains", "description": "${}内可含$price", "field": "content", "value": "$price"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "${}内必须含$price*$quantity", "field": "content", "value": "$price"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["算术表达式必须放在${}内部", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI05",
+    "name": "${}中函数调用",
+    "category": "template-interpolation",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'共 N 件商品'，其中N是$items数组的长度。用模板字符串和size函数实现。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "size("},
+        {"field": "content", "must_contain": "$items"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须使用size函数", "field": "content", "value": "size("},
+      {"type": "contains", "description": "必须引用$items", "field": "content", "value": "$items"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "contains", "description": "size()调用在${}内", "field": "content", "value": "${"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "size()调用在${}内", "field": "content", "value": "${"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["用size($items)获取数组长度", "size()调用放在${}内", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI06",
+    "name": "混合$var和${expr}",
+    "category": "template-interpolation",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'用户名: N条消息'，其中用户名是$userName变量，N是$count变量。要求用户名用$var直接嵌入，消息数用${}包裹。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$userName"},
+        {"field": "content", "must_contain": "$count"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须包含$userName", "field": "content", "value": "$userName"},
+      {"type": "contains", "description": "必须包含$count", "field": "content", "value": "$count"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "matches_regex", "description": "模板中可含bare $userName和${$count}", "field": "content", "value": "`[^`]*\\$userName[^`]*\\$\\{[^}]*\\$count"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "必须用${}包裹$userName", "field": "content", "value": "${"},
+        {"type": "not_contains", "description": "模板文本中不应有裸露$userName（不在${}内）", "field": "content", "value": "${$userName}"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["用户名用$var形式", "消息数用${}形式", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI07",
+    "name": "嵌套属性${}插值",
+    "category": "template-interpolation",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'城市：城市名，邮编：邮编编号'，其中城市是$user.address.city，邮编是$user.address.zip。用模板字符串实现。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$user"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "matches_regex", "description": "必须包含嵌套变量$user.address", "field": "content", "value": "\\$user\\.address"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "matches_regex", "description": "$user.address.city可直接在模板中", "field": "content", "value": "\\$user\\.address\\.city"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "嵌套引用必须在${}内", "field": "content", "value": "${"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$user.address.city是嵌套属性", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI08",
+    "name": "三元条件+${}",
+    "category": "template-interpolation",
+    "complexity": "medium",
+    "task": "生成一个Text组件，根据$isVip变量显示'尊贵的用户名'或'欢迎用户名'，其中用户名是$username。用模板字符串实现，三元表达式放在${}内。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$isVip"},
+        {"field": "content", "must_contain": "$username"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须包含三元运算符", "field": "content", "value": "?"},
+      {"type": "contains", "description": "必须包含$username", "field": "content", "value": "$username"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "contains", "description": "三元表达式应在${}内", "field": "content", "value": "${"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "三元表达式必须在${}内", "field": "content", "value": "${"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["三元表达式放在${}内部", "字符串用单引号", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI09",
+    "name": "多变量+表达式混合模板",
+    "category": "template-interpolation",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示'商品名 单价 × 数量 = 总价元'，其中商品名是$productName，单价$price，数量$quantity，总价由${}计算得出。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$productName"},
+        {"field": "content", "must_contain": "$price"},
+        {"field": "content", "must_contain": "$quantity"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须包含所有三个变量", "field": "content", "value": "$productName"},
+      {"type": "contains", "description": "必须包含$price", "field": "content", "value": "$price"},
+      {"type": "contains", "description": "必须包含$quantity", "field": "content", "value": "$quantity"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "contains", "description": "乘积表达式应在${}内", "field": "content", "value": "${"},
+        {"type": "matches_regex", "description": "${}内应包含乘法运算", "field": "content", "value": "\\$\\{[^}]*\\*[^}]*\\}"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "所有变量引用必须用${}包裹", "field": "content", "value": "${"},
+        {"type": "matches_regex", "description": "${}内应包含乘法", "field": "content", "value": "\\$\\{[^}]*\\*[^}]*\\}"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["$var可直接嵌入", "$price * $quantity放在${}内", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI10",
+    "name": "Button动态标签",
+    "category": "template-interpolation",
+    "complexity": "complex",
+    "task": "生成一个Button组件，按钮文字为'删除N个选中项'，其中N是$selectedCount变量。用模板字符串实现。",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label"],
+      "patterns": [
+        {"field": "label", "must_contain": "`"},
+        {"field": "label", "must_contain": "$selectedCount"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "Button必须有label字段", "field": "label"},
+      {"type": "contains", "description": "label必须用{{ }}包裹", "field": "label", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "label", "value": "`"},
+      {"type": "contains", "description": "必须包含$selectedCount", "field": "label", "value": "$selectedCount"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "matches_regex", "description": "$selectedCount可嵌入模板文本", "field": "label", "value": "\\$selectedCount"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "必须用${}包裹变量", "field": "label", "value": "${"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["Button组件用label字段", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI11",
+    "name": "TextInput占位符动态文本",
+    "category": "template-interpolation",
+    "complexity": "complex",
+    "task": "生成一个TextInput组件，placeholder为'搜索xxx相关商品'，其中xxx是$categoryName变量。用模板字符串实现。",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder"],
+      "patterns": [
+        {"field": "placeholder", "must_contain": "`"},
+        {"field": "placeholder", "must_contain": "$categoryName"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "TextInput必须有placeholder字段", "field": "placeholder"},
+      {"type": "contains", "description": "placeholder必须用{{ }}包裹", "field": "placeholder", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "placeholder", "value": "`"},
+      {"type": "contains", "description": "必须包含$categoryName", "field": "placeholder", "value": "$categoryName"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "matches_regex", "description": "$categoryName可嵌入模板", "field": "placeholder", "value": "\\$categoryName"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "必须用${}包裹变量", "field": "placeholder", "value": "${"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["TextInput用placeholder字段", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI12",
+    "name": "纯$var模板(无${})",
+    "category": "template-interpolation",
+    "complexity": "complex",
+    "task": "生成一个Text组件，内容仅显示$greeting变量值，不加任何额外文字。用模板字符串实现。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$greeting"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须包含$greeting", "field": "content", "value": "$greeting"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "matches_regex", "description": "直接在模板中嵌入$greeting", "field": "content", "value": "`\\s*\\$greeting\\s*`"}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "必须用${}包裹$greeting", "field": "content", "value": "${$greeting}"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["仅显示变量值", "策略A: $var直接嵌入", "策略B: 必须${$var}", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI13",
+    "name": "复杂嵌套: size+三元+${}",
+    "category": "template-interpolation",
+    "complexity": "complex",
+    "task": "生成一个Text组件，根据$items数组的长度显示不同文字：如果大于0显示'N件商品（库存充足）'否则显示'暂无库存'。N为$items长度。用模板字符串实现。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "`"},
+        {"field": "content", "must_contain": "$items"},
+        {"field": "content", "must_contain": "?"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "必须有content字段", "field": "content"},
+      {"type": "contains", "description": "expression必须用{{ }}包裹", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "content", "value": "`"},
+      {"type": "contains", "description": "必须引用$items", "field": "content", "value": "$items"},
+      {"type": "contains", "description": "必须包含三元运算符", "field": "content", "value": "?"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "contains", "description": "复杂表达式在${}内", "field": "content", "value": "${"},
+        {"type": "contains", "description": "必须使用size()函数", "field": "content", "value": "size("}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "复杂表达式必须在${}内", "field": "content", "value": "${"},
+        {"type": "contains", "description": "必须使用size()函数", "field": "content", "value": "size("}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["size($items)获取长度", "三元表达式放在${}内", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "TI14",
+    "name": "多组件多字段动态文本",
+    "category": "template-interpolation",
+    "complexity": "complex",
+    "task": "生成一个Column组件，内含两个Text子组件：第一个显示'店铺名 - 营业中'，店铺名是$shopName；第二个显示'今日订单：N单'，N是$orders数组长度。每个子组件都用模板字符串。",
+    "expected": {
+      "component": "Column",
+      "required_fields": ["component", "children"],
+      "patterns": [
+        {"field": "children", "must_contain": "$shopName"},
+        {"field": "children", "must_contain": "$orders"}
+      ]
+    },
+    "shared_rules": [
+      {"type": "has_field", "description": "必须有component字段", "field": "component"},
+      {"type": "has_field", "description": "Column必须有children字段", "field": "children"},
+      {"type": "contains", "description": "children必须包含$shopName", "field": "children", "value": "$shopName"},
+      {"type": "contains", "description": "children必须包含$orders", "field": "children", "value": "$orders"},
+      {"type": "contains", "description": "必须使用模板字符串", "field": "children", "value": "`"}
+    ],
+    "strategy_rules": {
+      "template-text": [
+        {"type": "contains", "description": "子组件模板中$shopName可直接嵌入", "field": "children", "value": "$shopName"},
+        {"type": "matches_regex", "description": "size()应在${}内", "field": "children", "value": "\\$\\{[^}]*size\\("}
+      ],
+      "explicit-only": [
+        {"type": "contains", "description": "子组件中所有变量必须用${}包裹", "field": "children", "value": "${"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["Column包含children数组", "子组件用模板字符串", "动态值用{{ }}包裹"]
+  }
+]

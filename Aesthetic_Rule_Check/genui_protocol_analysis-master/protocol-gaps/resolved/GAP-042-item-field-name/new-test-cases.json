@@ -1,0 +1,73 @@
+[
+  {
+    "id": "VS057",
+    "name": "Column模板渲染-简单字段",
+    "category": "t3-list-relative",
+    "complexity": "simple",
+    "task": "生成Column组件(id=userColumn)，children使用模板渲染{componentId:'user_tpl', path:'/users'}，模板组件显示每个用户的$item.name",
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.Column"},
+      {"type": "contains", "field": "$output", "value": "componentId"},
+      {"type": "contains", "field": "$output", "value": "/users"},
+      {"type": "contains", "field": "$output", "value": "$item.name"}
+    ]
+  },
+  {
+    "id": "VS058",
+    "name": "Row模板渲染-多字段+$index",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成Row组件(id=productRow)，children模板渲染{componentId:'product_tpl', path:'/products'}，模板显示'$index+1. $item.name - ¥$item.price'格式内容",
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.Row"},
+      {"type": "contains", "field": "$output", "value": "componentId"},
+      {"type": "contains", "field": "$output", "value": "/products"},
+      {"type": "contains", "field": "$output", "value": "$index"},
+      {"type": "contains", "field": "$output", "value": "$item.name"},
+      {"type": "contains", "field": "$output", "value": "$item.price"}
+    ]
+  },
+  {
+    "id": "VS059",
+    "name": "Column模板-嵌套对象访问",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成Column组件(id=orderColumn)，children模板渲染{componentId:'order_tpl', path:'/orders'}，模板显示$item.product.name和$item.product.price",
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.Column"},
+      {"type": "contains", "field": "$output", "value": "componentId"},
+      {"type": "contains", "field": "$output", "value": "/orders"},
+      {"type": "contains", "field": "$output", "value": "$item.product.name"},
+      {"type": "contains", "field": "$output", "value": "$item.product.price"}
+    ]
+  },
+  {
+    "id": "VS060",
+    "name": "Column模板-条件渲染",
+    "category": "t3-list-relative",
+    "complexity": "medium",
+    "task": "生成Column组件(id=taskColumn)，children模板渲染{componentId:'task_tpl', path:'/tasks'}，模板中根据$item.done条件显示：为true时Text显示'已完成'，为false时Text显示'进行中'",
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.Column"},
+      {"type": "contains", "field": "$output", "value": "componentId"},
+      {"type": "contains", "field": "$output", "value": "/tasks"},
+      {"type": "contains", "field": "$output", "value": "$item.done"}
+    ]
+  },
+  {
+    "id": "VS061",
+    "name": "Column模板-混合$__DataModel绝对路径",
+    "category": "t3-list-relative",
+    "complexity": "complex",
+    "is_edge": true,
+    "task": "生成Column组件(id=commentColumn)，children模板渲染{componentId:'cmt_tpl', path:'/comments'}，模板显示$item.author+': '+$item.text，同时在模板中显示$__DataModel.app.name作为来源标记",
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.Column"},
+      {"type": "contains", "field": "$output", "value": "componentId"},
+      {"type": "contains", "field": "$output", "value": "/comments"},
+      {"type": "contains", "field": "$output", "value": "$item.author"},
+      {"type": "contains", "field": "$output", "value": "$item.text"},
+      {"type": "contains", "field": "$output", "value": "$__DataModel"}
+    ]
+  }
+]

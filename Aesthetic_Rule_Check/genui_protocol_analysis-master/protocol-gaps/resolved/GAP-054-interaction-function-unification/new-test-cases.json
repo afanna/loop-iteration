@@ -1,0 +1,28 @@
+[
+  {
+    "id": "FP0516",
+    "name": "action context 调用扩展函数聚合表单状态",
+    "category": "event",
+    "complexity": "medium",
+    "gap_ref": "GAP-054",
+    "task": "生成一个 Button 组件，id 为 submit-btn，label 为 提交，通过 action.event 发送 submitSurvey 事件，context 中用 getRadioValue 获取 plan_type，用 getCheckboxGroupValues 获取 hobbies，用 getToggleValue 获取 agree_toggle，用 getSelectValue 获取 city_select",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["id", "component", "label", "action"],
+      "patterns": [
+        {"field": "action.event.context.plan.call", "must_contain": "getRadioValue"},
+        {"field": "action.event.context.hobbies.call", "must_contain": "getCheckboxGroupValues"},
+        {"field": "action.event.context.agree.call", "must_contain": "getToggleValue"},
+        {"field": "action.event.context.city.call", "must_contain": "getSelectValue"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "action.event.context", "description": "必须使用 action.event.context 承载函数调用结果"},
+      {"type": "contains", "field": "$output", "value": "getRadioValue", "description": "必须调用 getRadioValue"},
+      {"type": "contains", "field": "$output", "value": "getCheckboxGroupValues", "description": "必须调用 getCheckboxGroupValues"},
+      {"type": "contains", "field": "$output", "value": "getToggleValue", "description": "必须调用 getToggleValue"},
+      {"type": "contains", "field": "$output", "value": "getSelectValue", "description": "必须调用 getSelectValue"}
+    ],
+    "hints": ["action.event.context 的字段值可以是 {call,args} 函数调用对象，返回类型由函数定义声明"]
+  }
+]

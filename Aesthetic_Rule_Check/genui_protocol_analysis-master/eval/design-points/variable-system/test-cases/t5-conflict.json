@@ -1,0 +1,423 @@
+[
+  {
+    "id": "VS041",
+    "name": "同名冲突-as绑定与DataModel字段同名",
+    "category": "t5-conflict",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button，DataModel中有count字段。点击时先调用increment(as='count')，然后condition判断$count==0且$__DataModel.count>3时调用submit",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "必须有as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$count",
+        "description": "as局部变量用$count引用"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.count",
+        "description": "DataModel字段用$__DataModel.count显式区分"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "submit",
+        "description": "调用submit"
+      }
+    ],
+    "hints": [
+      "as变量$count和DataModel字段$__DataModel.count通过前缀区分",
+      "同名时必须用绝对路径引用DataModel"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS042",
+    "name": "同名冲突-as绑定遮蔽DataModel后仍需引用DataModel",
+    "category": "t5-conflict",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button，DataModel中有score字段值为85。点击时先调用computeScore(as='score')返回计算结果，然后condition判断$score==0且$__DataModel.score>60时调用passAction",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$score",
+        "description": "引用as局部变量$score"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.score",
+        "description": "引用DataModel的$__DataModel.score显式区分"
+      }
+    ],
+    "hints": [
+      "as变量$score和DataModel.$__DataModel.score前缀不同",
+      "同时需要两个值时必须用正确前缀"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS043",
+    "name": "同名冲突-自定义循环变量与DataModel字段",
+    "category": "t5-conflict",
+    "complexity": "complex",
+    "task": "生成List(id=userList2)，数据路径/users，itemVar='name'。模板中显示$name（当前项），同时在模板中显示$__DataModel.name（全局应用名）以区分两者",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "itemVar",
+        "description": "使用itemVar自定义变量名"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$name",
+        "description": "模板用$name引用当前项"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.name",
+        "description": "用$__DataModel.name显式引用全局DataModel字段"
+      }
+    ],
+    "hints": [
+      "自定义itemVar='name'时$name指向当前项",
+      "DataModel的name字段需用$__DataModel.name显式引用"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS044",
+    "name": "同名冲突-嵌套列表多层同名变量",
+    "category": "t5-conflict",
+    "complexity": "complex",
+    "task": "生成嵌套List：外层数据/classes，itemVar='classInfo'；内层数据/students。内外层都有name字段。内层模板显示外层$classInfo.name和内层$name",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "classInfo",
+        "description": "外层itemVar=classInfo"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$classInfo.name",
+        "description": "外层类名用$classInfo.name"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$name",
+        "description": "内层学生名用$name相对路径"
+      }
+    ],
+    "hints": [
+      "嵌套列表时外层用自定义变量名区分",
+      "内层默认用$fieldName引用当前项字段"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS045",
+    "name": "同名冲突-as绑定名与其他as绑定重叠",
+    "category": "t5-conflict",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button，点击时三步：1.validate(as='result') 2.process(as='result')覆盖前值 3.condition判断$result==0时调用finish。注意第二步as同名覆盖第一步",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        },
+        {
+          "field": "onClick",
+          "must_have_length": 3
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "validate",
+        "description": "第一步validate"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "process",
+        "description": "第二步process"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "result",
+        "description": "两次as绑定同名result"
+      }
+    ],
+    "hints": [
+      "后执行的as绑定会覆盖同名的前置as变量",
+      "$result引用的是最近一次as绑定的值"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS046",
+    "name": "同名冲突-列表内as绑定与列表字段",
+    "category": "t5-conflict",
+    "complexity": "complex",
+    "task": "生成List(id=productList3)，数据路径/products（含name/price字段）。模板中有Button'操作'，点击时调用checkPrice(as='price')，condition判断$price（as结果）和$__DataModel.products当前项price的关系",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "模板内Button有as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$price",
+        "description": "as变量$price"
+      }
+    ],
+    "hints": [
+      "列表模板内as绑定与列表字段同名时，as变量优先",
+      "DataModel字段需用$__DataModel.前缀引用"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS047",
+    "name": "同名冲突-三变量同表达式",
+    "category": "t5-conflict",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button，DataModel中有status字段。点击时先调用checkStatus(as='status')，condition判断$status.success且$__DataModel.status=='active'且$__WidthBreakpoint!='sm'时调用complexAction",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$status",
+        "description": "引用as局部变量$status"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.status",
+        "description": "引用DataModel的$__DataModel.status"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WidthBreakpoint",
+        "description": "引用全局变量$__WidthBreakpoint"
+      }
+    ],
+    "hints": [
+      "三种变量在同一个condition中：as局部$status、DataModel $__DataModel.status、全局$__WidthBreakpoint",
+      "前缀体系天然区分三者"
+    ],
+    "is_edge": true
+  },
+  {
+    "id": "VS048",
+    "name": "无冲突-简单as绑定不涉及DataModel",
+    "category": "t5-conflict",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button，点击时调用ping(as='pingResult')，condition判断$pingResult==0时调用notifySuccess",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "pingResult",
+        "description": "as绑定pingResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$pingResult",
+        "description": "condition引用$pingResult"
+      }
+    ],
+    "hints": [
+      "无同名冲突时直接用$变量名即可",
+      "不需要$__DataModel前缀"
+    ]
+  },
+  {
+    "id": "VS049",
+    "name": "无冲突-DataModel字段不与任何变量冲突",
+    "category": "t5-conflict",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text，text显示$__DataModel.user.email，表达式字段中不存在冲突场景",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": [
+        "component",
+        "content"
+      ],
+      "patterns": [
+        {
+          "field": "content",
+          "must_contain": "$__DataModel"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "content",
+        "description": "必须有content字段"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.user.email",
+        "description": "使用$__DataModel绝对路径"
+      }
+    ],
+    "hints": [
+      "表达式字段中引用DataModel使用$__DataModel.xxx",
+      "无同名变量时前缀为推荐做法"
+    ]
+  },
+  {
+    "id": "VS050",
+    "name": "无冲突-列表相对路径无冲突",
+    "category": "t5-conflict",
+    "complexity": "simple",
+    "task": "生成一个List(id=simpleList)，数据路径/items（含title字段），模板组件显示$title。无自定义变量名，无as绑定",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$title",
+        "description": "模板使用$title相对路径"
+      }
+    ],
+    "hints": [
+      "列表模板中默认相对路径$fieldName无冲突",
+      "不需要显式前缀"
+    ]
+  }
+]

@@ -1,0 +1,459 @@
+[
+  {
+    "id": "RB01",
+    "name": "响应式间距",
+    "category": "responsive-breakpoint",
+    "complexity": "simple",
+    "task": "生成一个Extended.Column组件（id为container），在小屏设备上padding为8，大屏设备上padding为16",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["component", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Column", "description": "使用Extended.Column组件"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"},
+      {"type": "matches_regex", "field": "styles.padding", "value": "\\{\\{.*\\?.*:.*\\}\\}", "description": "padding使用三元表达式"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB02",
+    "name": "响应式字体",
+    "category": "responsive-breakpoint",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件（id为title），显示数据模型中的title变量。小屏设备上fontSize为14，大屏设备上fontSize为18",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Text", "description": "使用Extended.Text组件"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "contains", "field": "content", "value": "title", "description": "引用title变量"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB03",
+    "name": "响应式显示隐藏",
+    "category": "responsive-breakpoint",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件（id为badge），显示数据模型中的unreadCount变量。小屏设备上隐藏此组件，大屏设备上显示",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "content", "value": "unreadCount", "description": "引用unreadCount变量"},
+      {"type": "matches_regex", "field": "styles.display", "value": "\\{\\{.*\\?.*:.*\\}\\}", "description": "display使用三元表达式实现显隐"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB04",
+    "name": "响应式文本",
+    "category": "responsive-breakpoint",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件（id为actionBtn）。小屏设备上label显示\"详情\"，大屏设备上label显示\"查看详细信息\"",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Button", "description": "使用Extended.Button组件"},
+      {"type": "contains", "field": "$output", "value": "详情", "description": "小屏文本包含'详情'"},
+      {"type": "contains", "field": "$output", "value": "查看详细信息", "description": "大屏文本包含'查看详细信息'"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB05",
+    "name": "响应式对齐",
+    "category": "responsive-breakpoint",
+    "complexity": "simple",
+    "task": "生成一个Extended.Text组件（id为greeting），显示\"Hello\"。小屏设备上textAlign为center，大屏设备上textAlign为start",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Text", "description": "使用Extended.Text组件"},
+      {"type": "contains", "field": "content", "value": "Hello", "description": "包含Hello文本"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB06",
+    "name": "布局方向切换",
+    "category": "responsive-breakpoint",
+    "complexity": "medium",
+    "task": "生成响应式布局组件。请输出JSON数组，展开所有子组件的完整定义。小屏设备上使用Extended.Column竖直排列两个子组件（id分别为item1和item2），大屏设备上使用Extended.Row水平排列",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "使用Extended.If组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.Column", "description": "小屏使用Column布局"},
+      {"type": "contains", "field": "$output", "value": "Extended.Row", "description": "大屏使用Row布局"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "RB07",
+    "name": "导航栏切换",
+    "category": "responsive-breakpoint",
+    "complexity": "medium",
+    "task": "生成导航栏的响应式组件。请输出JSON数组，展开所有子组件的完整定义。小屏设备上显示一个Extended.Row，包含一个menu图标按钮和标题文本。大屏设备上显示一个Extended.Row，包含logo文本、三个导航Text（\"首页\"、\"产品\"、\"关于\"）和一个搜索图标按钮",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "使用Extended.If组件"},
+      {"type": "contains", "field": "$output", "value": "menu", "description": "小屏包含menu"},
+      {"type": "contains", "field": "$output", "value": "首页", "description": "大屏包含导航链接"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "RB08",
+    "name": "单列双列切换",
+    "category": "responsive-breakpoint",
+    "complexity": "medium",
+    "task": "生成内容区域的响应式布局。请输出JSON数组，展开所有子组件的完整定义。小屏设备上使用Extended.Column单列排列两个Extended.Text子组件（id为card1和card2）。大屏设备上使用Extended.Row水平排列这两个子组件，每个子组件宽度为50%",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "使用Extended.If组件"},
+      {"type": "contains", "field": "$output", "value": "card1", "description": "引用card1子组件"},
+      {"type": "contains", "field": "$output", "value": "card2", "description": "引用card2子组件"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB09",
+    "name": "侧边栏显隐",
+    "category": "responsive-breakpoint",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件（id为sidebar），包含widget1和widget2两个子组件。大屏设备上显示此侧边栏（display为flex），小屏设备上隐藏（display为none）",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Column", "description": "使用Extended.Column组件"},
+      {"type": "contains", "field": "$output", "value": "widget1", "description": "包含widget1子组件"},
+      {"type": "contains", "field": "$output", "value": "widget2", "description": "包含widget2子组件"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB10",
+    "name": "响应式卡片样式",
+    "category": "responsive-breakpoint",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件（id为card），包含一个Extended.Text子组件显示数据模型中的productName变量。小屏设备上卡片宽度为100%、padding为8，大屏设备上宽度为50%、padding为16",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["component", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Column", "description": "使用Extended.Column组件"},
+      {"type": "contains", "field": "$output", "value": "productName", "description": "引用productName变量"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "RB11",
+    "name": "三断点字体大小",
+    "category": "responsive-breakpoint",
+    "complexity": "complex",
+    "task": "生成一个Extended.Text组件（id为heading），显示数据模型中的sectionTitle变量。需要三个断点级别：小屏(fontSize为14)、中屏(fontSize为18)、大屏(fontSize为24)",
+    "expected": {
+      "component": "Extended.Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Text", "description": "使用Extended.Text组件"},
+      {"type": "contains", "field": "content", "value": "sectionTitle", "description": "引用sectionTitle变量"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "RB12",
+    "name": "三断点布局",
+    "category": "responsive-breakpoint",
+    "complexity": "complex",
+    "task": "生成三断点的响应式内容区域。请输出JSON数组，展开所有子组件的完整定义。小屏设备：使用Extended.Column单列排列content1和content2。中屏设备：使用Extended.Row两列布局，每列宽度50%。大屏设备：使用Extended.Row三列布局，包含content1、content2和content3三个子组件",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "使用Extended.If组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.Column", "description": "包含Column布局"},
+      {"type": "contains", "field": "$output", "value": "Extended.Row", "description": "包含Row布局"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "RB13",
+    "name": "完整响应式页面",
+    "category": "responsive-breakpoint",
+    "complexity": "complex",
+    "task": "生成一个完整的响应式页面根组件（id为app_root），使用Extended.Column布局，包含导航和内容两个区域。请输出JSON数组，展开所有子组件的完整定义。1) 导航区域：小屏设备上显示一个Extended.Row（id为mobile_nav）包含菜单按钮和标题，大屏设备上显示另一个Extended.Row（id为desktop_nav）包含logo、两个导航链接和搜索按钮。2) 内容区域：小屏设备上单列显示，大屏设备上使用Extended.Row双列显示主内容（id为main_content，宽度70%）和侧边栏（id为sidebar，宽度28%）。导航和内容区域分别使用Extended.If实现响应式切换。页面padding在小屏为8、大屏为16",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "使用Extended.If组件"},
+      {"type": "contains", "field": "$output", "value": "mobile_nav", "description": "包含移动导航"},
+      {"type": "contains", "field": "$output", "value": "desktop_nav", "description": "包含桌面导航"},
+      {"type": "contains", "field": "$output", "value": "sidebar", "description": "包含侧边栏"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "RB14",
+    "name": "响应式网格列数",
+    "category": "responsive-breakpoint",
+    "complexity": "complex",
+    "task": "生成一个Extended.Grid组件（id为product_grid），包含p1到p6六个子组件。小屏设备上2列（columnsTemplate为'1fr 1fr'），中屏设备上3列（'1fr 1fr 1fr'），大屏设备上4列（'1fr 1fr 1fr 1fr'）。设置columnsGap和rowsGap间距属性，值都为16",
+    "expected": {
+      "component": "Extended.Grid",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Grid", "description": "使用Extended.Grid组件"},
+      {"type": "contains", "field": "$output", "value": "1fr", "description": "columnsTemplate包含1fr"},
+      {"type": "contains", "field": "$output", "value": "columnsGap", "description": "设置列间距"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "RB15",
+    "name": "混合业务页面",
+    "category": "responsive-breakpoint",
+    "complexity": "complex",
+    "task": "生成一个商品详情页面的响应式组件集合。请输出JSON数组，展开所有子组件的完整定义。包含：1) 一个Extended.Text组件（id为productTitle）显示数据模型中的name变量，fontSize在小屏为16、大屏为24。2) 一个Extended.Text组件（id为price）显示价格，格式为\"¥\"加上数据模型中的price变量。3) 一个Extended.Column组件（id为info_section），小屏设备上padding为12、大屏设备上padding为24。4) 一个Extended.If组件（id为review_section），大屏设备上显示用户评价区域（id为reviews），小屏设备上隐藏",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["component"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "contains", "field": "$output", "value": "productTitle", "description": "包含productTitle组件"},
+      {"type": "contains", "field": "$output", "value": "price", "description": "包含price组件"},
+      {"type": "contains", "field": "$output", "value": "info_section", "description": "包含info_section组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "使用Extended.If组件"}
+    ],
+    "strategy_rules": {
+      "breakpoint-enum": [
+        {"type": "contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "使用$__WidthBreakpoint断点枚举"},
+        {"type": "not_contains", "field": "$output", "value": "$__WindowSize", "description": "不应使用$__WindowSize"}
+      ],
+      "window-size": [
+        {"type": "contains", "field": "$output", "value": "$__WindowSize", "description": "使用$__WindowSize窗口尺寸"},
+        {"type": "not_contains", "field": "$output", "value": "$__WidthBreakpoint", "description": "不应使用$__WidthBreakpoint"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  }
+]

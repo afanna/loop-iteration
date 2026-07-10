@@ -1,0 +1,551 @@
+[
+  {
+    "id": "VS031",
+    "name": "as绑定-简单变量引用",
+    "category": "t4-action-chain",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件，label为'校验'，点击时调用validate行为，as绑定为'validResult'，然后调用sendToLLM，condition为$validResult == 0",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        },
+        {
+          "field": "onClick",
+          "must_have_length": 2
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "validate",
+        "description": "第一个行为调用validate"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "validResult",
+        "description": "as绑定变量名为validResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$validResult",
+        "description": "condition中引用$validResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "sendToLLM",
+        "description": "第二个行为调用sendToLLM"
+      }
+    ],
+    "hints": [
+      "EventHandler数组格式：onClick = [{id, call, as?, args?, condition?}]",
+      "as绑定创建局部变量，后续行为用$变量名引用"
+    ]
+  },
+  {
+    "id": "VS032",
+    "name": "as绑定-在condition中使用",
+    "category": "t4-action-chain",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button，label为'提交'，点击时先checkStatus(as='status')，然后condition判断$item.status.success为true时调用submitData",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "checkStatus",
+        "description": "第一个行为调用checkStatus"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "必须有as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.status",
+        "description": "condition中引用$item.status"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "submitData",
+        "description": "第二个行为调用submitData"
+      }
+    ],
+    "hints": [
+      "as绑定的变量是对象时，可通过$item.status.success访问属性",
+      "condition用{{ }}包裹表达式"
+    ]
+  },
+  {
+    "id": "VS033",
+    "name": "as绑定-在args中传递",
+    "category": "t4-action-chain",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button，label为'查询'，点击时先调用lookup(as='lookupResult')，然后调用sendToLLM，args.value传递$lookupResult",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "lookup",
+        "description": "调用lookup"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "lookupResult",
+        "description": "as绑定为lookupResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$lookupResult",
+        "description": "args中引用$lookupResult"
+      }
+    ],
+    "hints": [
+      "as绑定变量不仅在condition中可用，在args中也可用",
+      "args.value用表达式{{ }}传递"
+    ]
+  },
+  {
+    "id": "VS034",
+    "name": "$context事件参数引用",
+    "category": "t4-action-chain",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button，点击时调用handleClick，args中传递$context.eventData.x和$context.componentId",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$context",
+        "description": "必须引用$context变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "eventData",
+        "description": "引用$context.eventData"
+      }
+    ],
+    "hints": [
+      "$context是事件参数变量，包含eventData和componentId",
+      "表达式用{{ }}包裹"
+    ]
+  },
+  {
+    "id": "VS035",
+    "name": "as绑定-多步链式调用",
+    "category": "t4-action-chain",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button，label为'三步操作'，点击时：1.validate(as='vResult') 2.若$vResult==0则process(as='pResult') 3.若$pResult==0则sendToLLM通知成功",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        },
+        {
+          "field": "onClick",
+          "must_have_length": 3
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "validate",
+        "description": "第一步validate"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$vResult",
+        "description": "第二步condition引用$vResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "process",
+        "description": "第二步process"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$pResult",
+        "description": "第三步condition引用$pResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "sendToLLM",
+        "description": "第三步sendToLLM"
+      }
+    ],
+    "hints": [
+      "每个as变量作用域覆盖整个行为链",
+      "condition为真执行、为假跳过"
+    ]
+  },
+  {
+    "id": "VS036",
+    "name": "as绑定+DataModel混合condition",
+    "category": "t4-action-chain",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button，label为'高级操作'，点击时：1.validate(as='vResult') 2.若$vResult==0且$__DataModel.user.canEdit为true则调用submitData",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$vResult",
+        "description": "condition引用as变量$vResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.user.canEdit",
+        "description": "condition同时引用DataModel变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "&&",
+        "description": "使用&&逻辑与组合条件"
+      }
+    ],
+    "hints": [
+      "as变量和DataModel变量可在同一condition表达式中组合",
+      "逻辑运算符&&连接多个条件"
+    ]
+  },
+  {
+    "id": "VS037",
+    "name": "as绑定+$context+DataModel三者混合",
+    "category": "t4-action-chain",
+    "complexity": "complex",
+    "task": "生成一个Extended.TextInput，onChange时：1.调用validateInput(as='inputResult')传入$context.eventData.text 2.若$inputResult==0且$__DataModel.formEnabled则调用updateForm",
+    "expected": {
+      "component": "Extended.TextInput",
+      "required_fields": [
+        "component",
+        "onChange"
+      ],
+      "patterns": [
+        {
+          "field": "onChange",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onChange",
+        "description": "必须有onChange事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$context.eventData.text",
+        "description": "引用$context获取输入文本"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "inputResult",
+        "description": "as绑定inputResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$inputResult",
+        "description": "condition引用$inputResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.formEnabled",
+        "description": "condition引用DataModel变量"
+      }
+    ],
+    "hints": [
+      "onChange事件通过$context.eventData.text获取输入值",
+      "as变量、$context、DataModel可共存"
+    ]
+  },
+  {
+    "id": "VS038",
+    "name": "as绑定-条件分支(成功/失败)",
+    "category": "t4-action-chain",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button，label为'操作'，点击时：1.validate(as='vResult') 2.若$vResult==0则setDataModel 3.若$vResult!=0则sendToLLM报错",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        },
+        {
+          "field": "onClick",
+          "must_have_length": 3
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "validate",
+        "description": "第一步validate"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "setDataModel",
+        "description": "成功路径调用setDataModel"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "sendToLLM",
+        "description": "失败路径调用sendToLLM"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "== 0",
+        "description": "成功condition"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "!= 0",
+        "description": "失败condition"
+      }
+    ],
+    "hints": [
+      "通过互斥的condition实现if/else分支",
+      "成功$vResult==0，失败$vResult!=0"
+    ]
+  },
+  {
+    "id": "VS039",
+    "name": "as绑定-多事件独立作用域",
+    "category": "t4-action-chain",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button，onClick时validate(as='clickResult')然后sendToLLM传$clickResult；同时onAppear时checkInit(as='initResult')然后根据$initResult设置状态",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onAppear",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        },
+        {
+          "field": "onAppear",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "has_field",
+        "field": "onAppear",
+        "description": "必须有onAppear事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "clickResult",
+        "description": "onClick中as绑定clickResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "initResult",
+        "description": "onAppear中as绑定initResult"
+      }
+    ],
+    "hints": [
+      "不同事件的as变量独立，互不影响",
+      "每个事件的行为链有独立作用域"
+    ]
+  },
+  {
+    "id": "VS040",
+    "name": "as绑定-object属性访问",
+    "category": "t4-action-chain",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button，label为'验证'，点击时调用checkUser(as='userResult')，condition判断$userResult.data.valid为true时调用nextStep",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "checkUser",
+        "description": "调用checkUser"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "userResult",
+        "description": "as绑定userResult"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$userResult.data.valid",
+        "description": "引用$userResult嵌套属性"
+      }
+    ],
+    "hints": [
+      "as绑定返回对象时，用.访问嵌套属性",
+      "表达式用{{ }}包裹"
+    ]
+  }
+]

@@ -1,0 +1,229 @@
+[
+  {
+    "id": "FP0601",
+    "name": "Extended.If with both branches",
+    "category": "conditional-list",
+    "complexity": "simple",
+    "task": "生成一个Extended.If条件渲染组件，id为'auth_gate'，condition为\"{{ $__dataModel.isLoggedIn == true }}\"，childrenIf为['profile_section']，childrenElse为['login_section']",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["id", "component", "condition", "childrenIf", "childrenElse"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "condition", "description": "必须有condition条件字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf分支"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse分支"},
+      {"type": "contains", "field": "condition", "value": "isLoggedIn", "description": "condition中必须引用isLoggedIn"}
+    ],
+    "hints": ["Extended.If通过condition表达式的布尔值决定渲染哪个分支", "childrenIf对应true分支，childrenElse对应false分支"]
+  },
+  {
+    "id": "FP0602",
+    "name": "Extended.If without else",
+    "category": "conditional-list",
+    "complexity": "simple",
+    "task": "生成一个Extended.If条件渲染组件，id为'vip_badge'，condition为\"{{ $__dataModel.user.isVip == true }}\"，仅设置childrenIf为['vip_icon']，不设置childrenElse",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["id", "component", "condition", "childrenIf"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "condition", "description": "必须有condition条件字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf分支"},
+      {"type": "not_contains", "field": "$output", "value": "childrenElse", "description": "不应包含childrenElse分支"}
+    ],
+    "hints": ["childrenElse是可选字段，不设置时条件为false不渲染任何内容"]
+  },
+  {
+    "id": "FP0603",
+    "name": "If with comparison condition",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.If组件，id为'stock_status'，condition使用比较运算符判断\"{{ $__dataModel.stockCount > 0 }}\"，childrenIf为['in_stock_label']，childrenElse为['out_of_stock_label']",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["id", "component", "condition", "childrenIf", "childrenElse"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse"},
+      {"type": "contains", "field": "$output", "value": ">", "description": "condition中必须使用比较运算符"}
+    ],
+    "hints": ["condition支持>、<、>=、<=、==、!=等比较运算符"]
+  },
+  {
+    "id": "FP0604",
+    "name": "If with logical condition",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.If组件，id为'admin_panel'，condition使用逻辑与运算符\"{{ $__dataModel.isLoggedIn == true && $__dataModel.user.role == 'admin' }}\"，childrenIf为['admin_tools']，childrenElse为['access_denied']",
+    "expected": {
+      "component": "Extended.If",
+      "required_fields": ["id", "component", "condition", "childrenIf", "childrenElse"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse"},
+      {"type": "contains", "field": "$output", "value": "&&", "description": "condition中必须使用逻辑与运算符&&"}
+    ],
+    "hints": ["condition支持&&（逻辑与）和||（逻辑或）组合多个条件"]
+  },
+  {
+    "id": "FP0605",
+    "name": "Nested If (If inside If branch)",
+    "category": "conditional-list",
+    "complexity": "complex",
+    "task": "生成一组组件实现嵌套条件渲染：外层Extended.If（id为'content_gate'，condition为\"{{ $__dataModel.hasContent == true }}\"，childrenIf为['detail_panel']，childrenElse为['empty_hint']），内层再嵌套一个Extended.If（id为'detail_panel'，component为'Extended.If'，condition为\"{{ $__dataModel.content.type == 'video' }}\"，childrenIf为['video_player']，childrenElse为['article_view']）。输出为JSON数组包含所有组件定义",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "输出中必须包含至少两个Extended.If组件"},
+      {"type": "contains", "field": "$output", "value": "hasContent", "description": "外层If的condition必须引用hasContent"},
+      {"type": "contains", "field": "$output", "value": "video", "description": "内层If的condition必须判断content.type是否为video"},
+      {"type": "contains", "field": "$output", "value": "childrenIf", "description": "每个If都必须有childrenIf分支"},
+      {"type": "contains", "field": "$output", "value": "childrenElse", "description": "每个If都必须有childrenElse分支"}
+    ],
+    "hints": ["Extended.If可以嵌套使用", "外层If的childrenIf中引用内层If的id", "输出是包含多个组件的JSON数组"]
+  },
+  {
+    "id": "FP0606",
+    "name": "List with template rendering",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.List组件，id为'user_list'，children使用模板渲染格式，componentId为'user_item_card'，path为\"$__dataModel.users\"",
+    "expected": {
+      "component": "Extended.List",
+      "required_fields": ["id", "component", "children"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "children", "description": "必须有children字段"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "children必须使用componentId指定模板组件"},
+      {"type": "contains", "field": "$output", "value": "path", "description": "children必须使用path指定循环数据路径"}
+    ],
+    "hints": ["children可以使用对象格式{componentId, path}实现模板循环渲染", "componentId指向一个已定义的模板组件ID", "path引用DataModel中的数组数据"]
+  },
+  {
+    "id": "FP0607",
+    "name": "List template with $item",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.List组件（id为'product_list'）及其模板子组件。List的children使用模板格式{componentId: 'product_card', path: '$__dataModel.products'}。模板组件Extended.Column（id为'product_card'），children为['product_name_text','product_price_text']。其中包含一个Extended.Text（id为'product_name_text'，content使用表达式引用$item.name），再包含一个Extended.Text（id为'product_price_text'，content使用表达式引用$item.price）。输出为JSON数组",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "List的children必须使用componentId模板格式"},
+      {"type": "contains", "field": "$output", "value": "$item", "description": "模板子组件中必须使用$item引用当前循环项"},
+      {"type": "contains", "field": "$output", "value": "Extended.List", "description": "必须包含Extended.List组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.Text", "description": "必须包含Extended.Text模板子组件"}
+    ],
+    "hints": ["模板渲染时$item代表当前循环的数据项", "$item.field可以访问当前项的字段"]
+  },
+  {
+    "id": "FP0608",
+    "name": "List template with $index",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.List组件（id为'rank_list'）及其模板子组件。List的children使用模板格式{componentId: 'rank_item', path: '$__dataModel.rankings'}。模板组件Extended.Row（id为'rank_item'），children为['rank_number','rank_name']。其中包含Extended.Text（id为'rank_number'，content使用表达式\"{{ $index + 1 }}\"显示排名序号），Extended.Text（id为'rank_name'，content使用表达式引用$item.name）。输出为JSON数组",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "$index", "description": "模板子组件中必须使用$index引用当前循环索引"},
+      {"type": "contains", "field": "$output", "value": "$item", "description": "模板子组件中必须使用$item引用当前数据项"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "List的children必须使用componentId模板格式"},
+      {"type": "contains", "field": "$output", "value": "Extended.List", "description": "必须包含Extended.List组件"}
+    ],
+    "hints": ["$index代表当前循环的索引，从0开始", "$index + 1可以显示从1开始的序号"]
+  },
+  {
+    "id": "FP0609",
+    "name": "List with space style",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.List组件，id为'card_list'，children为['card1','card2','card3']，space属性设为12，styles中设置listDirection为'vertical'、scrollBar为'auto'",
+    "expected": {
+      "component": "Extended.List",
+      "required_fields": ["id", "component", "children"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "space", "description": "必须有space间距属性"},
+      {"type": "contains", "field": "$output", "value": "listDirection", "description": "styles中必须包含listDirection"},
+      {"type": "contains", "field": "$output", "value": "scrollBar", "description": "styles中必须包含scrollBar"},
+      {"type": "contains", "field": "$output", "value": "vertical", "description": "listDirection应为vertical"}
+    ],
+    "hints": ["space设置子组件主轴方向的间隔，单位vp", "listDirection控制列表排列方向"]
+  },
+  {
+    "id": "FP0610",
+    "name": "Grid with template rendering",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.Grid组件，id为'photo_grid'，children使用模板渲染格式{componentId: 'photo_card', path: '$__dataModel.photos'}，styles中设置columnsTemplate为'1fr 1fr 1fr'（三列等宽），columnsGap为8，rowsGap为8",
+    "expected": {
+      "component": "Extended.Grid",
+      "required_fields": ["id", "component", "children"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "children", "description": "必须有children字段"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "children必须使用componentId指定模板组件"},
+      {"type": "contains", "field": "$output", "value": "path", "description": "children必须使用path指定数据路径"},
+      {"type": "contains", "field": "$output", "value": "columnsTemplate", "description": "styles中必须包含columnsTemplate"},
+      {"type": "contains", "field": "$output", "value": "1fr", "description": "columnsTemplate必须使用fr单位定义列宽"}
+    ],
+    "hints": ["Extended.Grid支持模板渲染，children使用{componentId, path}格式", "columnsTemplate使用fr单位定义列数和宽度权重"]
+  },
+  {
+    "id": "FP0611",
+    "name": "If + list combined",
+    "category": "conditional-list",
+    "complexity": "complex",
+    "task": "生成一组组件实现条件+列表组合：Extended.If（id为'order_section'，condition为\"{{ $__dataModel.hasOrders == true }}\"，childrenIf为['order_list']，childrenElse为['no_order_hint']）。Extended.List（id为'order_list'，children使用模板格式{componentId: 'order_item', path: '$__dataModel.orders'}，space为10）。模板组件Extended.Row（id为'order_item'，children为['order_id_text','order_amount_text']）。Extended.Text（id为'order_id_text'，content为表达式引用$item.orderId）。Extended.Text（id为'order_amount_text'，content为表达式引用$item.amount）。Extended.Text（id为'no_order_hint'，content为'暂无订单'）。输出为JSON数组",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "contains", "field": "$output", "value": "Extended.If", "description": "必须包含Extended.If条件渲染组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.List", "description": "If分支中必须包含Extended.List组件"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "List的children必须使用模板格式"},
+      {"type": "contains", "field": "$output", "value": "$item", "description": "模板子组件必须使用$item引用循环数据"},
+      {"type": "contains", "field": "$output", "value": "hasOrders", "description": "If的condition必须引用hasOrders判断"},
+      {"type": "contains", "field": "$output", "value": "childrenElse", "description": "If必须有else分支显示无数据提示"}
+    ],
+    "hints": ["If的childrenIf中引用List组件的id", "List的children使用模板格式关联模板子组件", "输出是包含多个组件定义的JSON数组"]
+  },
+  {
+    "id": "FP0612",
+    "name": "Row/Column with template rendering",
+    "category": "conditional-list",
+    "complexity": "medium",
+    "task": "生成一个Extended.Row组件，id为'tag_row'，children使用模板渲染格式{componentId: 'tag_chip', path: '$__dataModel.tags'}，space设为8，styles中justifyContent设为'start'，alignItems设为'center'",
+    "expected": {
+      "component": "Extended.Row",
+      "required_fields": ["id", "component", "children"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "children", "description": "必须有children字段"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "children必须使用componentId指定模板组件"},
+      {"type": "contains", "field": "$output", "value": "path", "description": "children必须使用path指定数据路径"},
+      {"type": "contains", "field": "$output", "value": "space", "description": "必须设置space间距"},
+      {"type": "contains", "field": "$output", "value": "justifyContent", "description": "styles中必须包含justifyContent"}
+    ],
+    "hints": ["Extended.Row和Extended.Column同样支持children使用{componentId, path}模板格式", "space设置子元素间距"]
+  }
+]

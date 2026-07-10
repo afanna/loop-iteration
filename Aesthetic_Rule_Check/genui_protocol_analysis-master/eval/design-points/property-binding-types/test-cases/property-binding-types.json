@@ -1,0 +1,248 @@
+[
+  {
+    "id": "PB001",
+    "name": "属性绑定-文本(三机制等价)",
+    "category": "property-binding",
+    "complexity": "simple",
+    "task": "生成一个Text组件，content绑定到数据模型的user.name",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "content", "value": "{{", "description": "使用表达式包裹"},
+        {"type": "contains", "field": "content", "value": "$__dataModel.user.name", "description": "引用$__dataModel.user.name"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "content", "value": "path", "description": "使用path字段"},
+        {"type": "contains", "field": "content", "value": "/user/name", "description": "路径/user/name"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "content", "value": "call", "description": "使用call字段"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "PB002",
+    "name": "属性绑定-布尔(visibility)",
+    "category": "property-binding",
+    "complexity": "simple",
+    "task": "生成一个Image组件，src为logo，visibility根据数据模型config.visible决定可见性",
+    "expected": {
+      "component": "Image",
+      "required_fields": ["component", "src", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"},
+      {"type": "contains", "field": "src", "value": "logo", "description": "src为logo"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "styles", "value": "$__dataModel.config.visible", "description": "引用config.visible"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "styles", "value": "/config/visible", "description": "路径/config/visible"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "styles", "value": "call", "description": "使用函数调用"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "PB003",
+    "name": "样式绑定-fontSize数值",
+    "category": "property-binding",
+    "complexity": "simple",
+    "task": "生成一个Text组件，content为标题，fontSize绑定到数据模型config.fontSize",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"},
+      {"type": "contains", "field": "content", "value": "标题", "description": "content为标题"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "styles", "value": "$__dataModel.config.fontSize", "description": "引用config.fontSize"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "styles", "value": "/config/fontSize", "description": "路径/config/fontSize"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "styles", "value": "call", "description": "使用函数调用"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "PB004",
+    "name": "FunctionCall绑定-formatString拼接",
+    "category": "property-binding",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content使用formatString将数据模型user.name格式化为\"Hello, {name}\"",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "content", "value": "Hello", "description": "包含Hello"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "content", "value": "Hello", "description": "包含Hello"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "content", "value": "formatString", "description": "使用formatString函数"},
+        {"type": "contains", "field": "content", "value": "/user/name", "description": "引用/user/name"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "PB005",
+    "name": "FunctionCall绑定-formatDate",
+    "category": "property-binding",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content使用formatDate格式化数据模型order.date，格式yyyy-MM-dd",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "content", "value": "$__dataModel.order.date", "description": "引用order.date"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "content", "value": "/order/date", "description": "路径/order/date"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "content", "value": "formatDate", "description": "使用formatDate函数"},
+        {"type": "contains", "field": "content", "value": "yyyy-MM-dd", "description": "格式yyyy-MM-dd"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "PB006",
+    "name": "对照-EventHandler一次性求值(非绑定)",
+    "category": "property-binding",
+    "complexity": "medium",
+    "task": "生成一个Button，label为提交，点击时当数据模型form.valid为true时调用setDataModel更新status为submitted",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick"},
+      {"type": "contains", "field": "label", "value": "提交", "description": "label为提交"},
+      {"type": "contains", "field": "onClick", "value": "setDataModel", "description": "调用setDataModel"},
+      {"type": "contains", "field": "onClick", "value": "condition", "description": "使用condition条件"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "onClick", "value": "$__dataModel.form.valid", "description": "condition引用form.valid"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "onClick", "value": "/form/valid", "description": "路径/form/valid"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "onClick", "value": "call", "description": "函数调用结构"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false
+  },
+  {
+    "id": "PB007",
+    "name": "边界-对象字段不可绑定",
+    "category": "property-binding",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content为hello，margin统一设置为数据模型config.margin的数值",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"},
+      {"type": "contains", "field": "content", "value": "hello", "description": "content为hello"},
+      {"type": "contains", "field": "styles", "value": "margin", "description": "设置margin"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "styles", "value": "$__dataModel.config.margin", "description": "margin绑定到数值"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "styles", "value": "/config/margin", "description": "margin路径绑定"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "styles", "value": "call", "description": "函数调用"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "PB008",
+    "name": "复杂-混合绑定页面",
+    "category": "property-binding",
+    "complexity": "complex",
+    "task": "生成一个Column：Text的content绑定user.name，Image的src绑定user.avatar，Button的onClick根据user.vip为true调用navigate跳转vipPage",
+    "expected": {
+      "component": "Column",
+      "required_fields": ["component", "children"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "children", "description": "必须有children字段"},
+      {"type": "contains", "field": "children", "value": "navigate", "description": "调用navigate"}
+    ],
+    "strategy_rules": {
+      "expression": [
+        {"type": "contains", "field": "children", "value": "$__dataModel.user.name", "description": "引用user.name"},
+        {"type": "contains", "field": "children", "value": "$__dataModel.user.vip", "description": "引用user.vip"}
+      ],
+      "path-binding": [
+        {"type": "contains", "field": "children", "value": "/user/name", "description": "路径/user/name"},
+        {"type": "contains", "field": "children", "value": "/user/vip", "description": "路径/user/vip"}
+      ],
+      "function-call": [
+        {"type": "contains", "field": "children", "value": "call", "description": "函数调用结构"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

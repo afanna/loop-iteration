@@ -1,0 +1,9 @@
+node_modules/
+.obsidian/
+.env*
+.DS_Store
+*.log
+eval/reports/io-*/
+eval/reports/*.json
+eval/reports/*.md
+eval/design-points/*/reports/

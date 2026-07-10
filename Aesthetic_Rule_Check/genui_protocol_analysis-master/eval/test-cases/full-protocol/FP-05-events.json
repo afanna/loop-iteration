@@ -1,0 +1,318 @@
+[
+  {
+    "id": "FP0501",
+    "name": "onClick 单行为",
+    "category": "event",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件，id为'submit_btn'，label为'提交'，点击时通过行为数组执行一个行为，id为'h1'，call为'sendToLLM'，args.value为'用户点击了提交按钮'",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "onClick必须是EventHandler数组格式，每个行为对象包含id和call字段"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "输出中必须包含sendToLLM行为调用"}
+    ],
+    "hints": ["onClick直接作为组件属性，值是EventHandler数组", "EventHandler包含id、call、args和可选的condition字段"]
+  },
+  {
+    "id": "FP0502",
+    "name": "setDataModel action",
+    "category": "event",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件，id为'like_btn'，label为'点赞'，点击时通过行为数组调用setDataModel行为，行为id为'set_like'，args中path设为'/isLiked'，value设为true",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确，每个行为对象包含id和call字段"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "必须包含setDataModel行为调用"},
+      {"type": "contains", "field": "$output", "value": "/isLiked", "description": "args.path必须包含/isLiked"}
+    ],
+    "hints": ["setDataModel需要path和value两个参数", "path是JSON Pointer格式的字符串"]
+  },
+  {
+    "id": "FP0503",
+    "name": "sendToLLM action",
+    "category": "event",
+    "complexity": "simple",
+    "task": "生成一个Extended.Button组件，id为'ask_btn'，label为'提问'，点击时通过行为数组调用sendToLLM行为，行为id为'send_question'，args.value为'请帮我查询天气'",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "必须包含sendToLLM行为调用"},
+      {"type": "contains", "field": "$output", "value": "请帮我查询天气", "description": "args.value必须包含发送给LLM的消息内容"}
+    ],
+    "hints": ["sendToLLM需要value参数指定要发送的消息文本"]
+  },
+  {
+    "id": "FP0504",
+    "name": "setAttributes action",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为'toggle_btn'，label为'切换高亮'，点击时通过行为数组调用setAttributes行为，行为id为'set_highlight'，args.id为'target_card'，args.value为{\"backgroundColor\": \"#FFFF0000\"}",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确"},
+      {"type": "contains", "field": "$output", "value": "setAttributes", "description": "必须包含setAttributes行为调用"},
+      {"type": "contains", "field": "$output", "value": "target_card", "description": "args.id必须指定目标组件ID"},
+      {"type": "contains", "field": "$output", "value": "backgroundColor", "description": "args.value必须包含要设置的属性名"}
+    ],
+    "hints": ["setAttributes需要id指定目标组件，value是一个对象包含要修改的属性键值对"]
+  },
+  {
+    "id": "FP0505",
+    "name": "navigate action",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为'go_detail_btn'，label为'查看详情'，点击时通过行为数组调用navigate行为，行为id为'navigate_detail'，args.componentId为'main_nav'，args.targetComponentId为'detail_page'",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确"},
+      {"type": "contains", "field": "$output", "value": "navigate", "description": "必须包含navigate行为调用"},
+      {"type": "contains", "field": "$output", "value": "componentId", "description": "args必须包含componentId"},
+      {"type": "contains", "field": "$output", "value": "targetComponentId", "description": "args必须包含targetComponentId"}
+    ],
+    "hints": ["navigate需要componentId指定NavContainer组件，targetComponentId指定目标子页面的component id"]
+  },
+  {
+    "id": "FP0506",
+    "name": "Conditional handler with condition",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为'delete_btn'，label为'删除'，点击时触发EventHandler数组，其中一个行为带有condition条件\"{{ $__dataModel.canDelete == true }}\"，条件满足时执行该行为，id为'do_delete'，call为'sendToLLM'，args.value为'执行删除操作'",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确，带condition条件的行为"},
+      {"type": "contains", "field": "$output", "value": "condition", "description": "行为必须包含condition字段"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "行为中必须包含sendToLLM调用"}
+    ],
+    "hints": ["condition是EventHandler的可选字段，值为表达式字符串", "condition为true时执行该行为，为false则跳过"]
+  },
+  {
+    "id": "FP0507",
+    "name": "Multiple handlers sequential",
+    "category": "event",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button组件，id为'submit_form_btn'，label为'提交表单'，点击时触发EventHandler数组，按顺序执行两个行为：第一个行为无condition，id为'save_data'，call为'setDataModel'，args.path为'/formData/status'，args.value为'submitted'；第二个行为无condition，id为'notify_llm'，call为'sendToLLM'，args.value为'表单已提交'",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组包含至少2个行为对象"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "第一个行为必须包含setDataModel调用"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "第二个行为必须包含sendToLLM调用"}
+    ],
+    "hints": ["onClick是EventHandler数组，可以有多个行为按顺序执行", "无condition的行为默认执行"]
+  },
+  {
+    "id": "FP0508",
+    "name": "break action",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Extended.Button组件，id为'cancel_btn'，label为'取消'，点击时触发EventHandler数组，包含两个行为：第一个行为有condition\"{{ $__dataModel.isProcessing == true }}\"，id为'stop_process'，call为'break'；第二个行为无condition，id为'reset_form'，call为'setDataModel'，args.path为'/formData'，args.value为null",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确，包含多个行为"},
+      {"type": "contains", "field": "$output", "value": "break", "description": "必须包含break行为调用"},
+      {"type": "contains", "field": "$output", "value": "condition", "description": "第一个行为必须有condition条件"}
+    ],
+    "hints": ["break行为用于跳出当前事件的行为链，不需要args参数", "break后的行为不会被执行"]
+  },
+  {
+    "id": "FP0509",
+    "name": "onChange with TextInput",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Extended.TextInput组件，id为'search_input'，placeholder为'输入搜索关键词'，onChange事件触发EventHandler数组，包含一个行为，id为'update_keyword'，call为'setDataModel'，args.path为'/searchKeyword'，args.value使用表达式引用事件数据中的新值",
+    "expected": {
+      "component": "Extended.TextInput",
+      "required_fields": ["id", "component", "placeholder", "onChange"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onChange", "description": "必须有onChange事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "必须包含setDataModel行为调用"},
+      {"type": "contains", "field": "$output", "value": "/searchKeyword", "description": "args.path必须指向/searchKeyword"}
+    ],
+    "hints": ["onChange是Extended.TextInput特有事件，值发生变化时触发", "事件数据包含value（新值）和oldValue（旧值）"]
+  },
+  {
+    "id": "FP0510",
+    "name": "onReachEnd with List",
+    "category": "event",
+    "complexity": "medium",
+    "task": "生成一个Extended.List组件，id为'news_list'，children为['item1','item2','item3']，onReachEnd事件触发EventHandler数组，包含一个行为，id为'load_more'，call为'sendToLLM'，args.value为'加载更多数据'",
+    "expected": {
+      "component": "Extended.List",
+      "required_fields": ["id", "component", "children", "onReachEnd"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onReachEnd", "description": "必须有onReachEnd事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组格式正确"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "必须包含sendToLLM行为调用"},
+      {"type": "contains", "field": "$output", "value": "加载更多数据", "description": "args.value必须包含加载更多的消息"}
+    ],
+    "hints": ["onReachEnd是Extended.List特有事件，列表滚动到底部时触发", "常用于实现无限滚动加载"]
+  },
+  {
+    "id": "FP0512",
+    "name": "Complex: conditional chain with setDataModel",
+    "category": "event",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button组件，id为'order_btn'，label为'下单'，点击时触发EventHandler数组，包含三个顺序行为：第一个无condition，id为'set_order_status'，call为'setDataModel'，args.path为'/order/status'，args.value为'processing'；第二个有condition\"{{ $__dataModel.order.status == 'processing' }}\"，id为'send_order_msg'，call为'sendToLLM'，args.value为'新订单已创建'；第三个有condition\"{{ $__dataModel.order.status != 'processing' }}\"，id为'report_error'，call为'sendToLLM'，args.value为'订单状态异常'",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": []
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组包含3个行为对象，部分带condition"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "第一个行为必须包含setDataModel"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "后续行为必须包含sendToLLM"},
+      {"type": "contains", "field": "$output", "value": "condition", "description": "第二个和第三个行为必须有condition条件"}
+    ],
+    "hints": ["三个行为按顺序执行：先设置状态，再根据状态条件发送不同消息", "condition使用$__dataModel引用数据模型中的值"]
+  },
+  {
+    "id": "FP0513",
+    "name": "onClick 单行为无条件执行",
+    "category": "event",
+    "complexity": "simple",
+    "gap_ref": "GAP-003",
+    "task": "生成一个 Extended.Button，onClick 时执行一个 sendToLLM 行为，无 condition",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": [
+        {"field": "onClick", "must_be_array": true},
+        {"field": "onClick[0].call", "must_contain": "sendToLLM"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "onClick是EventHandler数组，行为对象包含id和call字段"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "必须包含sendToLLM行为调用"}
+    ],
+    "hints": ["最简单的行为：一个事件对应一个无条件行为"]
+  },
+  {
+    "id": "FP0514",
+    "name": "onClick 两步条件链",
+    "category": "event",
+    "complexity": "medium",
+    "gap_ref": "GAP-003",
+    "task": "生成 Extended.Button，onClick 先校验、校验成功则提交、提交成功后通知 LLM。通过 as 绑定前置行为结果，用 $ 前缀引用。",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": [
+        {"field": "onClick", "must_be_array": true},
+        {"field": "onClick", "must_have_length": 3},
+        {"field": "onClick[0].call", "must_contain": "validate"},
+        {"field": "onClick[1].condition", "must_contain": "== 0"},
+        {"field": "onClick[2].call", "must_contain": "sendToLLM"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组包含3个行为对象"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "第一个行为必须包含validate调用"},
+      {"type": "contains", "field": "$output", "value": "as", "description": "前置行为必须通过as绑定结果变量"},
+      {"type": "contains", "field": "$output", "value": "condition", "description": "后续行为必须通过condition引用前置结果"},
+      {"type": "contains", "field": "$output", "value": "sendToLLM", "description": "最后一个行为必须包含sendToLLM"}
+    ],
+    "hints": ["前置行为通过as（如as:'validResult'）绑定返回值", "后续行为用condition引用as绑定的变量（如$validResult == 0）实现链式依赖"]
+  },
+  {
+    "id": "FP0515",
+    "name": "onClick 条件分支（成功/失败两条路径）",
+    "category": "event",
+    "complexity": "complex",
+    "gap_ref": "GAP-003",
+    "task": "生成 Extended.Button，onClick 校验 → 成功则 setDataModel、失败则 sendToLLM 报错。通过 as 绑定前置行为结果，用互斥 condition 实现分支。",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "onClick"],
+      "patterns": [
+        {"field": "onClick", "must_be_array": true},
+        {"field": "onClick[0].call", "must_contain": "validate"},
+        {"field": "onClick[1].condition", "must_contain": "== 0"},
+        {"field": "onClick[1].call", "must_contain": "setDataModel"},
+        {"field": "onClick[2].condition", "must_contain": "!= 0"},
+        {"field": "onClick[2].call", "must_contain": "sendToLLM"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "onClick", "description": "必须有onClick事件属性"},
+      {"type": "chain_format", "description": "EventHandler数组包含3个行为对象，通过互斥condition实现分支"},
+      {"type": "contains", "field": "$output", "value": "validate", "description": "第一个行为必须包含validate调用"},
+      {"type": "contains", "field": "$output", "value": "as", "description": "前置行为必须通过as绑定结果变量"},
+      {"type": "contains", "field": "$output", "value": "setDataModel", "description": "成功路径必须包含setDataModel"},
+      {"type": "contains", "field": "$output", "value": "condition", "description": "后续行为必须通过condition实现分支逻辑"}
+    ],
+    "hints": ["前置行为通过as（如as:'validResult'）绑定返回值", "通过互斥的condition实现if/else分支", "成功路径condition引用$result==0，失败路径引用$result!=0"]
+  },
+  {
+    "id": "FP0516",
+    "name": "action context 调用扩展函数聚合表单状态",
+    "category": "event",
+    "complexity": "medium",
+    "gap_ref": "GAP-054",
+    "task": "生成一个 Extended.Button 组件，id 为 submit-btn，label 为 提交，通过 action.event 发送 submitSurvey 事件，context 中用 getRadioValue 获取 plan_type，用 getCheckboxGroupValues 获取 hobbies，用 getToggleValue 获取 agree_toggle，用 getSelectValue 获取 city_select",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": ["id", "component", "label", "action"],
+      "patterns": [
+        {"field": "action.event.context.plan.call", "must_contain": "getRadioValue"},
+        {"field": "action.event.context.hobbies.call", "must_contain": "getCheckboxGroupValues"},
+        {"field": "action.event.context.agree.call", "must_contain": "getToggleValue"},
+        {"field": "action.event.context.city.call", "must_contain": "getSelectValue"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "action.event.context", "description": "必须使用 action.event.context 承载函数调用结果"},
+      {"type": "contains", "field": "$output", "value": "getRadioValue", "description": "必须调用 getRadioValue"},
+      {"type": "contains", "field": "$output", "value": "getCheckboxGroupValues", "description": "必须调用 getCheckboxGroupValues"},
+      {"type": "contains", "field": "$output", "value": "getToggleValue", "description": "必须调用 getToggleValue"},
+      {"type": "contains", "field": "$output", "value": "getSelectValue", "description": "必须调用 getSelectValue"}
+    ],
+    "hints": ["action.event.context 的字段值可以是 {call,args} 函数调用对象，返回类型由函数定义声明"]
+  }
+]

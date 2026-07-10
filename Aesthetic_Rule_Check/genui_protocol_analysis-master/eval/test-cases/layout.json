@@ -1,0 +1,229 @@
+[
+  {
+    "id": "L001",
+    "name": "简单Column布局",
+    "category": "layout",
+    "complexity": "simple",
+    "task": "生成一个Column组件，包含title和body两个子组件，垂直排列",
+    "expected": {
+      "component": "Column",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "children_format",
+        "description": "children必须是字符串数组"
+      }
+    ],
+    "hints": [
+      "children是子组件ID的字符串数组"
+    ]
+  },
+  {
+    "id": "L002",
+    "name": "Row水平布局",
+    "category": "layout",
+    "complexity": "simple",
+    "task": "生成一个Row组件，包含icon和label两个子组件，两端对齐",
+    "expected": {
+      "component": "Row",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        },
+        {
+          "field": "styles.justifyContent",
+          "must_contain": "spaceBetween"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "children_format",
+        "description": "children必须是字符串数组"
+      }
+    ],
+    "hints": [
+      "Row是水平布局",
+      "justifyContent控制主轴对齐"
+    ]
+  },
+  {
+    "id": "L003",
+    "name": "If条件布局",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个If组件，条件为$hasData，有数据显示dataList，无数据显示emptyTip",
+    "expected": {
+      "component": "If",
+      "required_fields": [
+        "component",
+        "condition",
+        "childrenIf",
+        "childrenElse"
+      ],
+      "patterns": [
+        {
+          "field": "condition",
+          "must_be_type": "string"
+        },
+        {
+          "field": "condition",
+          "must_contain": "$hasData"
+        },
+        {
+          "field": "childrenIf",
+          "must_be_type": "array"
+        },
+        {
+          "field": "childrenElse",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "value": "{{",
+        "description": "condition必须用{{ }}包裹格式",
+        "field": "condition"
+      }
+    ],
+    "hints": [
+      "If组件用于条件渲染",
+      "childrenIf和childrenElse是子组件ID数组"
+    ]
+  },
+  {
+    "id": "L004",
+    "name": "List模板渲染",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个List组件，用模板productItem渲染$products数组，间距12",
+    "expected": {
+      "component": "List",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children.componentId",
+          "must_contain": "productItem"
+        },
+        {
+          "field": "children.path",
+          "must_contain": "$products"
+        },
+        {
+          "field": "space",
+          "must_be_type": "number"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "description": "children必须有componentId",
+        "field": "children.componentId"
+      },
+      {
+        "type": "has_field",
+        "description": "children必须有path",
+        "field": "children.path"
+      }
+    ],
+    "hints": [
+      "List的children是对象而非数组",
+      "componentId指定模板，path指定数据路径"
+    ]
+  },
+  {
+    "id": "L005",
+    "name": "Grid网格布局",
+    "category": "layout",
+    "complexity": "complex",
+    "task": "生成一个Grid组件，包含card1、card2、card3、card4四个子组件，2列网格",
+    "expected": {
+      "component": "Grid",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        },
+        {
+          "field": "styles.columnsTemplate",
+          "must_be_type": "string"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "children_format",
+        "description": "children必须是字符串数组"
+      },
+      {
+        "type": "has_field",
+        "description": "必须有columnsTemplate",
+        "field": "styles.columnsTemplate"
+      }
+    ],
+    "hints": [
+      "Grid用columnsTemplate定义列数",
+      "如\"1fr 1fr\"表示两列"
+    ]
+  },
+  {
+    "id": "L006",
+    "name": "嵌套布局",
+    "category": "layout",
+    "complexity": "complex",
+    "task": "生成一个Column组件作为页面根布局，包含header和content两个子区域。content区域是Row，包含sidebar和main。同时header根据$isCompact条件决定显示compactHeader还是fullHeader。",
+    "expected": {
+      "component": "Column",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "children_format",
+        "description": "children必须是字符串数组"
+      },
+      {
+        "type": "has_field",
+        "description": "children中应包含header相关引用",
+        "field": "children"
+      }
+    ],
+    "hints": [
+      "注意这是单组件生成，不是多组件树",
+      "children引用的是子组件的ID名称"
+    ]
+  }
+]

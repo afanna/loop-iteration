@@ -1,0 +1,101 @@
+[
+  {
+    "id": "C001",
+    "name": "Text使用主题",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Text组件，内容'页面标题'，使用heading1主题",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "theme"],
+      "patterns": [
+        {"field": "content", "must_contain": "页面标题"},
+        {"field": "theme", "must_contain": "heading1"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "必须有theme字段", "field": "theme"}
+    ],
+    "hints": ["theme使用固定字符串值，如\"heading1\""]
+  },
+  {
+    "id": "C002",
+    "name": "Button使用主题",
+    "category": "component",
+    "complexity": "simple",
+    "task": "生成一个Button组件，标签'确定'，使用buttonPrimary主题",
+    "expected": {
+      "component": "Button",
+      "required_fields": ["component", "label", "theme"],
+      "patterns": [
+        {"field": "label", "must_contain": "确定"},
+        {"field": "theme", "must_contain": "buttonPrimary"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "必须有theme字段", "field": "theme"}
+    ],
+    "hints": ["按钮主题有buttonPrimary、buttonSecondary、buttonDanger"]
+  },
+  {
+    "id": "C003",
+    "name": "主题+样式覆盖",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成一个Text组件，内容'品牌标题'，使用heading1主题，但字体颜色覆盖为#007AFF",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "theme", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "品牌标题"},
+        {"field": "theme", "must_contain": "heading1"},
+        {"field": "styles.fontColor", "must_contain": "#007AFF"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "必须有theme字段", "field": "theme"},
+      {"type": "has_field", "description": "必须有styles字段", "field": "styles"},
+      {"type": "has_field", "description": "styles中必须覆盖fontColor", "field": "styles.fontColor"}
+    ],
+    "hints": ["theme和styles可以共存", "styles会覆盖theme中对应的属性"]
+  },
+  {
+    "id": "C004",
+    "name": "TextInput使用主题",
+    "category": "component",
+    "complexity": "medium",
+    "task": "生成一个TextInput组件，placeholder'请输入关键词'，使用inputSearch主题，type为'search'",
+    "expected": {
+      "component": "TextInput",
+      "required_fields": ["component", "placeholder", "theme"],
+      "patterns": [
+        {"field": "placeholder", "must_contain": "关键词"},
+        {"field": "theme", "must_contain": "inputSearch"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "必须有theme字段", "field": "theme"}
+    ],
+    "hints": ["输入框主题有inputBasic、inputSearch"]
+  },
+  {
+    "id": "C005",
+    "name": "Card容器组件",
+    "category": "component",
+    "complexity": "complex",
+    "task": "生成一个Card组件，使用card主题，包含child为userCard子组件，并添加padding样式为16",
+    "expected": {
+      "component": "Card",
+      "required_fields": ["component", "child", "theme"],
+      "patterns": [
+        {"field": "child", "must_contain": "userCard"},
+        {"field": "theme", "must_contain": "card"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "description": "必须有child字段", "field": "child"},
+      {"type": "has_field", "description": "必须有theme字段", "field": "theme"}
+    ],
+    "hints": ["Card组件用child而非children", "card主题提供默认卡片样式"]
+  }
+]

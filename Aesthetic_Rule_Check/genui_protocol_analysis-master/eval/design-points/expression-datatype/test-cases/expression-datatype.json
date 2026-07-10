@@ -1,0 +1,541 @@
+[
+  {
+    "id": "TC01",
+    "name": "简单字符串变量显示",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示$username变量的值",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$username", "description": "引用$username变量"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$username", "description": "引用$username变量"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$username", "description": "引用$username变量"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$username是字符串类型变量"]
+  },
+  {
+    "id": "TC02",
+    "name": "数字算术运算",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示$price乘以$quantity的结果（纯数字运算）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "$quantity", "description": "引用$quantity变量"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "$quantity", "description": "引用$quantity变量"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "$quantity", "description": "引用$quantity变量"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$price和$quantity都是数字类型变量，做乘法运算"]
+  },
+  {
+    "id": "TC03",
+    "name": "布尔条件判断",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，如果$isVip为true则显示'VIP会员'，否则显示'普通会员'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "VIP", "description": "包含VIP文本"},
+        {"type": "contains", "field": "content", "value": "普通", "description": "包含'普通'文本"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "VIP", "description": "包含VIP文本"},
+        {"type": "contains", "field": "content", "value": "普通", "description": "包含'普通'文本"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "VIP", "description": "包含VIP文本"},
+        {"type": "contains", "field": "content", "value": "普通", "description": "包含'普通'文本"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$isVip是布尔类型变量"]
+  },
+  {
+    "id": "TC04",
+    "name": "数字比较判断",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，如果$score大于等于60则显示'及格'，否则显示'不及格'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$score", "description": "引用$score变量"},
+        {"type": "contains", "field": "content", "value": "及格", "description": "包含'及格'"},
+        {"type": "contains", "field": "content", "value": "不及格", "description": "包含'不及格'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$score", "description": "引用$score变量"},
+        {"type": "contains", "field": "content", "value": "及格", "description": "包含'及格'"},
+        {"type": "contains", "field": "content", "value": "不及格", "description": "包含'不及格'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$score", "description": "引用$score变量"},
+        {"type": "contains", "field": "content", "value": "及格", "description": "包含'及格'"},
+        {"type": "contains", "field": "content", "value": "不及格", "description": "包含'不及格'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$score是数字类型变量"]
+  },
+  {
+    "id": "TC05",
+    "name": "字符串相等比较",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，如果$status等于'active'则显示'在线'，否则显示'离线'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$status", "description": "引用$status变量"},
+        {"type": "contains", "field": "content", "value": "在线", "description": "包含'在线'"},
+        {"type": "contains", "field": "content", "value": "离线", "description": "包含'离线'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$status", "description": "引用$status变量"},
+        {"type": "contains", "field": "content", "value": "在线", "description": "包含'在线'"},
+        {"type": "contains", "field": "content", "value": "离线", "description": "包含'离线'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$status", "description": "引用$status变量"},
+        {"type": "contains", "field": "content", "value": "在线", "description": "包含'在线'"},
+        {"type": "contains", "field": "content", "value": "离线", "description": "包含'离线'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$status是字符串类型变量，与字符串'active'比较"]
+  },
+
+  {
+    "id": "TC06",
+    "name": "字符串+数字拼接",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'共'加上$count变量的值再加上'件'，如'共5件'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "引用$count变量"},
+        {"type": "contains", "field": "content", "value": "共", "description": "包含'共'"},
+        {"type": "contains", "field": "content", "value": "件", "description": "包含'件'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "引用$count变量"},
+        {"type": "contains", "field": "content", "value": "共", "description": "包含'共'"},
+        {"type": "contains", "field": "content", "value": "件", "description": "包含'件'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "引用$count变量"},
+        {"type": "contains", "field": "content", "value": "共", "description": "包含'共'"},
+        {"type": "contains", "field": "content", "value": "件", "description": "包含'件'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$count是数字变量，需要和字符串拼接"]
+  },
+  {
+    "id": "TC07",
+    "name": "布尔+数字+字符串混合",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，如果$isVip为true则显示$discount后面跟'折优惠'，否则显示'无折扣'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "折优惠", "description": "包含'折优惠'"},
+        {"type": "contains", "field": "content", "value": "无折扣", "description": "包含'无折扣'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "折优惠", "description": "包含'折优惠'"},
+        {"type": "contains", "field": "content", "value": "无折扣", "description": "包含'无折扣'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "折优惠", "description": "包含'折优惠'"},
+        {"type": "contains", "field": "content", "value": "无折扣", "description": "包含'无折扣'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$isVip是布尔，$discount是数字，需要和字符串拼接"]
+  },
+  {
+    "id": "TC08",
+    "name": "格式化数字+字符串拼接",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示formatNumber($price, 2)的结果后面跟'元'，如'99.00元'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber函数"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber函数"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$price是数字变量，formatNumber返回字符串，与'元'拼接"]
+  },
+  {
+    "id": "TC09",
+    "name": "数字比较结果+字符串",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，如果$stock大于0则显示$stock加上'件在售'，否则显示'已售罄'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$stock", "description": "引用$stock变量"},
+        {"type": "contains", "field": "content", "value": "在售", "description": "包含'在售'"},
+        {"type": "contains", "field": "content", "value": "售罄", "description": "包含'售罄'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$stock", "description": "引用$stock变量"},
+        {"type": "contains", "field": "content", "value": "在售", "description": "包含'在售'"},
+        {"type": "contains", "field": "content", "value": "售罄", "description": "包含'售罄'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$stock", "description": "引用$stock变量"},
+        {"type": "contains", "field": "content", "value": "在售", "description": "包含'在售'"},
+        {"type": "contains", "field": "content", "value": "售罄", "description": "包含'售罄'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$stock是数字变量，需要先比较再和字符串拼接"]
+  },
+  {
+    "id": "TC10",
+    "name": "多步算术+字符串",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示($subtotal减去$discount)的计算结果，后面跟'元'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$subtotal", "description": "引用$subtotal变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$subtotal", "description": "引用$subtotal变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$subtotal", "description": "引用$subtotal变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["$subtotal和$discount是数字变量，先算术运算再拼接字符串"]
+  },
+
+  {
+    "id": "TC11",
+    "name": "嵌套条件+算术+拼接",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，如果$isVip且$discount > 0则显示'折后'加上($price * $discount / 10)加上'元'，否则显示$price加上'元'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip"},
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip"},
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip"},
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC12",
+    "name": "布尔逻辑+字符串",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，如果$isAdmin或$isModerator为true则显示'管理权限'，否则显示'普通用户'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$isAdmin", "description": "引用$isAdmin"},
+        {"type": "contains", "field": "content", "value": "$isModerator", "description": "引用$isModerator"},
+        {"type": "contains", "field": "content", "value": "管理", "description": "包含'管理'"},
+        {"type": "contains", "field": "content", "value": "普通用户", "description": "包含'普通用户'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$isAdmin", "description": "引用$isAdmin"},
+        {"type": "contains", "field": "content", "value": "$isModerator", "description": "引用$isModerator"},
+        {"type": "contains", "field": "content", "value": "管理", "description": "包含'管理'"},
+        {"type": "contains", "field": "content", "value": "普通用户", "description": "包含'普通用户'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$isAdmin", "description": "引用$isAdmin"},
+        {"type": "contains", "field": "content", "value": "$isModerator", "description": "引用$isModerator"},
+        {"type": "contains", "field": "content", "value": "管理", "description": "包含'管理'"},
+        {"type": "contains", "field": "content", "value": "普通用户", "description": "包含'普通用户'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC13",
+    "name": "多类型混合拼接",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示$lastName加上$firstName加上'('加上$age加上'岁)'加上($isVip ? ' VIP' : '')，如'张三(25岁) VIP'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$lastName", "description": "引用$lastName"},
+        {"type": "contains", "field": "content", "value": "$firstName", "description": "引用$firstName"},
+        {"type": "contains", "field": "content", "value": "$age", "description": "引用$age"},
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip"},
+        {"type": "contains", "field": "content", "value": "岁", "description": "包含'岁'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$lastName", "description": "引用$lastName"},
+        {"type": "contains", "field": "content", "value": "$firstName", "description": "引用$firstName"},
+        {"type": "contains", "field": "content", "value": "$age", "description": "引用$age"},
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip"},
+        {"type": "contains", "field": "content", "value": "岁", "description": "包含'岁'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$lastName", "description": "引用$lastName"},
+        {"type": "contains", "field": "content", "value": "$firstName", "description": "引用$firstName"},
+        {"type": "contains", "field": "content", "value": "$age", "description": "引用$age"},
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip"},
+        {"type": "contains", "field": "content", "value": "岁", "description": "包含'岁'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC14",
+    "name": "空值回退+类型混合",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示$nickname变量的值，如果$nickname为空则显示$username，后面跟'你好'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$nickname", "description": "引用$nickname"},
+        {"type": "contains", "field": "content", "value": "$username", "description": "引用$username"},
+        {"type": "contains", "field": "content", "value": "你好", "description": "包含'你好'"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$nickname", "description": "引用$nickname"},
+        {"type": "contains", "field": "content", "value": "$username", "description": "引用$username"},
+        {"type": "contains", "field": "content", "value": "你好", "description": "包含'你好'"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$nickname", "description": "引用$nickname"},
+        {"type": "contains", "field": "content", "value": "$username", "description": "引用$username"},
+        {"type": "contains", "field": "content", "value": "你好", "description": "包含'你好'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC15",
+    "name": "复杂条件+多步算术+格式化+拼接",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示'合计'加上formatNumber($total, 2)加上'元'，如果$saved大于0则再加上'(省'加上formatNumber($saved, 2)加上'元)'，如'合计99.00元(省10.00元)'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "typed": [
+        {"type": "contains", "field": "content", "value": "$total", "description": "引用$total"},
+        {"type": "contains", "field": "content", "value": "$saved", "description": "引用$saved"},
+        {"type": "contains", "field": "content", "value": "合计", "description": "包含'合计'"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber"}
+      ],
+      "weak": [
+        {"type": "contains", "field": "content", "value": "$total", "description": "引用$total"},
+        {"type": "contains", "field": "content", "value": "$saved", "description": "引用$saved"},
+        {"type": "contains", "field": "content", "value": "合计", "description": "包含'合计'"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber"}
+      ],
+      "strong": [
+        {"type": "contains", "field": "content", "value": "$total", "description": "引用$total"},
+        {"type": "contains", "field": "content", "value": "$saved", "description": "引用$saved"},
+        {"type": "contains", "field": "content", "value": "合计", "description": "包含'合计'"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

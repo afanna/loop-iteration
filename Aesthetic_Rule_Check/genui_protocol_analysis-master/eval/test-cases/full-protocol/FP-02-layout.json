@@ -1,0 +1,296 @@
+[
+  {
+    "id": "FP0201",
+    "name": "Extended.Column 带子组件",
+    "category": "layout",
+    "complexity": "simple",
+    "task": "生成一个Extended.Column组件，id为main-col，children为[\"header\", \"body\", \"footer\"]的字符串数组",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["id", "component", "children"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Column", "description": "必须使用Extended.Column组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"}
+    ],
+    "hints": ["Extended.Column是垂直布局组件", "children是子组件ID的字符串数组"]
+  },
+  {
+    "id": "FP0202",
+    "name": "Extended.Row 带space间距",
+    "category": "layout",
+    "complexity": "simple",
+    "task": "生成一个Extended.Row组件，id为toolbar-row，children为[\"icon\", \"label\"]，space属性设为12",
+    "expected": {
+      "component": "Extended.Row",
+      "required_fields": ["id", "component", "children"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"},
+        {"field": "space", "must_be_type": "number"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Row", "description": "必须使用Extended.Row组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"},
+      {"type": "has_field", "field": "space", "description": "必须有space字段"}
+    ],
+    "hints": ["Extended.Row是水平布局组件", "space属性控制子元素间距，单位vp"]
+  },
+  {
+    "id": "FP0203",
+    "name": "Extended.Stack 堆叠对齐",
+    "category": "layout",
+    "complexity": "simple",
+    "task": "生成一个Extended.Stack组件，id为stack-container，children为[\"bg-image\", \"content-overlay\"]，styles中alignContent设为\"center\"",
+    "expected": {
+      "component": "Extended.Stack",
+      "required_fields": ["id", "component", "children"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Stack", "description": "必须使用Extended.Stack组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"}
+    ],
+    "hints": ["Extended.Stack是堆叠布局，后添加的子组件在上层", "children是子组件ID数组"]
+  },
+  {
+    "id": "FP0204",
+    "name": "Extended.Grid 网格布局",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个Extended.Grid组件，id为card-grid，children为[\"card1\", \"card2\", \"card3\", \"card4\"]，styles中columnsTemplate设为\"1fr 1fr\"表示两列",
+    "expected": {
+      "component": "Extended.Grid",
+      "required_fields": ["id", "component", "children"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Grid", "description": "必须使用Extended.Grid组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"},
+      {"type": "has_field", "field": "styles.columnsTemplate", "description": "必须有columnsTemplate样式属性"}
+    ],
+    "hints": ["Extended.Grid用columnsTemplate定义列数", "\"1fr 1fr\"表示两列等宽"]
+  },
+  {
+    "id": "FP0205",
+    "name": "Extended.GridRow 网格行",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个Extended.GridRow组件，id为grid-row-1，children为[\"cell-a\", \"cell-b\", \"cell-c\"]",
+    "expected": {
+      "component": "Extended.GridRow",
+      "required_fields": ["id", "component", "children"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.GridRow", "description": "必须使用Extended.GridRow组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"}
+    ],
+    "hints": ["Extended.GridRow是网格行组件，通常配合Grid使用"]
+  },
+  {
+    "id": "FP0206",
+    "name": "Extended.Tabs + Extended.TabContent 多组件",
+    "category": "layout",
+    "complexity": "complex",
+    "task": "生成一个Tabs页面布局，包含一个Extended.Tabs组件(id为main-tabs，children为[\"tab-home\", \"tab-profile\"])和两个Extended.TabContent子组件(id为tab-home，title为\"首页\"，children为[\"home-content\"]；id为tab-profile，title为\"我的\"，children为[\"profile-content\"])",
+    "expected": {
+      "required_fields": ["id", "component"],
+      "patterns": [
+        {"field": "component", "must_contain": "Extended.Tabs"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "Extended.Tabs", "description": "必须包含Extended.Tabs组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.TabContent", "description": "必须包含Extended.TabContent子组件"},
+      {"type": "contains", "field": "$output", "value": "title", "description": "TabContent必须有title字段"},
+      {"type": "contains", "field": "$output", "value": "首页", "description": "某个TabContent的title必须为首页"}
+    ],
+    "hints": ["Extended.Tabs是选项卡容器，children引用Extended.TabContent组件ID", "Extended.TabContent必须有title字段表示页签标题", "这是一个多组件输出，应生成JSON数组"]
+  },
+  {
+    "id": "FP0207",
+    "name": "NavContainer 导航容器组件",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个NavContainer组件，id为app-nav，children为[\"page-home\", \"page-detail\", \"page-settings\"]，currentIndex为0",
+    "expected": {
+      "component": "NavContainer",
+      "required_fields": ["id", "component", "children", "currentIndex"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "NavContainer", "description": "必须使用NavContainer组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"},
+      {"type": "has_field", "field": "currentIndex", "description": "必须有currentIndex字段"}
+    ],
+    "hints": ["NavContainer是堆叠容器，同一时间只显示currentIndex指定的子页面"]
+  },
+  {
+    "id": "FP0208",
+    "name": "嵌套 Column > Row 两级布局",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成两个组件：一个Extended.Column组件(id为page-root，children为[\"header-bar\", \"content-row\"])和一个Extended.Row组件(id为content-row，children为[\"sidebar\", \"main-area\"])",
+    "expected": {
+      "required_fields": ["id", "component"],
+      "patterns": [
+        {"field": "component", "must_contain": "Extended.Column"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "Extended.Column", "description": "必须包含Extended.Column组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.Row", "description": "必须包含Extended.Row组件"},
+      {"type": "contains", "field": "$output", "value": "content-row", "description": "Column的children应引用content-row"},
+      {"type": "contains", "field": "$output", "value": "sidebar", "description": "Row的children应包含sidebar"}
+    ],
+    "hints": ["嵌套布局需要输出多个组件到components数组中", "外层Column通过children引用内层Row的id"]
+  },
+  {
+    "id": "FP0209",
+    "name": "三级布局树 Column > Row > Column",
+    "category": "layout",
+    "complexity": "complex",
+    "task": "生成一个三级嵌套布局：最外层Extended.Column(id为app-root，children为[\"top-bar\", \"middle-row\"])，中间层Extended.Row(id为middle-row，children为[\"left-panel\", \"right-col\"])，最内层Extended.Column(id为right-col，children为[\"info-card\", \"action-bar\"])",
+    "expected": {
+      "required_fields": ["id", "component"],
+      "patterns": [
+        {"field": "component", "must_contain": "Extended.Column"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "Extended.Column", "description": "必须包含Extended.Column组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.Row", "description": "必须包含Extended.Row组件"},
+      {"type": "contains", "field": "$output", "value": "app-root", "description": "必须包含app-root组件"},
+      {"type": "contains", "field": "$output", "value": "middle-row", "description": "必须有middle-row组件作为中间层"},
+      {"type": "contains", "field": "$output", "value": "right-col", "description": "必须有right-col组件作为最内层"}
+    ],
+    "hints": ["三级嵌套需要输出三个组件到components数组", "外层通过children引用内层组件的id", "注意层级关系：app-root > middle-row > right-col"]
+  },
+  {
+    "id": "FP0210",
+    "name": "Extended.List 静态列表",
+    "category": "layout",
+    "complexity": "simple",
+    "task": "生成一个Extended.List组件，id为menu-list，children为[\"item-home\", \"item-search\", \"item-msg\", \"item-me\"]的字符串数组",
+    "expected": {
+      "component": "Extended.List",
+      "required_fields": ["id", "component", "children"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.List", "description": "必须使用Extended.List组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"}
+    ],
+    "hints": ["Extended.List是列表组件", "children是子组件ID的字符串数组"]
+  },
+  {
+    "id": "FP0211",
+    "name": "Extended.Card 卡片容器",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个Extended.Card组件，id为user-card，child为\"user-info\"（引用子组件ID），并设置styles中padding为16",
+    "expected": {
+      "component": "Extended.Card",
+      "required_fields": ["id", "component", "child"],
+      "patterns": [
+        {"field": "child", "must_contain": "user-info"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Card", "description": "必须使用Extended.Card组件"},
+      {"type": "has_field", "field": "child", "description": "必须有child字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "hints": ["Extended.Card用child字段（单数）引用唯一子组件ID", "不是children而是child"]
+  },
+  {
+    "id": "FP0212",
+    "name": "Extended.Modal 弹窗",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个Extended.Modal组件，id为confirm-modal，visible为false，child为\"modal-content\"",
+    "expected": {
+      "component": "Extended.Modal",
+      "required_fields": ["id", "component", "visible", "child"],
+      "patterns": [
+        {"field": "visible", "must_be_type": "boolean"},
+        {"field": "child", "must_contain": "modal-content"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Modal", "description": "必须使用Extended.Modal组件"},
+      {"type": "has_field", "field": "visible", "description": "必须有visible字段"},
+      {"type": "has_field", "field": "child", "description": "必须有child字段"}
+    ],
+    "hints": ["Extended.Modal用visible布尔字段控制弹窗显示隐藏", "child引用弹窗内容的子组件ID"]
+  },
+  {
+    "id": "FP0213",
+    "name": "多组件JSON数组",
+    "category": "layout",
+    "complexity": "complex",
+    "task": "生成一个页面布局，包含4个组件：Extended.Column(id为page-root，children为[\"page-header\", \"page-body\"])，Extended.Text(id为page-header，content为\"页面标题\")，Extended.Row(id为page-body，children为[\"left-section\", \"right-section\"])，Extended.Text(id为left-section，content为\"左侧内容\")",
+    "expected": {
+      "required_fields": ["id", "component"],
+      "patterns": [
+        {"field": "component", "must_contain": "Extended.Column"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "$output", "value": "Extended.Column", "description": "必须包含Extended.Column根布局"},
+      {"type": "contains", "field": "$output", "value": "Extended.Text", "description": "必须包含Extended.Text组件"},
+      {"type": "contains", "field": "$output", "value": "Extended.Row", "description": "必须包含Extended.Row组件"},
+      {"type": "contains", "field": "$output", "value": "页面标题", "description": "必须包含\"页面标题\"文本内容"},
+      {"type": "contains", "field": "$output", "value": "左侧内容", "description": "必须包含\"左侧内容\"文本内容"}
+    ],
+    "hints": ["这是一个多组件组合场景，需要输出JSON数组", "components数组中每个组件有独立的id和component", "组件之间通过children和id相互引用"]
+  },
+  {
+    "id": "FP0214",
+    "name": "Extended.Column 带justifyContent样式",
+    "category": "layout",
+    "complexity": "medium",
+    "task": "生成一个Extended.Column组件，id为centered-col，children为[\"title-text\", \"desc-text\"]，styles中justifyContent设为\"center\"",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": ["id", "component", "children", "styles"],
+      "patterns": [
+        {"field": "children", "must_be_type": "array"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "contains", "field": "component", "value": "Extended.Column", "description": "必须使用Extended.Column组件"},
+      {"type": "children_format", "description": "children必须是字符串数组"},
+      {"type": "has_field", "field": "styles.justifyContent", "description": "styles中必须有justifyContent属性"}
+    ],
+    "hints": ["styles对象中设置布局对齐属性", "justifyContent可选值：start、center、end、spaceBetween、spaceAround、spaceEvenly"]
+  }
+]

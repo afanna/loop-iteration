@@ -1,0 +1,469 @@
+[
+  {
+    "id": "NC001",
+    "name": "NavContainer 基本生成",
+    "complexity": "simple",
+    "task": "生成一个NavContainer组件，id为'app-nav'，children为[\"page-home\", \"page-detail\", \"page-settings\"]，currentIndex为0",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children",
+        "currentIndex"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "has_field",
+        "field": "currentIndex",
+        "description": "必须有currentIndex字段"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Navigation",
+          "description": "使用Navigation组件"
+        }
+      ],
+      "navcontainer": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "NavContainer",
+          "description": "使用NavContainer组件"
+        }
+      ]
+    },
+    "hints": [
+      "NavContainer是堆叠容器，同一时间只显示currentIndex指定的子页面"
+    ],
+    "category": "layout"
+  },
+  {
+    "id": "NC002",
+    "name": "NavContainer 含标题（旧协议）vs 纯容器（新协议）",
+    "complexity": "medium",
+    "task": "生成一个导航容器组件，id为'main_nav'，包含三个子页面[\"home\", \"profile\", \"settings\"]，当前显示第1个页面",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_type": "array"
+        }
+      ]
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "children_format",
+        "description": "children必须是字符串数组"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Navigation",
+          "description": "使用Navigation组件"
+        },
+        {
+          "type": "has_field",
+          "field": "title",
+          "description": "Navigation必须有title字段"
+        }
+      ],
+      "navcontainer": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "NavContainer",
+          "description": "使用NavContainer组件"
+        }
+      ]
+    },
+    "hints": [
+      "导航容器管理多个子页面的显示切换",
+      "currentIndex表示当前显示的子页面下标"
+    ],
+    "category": "layout"
+  },
+  {
+    "id": "NC003",
+    "name": "navigate 跳转到 NavContainer 子页面",
+    "complexity": "medium",
+    "task": "生成一个Button组件，id为'go_settings_btn'，label为'设置'，点击后调用navigate跳转到NavContainer组件'main_nav'的子页面'settings_page'",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "id",
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "label",
+          "must_contain": "设置"
+        }
+      ]
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件属性"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "navigate",
+        "description": "必须包含navigate行为调用"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "args必须包含componentId"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "targetComponentId",
+        "description": "args必须包含targetComponentId"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [],
+      "navcontainer": []
+    },
+    "hints": [
+      "navigate需要componentId指定目标NavContainer组件，targetComponentId指定目标子页面"
+    ],
+    "category": "layout"
+  },
+  {
+    "id": "NC004",
+    "name": "NavContainer currentIndex 表达式绑定",
+    "complexity": "medium",
+    "task": "生成一个NavContainer组件，id为'tab_container'，children为[\"tab_a\", \"tab_b\", \"tab_c\"]，currentIndex绑定数据模型变量activeTab",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children",
+        "currentIndex"
+      ],
+      "patterns": [
+        {
+          "field": "currentIndex",
+          "must_contain": "{{"
+        }
+      ]
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      },
+      {
+        "type": "contains",
+        "field": "currentIndex",
+        "value": "{{",
+        "description": "currentIndex必须使用表达式绑定"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Navigation",
+          "description": "使用Navigation组件"
+        }
+      ],
+      "navcontainer": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "NavContainer",
+          "description": "使用NavContainer组件"
+        }
+      ]
+    },
+    "hints": [
+      "currentIndex支持表达式绑定，使用{{ }}包裹"
+    ],
+    "category": "layout"
+  },
+  {
+    "id": "NC005",
+    "name": "完整导航场景：NavContainer + 子页面 + navigate 跳转按钮",
+    "complexity": "complex",
+    "task": "生成三个组件：1) NavContainer容器，id为'app_nav'，children为[\"page_home\", \"page_detail\"]，currentIndex为0；2) Column组件作为首页，id为'page_home'，children为[\"welcome_text\", \"enter_btn\"]；3) Button组件，id为'enter_btn'，label为'进入详情'，点击后调用navigate跳转到app_nav的page_detail子页面",
+    "expected": {
+      "required_fields": [
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "children",
+        "description": "必须包含children字段"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "navigate",
+        "description": "必须包含navigate行为"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "navigate的args必须包含componentId"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "targetComponentId",
+        "description": "navigate的args必须包含targetComponentId"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "Navigation",
+          "description": "必须包含Navigation组件"
+        }
+      ],
+      "navcontainer": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "NavContainer",
+          "description": "必须包含NavContainer组件"
+        }
+      ]
+    },
+    "hints": [
+      "输出为JSON数组，包含3个组件",
+      "NavContainer的children引用其他组件ID",
+      "navigate的componentId指向NavContainer，targetComponentId指向目标子页面"
+    ],
+    "category": "layout"
+  },
+  {
+    "id": "NC006",
+    "name": "NavContainer 不应包含 title 或 backgroundColor",
+    "complexity": "simple",
+    "task": "生成一个NavContainer组件，id为'pager'，children为[\"slide_1\", \"slide_2\"]，currentIndex为0",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "必须有children字段"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Navigation",
+          "description": "使用Navigation组件"
+        },
+        {
+          "type": "has_field",
+          "field": "title",
+          "description": "Navigation需要title字段"
+        }
+      ],
+      "navcontainer": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "NavContainer",
+          "description": "使用NavContainer组件"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "title",
+          "description": "NavContainer不应包含title属性"
+        },
+        {
+          "type": "not_contains",
+          "field": "$output",
+          "value": "backgroundColor",
+          "description": "NavContainer不应包含backgroundColor样式"
+        }
+      ]
+    },
+    "hints": [
+      "NavContainer是纯容器，只管理子页面的显示切换"
+    ],
+    "category": "layout"
+  },
+  {
+    "id": "NC007",
+    "name": "NavContainer navigate 跳转表达式参数",
+    "complexity": "complex",
+    "task": "生成一个Button组件，id为'jump_btn'，label为'跳转'，点击后调用navigate，componentId为'nav_main'，targetComponentId绑定数据模型变量$__DataModel.targetPage",
+    "expected": {
+      "component": "Button",
+      "required_fields": [
+        "id",
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "label",
+          "must_contain": "跳转"
+        }
+      ]
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick事件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "navigate",
+        "description": "必须包含navigate"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "必须包含componentId"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "targetComponentId",
+        "description": "必须包含targetComponentId"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [],
+      "navcontainer": []
+    },
+    "hints": [
+      "navigate的targetComponentId支持表达式绑定，使用{{ }}包裹变量"
+    ],
+    "category": "layout"
+  },
+  {
+    "id": "NC008",
+    "name": "多 NavContainer 场景 — 独立管理",
+    "complexity": "complex",
+    "task": "生成四个组件：1) NavContainer，id为'top_nav'，children为[\"header_a\", \"header_b\"]，currentIndex为0；2) NavContainer，id为'bottom_nav'，children为[\"content_x\", \"content_y\", \"content_z\"]，currentIndex为1；3) Button，id为'switch_btn'，label为'切换顶部'，点击后navigate到top_nav的header_b；4) Button，id为'switch_content_btn'，label为'切换内容'，点击后navigate到bottom_nav的content_z",
+    "expected": {
+      "required_fields": [
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "navigate",
+        "description": "必须包含navigate行为"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "componentId",
+        "description": "必须包含componentId"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "targetComponentId",
+        "description": "必须包含targetComponentId"
+      }
+    ],
+    "strategy_rules": {
+      "navigation": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "Navigation",
+          "description": "使用Navigation组件"
+        }
+      ],
+      "navcontainer": [
+        {
+          "type": "contains",
+          "field": "$output",
+          "value": "NavContainer",
+          "description": "使用NavContainer组件"
+        }
+      ]
+    },
+    "hints": [
+      "多个NavContainer实例各自独立管理子页面",
+      "navigate通过componentId区分不同的NavContainer"
+    ],
+    "category": "layout"
+  }
+]

@@ -1,0 +1,11 @@
+﻿sample_id,rule_overall,teacher_overall,error_rule_minus_teacher,abs_error
+battery,70.66,74.25,-3.59,3.59
+care,50.34,63.5,-13.16,13.16
+earbuds,61.24,50.81,10.43,10.43
+focus,76.53,76.56,-0.03,0.03
+marathon,60.26,75.38,-15.12,15.12
+meeting,75.24,66.38,8.86,8.86
+sleep,56.89,73.69,-16.8,16.8
+status,60.49,64.13,-3.64,3.64
+warn,75.91,75.0,0.91,0.91
+weather,67.05,69.56,-2.51,2.51

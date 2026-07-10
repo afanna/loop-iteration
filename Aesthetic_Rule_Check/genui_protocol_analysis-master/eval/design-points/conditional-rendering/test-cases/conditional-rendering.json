@@ -1,0 +1,397 @@
+[
+  {
+    "id": "CR01", "name": "简单布尔条件显示", "category": "variable-scope", "complexity": "simple",
+    "task": "生成一个条件渲染：如果$__DataModel.isLoggedIn为true，显示Text组件（id为'welcomeText'，content为'欢迎回来'），否则显示Button组件（id为'loginBtn'，label为'登录'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "isLoggedIn", "description": "condition包含isLoggedIn"},
+        {"type": "contains", "field": "childrenIf", "value": "welcomeText", "description": "childrenIf包含welcomeText"},
+        {"type": "contains", "field": "childrenElse", "value": "loginBtn", "description": "childrenElse包含loginBtn"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "isLoggedIn", "description": "visibility包含isLoggedIn"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "isLoggedIn", "description": "value包含isLoggedIn"},
+        {"type": "contains", "field": "cases", "value": "welcomeText", "description": "cases包含welcomeText"},
+        {"type": "contains", "field": "default", "value": "loginBtn", "description": "default包含loginBtn"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR02", "name": "条件显示单个组件(无else)", "category": "variable-scope", "complexity": "simple",
+    "task": "生成一个条件渲染：如果$__DataModel.isAdmin为true，显示Text组件（id为'adminBadge'，content为'管理员'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "isAdmin", "description": "condition包含isAdmin"},
+        {"type": "contains", "field": "childrenIf", "value": "adminBadge", "description": "childrenIf包含adminBadge"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "isAdmin", "description": "visibility包含isAdmin"},
+        {"type": "contains", "field": "id", "value": "adminBadge", "description": "包含adminBadge"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "isAdmin", "description": "value包含isAdmin"},
+        {"type": "contains", "field": "cases", "value": "adminBadge", "description": "cases包含adminBadge"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR03", "name": "条件表达式比较", "category": "variable-scope", "complexity": "simple",
+    "task": "生成一个条件渲染：如果$__DataModel.score大于等于60，显示Text组件（id为'passText'，content为'及格'），否则显示Text组件（id为'failText'，content为'不及格'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "score", "description": "condition包含score"},
+        {"type": "contains", "field": "childrenIf", "value": "passText", "description": "childrenIf包含passText"},
+        {"type": "contains", "field": "childrenElse", "value": "failText", "description": "childrenElse包含failText"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "score", "description": "visibility包含score"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "score", "description": "value包含score"},
+        {"type": "contains", "field": "cases", "value": "passText", "description": "cases包含passText"},
+        {"type": "contains", "field": "default", "value": "failText", "description": "default包含failText"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR04", "name": "字符串相等条件", "category": "variable-scope", "complexity": "simple",
+    "task": "生成一个条件渲染：如果$__DataModel.status等于'success'，显示Text组件（id为'successMsg'，content为'操作成功'），否则显示Text组件（id为'errorMsg'，content为'操作失败'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "status", "description": "condition包含status"},
+        {"type": "contains", "field": "childrenIf", "value": "successMsg", "description": "childrenIf包含successMsg"},
+        {"type": "contains", "field": "childrenElse", "value": "errorMsg", "description": "childrenElse包含errorMsg"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "status", "description": "visibility包含status"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "status", "description": "value包含status"},
+        {"type": "contains", "field": "cases", "value": "successMsg", "description": "cases包含successMsg"},
+        {"type": "contains", "field": "default", "value": "errorMsg", "description": "default包含errorMsg"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR05", "name": "窗口断点条件", "category": "variable-scope", "complexity": "simple",
+    "task": "生成一个条件渲染：如果$__WidthBreakpoint等于'sm'，显示Column组件（id为'mobileLayout'，children为'header'和'content'），否则显示Row组件（id为'desktopLayout'，children为'sidebar'和'mainContent'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "WindowBreakpoint", "description": "condition包含WindowBreakpoint"},
+        {"type": "contains", "field": "childrenIf", "value": "mobileLayout", "description": "childrenIf包含mobileLayout"},
+        {"type": "contains", "field": "childrenElse", "value": "desktopLayout", "description": "childrenElse包含desktopLayout"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "WindowBreakpoint", "description": "visibility包含WindowBreakpoint"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "WindowBreakpoint", "description": "value包含WindowBreakpoint"},
+        {"type": "contains", "field": "cases", "value": "mobileLayout", "description": "cases包含mobileLayout"},
+        {"type": "contains", "field": "default", "value": "desktopLayout", "description": "default包含desktopLayout"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR06", "name": "条件内嵌套子组件", "category": "variable-scope", "complexity": "medium",
+    "task": "生成一个条件渲染（id为'authGate'）：如果$__DataModel.isLoggedIn为true，显示Column组件（id为'loggedInView'，children为'welcomeText'和'logoutBtn'），否则显示Column组件（id为'loggedOutView'，children为'loginBtn'和'registerBtn'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "isLoggedIn", "description": "condition包含isLoggedIn"},
+        {"type": "contains", "field": "childrenIf", "value": "loggedInView", "description": "childrenIf包含loggedInView"},
+        {"type": "contains", "field": "childrenElse", "value": "loggedOutView", "description": "childrenElse包含loggedOutView"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "isLoggedIn", "description": "visibility包含isLoggedIn"},
+        {"type": "contains", "field": "id", "value": "loggedInView", "description": "包含loggedInView"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "isLoggedIn", "description": "value包含isLoggedIn"},
+        {"type": "contains", "field": "cases", "value": "loggedInView", "description": "cases包含loggedInView"},
+        {"type": "contains", "field": "default", "value": "loggedOutView", "description": "default包含loggedOutView"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR07", "name": "多重条件AND判断", "category": "variable-scope", "complexity": "medium",
+    "task": "生成一个条件渲染：如果$__DataModel.hasPermission为true且$__DataModel.isActive为true，显示Text组件（id为'activeAdminText'，content为'活跃管理员'），否则显示Text组件（id为'restrictedText'，content为'受限用户'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "hasPermission", "description": "condition包含hasPermission"},
+        {"type": "contains", "field": "condition", "value": "isActive", "description": "condition包含isActive"},
+        {"type": "contains", "field": "childrenIf", "value": "activeAdminText", "description": "childrenIf包含activeAdminText"},
+        {"type": "contains", "field": "childrenElse", "value": "restrictedText", "description": "childrenElse包含restrictedText"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "hasPermission", "description": "visibility包含hasPermission"},
+        {"type": "contains", "field": "visibility", "value": "isActive", "description": "visibility包含isActive"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "hasPermission", "description": "value包含hasPermission"},
+        {"type": "contains", "field": "cases", "value": "activeAdminText", "description": "cases包含activeAdminText"},
+        {"type": "contains", "field": "default", "value": "restrictedText", "description": "default包含restrictedText"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR08", "name": "三元表达式条件", "category": "variable-scope", "complexity": "medium",
+    "task": "生成一个Text组件（id为'stockStatus'），content使用三元表达式：如果$__DataModel.inStock为true显示'有货'，否则显示'缺货'",
+    "expected": { "component": "Text", "required_fields": ["component", "content"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "content", "value": "inStock", "description": "content包含inStock三元表达式"},
+        {"type": "contains", "field": "content", "value": "有货", "description": "content包含'有货'"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "content", "value": "inStock", "description": "content包含inStock三元表达式"},
+        {"type": "contains", "field": "content", "value": "有货", "description": "content包含'有货'"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "component", "value": "Switch", "description": "使用Switch组件"},
+        {"type": "contains", "field": "value", "value": "inStock", "description": "value包含inStock"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR09", "name": "列表项内条件渲染", "category": "variable-scope", "complexity": "medium",
+    "task": "生成一个条件渲染（id为'itemStatus'）：如果$item.isNew为true，显示Text组件（id为'newTag'，content为'NEW'），否则不显示任何内容",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "isNew", "description": "condition包含isNew"},
+        {"type": "contains", "field": "childrenIf", "value": "newTag", "description": "childrenIf包含newTag"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "isNew", "description": "visibility包含isNew"},
+        {"type": "contains", "field": "id", "value": "newTag", "description": "包含newTag"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "isNew", "description": "value包含isNew"},
+        {"type": "contains", "field": "cases", "value": "newTag", "description": "cases包含newTag"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR10", "name": "条件渲染+事件绑定", "category": "variable-scope", "complexity": "medium",
+    "task": "生成一个条件渲染（id为'promoBanner'）：如果$__DataModel.showPromo为true，显示Column组件（id为'promoContent'，children为'promoText'和'dismissBtn'），dismissBtn点击后setDataModel设置showPromo为false",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "showPromo", "description": "condition包含showPromo"},
+        {"type": "contains", "field": "childrenIf", "value": "promoContent", "description": "childrenIf包含promoContent"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "showPromo", "description": "visibility包含showPromo"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "showPromo", "description": "value包含showPromo"},
+        {"type": "contains", "field": "cases", "value": "promoContent", "description": "cases包含promoContent"}
+      ]
+    },
+    "hints": ["组件的children是字符串ID数组，事件绑定在对应子组件上定义"],
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CR11", "name": "多层嵌套条件", "category": "variable-scope", "complexity": "complex",
+    "task": "生成一个条件渲染（id为'userPanel'）：如果$__DataModel.isLoggedIn为true，再判断如果$__DataModel.isVIP为true显示Text（id为'vipWelcome'，content为'VIP用户'），否则显示Text（id为'normalWelcome'，content为'普通用户'）；如果未登录则显示Button（id为'signInBtn'，label为'登录'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "isLoggedIn", "description": "condition包含isLoggedIn"},
+        {"type": "contains", "field": "childrenIf", "value": "vipWelcome", "description": "childrenIf包含vipWelcome"},
+        {"type": "contains", "field": "childrenElse", "value": "signInBtn", "description": "childrenElse包含signInBtn"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "isLoggedIn", "description": "visibility包含isLoggedIn"},
+        {"type": "contains", "field": "id", "value": "vipWelcome", "description": "包含vipWelcome"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "isLoggedIn", "description": "value包含isLoggedIn"},
+        {"type": "contains", "field": "cases", "value": "vipWelcome", "description": "cases包含vipWelcome"},
+        {"type": "contains", "field": "default", "value": "signInBtn", "description": "default包含signInBtn"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CR12", "name": "条件渲染+动态样式", "category": "variable-scope", "complexity": "complex",
+    "task": "生成一个条件渲染（id为'themeCheck'）：如果$__DataModel.darkMode为true，显示Text组件（id为'darkLabel'，content为'深色模式'，styles包含fontColor为'#FFFFFF'），否则显示Text组件（id为'lightLabel'，content为'浅色模式'，styles包含fontColor为'#333333'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "darkMode", "description": "condition包含darkMode"},
+        {"type": "contains", "field": "childrenIf", "value": "darkLabel", "description": "childrenIf包含darkLabel"},
+        {"type": "contains", "field": "childrenElse", "value": "lightLabel", "description": "childrenElse包含lightLabel"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "darkMode", "description": "visibility包含darkMode"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "darkMode", "description": "value包含darkMode"},
+        {"type": "contains", "field": "cases", "value": "darkLabel", "description": "cases包含darkLabel"},
+        {"type": "contains", "field": "default", "value": "lightLabel", "description": "default包含lightLabel"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CR13", "name": "复杂条件-用户角色渲染", "category": "variable-scope", "complexity": "complex",
+    "task": "生成一个条件渲染（id为'roleGate'）：如果$__DataModel.role等于'admin'，显示Column（id为'adminPanel'，children为'adminHeader'和'userList'）；如果$__DataModel.role等于'user'，显示Column（id为'userPanel'，children为'userHeader'和'userProfile'）；否则显示Text（id为'guestMsg'，content为'请登录'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "role", "description": "condition包含role"},
+        {"type": "contains", "field": "childrenIf", "value": "adminPanel", "description": "childrenIf包含adminPanel"},
+        {"type": "contains", "field": "childrenElse", "value": "guestMsg", "description": "childrenElse包含guestMsg"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "role", "description": "visibility包含role"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "role", "description": "value包含role"},
+        {"type": "contains", "field": "cases", "value": "adminPanel", "description": "cases包含adminPanel"},
+        {"type": "contains", "field": "default", "value": "guestMsg", "description": "default包含guestMsg"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CR14", "name": "条件渲染+列表+事件链", "category": "variable-scope", "complexity": "complex",
+    "task": "生成一个条件渲染（id为'smartFeed'）：如果$__DataModel.hasData为true，显示List组件（id为'feedList'，children绑定'$items'，onReachEnd时读取$__DataModel.nextPage存为$pageData并showToast'加载更多'），否则显示Text（id为'emptyMsg'，content为'暂无数据'）",
+    "expected": { "component": "If", "required_fields": ["component", "condition", "childrenIf", "childrenElse"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "condition", "value": "hasData", "description": "condition包含hasData"},
+        {"type": "contains", "field": "childrenIf", "value": "feedList", "description": "childrenIf包含feedList"},
+        {"type": "contains", "field": "childrenElse", "value": "emptyMsg", "description": "childrenElse包含emptyMsg"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "visibility", "value": "hasData", "description": "visibility包含hasData"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "value", "value": "hasData", "description": "value包含hasData"},
+        {"type": "contains", "field": "cases", "value": "feedList", "description": "cases包含feedList"},
+        {"type": "contains", "field": "default", "value": "emptyMsg", "description": "default包含emptyMsg"}
+      ]
+    },
+    "hints": ["List的children绑定使用{\"componentId\": \"xxx\", \"path\": \"$items\"}格式", "条件渲染的子组件是字符串ID数组"],
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CR15", "name": "三元表达式嵌入content", "category": "variable-scope", "complexity": "complex",
+    "task": "生成一个Text组件（id为'priceDisplay'），content使用表达式：如果$__DataModel.isMember为true显示'会员价: ' + formatNumber($__DataModel.memberPrice, 2)，否则显示'原价: ' + formatNumber($__DataModel.price, 2)。再生成一个If条件渲染（id为'stockCheck'）：如果$__DataModel.stock大于0，显示Button（id为'buyBtn'，label为'立即购买'），否则显示Text（id为'soldOut'，content为'已售罄'）",
+    "expected": { "component": "Text", "required_fields": ["component", "content"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "extended-if": [
+        {"type": "contains", "field": "content", "value": "isMember", "description": "content包含isMember"},
+        {"type": "contains", "field": "content", "value": "price", "description": "content包含price"}
+      ],
+      "visibility": [
+        {"type": "contains", "field": "content", "value": "isMember", "description": "content包含isMember"},
+        {"type": "contains", "field": "content", "value": "price", "description": "content包含price"}
+      ],
+      "extended-switch": [
+        {"type": "contains", "field": "content", "value": "isMember", "description": "content包含isMember"},
+        {"type": "contains", "field": "content", "value": "price", "description": "content包含price"}
+      ]
+    },
+    "hints": ["条件渲染可以同时使用If组件和content中的三元表达式", "formatNumber用于格式化数字"],
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

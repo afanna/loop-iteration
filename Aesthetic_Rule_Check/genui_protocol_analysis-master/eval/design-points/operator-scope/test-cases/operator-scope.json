@@ -1,0 +1,555 @@
+[
+  {
+    "id": "OS01",
+    "name": "简单布尔三元",
+    "category": "operator-scope",
+    "complexity": "simple",
+    "task": "生成一个Text组件，根据$isVip判断显示'VIP会员'或'普通用户'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip"},
+      {"type": "contains", "field": "content", "value": "VIP", "description": "包含VIP"}
+    ],
+    "strategy_rules": {
+      "full": [],
+      "subset": [],
+      "ternary": []
+    },
+    "scope_conflict_type": "none",
+    "hints": ["使用三元运算符：$isVip ? 'VIP会员' : '普通用户'"]
+  },
+  {
+    "id": "OS02",
+    "name": "比较三元",
+    "category": "operator-scope",
+    "complexity": "simple",
+    "task": "生成一个Text组件，根据$score是否大于等于60判断显示'及格'或'不及格'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$score", "description": "引用$score"},
+      {"type": "contains", "field": "content", "value": "及格", "description": "包含及格"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": ">=", "description": "使用>=比较运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": ">=", "description": "使用>=比较运算符"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "gte", "description": "使用gte()函数比较"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["三元仅用函数时：gte($score, 60) ? '及格' : '不及格'"]
+  },
+  {
+    "id": "OS03",
+    "name": "逻辑AND三元",
+    "category": "operator-scope",
+    "complexity": "simple",
+    "task": "生成一个Text组件，$loggedIn和$hasPermission都为true时显示'可编辑'，否则显示'无权限'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$loggedIn", "description": "引用$loggedIn"},
+      {"type": "contains", "field": "content", "value": "$hasPermission", "description": "引用$hasPermission"},
+      {"type": "contains", "field": "content", "value": "可编辑", "description": "包含可编辑"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑运算符"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "and(", "description": "使用and()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["逻辑AND：full/subset用&&，ternary用and()函数"]
+  },
+  {
+    "id": "OS04",
+    "name": "逻辑NOT三元",
+    "category": "operator-scope",
+    "complexity": "simple",
+    "task": "生成一个Text组件，$isHidden为false时显示'可见'，为true时显示'已隐藏'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$isHidden", "description": "引用$isHidden"},
+      {"type": "contains", "field": "content", "value": "可见", "description": "包含可见"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": "!", "description": "使用!取反"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": "!", "description": "使用!取反"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "not(", "description": "使用not()函数取反"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["取反：full/subset用!，ternary用not()函数。也可直接调换三元分支顺序"]
+  },
+  {
+    "id": "OS05",
+    "name": "算术运算-乘法",
+    "category": "operator-scope",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示$price乘以$quantity的结果",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"},
+      {"type": "contains", "field": "content", "value": "$quantity", "description": "引用$quantity"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": "*", "description": "使用*算术运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["full用$price * $quantity，subset/ternary用multiply($price, $quantity)"]
+  },
+  {
+    "id": "OS06",
+    "name": "嵌套三元2层",
+    "category": "operator-scope",
+    "complexity": "medium",
+    "task": "生成一个Text组件，根据$score评级：>=90显示'A'，>=60显示'B'，否则显示'C'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$score", "description": "引用$score"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": ">=", "description": "使用比较运算符"},
+        {"type": "contains", "field": "content", "value": "?", "description": "使用三元运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": ">=", "description": "使用比较运算符"},
+        {"type": "contains", "field": "content", "value": "?", "description": "使用三元运算符"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "gte", "description": "使用gte()函数"},
+        {"type": "contains", "field": "content", "value": "?", "description": "使用三元运算符"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["嵌套三元：$score >= 90 ? 'A' : $score >= 60 ? 'B' : 'C'"]
+  },
+  {
+    "id": "OS07",
+    "name": "逻辑OR三元",
+    "category": "operator-scope",
+    "complexity": "medium",
+    "task": "生成一个Text组件，$isEmail或$isPhone任一为true时显示'已验证'，否则显示'未验证'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$isEmail", "description": "引用$isEmail"},
+      {"type": "contains", "field": "content", "value": "$isPhone", "description": "引用$isPhone"},
+      {"type": "contains", "field": "content", "value": "已验证", "description": "包含已验证"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": "||", "description": "使用||逻辑运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": "||", "description": "使用||逻辑运算符"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "or(", "description": "使用or()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["逻辑OR：full/subset用||，ternary用or()函数"]
+  },
+  {
+    "id": "OS08",
+    "name": "算术+比较三元",
+    "category": "operator-scope",
+    "complexity": "medium",
+    "task": "生成一个Text组件，$total大于100时显示'超标'，否则显示'正常'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$total", "description": "引用$total"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": ">", "description": "使用>比较运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": ">", "description": "使用>比较运算符"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "gt", "description": "使用gt()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["比较+三元：$total > 100 ? '超标' : '正常'"]
+  },
+  {
+    "id": "OS09",
+    "name": "字符串拼接+变量",
+    "category": "operator-scope",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'Hello, '加上$user.name",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$user.name", "description": "引用$user.name"},
+      {"type": "contains", "field": "content", "value": "Hello", "description": "包含Hello文本"}
+    ],
+    "strategy_rules": {
+      "full": [],
+      "subset": [],
+      "ternary": []
+    },
+    "scope_conflict_type": "none",
+    "hints": ["字符串拼接使用+运算符：'Hello, ' + $user.name"]
+  },
+  {
+    "id": "OS10",
+    "name": "比较范围判断",
+    "category": "operator-scope",
+    "complexity": "medium",
+    "task": "生成一个Text组件，$age在18到65之间（含）时显示'工作年龄'，否则显示'非工作年龄'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$age", "description": "引用$age"},
+      {"type": "contains", "field": "content", "value": "工作年龄", "description": "包含工作年龄"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": ">=", "description": "使用>=比较运算符"},
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": ">=", "description": "使用>=比较运算符"},
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑运算符"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "and(", "description": "使用and()函数"},
+        {"type": "contains", "field": "content", "value": "gte", "description": "使用gte()函数"},
+        {"type": "contains", "field": "content", "value": "lte", "description": "使用lte()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["范围判断：$age >= 18 && $age <= 65 ? '工作年龄' : '非工作年龄'"]
+  },
+  {
+    "id": "OS11",
+    "name": "三元+函数调用",
+    "category": "operator-scope",
+    "complexity": "medium",
+    "task": "生成一个Text组件，$hasDiscount为true时显示formatNumber($price乘以$discount, 2)的结果，否则显示formatNumber($price, 2)的结果",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "formatNumber", "description": "调用formatNumber函数"},
+      {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"},
+      {"type": "contains", "field": "content", "value": "$hasDiscount", "description": "引用$hasDiscount"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": "*", "description": "使用*算术运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["复杂表达式：$hasDiscount ? formatNumber($price * $discount, 2) : formatNumber($price, 2)"]
+  },
+  {
+    "id": "OS12",
+    "name": "嵌套三元3层",
+    "category": "operator-scope",
+    "complexity": "complex",
+    "task": "生成一个Text组件，字号16，字体颜色根据$status动态设置：active为#00AA00，pending为#FFAA00，其他为#FF0000",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"},
+      {"type": "has_field", "field": "styles.fontColor", "description": "styles中必须有fontColor"},
+      {"type": "contains", "field": "styles.fontColor", "value": "$status", "description": "引用$status"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "matches_regex", "field": "styles.fontColor", "value": "^\\{\\{.*\\}\\}$", "description": "fontColor使用{{}}包裹"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#00AA00", "description": "包含active颜色"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#FFAA00", "description": "包含pending颜色"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#FF0000", "description": "包含默认颜色"}
+      ],
+      "subset": [
+        {"type": "matches_regex", "field": "styles.fontColor", "value": "^\\{\\{.*\\}\\}$", "description": "fontColor使用{{}}包裹"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#00AA00", "description": "包含active颜色"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#FFAA00", "description": "包含pending颜色"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#FF0000", "description": "包含默认颜色"}
+      ],
+      "ternary": [
+        {"type": "matches_regex", "field": "styles.fontColor", "value": "^\\{\\{.*\\}\\}$", "description": "fontColor使用{{}}包裹"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#00AA00", "description": "包含active颜色"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#FFAA00", "description": "包含pending颜色"},
+        {"type": "contains", "field": "styles.fontColor", "value": "#FF0000", "description": "包含默认颜色"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["3层嵌套三元：$status == 'active' ? '#00AA00' : $status == 'pending' ? '#FFAA00' : '#FF0000'"]
+  },
+  {
+    "id": "OS13",
+    "name": "算术+比较+三元组合",
+    "category": "operator-scope",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示$total：如果$total大于100则打九折显示（乘以0.9），否则原价显示",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$total", "description": "引用$total"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": ">", "description": "使用>比较"},
+        {"type": "contains", "field": "content", "value": "*", "description": "使用*算术"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": ">", "description": "使用>比较"},
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "gt", "description": "使用gt()函数"},
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["综合：$total > 100 ? $total * 0.9 : $total"]
+  },
+  {
+    "id": "OS14",
+    "name": "复杂逻辑+三元",
+    "category": "operator-scope",
+    "complexity": "complex",
+    "task": "生成一个Text组件，$isAdmin为true或（$isManager和$hasTeam同时为true）时显示'可编辑'，否则显示'只读'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$isAdmin", "description": "引用$isAdmin"},
+      {"type": "contains", "field": "content", "value": "$isManager", "description": "引用$isManager"},
+      {"type": "contains", "field": "content", "value": "$hasTeam", "description": "引用$hasTeam"},
+      {"type": "contains", "field": "content", "value": "可编辑", "description": "包含可编辑"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": "||", "description": "使用||逻辑运算符"},
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": "||", "description": "使用||逻辑运算符"},
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑运算符"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "or(", "description": "使用or()函数"},
+        {"type": "contains", "field": "content", "value": "and(", "description": "使用and()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["复杂逻辑：$isAdmin || ($isManager && $hasTeam) ? '可编辑' : '只读'"]
+  },
+  {
+    "id": "OS15",
+    "name": "复合算术运算",
+    "category": "operator-scope",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示($price减去$discount)乘以$quantity的结果",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"},
+      {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount"},
+      {"type": "contains", "field": "content", "value": "$quantity", "description": "引用$quantity"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": "-", "description": "使用-算术运算符"},
+        {"type": "contains", "field": "content", "value": "*", "description": "使用*算术运算符"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": "subtract(", "description": "使用subtract()函数"},
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "subtract(", "description": "使用subtract()函数"},
+        {"type": "contains", "field": "content", "value": "multiply(", "description": "使用multiply()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["复合算术：($price - $discount) * $quantity"]
+  },
+  {
+    "id": "OS16",
+    "name": "综合业务逻辑",
+    "category": "operator-scope",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示订单摘要：如果$itemCount大于0且$inStock为true，显示'X件商品可用'（X为$itemCount），否则显示'暂无库存'。其中X需要用formatNumber格式化为整数",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$itemCount", "description": "引用$itemCount"},
+      {"type": "contains", "field": "content", "value": "$inStock", "description": "引用$inStock"},
+      {"type": "contains", "field": "content", "value": "formatNumber", "description": "调用formatNumber函数"}
+    ],
+    "strategy_rules": {
+      "full": [
+        {"type": "contains", "field": "content", "value": ">", "description": "使用>比较"},
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑"}
+      ],
+      "subset": [
+        {"type": "contains", "field": "content", "value": ">", "description": "使用>比较"},
+        {"type": "contains", "field": "content", "value": "&&", "description": "使用&&逻辑"}
+      ],
+      "ternary": [
+        {"type": "contains", "field": "content", "value": "and(", "description": "使用and()函数"},
+        {"type": "contains", "field": "content", "value": "gt", "description": "使用gt()函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["综合：$itemCount > 0 && $inStock ? formatNumber($itemCount, 0) + '件商品可用' : '暂无库存'"]
+  }
+]

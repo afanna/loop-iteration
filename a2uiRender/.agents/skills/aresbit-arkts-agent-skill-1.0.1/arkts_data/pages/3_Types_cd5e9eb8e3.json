@@ -1,0 +1,442 @@
+{
+  "url": "https://yoyocat.github.io/ArkTSSpec/3_types.html#never-type",
+  "title": "3. Types¶",
+  "content": "This chapter introduces the notion of type that is one of the fundamental concepts of ArkTS and other programming languages. Type classification as accepted in ArkTS is discussed below—along with all aspects of using types in programs written in the language.\n\nConventionally, the type of an entity is defined as the set of values the entity can take, and the set of operators applicable to the entity of a given type.\n\nArkTS is a statically typed language. It means that the type of every declared entity and every expression is known at compile time. The type of an entity is either set explicitly by a developer, or inferred implicitly by the compiler.\n\nThere are two categories of types:\n\nThe types integral to ArkTS are called predefined types (see Predefined Types).\n\nThe types introduced, declared, and defined by a developer are called user-defined types. All user-defined types must always have a complete type definition presented as source code in ArkTS.\n\nPredefined types include the following:\n\nBasic numeric value type: number\n\nHigh-performance value types:\n\nNumeric types: byte, short, int, long, float, and double;\n\nCharacter type: char;\n\nBoolean type: boolean;\n\nReference types: object, string, [] (array), bigint, void, never, and undefined;\n\nClass types: Object, String, Array<T>, and BigInt.\n\nEach predefined value type has a corresponding predefined class type that wraps the value of the predefined value type: Number, Byte, Short, Int, Long, Float, Double, Char, and Boolean.\n\nThe predefined value types are called primitive types. Primitive type names are reserved, i.e., they cannot be used for user-defined type names.\n\nType double is an alias to number. Type Double is an alias to Number.\n\nUser-defined types include the following:\n\nClass types (see Classes);\n\nInterface types (see Interfaces);\n\nEnumeration types (see Enumerations);\n\nArray types (see Array Types);\n\nFunction types (see Function Types);\n\nTuple types (see Tuple Types);\n\nUnion types (see Union Types); and\n\nType parameters (see Generic Parameters).\n\nAll ArkTS types are summarized in the following table:\n\nValue Types (Primitive Types)\n\nnumber, byte, short, int, long, float, double, char, boolean\n\nNumber, Byte, Short, Int, Long, Float, Double, Char, Boolean, Object, object, void, null, String, string, BigInt, bigint, never\n\nclass types, interface types, array types, function types, tuple types, union types, type parameters\n\nA type can be referred to in source code by the following:\n\nA reserved name for a primitive type;\n\nA type reference for a named type (see Named Types), or a type alias (see Type Alias Declaration);\n\nAn in-place type definition for an array type (see Array Types), a function type (see Function Types), a tuple type (see Tuple Types), or a union type (see Union Types).\n\nIt is presented by the example below:\n\nParentheses in types (where a type is a combination of array, function, or union types) are used to specify the required type structure. Without parentheses, the symbol ‘|’ that constructs a union type has the lowest precedence as presented in the following example:\n\nClasses, interfaces, enumerations, and unions are named types. Respective named types are introduced by the following:\n\nClass declarations (see Classes),\n\nInterface declarations (see Interfaces),\n\nEnumeration declarations (see Enumerations), and\n\nUnion declarations (see Union Types).\n\nClasses and interfaces with type parameters are generic types (see Generics). Named types without type parameters are non-generic types.\n\nType references (see Type References) refer to named types by specifying their type names, and (where applicable) by type arguments to be substituted for the type parameters of the named type.\n\nA type reference refers to a type by one of the following:\n\nSimple or qualified type name (see Names),\n\nType alias (see Type Alias Declaration), or\n\nType parameter (see Generic Parameters) name with ‘!’ sign (see NonNullish Type Parameter).\n\nIf the referred type is a class or an interface type, then each identifier in a name or an alias can be optionally followed by a type argument (see Type Arguments):\n\nPredefined integer types (see Integer Types and Operations), floating-point types (see Floating-Point Types and Operations), the boolean type (see Boolean Types and Operations), character types (see Character Type and Operations), and user-defined enumeration types (see Enumerations) are value types.\n\nThe values of such types do not share state with other values.\n\nCorresponding Class Type\n\nAll signed 8-bit integers (\\(-2^7\\) to \\(2^7-1\\))\n\nAll signed 16-bit integers (\\(-2^{15}\\) to \\(2^{15}-1\\))\n\nAll signed 32-bit integers (\\(-2^{31}\\) to \\(2^{31} - 1\\))\n\nAll signed 64-bit integers (\\(-2^{63}\\) to \\(2^{63} - 1\\))\n\nAll integers with no limits\n\nArkTS provides a number of operators to act on integer values as discussed below.\n\nComparison operators that produce a value of type boolean:\n\nNumerical comparison operators ‘<’, ‘<=’, ‘>’, and ‘>=’ (see Numerical Comparison Operators <, <=, >, and >=);\n\nNumerical equality operators ‘==’ and ‘!=’ (see Value Equality for Numeric Types);\n\nNumerical operators that produce a value of type int, long, or bigint:\n\nUnary plus ‘+’ and minus ‘-’ operators (see Unary Plus and Unary Minus);\n\nMultiplicative operators ‘*’, ‘/’, and ‘%’ (see Multiplicative Expressions);\n\nAdditive operators ‘+’ and ‘-’ (see Additive Expressions);\n\nIncrement operator ‘++’ used as prefix (see Prefix Increment) or postfix (see Postfix Increment);\n\nDecrement operator ‘–’ used as prefix (see Prefix Decrement) or postfix (see Postfix Decrement);\n\nSigned and unsigned shift operators ‘<<’, ‘>>’, and ‘>>>’ (see Shift Expressions);\n\nBitwise complement operator ‘~’ (see Bitwise Complement);\n\nInteger bitwise operators ‘&’, ‘^’, and ‘|’ (see Integer Bitwise Operators &, ^, and |);\n\nConditional operator ‘?:’ (see Conditional Expressions);\n\nCast operator (see Cast Expressions) that converts an integer value to a value of any specified numeric type;\n\nString concatenation operator ‘+’ (see String Concatenation) that, if one operand is string and the other is of an integer type, converts the integer operand to string with the decimal form and then creates a concatenation of the two strings as a new string.\n\nThe classes Byte, Short, Int, and Long predefine constructors, methods, and constants that are parts of the ArkTS standard library (see Standard Library).\n\nIf one operand is not of type long, then the numeric promotion (see Primitive Types Conversions) must be used first to widen it to type long.\n\nIf neither operand is of type long, then:\n\nThe operation implementation uses 32-bit precision.\n\nThe result of the numerical operator is of type int.\n\nIf one operand (or neither operand) is of type int, then the numeric promotion must be used first to widen it to type int.\n\nAny integer type value can be cast to or from any numeric type.\n\nCasts between types integer and boolean are not allowed.\n\nThe integer operators cannot indicate an overflow or an underflow.\n\nAn integer operator can throw errors (see Error Handling) as follows:\n\nAn integer division operator ‘/’ (see Division), and an integer remainder operator ‘%’ (see Remainder) throw ArithmeticError if their right-hand operand is zero.\n\nAn increment operator ‘++’ and a decrement operator ‘–’ (see Additive Expressions) throw OutOfMemoryError if boxing conversion (see Boxing Conversions) is required but the available memory is not sufficient to perform it.\n\nCorresponding Class Type\n\nThe set of all IEEE 754 [3] 32-bit floating-point numbers floating-point numbers\n\nThe set of all IEEE 754 64-bit floating-point numbers\n\nArkTS provides a number of operators to act on floating-point type values as discussed below.\n\nComparison operators that produce a value of type boolean:\n\nNumerical comparison operators ‘<’, ‘<=’, ‘>’, and ‘>=’ (see Numerical Comparison Operators <, <=, >, and >=);\n\nNumerical equality operators ‘==’ and ‘!=’ (see Value Equality for Numeric Types);\n\nNumerical operators that produce values of type float or double:\n\nUnary plus ‘+’ and minus ‘-’ operators (see Unary Plus and Unary Minus);\n\nMultiplicative operators ‘*’, ‘/’, and ‘%’ (see Multiplicative Expressions);\n\nAdditive operators ‘+’ and ‘-’ (see Additive Expressions);\n\nIncrement operator ‘++’ used as prefix (see Prefix Increment) or postfix (see Postfix Increment);\n\nDecrement operator ‘–’ used as prefix (see Prefix Decrement) or postfix (see Postfix Decrement);\n\nNumerical operators that produce values of type int or long:\n\nSigned and unsigned shift operators ‘<<’, ‘>>’, and ‘>>>’ (see Shift Expressions);\n\nBitwise complement operator ‘~’ (see Bitwise Complement);\n\nInteger bitwise operators ‘&’, ‘^’, and ‘|’ (see Integer Bitwise Operators &, ^, and |);\n\nConditional operator ‘?:’ (see Conditional Expressions);\n\nCast operator (see Cast Expressions) that converts a floating-point value to a value of any specified numeric type;\n\nThe string concatenation operator ‘+’ (see String Concatenation) that, if one operand is of type string and the other is of type floating-point, converts the type floating-point operand to type string with a value represented in the decimal form (without the loss of information), and then creates a concatenation of the two strings as a new string.\n\nThe classes Float and Double predefine constructors, methods, and constants that are parts of the ArkTS standard library (see Standard Library).\n\nAn operation is called a floating-point operation if at least one of the operands in a binary operator is of the floating-point type (even if the other operand is integer).\n\nIf at least one operand of the numerical operator is of type double, then the operation implementation uses 64-bit floating-point arithmetic. The result of the numerical operator is a value of type double.\n\nIf the other operand is not of type double, then the numeric promotion (see Primitive Types Conversions) must be used first to widen it to type double.\n\nIf neither operand is of type double, then the operation implementation is to use 32-bit floating-point arithmetic. The result of the numerical operator is a value of type float.\n\nIf the other operand is not of type float, then the numeric promotion must be used first to widen it to type float.\n\nAny floating-point type value can be cast to or from any numeric type.\n\nCasts between types floating-point and boolean are not allowed.\n\nOperators on floating-point numbers, except the remainder operator (see Remainder), behave in compliance with the IEEE 754 Standard. For example, ArkTS requires the support of IEEE 754 denormalized floating-point numbers and gradual underflow that make it easier to prove the desirable properties of a particular numerical algorithm. Floating-point operations do not ‘flush to zero’ if the calculated result is a denormalized number.\n\nArkTS requires floating-point arithmetic to behave as if the floating-point result of every floating-point operator is rounded to the result precision. An inexact result is rounded to the representable value nearest to the infinitely precise result. ArkTS uses the ‘round to nearest’ principle (the default rounding mode in IEEE 754), and prefers the representable value with the least significant bit zero out of any two equally near representable values.\n\nArkTS uses ‘round toward zero’ to convert a floating-point value to an integer (see Primitive Types Conversions). In this case it acts as if the number is truncated, and the mantissa bits are discarded. The result of rounding toward zero is the value of that format that is closest to and no greater in magnitude than the infinitely precise result.\n\nA floating-point operation with overflow produces a signed infinity.\n\nA floating-point operation with underflow produces a denormalized value or a signed zero.\n\nA floating-point operation with no mathematically definite result produces NaN.\n\nAll numeric operations with a NaN operand result in NaN.\n\nA floating-point operator (the increment ‘++’ operator and decrement ‘–’ operator, see Additive Expressions) can throw OutOfMemoryError (see Error Handling) if boxing conversion (see Boxing Conversions) is required but the available memory is not sufficient to perform it.\n\nInteger and floating-point types are numeric types.\n\nLarger types include smaller types or their values:\n\ndouble > float > long > int > short > byte\n\nA value of a smaller type can be assigned to a variable of a larger type.\n\nType bigint does not belong to the hierarchy. There is no implicit conversion from a numeric type to bigint. Standard library class BigInt must be used to create bigint values from numeric types.\n\nType boolean represents logical values true and false that correspond to the class type Boolean.\n\nThe boolean operators are as follows:\n\nRelational operators ‘==’ and ‘!=’ (see Relational Expressions);\n\nLogical complement operator ‘!’ (see Logical Complement);\n\nLogical operators ‘&’, ‘^’, and ‘|’ (see Integer Bitwise Operators &, ^, and |);\n\nConditional-and operator ‘&&’ (see Conditional-And Expression) and conditional-or operator ‘||’ (see Conditional-Or Expression);\n\nConditional operator ‘?:’ (see Conditional Expressions);\n\nString concatenation operator ‘+’ (see String Concatenation) that converts an operand of type boolean to type string (true or false), and then creates a concatenation of the two strings as a new string.\n\nThe conversion of an integer or floating-point expression x to a boolean value must follow the C language convention—any nonzero value is converted to true, and the value of zero is converted to false. In other words, the result of expression x conversion to type boolean is always the same as the result of comparison x != 0.\n\nReference types can be of the following kinds:\n\nClass types (see Classes);\n\nInterface types (see Interfaces);\n\nArray types (see Array Types);\n\nFunction types (see Function Types);\n\nUnion types (see Union Types);\n\nString types (see string Type);\n\nNever type (see never Type), null type (see null Type), undefined type (see undefined Type), void type (see void Type); and\n\nType parameters (see Generic Parameters).\n\nAn object can be a class instance, a function instance, or an array. The pointers to these objects are called references or reference values.\n\nA class instance creation expression (see New Expressions) explicitly creates a class instance.\n\nReferring to a declared function by its name, qualified name, or lambda expression (see Lambda Expressions) explicitly creates a function instance.\n\nAn array creation expression explicitly creates an array (see Array Creation Expressions).\n\nA string literal initialization explicitly creates a string.\n\nOther expressions can implicitly create a class instance (see New Expressions), or an array (see Array Creation Expressions).\n\nThe operations on references to objects are as follows:\n\nField access that uses a qualified name or a field access expression (see Field Access Expressions);\n\nCall expression (see Method Call Expression and Function Call Expression);\n\nCast expression (see Cast Expressions);\n\nString concatenation operator (see String Concatenation) that—given an operand of type string and a reference—calls the toString method of the referenced object, converts the reference to type string, and creates a concatenation of the two strings as a new string;\n\ninstanceof operator (see InstanceOf Expression);\n\ntypeof operator (see TypeOf Expression);\n\nReference equality operators ‘==’ and ‘!=’ (see Reference Equality);\n\nConditional operator ‘?:’ (see Conditional Expressions).\n\nMultiple references to an object are possible.\n\nMost objects have state. The state is stored in the field if an object is an instance of class, or in a variable that is an element of an array object.\n\nIf two variables contain references to the same object, and the state of that object is modified in the reference of one variable, then the state so modified can be seen in the reference of the other variable.\n\nThe class Object is a supertype of all other classes, interfaces, string, arrays, unions, function types, and enum types. Thus all of them inherit (see Inheritance) the methods of the class Object. Full description of all methods of class Object is given in the standard library (see Standard Library) description.\n\nThe method toString as used in the examples in this document returns a string representation of the object.\n\nUsing Object is recommended in all cases (although the name object refers to type Object).\n\nType string is a predefined type. It stores sequences of characters as Unicode UTF-16 code units. Type string includes all string literals, e.g., ‘abc’.\n\nThe value of a string object cannot be changed after it is created, i.e., a string object is immutable.\n\nThe value of a string object can be shared.\n\nType string has dual semantics:\n\nIf a string is assigned or passed as an argument, then it behaves like a reference type (see Reference Types).\n\nAll string operations (see String Concatenation and String Comparison Operators <, <=, >, and >=) handle strings as values (see Value Types).\n\nIf the result is not a constant expression (see Constant Expressions), then the string concatenation operator ‘+’ (see String Concatenation) implicitly creates a new string object.\n\nUsing string is recommended in all cases (although the name String also refers to type string).\n\nThe type never is a subtype (see Subtyping) of any other type.\n\nType never type has no instances. It is used to represent values that do not exist (for example a function with this return type never returns a value, but finishes its work throwing an error or exception).\n\nType void has no instances (no values). It is typically used as the return type if a function or a method returns no value:\n\nA compile-time occurs if:\n\nvoid is used as type annotation;\n\nAn expression of the void type is used as a value.\n\nType void can be used as type argument that instantiates a generic type if a specific value of type argument is irrelevant. In this case, it is synonymous to type undefined (see undefined Type):\n\nArray type is the built-in type characterized by the following:\n\nAny object of array type contains elements indexed by integer position starting from 0;\n\nAccess to any array element is performed within the same time;\n\nIf passed to non-ArkTS environment, an array is represented as a contiguous memory location;\n\nTypes of all array elements are upper-bounded by the element type specified in the array declaration.\n\nTwo basic operations with array elements take elements out of, and put elements into an array by using the operator [] and index expression.\n\nThe number of elements in an array can be obtained by accessing the field length. Setting a new value of this field allows shrinking the array by reducing the number of its elements.\n\nAttempting to increase the length of the array causes a compile-time error (if the compiler has the information sufficient to determine this), or to a run-time error.\n\nAn example of syntax for the built-in array type is presented below:\n\nThe family of array types that are parts of the standard library (see Standard Library), including all available operations, is described in the library documentation. Common to these types is that the operator [] can be applied to variables of all array types and to their derived types. It is noteworthy that type T[] and type Array<T> are as follows:\n\nEquivalent if T is a reference type; and\n\nDifferent if T is a value type.\n\nThe examples are presented below:\n\nA type alias can set a name for an array type (see Type Alias Declaration):\n\nAn array as an object is assignable to a variable of type Object:\n\nA function type can be used to express the expected signature of a function. A function type consists of the following:\n\nList of parameters (which can be empty);\n\nOptional return type;\n\nOptional keyword throws.\n\nThe rest parameter is described in Rest Parameter.\n\nA type alias can set a name for a function type (see Type Alias Declaration).\n\nIf the function type contains the ‘throws’ mark (see Throwing Functions), then it is the throwing function type.\n\nFunction types assignability is described in Assignment-like Contexts, and conversions in Function Types Conversions.\n\nThe only value of type null is represented by the keyword null (see Null Literal).\n\nUsing type null as type annotation is not recommended, except in nullish types (see Nullish Types).\n\nThe only value of type undefined is represented by the keyword undefined (see Undefined Literal).\n\nUsing type undefined as type annotation is not recommended, except in nullish types (see Nullish Types).\n\nThe undefined type can be used as the type argument that instantiates a generic type if specific value of the type argument is irrelevant.\n\nA tuple type is a reference type created as a fixed set of other types. The value of a tuple type is a group of values of types that comprise the tuple type. The types are specified in the same order as declared within the tuple type declaration. Each element of the tuple is thus implied to have its own type. The operator [] (square brackets) is used to access the elements of a tuple in a manner similar to that used to access elements of an array.\n\nAn index expression belongs to integer type. The index of the 1st tuple element is 0. Only constant expressions can be used as the index to get the access to tuple elements.\n\nObject (see Object Class Type) is the supertype for any tuple type.\n\nAn empty tuple is a corner case. It is only added to support compatibility with TypeScript:\n\nA union type is a reference type created as a combination of other types or values. Valid values of all types and literals the union is created from are the values of a union type.\n\nA compile-time error occurs if the type in the right-hand side of a union type declaration leads to a circular reference.\n\nIf a union uses a primitive type (see Primitive types in Types by Category), then automatic boxing occurs to keep the reference nature of the type.\n\nThe reduced form of union types allows defining a type which has only one value:\n\nA typical example of the usage of union type is shown below:\n\nDifferent mechanisms can be used to get values of particular types from a union:\n\nThe following example is for primitive types:\n\nThe following example is for values:\n\nNote: A compile-time error occurs if an expression of union type is compared to a literal value that does not belong to the values of that union type:\n\nUnion types normalization allows minimizing the number of types and literals within a union type, while keeping the type’s safety. Some types or literals can also be replaced for more general types.\n\nFormally, union type T1 | … | TN, where N > 1, can be reduced to type U1 | … | UM, where M <= N, or even to a non-union type or value V. In this latter case V can be a primitive value type or value that changes the reference nature of the union type.\n\nThe normalization process presumes performing the following steps one after another:\n\nAll nested union types are linearized.\n\nIdentical types within the union type are replaced for a single type.\n\nIdentical literals within the union type are replaced for a single literal.\n\nIf at least one type in the union is Object, then all other non-nullish types are removed.\n\nIf there is type never among union types, then it is removed.\n\nIf there is a non-empty group of numeric types in a union, then the largest (see Numeric Types Hierarchy) numeric type is to stay in the union while the others are removed. All numeric literals (if any) that fit into the largest numeric type in a union are removed.\n\nIf a primitive type after widening (see Widening Primitive Conversions) and boxing (see Boxing Conversions) is equal to another union type, then the intial type is removed.\n\nIf a literal of union type belongs to the values of a type that is part of the union, then the literal is removed.\n\nIf a numeric literal fits into the unboxed type of one of union numeric class type, then the literal is removed.\n\nThis step is performed recursively until no mutually compatible types remain (see Type Compatibility), or the union type is reduced to a single type:\n\nIf a union type includes two types Ti and Tj (i != j), and Ti is compatible with Tj (see Type Compatibility), then only Tj remains in the union type, and Ti is removed.\n\nIf Tj is compatible with Ti (see Type Compatibility), then Ti remains in the union type, and Tj is removed.\n\nThe result of the normalization process is a normalized union type. The process is presented in the examples below:\n\nThe ArkTS compiler applies such normalization while processing union types and handling the type inference for array literals (see Array Type Inference from Types of Elements).\n\nA special form of union types are keyof types built with help of the keyword keyof. The keyword keyof is applied to the class or interface type (see Classes and Interfaces). The resultant new type is a union of names of all members of the class or interface type.\n\nA compile-time error occurs if typeReference is not a class or interface type. The semantics of the keyof type is presented in the following example:\n\nIf the class or the interface is empty, then its keyof type is equivalent to type never:\n\nArkTS has nullish types that are in fact a special form of union types (see Union Types):\n\nAll predefined and user-defined type declarations create non-nullish types. Non-nullish types cannot have a null or undefined value at runtime.\n\nT | null or T | undefined can be used as the type to specify a nullish version of type T.\n\nA variable declared to have type T | null can hold the values of type T and its derived types, or the value null. Such a type is called a nullable type.\n\nA variable declared to have type T | undefined can hold the values of type T and its derived types, or the value undefined.\n\nA variable declared to have type T | null | undefined can hold values of type T (and its derived types), and the values undefined or null.\n\nA nullish type is a reference type (see Union Types). A reference that is null or undefined is called a nullish value.\n\nAn operation that is safe with no regard to the presence or absence of nullish values (e.g., re-assigning one nullable value to another) can be used ‘as is’ for nullish types.\n\nThe following nullish-safe options exist for operations on nullish type T that can potentially violate null safety (e.g., access to a property):\n\nUse of safe operations:\n\nSafe method call (see Method Call Expression for details);\n\nSafe field access expression (see Field Access Expressions for details);\n\nSafe indexing expression (see Indexing Expression for details);\n\nSafe function call (see Function Call Expression for details);\n\nConversion from T | null or T | undefined to T:\n\nCast expression (see Cast Expressions for details);\n\nEnsure-not-nullish expression (see Ensure-Not-Nullish Expression for details);\n\nSupplying a default value to be used if a nullish value is present:\n\nNullish-coalescing expression (see Nullish-Coalescing Expression for details).\n\nThe interface DynamicObject is used to provide seamless interoperability with dynamic languages (e.g., JavaScript and TypeScript), and to support advanced language features such as dynamic import (see Dynamic Import Expression). This interface is defined in Standard Library.\n\nThis interface (defined in Standard Library) is common for a set of wrappers (also defined in Standard Library) that provide access to underlying objects.\n\nAn instance of DynamicObject instance cannot be created directly. Only an instance of a specific wrapper object can be instantiated. For example, a result of the dynamic import expression (see Dynamic Import Expression) is an instance of the dynamic object implementation class, which wraps an object that contains exported entities of an imported module.\n\nDynamicObject is a predefined type. The following operations applied to an object of type DynamicObject are handled by the compiler in a special way:\n\nThe field access expression D.F, where D is of type DynamicObject, is handled as an access to a property of an underlying object.\n\nIf the value of a field access is used, then it is wrapped in the instance of DynamicObject, since the actual type of the field is not known at compile time.\n\nThe wrapper can raise an error if:\n\nNo property with the specified name exists in the underlying object; or\n\nThe field access is in the right-hand side of the assignment, and the type of the assigned value is not compatible (see Type Compatibility) with the type of the property.\n\nThe method call expression D.F(arguments), where D is of type DynamicObject, is handled as a call of the instance method of an underlying object.\n\nIf the result of a method call is used, then it is wrapped in the instance of DynamicObject, since the actual type of the returned value is not known at compile time.\n\nThe wrapper must raise an error if:\n\nNo method with the specified name exists in the underlying object; or\n\nThe signature of the method is not compatible with the types of the call arguments.\n\nThe indexing access expression D[index], where D is of type DynamicObject, is handled as an indexing access to an underlying object.\n\nThe wrapper must raise an error if:\n\nThe indexing access is not supported by the underlying object;\n\nThe type of the index expression is not supported by the underlying object.\n\nThe new expression new D(arguments) (see New Expressions), where D is of type DynamicObject, is handled as a new expression (constructor call) applied to the underlying object.\n\nThe result of the expression is wrapped in an instance of DynamicObject, as the actual type of the returned value is not known at compile time.\n\nThe wrapper must raise an error if:\n\nA new expression is not supported by the underlying object; or\n\nThe signature of the constructor of the underlying object is not compatible with the types of call arguments.\n\nThe cast expression D as T (see Cast Expressions), where D is of type DynamicObject, is handled as attempt to cast the underlying object to a static type T.\n\nA compile-time error occurs if T is not a class or interface type.\n\nThe result of a cast expression is an instance of type T.\n\nThe wrapper must raise an error if an underlying object cannot be converted to the target type specified by the cast operator.\n\nNote: This is the ArkTS’s experimental feature.\n\nSome types use so-called default values for variables without explicit initialization (see Variable Declarations), including the following:\n\nAll primitive types (see the table below);\n\nAll union types that have at least one nullish (see Nullish Types) value, and use an appropriate nullish value as default (see the table below).\n\nAll other types, including reference types and enumeration types, have no default values. Variables of such types must be initialized explicitly with a value before the first use of a type.\n\nDefault values of primitive types are as follows:\n\nThe default values of nullish union types are as follows:\n\nWherever IEEE 754 is used in this Specification, the reference is to the latest revision of “754-2019 - IEEE Standard for Floating-Point Arithmetic”.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "3. Types¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.1. Predefined Types¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.2. User-Defined Types¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.3. Types by Category¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.4. Using Types¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.5. Named Types¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.6. Type References¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.7. Value Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.7.1. Integer Types and Operations¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.7.2. Floating-Point Types and Operations¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.7.3. Numeric Types Hierarchy¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.7.4. Boolean Types and Operations¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.8. Reference Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.1. Objects¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.2. Object Class Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.3. string Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.4. never Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.5. void Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.6. Array Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.7. Function Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.8. null Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.9. undefined Type¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.10. Tuple Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.11. Union Types¶",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "3.8.11.1. Union Types Normalization¶",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "3.8.11.2. Keyof Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.12. Nullish Types¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "3.8.13. DynamicObject Type¶",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "3.8.13.1. DynamicObject Field Access¶",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "3.8.13.2. DynamicObject Method Call¶",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "3.8.13.3. DynamicObject Indexing Access¶",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "3.8.13.4. DynamicObject New Expression¶",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "3.8.13.5. DynamicObject Cast Expression¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "3.9. Default Values for Types¶",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "type:\n    predefinedType\n    | typeReference\n    | arrayType\n    | tupleType\n    | functionType\n    | unionType\n    | keyofType\n    | '(' type ')'\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 let b: boolean  // using primitive value type name\n2 let n: number   // using primitive value type name\n3 let o: Object   // using predefined class type name\n4 let a: number[] // using array type",
+      "language": "javascript"
+    },
+    {
+      "code": "1 // a nullable array with elements of type string:\n 2 let a: string[] | null\n 3 let s: string[] = []\n 4 a = s    // ok\n 5 a = null // ok, a is nullable\n 6\n 7 // an array with elements whose types are string or null:\n 8 let b: (string | null)[]\n 9 b = null // error, b is an array and is not nullable\n10 b = [\"aa\", null] // ok\n11\n12 // a function type that returns string or null\n13 let c: () => string | null\n14 c = null // error, c is not nullable\n15 c = (): string | null => { return null } // ok\n16\n17 // (a function type that returns string) or null\n18 let d: (() => string) | null\n19 d = null // ok, d is nullable\n20 d = (): string => { return \"hi\" } // ok",
+      "language": "javascript"
+    },
+    {
+      "code": "typeReference:\n    typeReferencePart ('.' typeReferencePart)*\n    |  Identifier '!'\n    ;\n\ntypeReferencePart:\n    Identifier typeArguments?\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 let map: Map<string, number>",
+      "language": "javascript"
+    },
+    {
+      "code": "1 function foo (): void {}\n2\n3 class C {\n4     bar(): void {}\n5 }",
+      "language": "unknown"
+    },
+    {
+      "code": "1 let x: void // compile-time error - void used as type annotation\n2\n3 function foo (): void\n4 let y = foo()  // void used as a value",
+      "language": "javascript"
+    },
+    {
+      "code": "1class A<T>\n2let a = new A<void>() // ok, type parameter is irrelevant\n3let a = new A<undefined>() // ok, the same\n4\n5function foo<T>(x: T) {}\n6\n7foo<void>(undefined) // ok\n8foo<void>(void) // compile-time error: void is used as value",
+      "language": "javascript"
+    },
+    {
+      "code": "arrayType:\n   type '[' ']'\n   ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 let a : number[] = [0, 0, 0, 0, 0]\n 2   /* allocate array with 5 elements of type number */\n 3 a[1] = 7 /* put 7 as the 2nd element of the array, index of this element is 1 */\n 4 let y = a[4] /* get the last element of array 'a' */\n 5 let count = a.length // get the number of array elements\n 6 a.length = 3\n 7 y = a[2] // OK, 2 is the index of the last element now\n 8 y = a[3] // Will lead to runtime error - attempt to access non-existing array element\n 9\n10 let b: Number[] = new Array<Number>\n11    /* That is a valid code as type used in the 'b' declaration is identical\n12       to the type used in the new expression */",
+      "language": "javascript"
+    },
+    {
+      "code": "1 type Matrix = number[][] /* Two-dimensional array */",
+      "language": "unknown"
+    },
+    {
+      "code": "1 let a: number[] = [1, 2, 3]\n2 let o: Object = a",
+      "language": "javascript"
+    },
+    {
+      "code": "functionType:\n    '(' ftParameterList? ')' ftReturnType 'throws'?\n    ;\n\nftParameterList:\n    ftParameter (',' ftParameter)\\* (',' restParameter)?\n    | restParameter\n    ;\n\nftParameter:\n    identifier ':' type\n    ;\n\nrestParameter:\n    '...' ftParameter\n    ;\n\nftReturnType:\n    '=>' type\n    ;",
+      "language": "javascript"
+    },
+    {
+      "code": "1 let binaryOp: (x: number, y: number) => number\n2 function evaluate(f: (x: number, y: number) => number) { }",
+      "language": "javascript"
+    },
+    {
+      "code": "1 type BinaryOp = (x: number, y: number) => number\n2 let op: BinaryOp",
+      "language": "javascript"
+    },
+    {
+      "code": "1class A<T> {}\n2let a = new A<undefined>() // ok, type parameter is irrelevant\n3function foo<T>(x: T) {}\n4\n5foo<undefined>(undefined) // ok",
+      "language": "javascript"
+    },
+    {
+      "code": "tupleType:\n    '[' (type (',' type)*)? ']'\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1let tuple: [number, number, string, boolean, Object] =\n2           [     6,      7,  \"abc\",    true,    666]\n3tuple[0] = 666\n4console.log (tuple[0], tuple[4]) // `666 666` be printed",
+      "language": "javascript"
+    },
+    {
+      "code": "1let empty: [] = [] // empty tuple with no elements in it",
+      "language": "javascript"
+    },
+    {
+      "code": "unionType:\n    type|literal ('|' type|literal)*\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1type T = 3\n2let t1: T = 3 // OK\n3let t2: T = 2 // Compile-time error",
+      "language": "javascript"
+    },
+    {
+      "code": "1 class Cat {\n 2   // ...\n 3 }\n 4 class Dog {\n 5   // ...\n 6 }\n 7 class Frog {\n 8   // ...\n 9 }\n10 type Animal = Cat | Dog | Frog | number\n11 // Cat, Dog, and Frog are some types (class or interface ones)\n12\n13 let animal: Animal = new Cat()\n14 animal = new Frog()\n15 animal = 42\n16 // One may assign the variable of the union type with any valid value",
+      "language": "javascript"
+    },
+    {
+      "code": "1 class Cat { sleep () {}; meow () {} }\n 2 class Dog { sleep () {}; bark () {} }\n 3 class Frog { sleep () {}; leap () {} }\n 4\n 5 type Animal = Cat | Dog | Frog\n 6\n 7 let animal: Animal = new Cat()\n 8 if (animal instanceof Frog) {\n 9         // animal is of type Frog here, conversion can be used:\n10     let frog: Frog = animal as Frog\n11     frog.leap()\n12 }\n13\n14 animal.sleep () // Any animal can sleep",
+      "language": "javascript"
+    },
+    {
+      "code": "1 type Primitive = number | boolean\n2 let p: Primitive = 7\n3 if (p instanceof Number) { // type of 'p' is Number here\n4    let i: number = p as number // Explicit conversion from Primitive to number\n5 }",
+      "language": "javascript"
+    },
+    {
+      "code": "1 type BMW_ModelCode = 325 | 530 | 735\n2 let car_code: BMW_ModelCode = 325\n3 if (car_code == 325){\n4    car_code = 530\n5 } else if (car_code == 530){\n6    car_code = 735\n7 } else {\n8    // pension :-)\n9 }",
+      "language": "javascript"
+    },
+    {
+      "code": "1 type BMW_ModelCode = 325 | 530 | 735\n 2 let car_code: BMW_ModelCode = 325\n 3 if (car_code == 666){ ... }\n 4 /*\n 5    compile-time error as 666 does not belong to\n 6    values of type BMW_ModelCode\n 7 */\n 8\n 9 function model_code_test (code: number) {\n10    if (car_code == code) { ... }\n11    // This test is to be resolved during program execution\n12 }",
+      "language": "javascript"
+    },
+    {
+      "code": "1 ( T1 | T2) | (T3 | T4) => T1 | T2 | T3 | T4  // Linearization\n 2\n 3 1 | 1 | 1  =>  1                             // Identical values elimination\n 4\n 5 number | number => number                    // Identical types elimination\n 6\n 7 number | Number => Number                    // The same after boxing\n 8 Int | float => Float                         // tbd\n 9 Int | 3.14  => Int | 3.14                    // Values fits into unboxed version of type Int\n10\n11 int|short|float|2 => float                   // the largest numeric type stays\n12 int|long|2.71828 => long|2.71828             // the largest numeric type stays and the literal\n13 1 | number | number => number\n14 int | double | short => double\n15 Byte | Int | Long => Long\n16 Byte | Int | Float | Number => Number\n17 Int | 3.14 | Float => Float | 3.14\n18\n19\n20 1 | string | number => string | number       // Union value elimination\n21\n22 1 | Object => Object                         // Object wins\n23 AnyNonNullishType | Object => Object\n24\n25 class Base {}\n26 class Derived1 extends Base {}\n27 class Derived2 extends Base {}\n28 Base | Derived1 => Base                      // Base wins\n29 Derived1 | Derived2 => Derived1 | Derived2   // End of normalization",
+      "language": "javascript"
+    },
+    {
+      "code": "keyofType:\n    'keyof' typeReference\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 class A {\n2    field: number\n3    method() {}\n4 }\n5 type KeysOfA = keyof A // \"field\" | \"method\"\n6 let a_keys: KeysOfA = \"field\" // OK\n7 a_keys = \"any string different from field or method\"\n8   // Compile-time error: invalid value for the type KeysOfA",
+      "language": "javascript"
+    },
+    {
+      "code": "1 class A {} // Empty class\n2 type KeysOfA = keyof A // never",
+      "language": "unknown"
+    },
+    {
+      "code": "nullishType:\n      type '|' 'null' (| 'undefined')?\n    | type '|' 'undefined' ('|' 'null')?\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1function foo(d: DynamicObject) {\n2   console.log(d.f1) // access of the property named \"f1\" of underlying object\n3   d.f1 = 5 // set a value of the property named \"f1\"\n4   let y = d.f1 // 'y' is of type DynamicObject\n5}",
+      "language": "javascript"
+    },
+    {
+      "code": "1function foo(d: DynamicObject) {\n2   d.foo() // call of a method \"foo\" of underlying object\n3   let y = d.goo() // 'y' is of type DynamicObject\n4}",
+      "language": "javascript"
+    },
+    {
+      "code": "1function foo(d: DynamicObject) {\n2   let x = d[0]\n3}",
+      "language": "javascript"
+    },
+    {
+      "code": "1function foo(d: DynamicObject) {\n2   let x = new d()\n3}",
+      "language": "javascript"
+    },
+    {
+      "code": "1interface I {\n2   bar(): void\n3}\n4\n5function foo(d: DynamicObject) {\n6   let x = d as I\n7   x.bar() // a call of interface method     (not dynamic)\n8}",
+      "language": "javascript"
+    },
+    {
+      "code": "1class A {\n2  f1: number|null\n3  f2: string|undefined\n4  f3?: boolean\n5}\n6let a = new A()\n7console.log (a.f1, a.f2, a.f3)\n8// Output: null, undefined, undefined",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "Parentheses in types (where a type is a combination of array, function, or union types) are used to specify the required type structure. Without parentheses, the symbol ‘|’ that constructs a union type has the lowest precedence as presented in the following example:",
+      "code": "|"
+    },
+    {
+      "description": "A compile-time error occurs if typeReference is not a class or interface type. The semantics of the keyof type is presented in the following example:",
+      "code": "1 class A {\n2    field: number\n3    method() {}\n4 }\n5 type KeysOfA = keyof A // \"field\" | \"method\"\n6 let a_keys: KeysOfA = \"field\" // OK\n7 a_keys = \"any string different from field or method\"\n8   // Compile-time error: invalid value for the type KeysOfA"
+    }
+  ],
+  "links": [
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#value-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#reference-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#predefined-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#predefined-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#user-defined-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#array-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#function-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#tuple-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-parameters",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#types-by-category",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#using-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#named-types",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-alias-declaration",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#array-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#function-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#tuple-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#named-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generics",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#type-references",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#type-references",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#names",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-alias-declaration",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-parameters",
+    "https://yoyocat.github.io/ArkTSSpec/17_experimental.html#nonnullish-type-parameter",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#type-arguments",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#value-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#integer-types-and-operations",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#floating-point-types-and-operations",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#boolean-types-and-operations",
+    "https://yoyocat.github.io/ArkTSSpec/17_experimental.html#character-type-and-operations",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#integer-types-and-operations",
+    "https://yoyocat.github.io/ArkTSSpec/18_stdlib.html#standard-library",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#floating-point-types-and-operations",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#id36",
+    "https://yoyocat.github.io/ArkTSSpec/18_stdlib.html#standard-library",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#numeric-types-hierarchy",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#boolean-types-and-operations",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#reference-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#array-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#function-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#string-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#never-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#null-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#undefined-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#void-type",
+    "https://yoyocat.github.io/ArkTSSpec/5_generics.html#generic-parameters",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#objects",
+    "https://yoyocat.github.io/ArkTSSpec/17_experimental.html#array-creation-expressions",
+    "https://yoyocat.github.io/ArkTSSpec/17_experimental.html#array-creation-expressions",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#object-class-type",
+    "https://yoyocat.github.io/ArkTSSpec/18_stdlib.html#standard-library",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#string-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#reference-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#value-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#never-type",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#subtyping",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#void-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#undefined-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#array-types",
+    "https://yoyocat.github.io/ArkTSSpec/18_stdlib.html#standard-library",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-alias-declaration",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#function-types",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#rest-parameter",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-alias-declaration",
+    "https://yoyocat.github.io/ArkTSSpec/17_experimental.html#throwing-functions",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#null-type",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#null-literal",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#nullish-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#undefined-type",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#undefined-literal",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#nullish-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#tuple-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#object-class-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#types-by-category",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types-normalization",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#numeric-types-hierarchy",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#type-compatibility",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#type-compatibility",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#type-compatibility",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#keyof-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#nullish-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#union-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#dynamicobject-type",
+    "https://yoyocat.github.io/ArkTSSpec/18_stdlib.html#standard-library",
+    "https://yoyocat.github.io/ArkTSSpec/18_stdlib.html#standard-library",
+    "https://yoyocat.github.io/ArkTSSpec/18_stdlib.html#standard-library",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#dynamicobject-field-access",
+    "https://yoyocat.github.io/ArkTSSpec/15_semantics.html#type-compatibility",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#dynamicobject-method-call",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#dynamicobject-indexing-access",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#dynamicobject-new-expression",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#dynamicobject-cast-expression",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#default-values-for-types",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#variable-declarations",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#nullish-types",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#id11"
+  ]
+}

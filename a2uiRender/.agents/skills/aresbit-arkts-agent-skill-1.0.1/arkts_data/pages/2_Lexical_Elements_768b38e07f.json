@@ -1,0 +1,228 @@
+{
+  "url": "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#floating-point-literals",
+  "title": "2. Lexical Elements¶",
+  "content": "This chapter discusses the lexical structure of the ArkTS programming language and the analytical conventions.\n\nThe ArkTS programming language uses characters of the Unicode Character set [1] as its terminal symbols. It represents text in sequences of 16-bit code units using the Unicode UTF-16 encoding.\n\nThe term Unicode code point is used in this specification only where such representation is relevant to refer the reader to Unicode Character set and UTF-16 encoding. Where such representation is irrelevant to the discussion, the generic term character is used.\n\nThe language has lexical input elements of the following types:\n\nWhite spaces are lexical input elements that separate tokens from one another. Whitespaces never occur within a token. White spaces include the following:\n\nHorizontal tabulation (U+0009),\n\nVertical tabulation (U+000B),\n\nNo-break space (U+00A0), and\n\nZero-width no-break space (U+FEFF).\n\nWhite spaces improve source code readability and help avoiding ambiguities. White spaces are ignored by the syntactic grammar, but can occur within a comment.\n\nLine separators are lexical input elements that divide sequences of Unicode input characters into lines. Line separators include the following:\n\nNewline character (U+000A or ASCII <LF>),\n\nCarriage return character (U+000D or ASCII <CR>),\n\nLine separator character (U+2028 or ASCII <LS>), and\n\nParagraph separator character (U+2029 or ASCII <PS>).\n\nLine separators separate tokens from one another and improve source code readability. Any sequence of line separators is considered a single separator.\n\nTokens form the vocabulary of the language. There are four classes of tokens:\n\nOperators and Punctuators, and\n\nToken is the only lexical input element that can act as a terminal symbol of the syntactic grammar. In the process of tokenization, the next token is always the longest sequence of characters that form a valid token. Tokens are separated by white spaces (see White Spaces). Without white spaces, tokens merge into a single token. White spaces are ignored by the syntactic grammar.\n\nLine separators are often treated as white spaces, except where line separators have special meanings. See Semicolons for more details.\n\nAn identifier is a sequence of one or more valid Unicode characters. The Unicode grammar of identifiers is based on character properties specified by the Unicode Standard.\n\nThe first character in an identifier must be ‘$’, ‘_’, or any Unicode code point with the Unicode property ‘ID_Start’[2]. Other characters must be Unicode code points with the Unicode property, or one of the following characters:\n\n‘Zero-Width Non-Joiner’ (<ZWNJ>, \\U+200C), or\n\n‘Zero-Width Joiner’ (<ZWNJ>, \\U+200D).\n\nKeywords are the reserved words that have permanently predefined meanings in ArkTS. Keywords are always lowercase. Keywords can be of four kinds as discussed below.\n\n1. The following keywords are reserved in any context (hard keywords), and cannot be used as identifiers:\n\n2. The following words have special meaning in certain contexts (soft keywords) but are valid identifiers elsewhere:\n\n3. The following words cannot be used as user-defined type names but are not otherwise restricted:\n\n4. The following identifiers are also treated as soft keywords reserved for the future use (or used in TS):\n\nOperators are tokens that denote various actions to be performed on values: addition, subtraction, comparison, and other. The keywords instanceof and typeof also act as operators.\n\nPunctuators are tokens that separate, complete, or otherwise organize program elements and parts: commas, semicolons, parentheses, square brackets, etc.\n\nThe following character sequences represent operators and punctuators:\n\nLiterals are representations of certain value types.\n\nSee Character Literals for the experimental char literal.\n\nInteger literals represent numbers that do not have a decimal point or an exponential part. Integer literals can be written with bases 16 (hexadecimal), 10 (decimal), 8 (octal), and 2 (binary).\n\nIt is presented by the examples below:\n\nThe underscore character ‘_’ after a base prefix or between successive digits can be used to denote an integer literal and improve readability. Underscore characters in such positions do not change the values of literals. However, an underscore character must not be the very first or the very last symbol of an integer literal.\n\nInteger literals are of type int if the value can be represented by a 32-bit number; it is of type long otherwise. In variable and constant declarations, an integer literal can be implicitly converted to another integer or char type (see Type Compatibility with Initializer). In all other places an explicit cast must be used (see Cast Expressions).\n\nFloating-point literals represent decimal numbers and consist of a whole-number part, a decimal point, a fraction part, an exponent, and a float type suffix:\n\nIt is presented by the examples below:\n\nThe underscore character ‘_’ after a base prefix or between successive digits can be used to denote a floating-point literal and improve readability. Underscore characters in such positions do not change the values of literals. However, an underscore character must not be the very first and the very last symbol of an integer literal.\n\nA floating-point literal is of type float if float type suffix is present. Otherwise, it is of type double (type number is an alias to double).\n\nA compile-time error occurs if a non-zero floating-point literal is too large for its type.\n\nA floating-point literal in variable and constant declarations can be implicitly converted to type float (see Type Compatibility with Initializer).\n\nBigInt literals represent integer numbers with unlimited number of digits. BigInt literals use decimal base only. A BigInt literal is a sequence of digits followed by the symbol ‘n’:\n\nIt is presented by the examples below:\n\nThe underscore character ‘_’ used between successive digits can be used to denote a BigInt literal and improve readability. Underscore characters in such positions do not change the values of literals. However, an underscore character must not be the very first or the very last symbol of a BigInt literal.\n\nBigInt literals are always of type bigint.\n\nStrings that represent numbers or any integer values can be converted to bigint by using the built-in functions:\n\nTwo other static methods allow taking bitsCount lower bits of a BigInt number and return them as a result. Signed and unsigned versions are both possible:\n\nThe two Boolean literal values are represented by the keywords true and false.\n\nBoolean literals are of type boolean.\n\nString literals consist of zero or more characters enclosed between single or double quotes. A special form of string literals is template literal (see Template Literals).\n\nString literals are of type string. Type string is a predefined reference type (see string Type).\n\nNormally, characters in string literals represent themselves. However, certain non-graphic characters can be represented by explicit specifications or Unicode codes. Such constructs are called escape sequences.\n\nEscape sequences can represent graphic characters within a string literal, e.g., single quotes ‘’’, double quotes ‘”’, backslashes ‘\\’, and some others.\n\nAn escape sequence always starts with the backslash character ‘\\’, followed by one of the following characters:\n\n” (double quote, U+0022),\n\n' (neutral single quote, U+0027),\n\nb (backspace, U+0008),\n\nf (form feed, U+000c),\n\nn (linefeed, U+000a),\n\nr (carriage return, U+000d),\n\nt (horizontal tab, U+0009),\n\nv (vertical tab, U+000b),\n\n\\ (backslash, U+005c),\n\nx and two hexadecimal digits (like 7F),\n\nu and four hexadecimal digits (forming a fixed Unicode escape sequence like \\u005c),\n\nu{ and at least one hexadecimal digit followed by } (forming a bounded Unicode escape sequence like \\u{5c}), and\n\nany single character except digits from ‘1’ to ‘9’ and characters ‘x’, ‘u’, CR, and LF.\n\nThe examples are provided below:\n\nMulti-line string literals that can include embedded expressions are called template literals.\n\nA template literal with an embedded expression is a template string.\n\nA template string is not exactly a literal because its value cannot be evaluated at compile time. The evaluation of a template string is called string interpolation (see String Interpolation Expressions).\n\nSee String Interpolation Expressions for the grammar of embeddedExpression.\n\nAn example of a multi-line string is provided below:\n\nTemplate literals are of type string, which is a predefined reference type (see string Type).\n\nNull literal is the only literal to denote a reference without pointing at any entity. It is represented by the keyword null.\n\nThe null literal denotes the null reference that represents the absence of a value. The null literal is, by definition, the only value of type null (see null Type). This value is valid only for types T | null (see Nullish Types).\n\nUndefined literal is the only literal to denote a reference with a value that is not defined. Undefined literal is the only value of type undefined (see undefined Type). It is represented by the keyword undefined.\n\nComment is a piece of text added in the stream to document and compliment the source code. Comments are insignificant for the syntactic grammar.\n\nLine comments begin with the sequence of characters ‘//’ and end with the last line separator character. Any character or sequence of characters between them is allowed but ignored.\n\nMulti-line comments begin with the sequence of characters ‘/*’ and end with the first subsequent sequence of characters ‘*/’. Any character or sequence of characters between them is allowed but ignored.\n\nComments cannot be nested.\n\nDeclarations and statements are usually terminated by a line separator (see Line Separators). In some cases, a semicolon must be used to separate syntax productions written in one line, or to avoid ambiguity.\n\nUnicode Standard Version 15.0.0, https://www.unicode.org/versions/Unicode15.0.0/\n\nhttps://unicode.org/reports/tr31/",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "2. Lexical Elements¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.1. Use of Unicode Characters¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.2. Lexical Input Elements¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.3. White Spaces¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.4. Line Separators¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.5. Tokens¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.6. Identifiers¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.7. Keywords¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.8. Operators and Punctuators¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.9. Literals¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.1. Integer Literals¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.2. Floating-Point Literals¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.3. BigInt Literals¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.4. Boolean Literals¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.5. String Literals¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.6. Template Literals¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.7. Null Literal¶",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "2.9.8. Undefined Literal¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.10. Comments¶",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "2.11. Semicolons¶",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "Identifier:\n  IdentifierStart IdentifierPart \\*\n  ;\n\nIdentifierStart:\n  UnicodeIDStart\n  | '$'\n  | '_'\n  | '\\\\' EscapeSequence\n  ;\n\nIdentifierPart:\n  UnicodeIDContinue\n  | '$'\n  | <ZWNJ>\n  | <ZWJ>\n  | '\\\\' EscapeSequence\n  ;",
+      "language": "unknown"
+    },
+    {
+      "code": "Literal:\n  IntegerLiteral\n  | FloatLiteral\n  | BigIntLiteral\n  | BooleanLiteral\n  | StringLiteral\n  | TemplateLiteral\n  | NullLiteral\n  | UndefinedLiteral\n  | CharLiteral\n  ;",
+      "language": "unknown"
+    },
+    {
+      "code": "IntegerLiteral:\n  DecimalIntegerLiteral\n  | HexIntegerLiteral\n  | OctalIntegerLiteral\n  | BinaryIntegerLiteral\n  ;\n\nDecimalIntegerLiteral:\n  '0'\n  | [1-9] ('_'? [0-9])*\n  ;\n\nHexIntegerLiteral:\n  '0' [xX]  ( HexDigit\n  | HexDigit (HexDigit | '_')* HexDigit\n  )\n  ;\n\nHexDigit:\n  [0-9a-fA-F]\n  ;\n\nOctalIntegerLiteral:\n  '0' [oO] ( [0-7] | [0-7] [0-7_]* [0-7] )\n  ;\n\nBinaryIntegerLiteral:\n  '0' [bB] ( [01] | [01] [01_]* [01] )\n  ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 153 // decimal literal\n2 1_153 // decimal literal\n3 0xBAD3 // hex literal\n4 0xBAD_3 // hex literal\n5 0o777 // octal literal\n6 0b101 // binary literal",
+      "language": "unknown"
+    },
+    {
+      "code": "FloatLiteral:\n    DecimalIntegerLiteral '.' FractionalPart? ExponentPart? FloatTypeSuffix?\n    | '.' FractionalPart ExponentPart? FloatTypeSuffix?\n    | DecimalIntegerLiteral ExponentPart FloatTypeSuffix?\n    ;\n\nExponentPart:\n    [eE] [+-]? DecimalIntegerLiteral\n    ;\n\nFractionalPart:\n    [0-9]\n    | [0-9] [0-9_]* [0-9]\n    ;\nFloatTypeSuffix:\n    'f'\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 3.14\n2 3.14f\n3 3.141_592\n4 .5\n5 1e10\n6 1e10f",
+      "language": "unknown"
+    },
+    {
+      "code": "BigIntLiteral:\n  '0n'\n  | [1-9] ('_'? [0-9])* 'n'\n  ;",
+      "language": "unknown"
+    },
+    {
+      "code": "153n // bigint literal\n1_153n // bigint literal",
+      "language": "unknown"
+    },
+    {
+      "code": "BigInt (other: string): bigint\nBigInt (other: long): bigint",
+      "language": "unknown"
+    },
+    {
+      "code": "BigInt.asIntN(bitsCount: long, bigIntToCut: bigint): bigint\nBigInt.asUintN(bitsCount: long, bigIntToCut: bigint): bigint",
+      "language": "unknown"
+    },
+    {
+      "code": "1 BooleanLiteral:\n2     ’true’ | ’false’\n3     ;",
+      "language": "unknown"
+    },
+    {
+      "code": "StringLiteral:\n    '\"' DoubleQuoteCharacter* '\"'\n    | '\\'' SingleQuoteCharacter* '\\''\n    ;\n\nDoubleQuoteCharacter:\n    ~[\"\\\\\\r\\n]\n    | '\\\\' EscapeSequence\n    ;\n\nSingleQuoteCharacter:\n    ~['\\\\\\r\\n]\n    | '\\\\' EscapeSequence\n    ;\n\nEscapeSequence:\n    ['\"bfnrtv0\\\\]\n    | 'x' HexDigit HexDigit\n    | 'u' HexDigit HexDigit HexDigit HexDigit\n    | 'u' '{' HexDigit+ '}'\n    | ~[1-9xu\\r\\n]\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 let s1 = 'Hello, world!'\n2 let s2 = \"Hello, world!\"\n3 let s3 = \"\\\\\"\n4 let s4 = \"\"\n5 let s5 = \"don’t do it\"\n6 let s6 = 'don\\'t do it'\n7 let s7 = 'don\\u0027t do it'",
+      "language": "javascript"
+    },
+    {
+      "code": "TemplateLiteral:\n    '`' (BacktickCharacter | embeddedExpression)* '`'\n    ;\n\nBacktickCharacter:\n    ~[`\\\\\\r\\n\\]\n    | '\\\\' EscapeSequence\n    | LineContinuation\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 let sentence = `This is an example of\n2                 a multi-line string,\n3                 which should be enclosed in\n4                 backticks`",
+      "language": "javascript"
+    },
+    {
+      "code": "NullLiteral:\n    'null'\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "UndefinedLiteral:\n    'undefined'\n    ;",
+      "language": "unknown"
+    },
+    {
+      "code": "1 function foo(x: number): number {\n2     x++;\n3     x *= x;\n4     return x\n5 }\n6\n7 let i = 1\n8 i-i++ // one expression\n9 i;-i++ // two expressions",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#lexical-elements",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#use-of-unicode-characters",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#id22",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#lexical-input-elements",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#white-spaces",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#line-separators",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#tokens",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#comments",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#white-spaces",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#line-separators",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#tokens",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#identifiers",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#keywords",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#operators-and-punctuators",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#literals",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#white-spaces",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#semicolons",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#identifiers",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#id23",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#keywords",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#operators-and-punctuators",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#literals",
+    "https://yoyocat.github.io/ArkTSSpec/17_experimental.html#character-literals",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#integer-literals",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-compatibility-with-initializer",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#floating-point-literals",
+    "https://yoyocat.github.io/ArkTSSpec/4_names.html#type-compatibility-with-initializer",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#bigint-literals",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#boolean-literals",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#string-literals",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#template-literals",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#string-type",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#template-literals",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#string-type",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#null-literal",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#null-type",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#nullish-types",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#undefined-literal",
+    "https://yoyocat.github.io/ArkTSSpec/3_types.html#undefined-type",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#comments",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#semicolons",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#line-separators",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#id2",
+    "https://yoyocat.github.io/ArkTSSpec/2_lexical.html#id8"
+  ]
+}

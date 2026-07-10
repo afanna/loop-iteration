@@ -1,0 +1,998 @@
+[
+  {
+    "id": "CN01",
+    "name": "简单文本显示",
+    "category": "component-naming",
+    "complexity": "simple",
+    "task": "生成一个文本组件，id为'greeting'，显示动态内容'Hello, '拼接$__DataModel.username",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Text",
+        "description": "component包含Text"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Text",
+          "description": "使用Extended.Text命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Text$",
+          "description": "使用纯Text命名（无前缀）"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HText",
+          "description": "使用HText命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN02",
+    "name": "按钮+点击事件",
+    "category": "component-naming",
+    "complexity": "simple",
+    "task": "生成一个按钮组件，id为'submitBtn'，label为'提交'，点击后showToast'提交成功'",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "label",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "label",
+        "description": "必须有label字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Button",
+        "description": "component包含Button"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Button",
+          "description": "使用Extended.Button命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Button$",
+          "description": "使用纯Button命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HButton",
+          "description": "使用HButton命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN03",
+    "name": "文本输入框",
+    "category": "component-naming",
+    "complexity": "simple",
+    "task": "生成一个文本输入框组件，id为'usernameInput'，placeholder为'请输入用户名'，onChange时将值更新到$__DataModel.username",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "placeholder",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "TextInput",
+        "description": "component包含TextInput"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.TextInput",
+          "description": "使用Extended.TextInput命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^TextInput$",
+          "description": "使用纯TextInput命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HTextInput",
+          "description": "使用HTextInput命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN04",
+    "name": "垂直布局+子组件",
+    "category": "component-naming",
+    "complexity": "simple",
+    "task": "生成一个垂直布局组件，id为'mainLayout'，子组件为['header', 'content']",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Column",
+        "description": "component包含Column"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Column",
+          "description": "使用Extended.Column命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Column$",
+          "description": "使用纯Column命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HColumn",
+          "description": "使用HColumn命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN05",
+    "name": "开关组件+样式",
+    "category": "component-naming",
+    "complexity": "simple",
+    "task": "生成一个开关组件，id为'darkMode'，isOn为false，设置selectedColor为'#007AFF'",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Toggle",
+        "description": "component包含Toggle"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Toggle",
+          "description": "使用Extended.Toggle命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Toggle$",
+          "description": "使用纯Toggle命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HToggle",
+          "description": "使用HToggle命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN06",
+    "name": "按钮+样式+事件",
+    "category": "component-naming",
+    "complexity": "medium",
+    "task": "生成一个按钮组件，id为'loginBtn'，label为'登录'，设置backgroundColor为'#007AFF'、borderRadius为8，点击后navigate到'/home'",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "label",
+        "styles",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "has_field",
+        "field": "styles",
+        "description": "必须有styles字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Button",
+        "description": "component包含Button"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Button",
+          "description": "使用Extended.Button命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Button$",
+          "description": "使用纯Button命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HButton",
+          "description": "使用HButton命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN07",
+    "name": "水平布局+动态样式",
+    "category": "component-naming",
+    "complexity": "medium",
+    "task": "生成一个水平布局组件，id为'toolbar'，子组件为['icon', 'title']，设置justifyContent为'spaceBetween'，padding根据$__DataModel.dense动态设置",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Row",
+        "description": "component包含Row"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Row",
+          "description": "使用Extended.Row命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Row$",
+          "description": "使用纯Row命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HRow",
+          "description": "使用HRow命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN08",
+    "name": "图片组件+动态src",
+    "category": "component-naming",
+    "complexity": "medium",
+    "task": "生成一个图片组件，id为'avatar'，src绑定为$__DataModel.user.avatarUrl，objectFit为'cover'，宽高都为48",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "src",
+        "styles"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Image",
+        "description": "component包含Image"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Image",
+          "description": "使用Extended.Image命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Image$",
+          "description": "使用纯Image命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HImage",
+          "description": "使用HImage命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN09",
+    "name": "列表+内联模板",
+    "category": "component-naming",
+    "complexity": "medium",
+    "task": "生成一个列表组件，id为'userList'，绑定$users数组，内联模板显示$item.name和$item.email",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "List",
+        "description": "component包含List"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.List",
+          "description": "使用Extended.List命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^List$",
+          "description": "使用纯List命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HList",
+          "description": "使用HList命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN10",
+    "name": "Select下拉+onChange",
+    "category": "component-naming",
+    "complexity": "medium",
+    "task": "生成一个下拉选择组件，id为'langSelect'，options为'zh'和'en'，onChange时setDataModel.lang为当前选中值",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "onClick"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Select",
+        "description": "component包含Select"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Select",
+          "description": "使用Extended.Select命名"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Select$",
+          "description": "使用纯Select命名"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HSelect",
+          "description": "使用HSelect命名"
+        }
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "CN11",
+    "name": "多组件混合布局",
+    "category": "component-naming",
+    "complexity": "complex",
+    "task": "生成一个垂直布局，id为'cardView'，子组件包含：文本组件显示$__DataModel.title（heading1主题），按钮组件label为'购买'带点击事件navigate到'/buy'，进度条组件value绑定为$__DataModel.progress、total为100",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Column",
+        "description": "外层为Column布局"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Column",
+          "description": "使用Extended.Column"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "Extended.Text",
+          "description": "子组件中使用Extended.Text"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "Extended.Button",
+          "description": "子组件中使用Extended.Button"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "Extended.Progress",
+          "description": "子组件中使用Extended.Progress"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Column$",
+          "description": "使用纯Column"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HColumn",
+          "description": "使用HColumn"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "HText",
+          "description": "子组件中使用HText"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "HButton",
+          "description": "子组件中使用HButton"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CN12",
+    "name": "条件渲染+表达式",
+    "category": "component-naming",
+    "complexity": "complex",
+    "task": "生成一个条件渲染组件，id为'authGate'，condition为$__DataModel.isLoggedIn，登录时显示Column包含Text'欢迎回来'和Button'退出'点击setDataModel.isLoggedIn为false，未登录时显示Button'登录'点击navigate到'/login'",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "condition"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "If",
+        "description": "使用If组件"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.If",
+          "description": "使用Extended.If"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^If$",
+          "description": "使用纯If"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HIf",
+          "description": "使用HIf"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CN13",
+    "name": "Tabs+多组件嵌套",
+    "category": "component-naming",
+    "complexity": "complex",
+    "task": "生成一个Tabs组件，id为'mainTabs'，包含两个TabContent子组件：第一个Tab标签为'首页'内容为Text显示'首页内容'，第二个Tab标签为'设置'内容为Toggle的id为'notifToggle'控制通知开关",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Tabs",
+        "description": "使用Tabs组件"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Tabs",
+          "description": "使用Extended.Tabs"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "Extended.",
+          "description": "子组件也用Extended前缀"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Tabs$",
+          "description": "使用纯Tabs"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HTabs",
+          "description": "使用HTabs"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "H",
+          "description": "子组件也用H前缀"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CN14",
+    "name": "Radio组+条件+导航",
+    "category": "component-naming",
+    "complexity": "complex",
+    "task": "生成一个Radio组件id为'planSelect'，value为'basic'，group为'planGroup'，checked为true，子组件包含两个Radio选项和Button，Button点击后根据group值条件导航",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Radio",
+        "description": "使用Radio组件"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Radio",
+          "description": "使用Extended.Radio"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Radio$",
+          "description": "使用纯Radio"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HRadio",
+          "description": "使用HRadio"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "CN15",
+    "name": "完整表单场景",
+    "category": "component-naming",
+    "complexity": "complex",
+    "task": "生成一个完整表单：Column布局id为'regForm'，子组件包含TextInput(id='email' placeholder='邮箱')、TextInput(id='password' placeholder='密码')、Checkbox(id='agreeTerms')、Button(id='regBtn' label='注册'点击后先验证再sendToLLM)",
+    "expected": {
+      "required_fields": [
+        "id",
+        "component",
+        "children"
+      ],
+      "patterns": []
+    },
+    "shared_rules": [
+      {
+        "type": "has_field",
+        "field": "id",
+        "description": "必须有id字段"
+      },
+      {
+        "type": "has_field",
+        "field": "component",
+        "description": "必须有component字段"
+      },
+      {
+        "type": "contains",
+        "field": "component",
+        "value": "Column",
+        "description": "外层为Column"
+      }
+    ],
+    "strategy_rules": {
+      "extended-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "Extended.Column",
+          "description": "使用Extended.Column"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "Extended.TextInput",
+          "description": "子组件用Extended.TextInput"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "Extended.Checkbox",
+          "description": "子组件用Extended.Checkbox"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "Extended.Button",
+          "description": "子组件用Extended.Button"
+        }
+      ],
+      "unified-name": [
+        {
+          "type": "matches_regex",
+          "field": "component",
+          "value": "^Column$",
+          "description": "使用纯Column"
+        }
+      ],
+      "short-prefix": [
+        {
+          "type": "contains",
+          "field": "component",
+          "value": "HColumn",
+          "description": "使用HColumn"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "HTextInput",
+          "description": "子组件用HTextInput"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "HCheckbox",
+          "description": "子组件用HCheckbox"
+        },
+        {
+          "type": "contains",
+          "field": "children",
+          "value": "HButton",
+          "description": "子组件用HButton"
+        }
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

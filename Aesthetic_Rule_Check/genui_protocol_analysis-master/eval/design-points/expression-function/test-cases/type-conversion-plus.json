@@ -1,0 +1,449 @@
+[
+  {
+    "id": "TC01",
+    "name": "字符串标签+数字变量",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示价格信息，格式为'价格: '后面接$price变量的值",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "价格", "description": "包含'价格'文本"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "价格", "description": "包含'价格'文本"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Text组件的content使用动态表达式"]
+  },
+  {
+    "id": "TC02",
+    "name": "前缀+计数变量+后缀",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示格式为'共'加上$count变量的值再加上'件'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "引用$count变量"},
+        {"type": "contains", "field": "content", "value": "共", "description": "包含'共'文本"},
+        {"type": "contains", "field": "content", "value": "件", "description": "包含'件'文本"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "引用$count变量"},
+        {"type": "contains", "field": "content", "value": "共", "description": "包含'共'文本"},
+        {"type": "contains", "field": "content", "value": "件", "description": "包含'件'文本"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["'共'在前面，$count在中间，'件'在后面"]
+  },
+  {
+    "id": "TC03",
+    "name": "问候语+用户名",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示'你好, '后面接$user.name变量",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$user.name", "description": "引用$user.name变量"},
+        {"type": "contains", "field": "content", "value": "你好", "description": "包含'你好'文本"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$user.name", "description": "引用$user.name变量"},
+        {"type": "contains", "field": "content", "value": "你好", "description": "包含'你好'文本"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "TC04",
+    "name": "标签+格式化数字",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示'合计: '后面接formatNumber($total, 2)的结果",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$total", "description": "引用$total变量"},
+        {"type": "contains", "field": "content", "value": "合计", "description": "包含'合计'文本"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber函数"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$total", "description": "引用$total变量"},
+        {"type": "contains", "field": "content", "value": "合计", "description": "包含'合计'文本"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber函数"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "TC05",
+    "name": "欢迎回来+变量",
+    "category": "type-conversion",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示'欢迎'加上$name变量再加上'回来'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$name", "description": "引用$name变量"},
+        {"type": "contains", "field": "content", "value": "欢迎", "description": "包含'欢迎'文本"},
+        {"type": "contains", "field": "content", "value": "回来", "description": "包含'回来'文本"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$name", "description": "引用$name变量"},
+        {"type": "contains", "field": "content", "value": "欢迎", "description": "包含'欢迎'文本"},
+        {"type": "contains", "field": "content", "value": "回来", "description": "包含'回来'文本"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+
+  {
+    "id": "TC06",
+    "name": "数字变量+单位后缀(数量)",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$count变量的值后面跟'件'字，如'5件'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "引用$count变量"},
+        {"type": "contains", "field": "content", "value": "件", "description": "包含'件'字"},
+        {"type": "not_contains", "field": "content", "value": "{{ $count + '", "description": "不对称规则下禁止$number直接接+'string'模式（$var必须在+前面有字符串前缀）"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "引用$count变量"},
+        {"type": "contains", "field": "content", "value": "件", "description": "包含'件'字"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false,
+    "hints": ["注意+运算符的类型转换规则，确保数字变量和字符串拼接时结果正确"]
+  },
+  {
+    "id": "TC07",
+    "name": "数字变量+单位后缀(价格)",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$price变量的值后面跟'元'字，如'99元'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"},
+        {"type": "not_contains", "field": "content", "value": "{{ $price + '", "description": "不对称规则下禁止$number直接接+'string'模式"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false,
+    "hints": ["注意+运算符的类型转换规则，确保数字变量和字符串拼接时结果正确"]
+  },
+  {
+    "id": "TC08",
+    "name": "数字变量+单位后缀(温度)",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$temp变量的值后面跟'°C'，如'25°C'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$temp", "description": "引用$temp变量"},
+        {"type": "contains", "field": "content", "value": "°C", "description": "包含'°C'"},
+        {"type": "not_contains", "field": "content", "value": "{{ $temp + '", "description": "不对称规则下禁止$number直接接+'string'模式"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$temp", "description": "引用$temp变量"},
+        {"type": "contains", "field": "content", "value": "°C", "description": "包含'°C'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false,
+    "hints": ["注意+运算符的类型转换规则"]
+  },
+  {
+    "id": "TC09",
+    "name": "数字变量+单位后缀(百分比)",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$progress变量的值后面跟'%'，如'75%'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$progress", "description": "引用$progress变量"},
+        {"type": "contains", "field": "content", "value": "%", "description": "包含'%'"},
+        {"type": "not_contains", "field": "content", "value": "{{ $progress + '", "description": "不对称规则下禁止$number直接接+'string'模式"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$progress", "description": "引用$progress变量"},
+        {"type": "contains", "field": "content", "value": "%", "description": "包含'%'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false,
+    "hints": ["注意+运算符的类型转换规则"]
+  },
+  {
+    "id": "TC10",
+    "name": "数字变量+单位后缀(折扣)",
+    "category": "type-conversion",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$discount变量的值后面跟'折'，如'8.5折'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "折", "description": "包含'折'字"},
+        {"type": "not_contains", "field": "content", "value": "{{ $discount + '", "description": "不对称规则下禁止$number直接接+'string'模式"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "折", "description": "包含'折'字"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": false,
+    "hints": ["注意+运算符的类型转换规则"]
+  },
+
+  {
+    "id": "TC11",
+    "name": "算术运算+单位",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示$price乘以$quantity的计算结果，后面跟'元'字，如'100元'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "$quantity", "description": "引用$quantity变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "$quantity", "description": "引用$quantity变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC12",
+    "name": "条件表达式+数字变量拼接",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，如果$isVip为true，显示$discount变量的值后面跟'折优惠'，否则显示'无折扣'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "折优惠", "description": "包含'折优惠'"},
+        {"type": "contains", "field": "content", "value": "无折扣", "description": "包含'无折扣'"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$isVip", "description": "引用$isVip变量"},
+        {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount变量"},
+        {"type": "contains", "field": "content", "value": "折优惠", "description": "包含'折优惠'"},
+        {"type": "contains", "field": "content", "value": "无折扣", "description": "包含'无折扣'"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC13",
+    "name": "多变量拼接",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示$firstName、空格、$lastName、'('、$age、'岁)'，如'张 三 (25岁)'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$firstName", "description": "引用$firstName"},
+        {"type": "contains", "field": "content", "value": "$lastName", "description": "引用$lastName"},
+        {"type": "contains", "field": "content", "value": "$age", "description": "引用$age"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$firstName", "description": "引用$firstName"},
+        {"type": "contains", "field": "content", "value": "$lastName", "description": "引用$lastName"},
+        {"type": "contains", "field": "content", "value": "$age", "description": "引用$age"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC14",
+    "name": "格式化数字+单位",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示formatNumber($price, 2)的结果后面跟'元'，如'99.00元'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber函数"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$price", "description": "引用$price变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用formatNumber函数"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "TC15",
+    "name": "复杂条件+拼接+单位",
+    "category": "type-conversion",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示'共'加上formatNumber($total, 2)加上'元'，如果有优惠($saved > 0)则再加上'(省'加上$saved加上'元)'，如'共99.00元(省10元)'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"}
+    ],
+    "strategy_rules": {
+      "asymmetric": [
+        {"type": "contains", "field": "content", "value": "$total", "description": "引用$total变量"},
+        {"type": "contains", "field": "content", "value": "$saved", "description": "引用$saved变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"}
+      ],
+      "symmetric": [
+        {"type": "contains", "field": "content", "value": "$total", "description": "引用$total变量"},
+        {"type": "contains", "field": "content", "value": "$saved", "description": "引用$saved变量"},
+        {"type": "contains", "field": "content", "value": "元", "description": "包含'元'字"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

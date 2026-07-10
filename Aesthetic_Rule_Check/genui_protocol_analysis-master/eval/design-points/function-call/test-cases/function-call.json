@@ -1,0 +1,544 @@
+[
+  {
+    "id": "FC01",
+    "name": "formatNumber简单调用",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示$price格式化为2位小数（使用formatNumber函数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["formatNumber(值, 小数位数)"]
+  },
+  {
+    "id": "FC02",
+    "name": "formatCurrency调用",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示$amount的CNY货币格式（使用formatCurrency函数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$amount", "description": "引用$amount"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatCurrency", "description": "使用裸函数名formatCurrency"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatCurrency", "description": "使用$前缀$formatCurrency"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatCurrency", "description": "使用${}包裹formatCurrency"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["formatCurrency(值, 货币代码)"]
+  },
+  {
+    "id": "FC03",
+    "name": "formatDate调用",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，显示$date格式化为yyyy-MM-dd（使用formatDate函数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$date", "description": "引用$date"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatDate", "description": "使用裸函数名formatDate"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatDate", "description": "使用$前缀$formatDate"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatDate", "description": "使用${}包裹formatDate"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["formatDate(值, 格式模式)"]
+  },
+  {
+    "id": "FC04",
+    "name": "format字符串格式化",
+    "category": "expression-wrapping",
+    "complexity": "simple",
+    "task": "生成一个Text组件，使用format函数格式化为'Hello, {用户名}'（参数$name）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$name", "description": "引用$name"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "format(", "description": "使用裸函数名format"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$format(", "description": "使用$前缀$format"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${format(", "description": "使用${}包裹format"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["format(模板字符串, 参数...)"]
+  },
+  {
+    "id": "FC05",
+    "name": "函数+文本拼接",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'价格：'加上formatNumber格式化$price为2位小数",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$price", "description": "引用$price"},
+      {"type": "contains", "field": "content", "value": "价格", "description": "包含'价格'文本"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["混合文本使用字符串拼接"]
+  },
+  {
+    "id": "FC06",
+    "name": "模板字符串中使用函数",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，使用模板字符串显示'共X.XX元'（formatNumber格式化$total为2位小数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$total", "description": "引用$total"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["模板字符串使用反引号和${}插值"]
+  },
+  {
+    "id": "FC07",
+    "name": "size函数-数组长度",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示$items的长度加上'件商品'（使用size函数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$items", "description": "引用$items"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "size", "description": "使用裸函数名size"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$size", "description": "使用$前缀$size"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${size", "description": "使用${}包裹size"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["size(数组)返回数组长度"]
+  },
+  {
+    "id": "FC08",
+    "name": "函数+三元条件",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，如果有$discount则显示formatCurrency格式化的$discount，否则显示'无优惠'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$discount", "description": "引用$discount"},
+      {"type": "contains", "field": "content", "value": "无优惠", "description": "包含'无优惠'"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatCurrency", "description": "使用裸函数名formatCurrency"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatCurrency", "description": "使用$前缀$formatCurrency"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatCurrency", "description": "使用${}包裹formatCurrency"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["三元运算符：条件 ? 真值 : 假值"]
+  },
+  {
+    "id": "FC09",
+    "name": "双函数调用",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，显示'共X件，总价Y.YY'（size获取$items长度，formatNumber格式化$totalPrice为2位小数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$items", "description": "引用$items"},
+      {"type": "contains", "field": "content", "value": "$totalPrice", "description": "引用$totalPrice"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "size", "description": "使用裸函数名size"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$size", "description": "使用$前缀$size"},
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${size", "description": "使用${}包裹size"},
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["两个函数调用需要字符串拼接"]
+  },
+  {
+    "id": "FC10",
+    "name": "函数在样式属性中",
+    "category": "expression-wrapping",
+    "complexity": "medium",
+    "task": "生成一个Text组件，内容为'进度'，字号fontSize动态绑定formatNumber格式化$config.fontSize为整数",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"},
+      {"type": "has_field", "field": "styles.fontSize", "description": "styles中必须有fontSize"},
+      {"type": "matches_regex", "field": "styles.fontSize", "value": "^\\{\\{.*\\}\\}$", "description": "fontSize使用{{}}包裹"},
+      {"type": "contains", "field": "styles.fontSize", "value": "$config", "description": "引用$config"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "styles.fontSize", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "styles.fontSize", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "styles.fontSize", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["styles属性也可以使用动态值和函数"]
+  },
+  {
+    "id": "FC11",
+    "name": "嵌套函数调用",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示$items的长度格式化为整数（先size获取长度，再formatNumber格式化），加上'件商品'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$items", "description": "引用$items"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "size", "description": "使用裸函数名size"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$size", "description": "使用$前缀$size"},
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${size", "description": "使用${}包裹size"},
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["嵌套调用：formatNumber(size($items), 0)"]
+  },
+  {
+    "id": "FC12",
+    "name": "函数+复杂条件",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，如果$score >= 60则显示'及格：'加formatNumber($score,1)，否则显示'不及格'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$score", "description": "引用$score"},
+      {"type": "contains", "field": "content", "value": "及格", "description": "包含'及格'"},
+      {"type": "contains", "field": "content", "value": "不及格", "description": "包含'不及格'"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["三元运算符 + 函数调用 + 字符串拼接"]
+  },
+  {
+    "id": "FC13",
+    "name": "多函数+多变量",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，显示'$name，你有X条新消息，余额Y.YY元'（count获取$messageCount，formatNumber格式化$balance为2位小数）",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$name", "description": "引用$name"},
+      {"type": "contains", "field": "content", "value": "$messageCount", "description": "引用$messageCount"},
+      {"type": "contains", "field": "content", "value": "$balance", "description": "引用$balance"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "count", "description": "使用裸函数名count"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "使用$前缀$count"},
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${count", "description": "使用${}包裹count"},
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["多函数+多变量的复杂拼接"]
+  },
+  {
+    "id": "FC14",
+    "name": "函数在If条件中",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个If组件，条件为count($items) > 0（有商品时显示productList，否则显示emptyTip）",
+    "expected": {
+      "component": "If",
+      "required_fields": ["component", "condition", "childrenIf", "childrenElse"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "condition", "description": "必须有condition字段"},
+      {"type": "has_field", "field": "childrenIf", "description": "必须有childrenIf字段"},
+      {"type": "has_field", "field": "childrenElse", "description": "必须有childrenElse字段"},
+      {"type": "matches_regex", "field": "condition", "value": "^\\{\\{.*\\}\\}$", "description": "condition使用{{}}包裹"},
+      {"type": "contains", "field": "condition", "value": "$items", "description": "引用$items"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "condition", "value": "count", "description": "使用裸函数名count"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "condition", "value": "$count", "description": "使用$前缀$count"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "condition", "value": "${count", "description": "使用${}包裹count"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["函数调用可用于If的condition条件中"]
+  },
+  {
+    "id": "FC15",
+    "name": "模板字符串+函数+变量混合",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，使用模板字符串显示'$name - $date（yyyy-MM-dd）'，其中$date用formatDate格式化",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$name", "description": "引用$name"},
+      {"type": "contains", "field": "content", "value": "$date", "description": "引用$date"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "formatDate", "description": "使用裸函数名formatDate"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$formatDate", "description": "使用$前缀$formatDate"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${formatDate", "description": "使用${}包裹formatDate"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["模板字符串中混合变量和函数调用"]
+  },
+  {
+    "id": "FC16",
+    "name": "嵌套函数+条件+拼接",
+    "category": "expression-wrapping",
+    "complexity": "complex",
+    "task": "生成一个Text组件，如果有$orders则显示'共X单，合计Y.YY元'（count获取$orders长度，formatNumber格式化$totalAmount为2位小数），否则显示'暂无订单'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": []
+    },
+    "validation_rules": [],
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "matches_regex", "field": "content", "value": "^\\{\\{.*\\}\\}$", "description": "content使用{{}}包裹"},
+      {"type": "contains", "field": "content", "value": "$orders", "description": "引用$orders"},
+      {"type": "contains", "field": "content", "value": "$totalAmount", "description": "引用$totalAmount"},
+      {"type": "contains", "field": "content", "value": "暂无订单", "description": "包含'暂无订单'"}
+    ],
+    "strategy_rules": {
+      "bare": [
+        {"type": "contains", "field": "content", "value": "count", "description": "使用裸函数名count"},
+        {"type": "contains", "field": "content", "value": "formatNumber", "description": "使用裸函数名formatNumber"}
+      ],
+      "dollar": [
+        {"type": "contains", "field": "content", "value": "$count", "description": "使用$前缀$count"},
+        {"type": "contains", "field": "content", "value": "$formatNumber", "description": "使用$前缀$formatNumber"}
+      ],
+      "interp": [
+        {"type": "contains", "field": "content", "value": "${count", "description": "使用${}包裹count"},
+        {"type": "contains", "field": "content", "value": "${formatNumber", "description": "使用${}包裹formatNumber"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["三元条件 + 嵌套函数 + 字符串拼接"]
+  }
+]

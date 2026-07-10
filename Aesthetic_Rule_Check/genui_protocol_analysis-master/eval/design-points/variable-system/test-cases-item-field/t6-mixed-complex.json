@@ -1,0 +1,349 @@
+[
+  {
+    "id": "VS051",
+    "name": "综合-全部变量类型在同一组件",
+    "category": "t6-mixed-complex",
+    "complexity": "complex",
+    "task": "生成一个Extended.Column，包含：1.Text显示$__DataModel.app.title（DataModel绝对路径）2.List数据/users模板显示$item.name和$index+1（相对路径+内置变量）3.Button点击时validate(as='vResult')后根据$vResult和$__WidthBreakpoint决定下一步（as绑定+全局变量+DataModel）",
+    "expected": {
+      "component": "Extended.Column",
+      "required_fields": [
+        "component",
+        "children"
+      ],
+      "patterns": [
+        {
+          "field": "children",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "children",
+        "description": "Column有children数组"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.app.title",
+        "description": "引用DataModel绝对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List组件"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "List模板使用相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$index",
+        "description": "List模板使用$index"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "Button有as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WidthBreakpoint",
+        "description": "引用全局变量"
+      }
+    ],
+    "hints": [
+      "所有变量类型可共存于一个组件树",
+      "每种变量使用对应前缀"
+    ]
+  },
+  {
+    "id": "VS052",
+    "name": "综合-表单验证链+列表+全局变量",
+    "category": "t6-mixed-complex",
+    "complexity": "complex",
+    "task": "生成表单组件：1.TextInput onChange时通过$context.eventData.text获取输入2.Button'提交'点击时validate(as='validR')检测$__DataModel.formData和输入3.若$validR==0则List显示/history数据模板用$item.text和$item.time 4.全部根据$__WindowSize.width自适应",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$context",
+        "description": "引用$context事件参数"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel",
+        "description": "引用DataModel"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "有as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WindowSize",
+        "description": "引用全局变量"
+      }
+    ],
+    "hints": [
+      "$context用于获取输入值",
+      "as绑定用于验证结果",
+      "List用相对路径",
+      "全局变量用于自适应"
+    ]
+  },
+  {
+    "id": "VS053",
+    "name": "综合-嵌套列表+自定义变量+as绑定+DataModel",
+    "category": "t6-mixed-complex",
+    "complexity": "complex",
+    "task": "生成嵌套列表：外层/classes(itemVar='cls', indexVar='ci')，内层/students。内层模板显示$cls.name和$item.name，Button'标记'点击时markStudent(as='markR')，根据$markR设置样式。同时显示$__DataModel.schoolName",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "itemVar",
+        "description": "外层自定义itemVar"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "indexVar",
+        "description": "外层自定义indexVar"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$cls.name",
+        "description": "引用外层自定义变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "内层相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "内层Button有as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.schoolName",
+        "description": "引用DataModel绝对路径"
+      }
+    ],
+    "hints": [
+      "嵌套列表中外层变量名自定义，内层默认",
+      "as绑定在列表模板中也可使用"
+    ]
+  },
+  {
+    "id": "VS054",
+    "name": "综合-响应式布局+列表+as绑定+条件渲染",
+    "category": "t6-mixed-complex",
+    "complexity": "complex",
+    "task": "生成响应式页面：1.根据$__WidthBreakpoint决定用Column或Row布局 2.List数据/items模板$item.name 3.每个列表项有Button'删除'点击时confirmDelete(as='delR')，$delR==0则setDataModel删除 4.根据$__ColorMode设置整体背景色",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WidthBreakpoint",
+        "description": "响应式断点"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__ColorMode",
+        "description": "深浅色模式"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "Extended.List",
+        "description": "包含List"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$item.name",
+        "description": "列表相对路径"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "setDataModel",
+        "description": "setDataModel事件"
+      }
+    ],
+    "hints": [
+      "响应式变量控制布局",
+      "列表模板中每个项独立as作用域"
+    ]
+  },
+  {
+    "id": "VS055",
+    "name": "综合-多事件+多变量源+条件分支",
+    "category": "t6-mixed-complex",
+    "complexity": "complex",
+    "task": "生成一个Extended.Button：onClick时1.validate(as='vR')2.若$vR==0则submitData传$__DataModel.formData 3.若$vR!=0则sendToLLM传$context.componentId。onAppear时checkInit(as='initR')，根据$initR和$__WidthBreakpoint设置初始状态",
+    "expected": {
+      "component": "Extended.Button",
+      "required_fields": [
+        "component",
+        "onAppear",
+        "onClick"
+      ],
+      "patterns": [
+        {
+          "field": "onClick",
+          "must_be_array": true
+        },
+        {
+          "field": "onAppear",
+          "must_be_array": true
+        }
+      ]
+    },
+    "validation_rules": [
+      {
+        "type": "has_field",
+        "field": "onClick",
+        "description": "必须有onClick"
+      },
+      {
+        "type": "has_field",
+        "field": "onAppear",
+        "description": "必须有onAppear"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$vR",
+        "description": "onClick中as变量$vR"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.formData",
+        "description": "引用DataModel"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$context.componentId",
+        "description": "引用$context"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$initR",
+        "description": "onAppear中as变量$initR"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WidthBreakpoint",
+        "description": "引用全局变量"
+      }
+    ],
+    "hints": [
+      "不同事件有独立as作用域",
+      "as变量、DataModel、$context、全局变量可在同一组件中共存"
+    ]
+  },
+  {
+    "id": "VS056",
+    "name": "综合-全场景：header+列表+按钮+全局自适应",
+    "category": "t6-mixed-complex",
+    "complexity": "complex",
+    "task": "生成完整页面：1.Column布局，根据$__WindowSize.width>768决定padding 2.Text显示$__DataModel.pageTitle 3.List数据/items(itemVar='product')模板显示$product.name/$product.price和Button'购买'点击时checkStock(as='stockR'), $stockR>0则addToCart 4.底部Text显示$__DataModel.footer，颜色根据$__ColorMode设置",
+    "expected": {
+      "required_fields": [],
+      "patterns": []
+    },
+    "validation_rules": [
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__WindowSize",
+        "description": "全局变量自适应"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__DataModel.pageTitle",
+        "description": "DataModel标题"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "itemVar",
+        "description": "自定义itemVar"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$product.name",
+        "description": "自定义列表变量"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "as",
+        "description": "as绑定"
+      },
+      {
+        "type": "contains",
+        "field": "$output",
+        "value": "$__ColorMode",
+        "description": "全局颜色模式"
+      }
+    ],
+    "hints": [
+      "完整页面使用全部变量类型",
+      "布局自适应用全局变量",
+      "列表用自定义变量名+as绑定"
+    ]
+  }
+]

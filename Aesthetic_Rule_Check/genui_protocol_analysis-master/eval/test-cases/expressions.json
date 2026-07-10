@@ -1,0 +1,230 @@
+[
+  {
+    "id": "E001",
+    "name": "简单变量引用",
+    "category": "expression",
+    "complexity": "simple",
+    "task": "生成一个Text组件，内容引用$user.name变量",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "{{"},
+        {"field": "content", "must_contain": "$user.name"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content必须用{{ }}包裹表达式", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用$user.name变量引用", "field": "content", "value": "$user.name"}
+    ],
+    "hints": ["变量用$前缀", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "E002",
+    "name": "函数调用表达式",
+    "category": "expression",
+    "complexity": "simple",
+    "task": "生成一个Text组件，内容为格式化后的价格，使用formatCurrency函数格式化$price变量",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "{{"},
+        {"field": "content", "must_contain": "formatCurrency"},
+        {"field": "content", "must_contain": "$price"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "必须用{{ }}包裹表达式", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须调用formatCurrency函数", "field": "content", "value": "formatCurrency"}
+    ],
+    "hints": ["直接调用内置函数（无前缀）", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "E003",
+    "name": "字符串拼接表达式",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Text组件，内容为'你好，用户名！'，其中用户名是$user.name变量，用+运算符拼接",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "{{"},
+        {"field": "content", "must_contain": "$user.name"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "必须用{{ }}包裹表达式", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用+运算符拼接字符串", "field": "content", "value": "+"},
+      {"type": "matches_regex", "description": "表达式中必须包含$user.name变量引用", "field": "content", "value": "\\$user\\.name"}
+    ],
+    "hints": ["使用+运算符拼接字符串和变量", "字符串用单引号包裹", "示例：{{ '你好，' + $user.name + '！' }}"]
+  },
+  {
+    "id": "E004",
+    "name": "三元条件表达式",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Text组件，$count变量大于10时显示'many'否则显示'few'",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "{{"},
+        {"field": "content", "must_match": ".*\\?.*:.*"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "必须用{{ }}包裹表达式", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用三元运算符?", "field": "content", "value": "?"},
+      {"type": "contains", "description": "必须使用三元运算符:", "field": "content", "value": ":"}
+    ],
+    "hints": ["使用三元运算符 条件 ? 真值 : 假值", "字符串用单引号包裹", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "E005",
+    "name": "样式动态值",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Text组件，内容为'价格'，字号根据$config.fontSize变量动态设置",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": [
+        {"field": "styles.fontSize", "must_contain": "{{"},
+        {"field": "styles.fontSize", "must_contain": "$config.fontSize"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "styles.fontSize必须用{{ }}包裹表达式", "field": "styles.fontSize", "value": "{{"},
+      {"type": "contains", "description": "fontSize表达式必须引用$config.fontSize", "field": "styles.fontSize", "value": "$config.fontSize"}
+    ],
+    "hints": ["样式动态值放在styles对象内", "样式属性也使用{{ }}包裹", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "E006",
+    "name": "复杂嵌套表达式",
+    "category": "expression",
+    "complexity": "complex",
+    "task": "生成一个Text组件，内容为格式化的价格文本。如果$isVip为true，价格是$price * 0.8并加上'(VIP)'标记，否则是$price原价。使用formatCurrency函数格式化价格，模板字符串拼接文本。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "{{"},
+        {"field": "content", "must_contain": "?"},
+        {"field": "content", "must_contain": "formatCurrency"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "必须用{{ }}包裹表达式", "field": "content", "value": "{{"},
+      {"type": "contains", "description": "必须使用三元运算符", "field": "content", "value": "?"},
+      {"type": "contains", "description": "必须调用formatCurrency", "field": "content", "value": "formatCurrency"}
+    ],
+    "hints": ["三元运算符 + 算术 + 函数调用 + 模板字符串的组合", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "E007",
+    "name": "全局响应式表达式",
+    "category": "expression",
+    "complexity": "complex",
+    "task": "生成一个Text组件，内容为当前窗口断点信息。如果$__widthBreakpoint为'sm'，显示'移动端'，如果为'md'显示'平板'，否则显示'桌面端'。字号根据断点动态设置：sm时14，md时16，其他18。",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "{{"},
+        {"field": "content", "must_contain": "$__widthBreakpoint"},
+        {"field": "styles.fontSize", "must_contain": "{{"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content必须用{{ }}包裹且引用$__widthBreakpoint", "field": "content", "value": "$__widthBreakpoint"},
+      {"type": "contains", "description": "styles.fontSize必须用{{ }}包裹表达式", "field": "styles.fontSize", "value": "{{"}
+    ],
+    "hints": ["$__widthBreakpoint是内置全局变量", "可以用嵌套三元运算符处理多分支", "content和styles.fontSize都需要用{{ }}包裹", "动态值用{{ }}包裹"]
+  },
+  {
+    "id": "E008",
+    "name": "路径绑定属性值",
+    "category": "expression",
+    "complexity": "simple",
+    "task": "生成一个Text组件，content用路径绑定形式 {\"path\":\"/user/name\"} 绑定到数据模型的/user/name",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "path"},
+        {"field": "content", "must_contain": "/user/name"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content使用path绑定对象", "field": "content", "value": "path"},
+      {"type": "contains", "description": "路径为/user/name", "field": "content", "value": "/user/name"}
+    ],
+    "hints": ["路径绑定用 {\"path\":\"...\"} 对象形式", "与表达式{{ }}不同"]
+  },
+  {
+    "id": "E009",
+    "name": "函数绑定属性值",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content用函数绑定形式调用formatString，将数据模型/user/name格式化为 Hello, 名字!",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content"],
+      "patterns": [
+        {"field": "content", "must_contain": "call"},
+        {"field": "content", "must_contain": "formatString"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content使用call函数绑定对象", "field": "content", "value": "call"},
+      {"type": "contains", "description": "调用formatString函数", "field": "content", "value": "formatString"}
+    ],
+    "hints": ["函数绑定用 {\"call\":\"函数名\",\"args\":{...}} 对象形式", "formatString支持 ${/path} 插值"]
+  },
+  {
+    "id": "E010",
+    "name": "路径绑定样式值",
+    "category": "expression",
+    "complexity": "medium",
+    "task": "生成一个Text组件，content为'标题'，fontSize用路径绑定形式 {\"path\":\"/config/fontSize\"} 绑定到数据模型",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": [
+        {"field": "styles.fontSize", "must_contain": "path"},
+        {"field": "styles.fontSize", "must_contain": "/config/fontSize"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "styles.fontSize使用path绑定", "field": "styles.fontSize", "value": "path"},
+      {"type": "contains", "description": "路径为/config/fontSize", "field": "styles.fontSize", "value": "/config/fontSize"}
+    ],
+    "hints": ["样式值也支持路径绑定", "放在styles对象内"]
+  },
+  {
+    "id": "E011",
+    "name": "三种绑定机制共存(单组件)",
+    "category": "expression",
+    "complexity": "complex",
+    "task": "生成一个Text组件，三种绑定机制共存于同一组件：content 用函数绑定调用 formatString 将数据模型 /user/name 格式化为 Hello, 名字；styles 中 fontColor 用路径绑定 {\"path\":\"/user/color\"}；fontSize 用表达式 $__dataModel.fontSize 动态设置",
+    "expected": {
+      "component": "Text",
+      "required_fields": ["component", "content", "styles"],
+      "patterns": [
+        {"field": "content", "must_contain": "call"},
+        {"field": "styles", "must_contain": "path"},
+        {"field": "styles", "must_contain": "{{"}
+      ]
+    },
+    "validation_rules": [
+      {"type": "contains", "description": "content 使用函数绑定", "field": "content", "value": "call"},
+      {"type": "contains", "description": "styles 使用路径绑定", "field": "styles", "value": "path"},
+      {"type": "contains", "description": "styles 使用表达式", "field": "styles", "value": "{{"}
+    ],
+    "hints": ["三种绑定机制可在同一组件的不同字段共存", "函数绑定{\"call\":}、路径绑定{\"path\":}、表达式{{ }}"]
+  }
+]

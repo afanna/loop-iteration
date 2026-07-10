@@ -1,0 +1,456 @@
+[
+  {
+    "id": "SV01",
+    "name": "基础数值样式-padding",
+    "category": "style-value-type",
+    "complexity": "simple",
+    "task": "生成一个Column组件，id为'container'，包含padding为16",
+    "expected": { "component": "Column", "required_fields": ["component", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding属性"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding属性"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding属性"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV02",
+    "name": "基础字符串样式-backgroundColor",
+    "category": "style-value-type",
+    "complexity": "simple",
+    "task": "生成一个Column组件，id为'card'，背景色为白色#FFFFFF",
+    "expected": { "component": "Column", "required_fields": ["component", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "#FFFFFF", "description": "包含#FFFFFF"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "#FFFFFF", "description": "包含#FFFFFF"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "#FFFFFF", "description": "包含#FFFFFF"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV03",
+    "name": "百分比宽度",
+    "category": "style-value-type",
+    "complexity": "simple",
+    "task": "生成一个Row组件，id为'toolbar'，宽度为100%",
+    "expected": { "component": "Row", "required_fields": ["component", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "100%", "description": "包含100%"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "100%", "description": "包含100%"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "100%", "description": "包含100%"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV04",
+    "name": "枚举样式-textAlign",
+    "category": "style-value-type",
+    "complexity": "simple",
+    "task": "生成一个Text组件，id为'title'，文本居中对齐，content为'标题'",
+    "expected": { "component": "Text", "required_fields": ["component", "content", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "content", "description": "必须有content字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "textAlign", "description": "包含textAlign"},
+        {"type": "contains", "field": "styles", "value": "center", "description": "包含center"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "textAlign", "description": "包含textAlign"},
+        {"type": "contains", "field": "value", "value": "center", "description": "包含center"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "textAlign", "description": "包含textAlign"},
+        {"type": "contains", "field": "styles", "value": "center", "description": "包含center"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV05",
+    "name": "透明度+圆角",
+    "category": "style-value-type",
+    "complexity": "simple",
+    "task": "生成一个Image组件，id为'avatar'，透明度为0.8，圆角为8，src为'$avatarUrl'",
+    "expected": { "component": "Image", "required_fields": ["component", "src", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "opacity", "description": "包含opacity"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "opacity", "description": "包含opacity"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "opacity", "description": "包含opacity"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+
+  {
+    "id": "SV06",
+    "name": "方向性padding对象",
+    "category": "style-value-type",
+    "complexity": "medium",
+    "task": "生成一个Column组件，id为'section'，padding上为8、左为16",
+    "expected": { "component": "Column", "required_fields": ["component", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "top", "description": "包含top"},
+        {"type": "contains", "field": "styles", "value": "left", "description": "包含left"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV07",
+    "name": "多样式属性组合",
+    "category": "style-value-type",
+    "complexity": "medium",
+    "task": "生成一个Card组件，id为'productCard'，子组件为'productImg'，padding为12，圆角为8，背景色为'#F5F5F5'",
+    "expected": { "component": "Card", "required_fields": ["component", "child", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"},
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "#F5F5F5", "description": "包含#F5F5F5"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"},
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "#F5F5F5", "description": "包含#F5F5F5"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"},
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "#F5F5F5", "description": "包含#F5F5F5"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV08",
+    "name": "fontSize+fontColor组合",
+    "category": "style-value-type",
+    "complexity": "medium",
+    "task": "生成一个Text组件，id为'price'，content为'{{ formatNumber($price, 2) }}'，字号为24fp，字体颜色为'#FF0000'",
+    "expected": { "component": "Text", "required_fields": ["component", "content", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "fontSize", "description": "包含fontSize"},
+        {"type": "contains", "field": "styles", "value": "fontColor", "description": "包含fontColor"},
+        {"type": "contains", "field": "styles", "value": "#FF0000", "description": "包含#FF0000"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "fontSize", "description": "包含fontSize"},
+        {"type": "contains", "field": "styles", "value": "fontColor", "description": "包含fontColor"},
+        {"type": "contains", "field": "styles", "value": "#FF0000", "description": "包含#FF0000"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "fontSize", "description": "包含fontSize"},
+        {"type": "contains", "field": "styles", "value": "fontColor", "description": "包含fontColor"},
+        {"type": "contains", "field": "styles", "value": "#FF0000", "description": "包含#FF0000"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV09",
+    "name": "布局样式-justifyContent+alignItems",
+    "category": "style-value-type",
+    "complexity": "medium",
+    "task": "生成一个Row组件，id为'actionBar'，子组件为'btn1'和'btn2'，主轴两端对齐，交叉轴居中",
+    "expected": { "component": "Row", "required_fields": ["component", "children", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "justifyContent", "description": "包含justifyContent"},
+        {"type": "contains", "field": "styles", "value": "alignItems", "description": "包含alignItems"},
+        {"type": "contains", "field": "styles", "value": "spaceBetween", "description": "包含spaceBetween"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "justifyContent", "description": "包含justifyContent"},
+        {"type": "contains", "field": "styles", "value": "alignItems", "description": "包含alignItems"},
+        {"type": "contains", "field": "styles", "value": "spaceBetween", "description": "包含spaceBetween"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "justifyContent", "description": "包含justifyContent"},
+        {"type": "contains", "field": "styles", "value": "alignItems", "description": "包含alignItems"},
+        {"type": "contains", "field": "styles", "value": "spaceBetween", "description": "包含spaceBetween"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+  {
+    "id": "SV10",
+    "name": "宽度+高度+margin",
+    "category": "style-value-type",
+    "complexity": "medium",
+    "task": "生成一个Image组件，id为'banner'，src为'$bannerUrl'，宽度为'matchParent'，高度为200，margin底部为12",
+    "expected": { "component": "Image", "required_fields": ["component", "src", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "height", "description": "包含height"},
+        {"type": "contains", "field": "styles", "value": "margin", "description": "包含margin"},
+        {"type": "contains", "field": "styles", "value": "matchParent", "description": "包含matchParent"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "height", "description": "包含height"},
+        {"type": "contains", "field": "styles", "value": "margin", "description": "包含margin"},
+        {"type": "contains", "field": "styles", "value": "matchParent", "description": "包含matchParent"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "height", "description": "包含height"},
+        {"type": "contains", "field": "styles", "value": "margin", "description": "包含margin"},
+        {"type": "contains", "field": "styles", "value": "matchParent", "description": "包含matchParent"}
+      ]
+    },
+    "scope_conflict_type": "none"
+  },
+
+  {
+    "id": "SV11",
+    "name": "完整组件-多类型样式混合",
+    "category": "style-value-type",
+    "complexity": "complex",
+    "task": "生成一个Card组件，id为'infoCard'，子组件为'cardContent'，padding为16，圆角为12，背景色为'#FFFFFF'，宽度为'matchParent'，margin底部为8",
+    "expected": { "component": "Card", "required_fields": ["component", "child", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"},
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "margin", "description": "包含margin"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"},
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "margin", "description": "包含margin"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "borderRadius", "description": "包含borderRadius"},
+        {"type": "contains", "field": "styles", "value": "backgroundColor", "description": "包含backgroundColor"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "margin", "description": "包含margin"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SV12",
+    "name": "样式+动态表达式混合",
+    "category": "style-value-type",
+    "complexity": "complex",
+    "task": "生成一个Column组件，id为'list'，子组件为'item1'和'item2'，padding为16，space为12，宽度为'matchParent'，justifyContent为'start'",
+    "expected": { "component": "Column", "required_fields": ["component", "children", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "space", "description": "包含space"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "space", "description": "包含space"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "space", "description": "包含space"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SV13",
+    "name": "fontWeight枚举+fontColor+fontSize",
+    "category": "style-value-type",
+    "complexity": "complex",
+    "task": "生成一个Text组件，id为'heading'，content为'{{$title}}'，字号为20，字重为600，字体颜色为'#1A1A1A'，margin底部为8",
+    "expected": { "component": "Text", "required_fields": ["component", "content", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "fontSize", "description": "包含fontSize"},
+        {"type": "contains", "field": "styles", "value": "fontWeight", "description": "包含fontWeight"},
+        {"type": "contains", "field": "styles", "value": "fontColor", "description": "包含fontColor"},
+        {"type": "contains", "field": "styles", "value": "#1A1A1A", "description": "包含#1A1A1A"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "fontSize", "description": "包含fontSize"},
+        {"type": "contains", "field": "styles", "value": "fontWeight", "description": "包含fontWeight"},
+        {"type": "contains", "field": "styles", "value": "fontColor", "description": "包含fontColor"},
+        {"type": "contains", "field": "styles", "value": "#1A1A1A", "description": "包含#1A1A1A"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "fontSize", "description": "包含fontSize"},
+        {"type": "contains", "field": "styles", "value": "fontWeight", "description": "包含fontWeight"},
+        {"type": "contains", "field": "styles", "value": "fontColor", "description": "包含fontColor"},
+        {"type": "contains", "field": "styles", "value": "#1A1A1A", "description": "包含#1A1A1A"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SV14",
+    "name": "List组件space+padding+样式组合",
+    "category": "style-value-type",
+    "complexity": "complex",
+    "task": "生成一个List组件，id为'feedList'，子组件绑定到'$items'，space为8，padding为12，圆角为4，背景色为'#FAFAFA'",
+    "expected": { "component": "List", "required_fields": ["component", "children", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "space", "description": "包含space"},
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "#FAFAFA", "description": "包含#FAFAFA"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "space", "description": "包含space"},
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "#FAFAFA", "description": "包含#FAFAFA"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "space", "description": "包含space"},
+        {"type": "contains", "field": "styles", "value": "padding", "description": "包含padding"},
+        {"type": "contains", "field": "styles", "value": "#FAFAFA", "description": "包含#FAFAFA"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  },
+  {
+    "id": "SV15",
+    "name": "Stack组件+alignContent+全部样式",
+    "category": "style-value-type",
+    "complexity": "complex",
+    "task": "生成一个Stack组件，id为'overlay'，子组件为'background'和'foreground'，alignContent为'center'，宽度和高度都为200，圆角为16，背景色为'#000000'，透明度为0.6",
+    "expected": { "component": "Stack", "required_fields": ["component", "children", "styles"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "styles", "description": "必须有styles字段"}
+    ],
+    "strategy_rules": {
+      "mixed": [
+        {"type": "contains", "field": "styles", "value": "alignContent", "description": "包含alignContent"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "height", "description": "包含height"},
+        {"type": "contains", "field": "styles", "value": "opacity", "description": "包含opacity"}
+      ],
+      "string-all": [
+        {"type": "contains", "field": "styles", "value": "alignContent", "description": "包含alignContent"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "height", "description": "包含height"},
+        {"type": "contains", "field": "styles", "value": "opacity", "description": "包含opacity"}
+      ],
+      "structured": [
+        {"type": "contains", "field": "styles", "value": "alignContent", "description": "包含alignContent"},
+        {"type": "contains", "field": "styles", "value": "width", "description": "包含width"},
+        {"type": "contains", "field": "styles", "value": "height", "description": "包含height"},
+        {"type": "contains", "field": "styles", "value": "opacity", "description": "包含opacity"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true
+  }
+]

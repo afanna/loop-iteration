@@ -1,0 +1,101 @@
+[
+  {
+    "id": "BA01", "name": "简单表单提交-action", "category": "variable-scope", "complexity": "simple",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，点击后提交表单（事件名为'submitForm'）",
+    "expected": { "component": "Button", "required_fields": ["component", "label", "action"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "label", "description": "必须有label字段"},
+      {"type": "has_field", "field": "action", "description": "必须有action字段（表单提交用action）"}
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {"type": "contains", "field": "action", "value": "event", "description": "action中必须包含event字段"},
+        {"type": "contains", "field": "action", "value": "submitForm", "description": "event.name必须是submitForm"},
+        {"type": "not_contains", "field": "", "value": "listeners", "description": "纯表单提交不应使用listeners"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Button的表单提交使用action属性，格式为{event: {name: string, context?: object}}"]
+  },
+  {
+    "id": "BA04", "name": "普通按钮交互-仅listeners", "category": "variable-scope", "complexity": "simple",
+    "task": "生成一个Button组件，id为'toastBtn'，label为'提示'，点击后显示Toast提示'操作成功'",
+    "expected": { "component": "Button", "required_fields": ["component", "label", "listeners"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "label", "description": "必须有label字段"}
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {"type": "contains", "field": "listeners", "value": "onClick", "description": "必须包含onClick事件"},
+        {"type": "contains", "field": "listeners", "value": "showToast", "description": "必须包含showToast行为"},
+        {"type": "not_contains", "field": "", "value": "action", "description": "非表单提交的普通交互不应使用action"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["Toast提示不是表单提交，应使用listeners + onClick"]
+  },
+  {
+    "id": "BA06", "name": "表单提交+验证-action+listeners共存", "category": "variable-scope", "complexity": "medium",
+    "task": "生成一个Button组件，id为'submitBtn'，label为'提交'，点击后先通过listeners验证表单数据（验证$form存为$validResult），验证通过后通过action提交表单（事件名'submitForm'，携带context: formId为'form1'）",
+    "expected": { "component": "Button", "required_fields": ["component", "label", "action", "listeners"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "label", "description": "必须有label字段"},
+      {"type": "has_field", "field": "action", "description": "必须有action字段（表单提交）"},
+      {"type": "has_field", "field": "listeners", "description": "必须有listeners字段（验证逻辑）"}
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {"type": "contains", "field": "action", "value": "event", "description": "action中必须包含event字段"},
+        {"type": "contains", "field": "action", "value": "submitForm", "description": "event.name必须是submitForm"},
+        {"type": "contains", "field": "listeners", "value": "onClick", "description": "listeners中必须包含onClick"},
+        {"type": "contains", "field": "listeners", "value": "validate", "description": "listeners中必须包含validate验证行为"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "hints": ["验证用listeners，提交用action。两者可以共存"]
+  },
+  {
+    "id": "BA13", "name": "混淆测试-不应给非表单场景用action", "category": "variable-scope", "complexity": "complex",
+    "task": "生成一个Button组件，id为'settingsBtn'，label为'设置'，点击后：1) 通过setDataModel将$__DataModel.ui.showSettings设为true 2) 显示Toast'已打开设置'",
+    "expected": { "component": "Button", "required_fields": ["component", "label", "listeners"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "label", "description": "必须有label字段"},
+      {"type": "has_field", "field": "listeners", "description": "非表单场景必须使用listeners"}
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {"type": "contains", "field": "listeners", "value": "setDataModel", "description": "必须使用setDataModel"},
+        {"type": "contains", "field": "listeners", "value": "showToast", "description": "必须使用showToast"},
+        {"type": "not_contains", "field": "", "value": "action", "description": "这不是表单提交，不应使用action"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["这不是表单提交场景，应使用listeners，不要使用action"]
+  },
+  {
+    "id": "BA14", "name": "混淆测试-应给表单提交用action而非listeners", "category": "variable-scope", "complexity": "complex",
+    "task": "生成一个Button组件，id为'payBtn'，label为'支付'，点击后提交支付表单，事件名为'processPayment'，携带context: orderId为$__DataModel.order.id，amount为$__DataModel.order.totalAmount，paymentMethod为$__DataModel.payment.selectedMethod",
+    "expected": { "component": "Button", "required_fields": ["component", "label", "action"], "patterns": [] },
+    "shared_rules": [
+      {"type": "has_field", "field": "component", "description": "必须有component字段"},
+      {"type": "has_field", "field": "action", "description": "表单提交必须使用action"}
+    ],
+    "strategy_rules": {
+      "button-action": [
+        {"type": "contains", "field": "action", "value": "processPayment", "description": "action.event.name必须是processPayment"},
+        {"type": "contains", "field": "action", "value": "orderId", "description": "context中必须包含orderId"},
+        {"type": "contains", "field": "action", "value": "amount", "description": "context中必须包含amount"},
+        {"type": "contains", "field": "action", "value": "paymentMethod", "description": "context中必须包含paymentMethod"},
+        {"type": "not_contains", "field": "", "value": "sendToLLM", "description": "表单提交不应使用sendToLLM"}
+      ]
+    },
+    "scope_conflict_type": "none",
+    "is_edge": true,
+    "hints": ["支付是表单提交场景，应使用action.event，不要用listeners.sendToLLM"]
+  }
+]

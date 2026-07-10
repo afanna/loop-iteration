@@ -1,0 +1,881 @@
+{
+  "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\focus.png",
+  "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\focus.dat",
+  "query": "",
+  "overall": 71.04,
+  "grade": "B",
+  "confidence": 0.9722,
+  "dimensions": [
+    {
+      "name": "information",
+      "label": "信息完整性",
+      "score": 100.0,
+      "weight": 20.0,
+      "metrics": [
+        {
+          "name": "coverage",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 1.0,
+          "ideal": 1.0,
+          "deviation": 0.0,
+          "confidence": 0.9722434336488898,
+          "formula": "score = 100 * coverage",
+          "status": "ok",
+          "details": {
+            "matched": [
+              "下一个日程",
+              "Agent需求评审会",
+              "14:00-15:30",
+              "距离会议还有17分",
+              "专注模式"
+            ],
+            "missing": [],
+            "required_count": 5
+          }
+        },
+        {
+          "name": "truncation",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.9722434336488898,
+          "formula": "score = 100 * (1 - truncation_rate)",
+          "status": "ok",
+          "details": {
+            "truncated": [],
+            "ellipsis": [],
+            "low_confidence_texts": []
+          }
+        },
+        {
+          "name": "duplicate",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.9722434336488898,
+          "formula": "score = 100 * (1 - duplicate_rate)",
+          "status": "ok",
+          "details": {
+            "duplicates": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "label": "布局美学",
+      "score": 66.37,
+      "weight": 30.0,
+      "metrics": [
+        {
+          "name": "whitespace",
+          "dimension": "layout",
+          "score": 97.41,
+          "value": 0.4867,
+          "ideal": 0.45,
+          "deviation": 0.0367,
+          "confidence": 0.9722434336488898,
+          "formula": "Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "margin_consistency",
+          "dimension": "layout",
+          "score": 5.81,
+          "value": 0.9487,
+          "ideal": 0.0,
+          "deviation": 0.9487,
+          "confidence": 0.9722434336488898,
+          "formula": "100 * exp(-3.0 * CV)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "spacing_rhythm",
+          "dimension": "layout",
+          "score": 31.23,
+          "value": 0.291,
+          "ideal": 0.0,
+          "deviation": 0.291,
+          "confidence": 0.9722434336488898,
+          "formula": "100 * exp(-4.0 * CV)",
+          "status": "ok",
+          "details": {
+            "gap_count": 5
+          }
+        },
+        {
+          "name": "density",
+          "dimension": "layout",
+          "score": 97.41,
+          "value": 0.5133,
+          "ideal": 0.55,
+          "deviation": 0.0367,
+          "confidence": 0.9722434336488898,
+          "formula": "Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "overlap",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.9722434336488898,
+          "formula": "max(0, 100 - 100.0 * max_iou)",
+          "status": "ok",
+          "details": {
+            "pairs": []
+          }
+        },
+        {
+          "name": "overflow",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.9722434336488898,
+          "formula": "max(0, 100 - 100.0 * overflow)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "visual",
+      "label": "视觉设计",
+      "score": 65.08,
+      "weight": 35.0,
+      "metrics": [
+        {
+          "name": "color_harmony",
+          "dimension": "visual",
+          "score": 24.04,
+          "value": {
+            "color_count": 6,
+            "avg_lab_distance": 81.47
+          },
+          "ideal": {
+            "color_count": 4,
+            "avg_lab_distance": 32
+          },
+          "deviation": null,
+          "confidence": 0.9722434336488898,
+          "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+          "status": "ok",
+          "details": {
+            "colors": [
+              [
+                121,
+                81,
+                57
+              ],
+              [
+                98,
+                65,
+                46
+              ],
+              [
+                148,
+                106,
+                76
+              ],
+              [
+                173,
+                135,
+                103
+              ],
+              [
+                248,
+                246,
+                247
+              ],
+              [
+                221,
+                201,
+                172
+              ]
+            ],
+            "proportions": [
+              0.28625,
+              0.233125,
+              0.210625,
+              0.142875,
+              0.085125,
+              0.042
+            ]
+          }
+        },
+        {
+          "name": "contrast",
+          "dimension": "visual",
+          "score": 28.82,
+          "value": 3.747,
+          "ideal": 4.5,
+          "deviation": 0.753,
+          "confidence": 0.9722434336488898,
+          "formula": "Sigmoid(min_contrast)",
+          "status": "ok",
+          "details": {
+            "ratios": [
+              5.511,
+              7.558,
+              6.252,
+              4.555,
+              3.747
+            ]
+          }
+        },
+        {
+          "name": "visual_focus",
+          "dimension": "visual",
+          "score": 71.33,
+          "value": 0.272,
+          "ideal": 0.42,
+          "deviation": 0.148,
+          "confidence": 0.9722434336488898,
+          "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "visual_balance",
+          "dimension": "visual",
+          "score": 99.24,
+          "value": 0.0345,
+          "ideal": 0.0,
+          "deviation": 0.0345,
+          "confidence": 0.9722434336488898,
+          "formula": "Euclidean distance + Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "text_image_ratio",
+          "dimension": "visual",
+          "score": 98.09,
+          "value": 0.5009,
+          "ideal": 0.55,
+          "deviation": 0.0491,
+          "confidence": 0.9722434336488898,
+          "formula": "Gaussian(text_area / occupied_area)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "reading_flow",
+          "dimension": "visual",
+          "score": 90.73,
+          "value": {
+            "path_norm": 0.5147,
+            "backtracks": 0
+          },
+          "ideal": {
+            "path_norm": "low",
+            "backtracks": 0
+          },
+          "deviation": null,
+          "confidence": 0.9722434336488898,
+          "formula": "100 - path_penalty - backtrack_penalty",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "hierarchy",
+          "dimension": "visual",
+          "score": 79.14,
+          "value": 0.2406,
+          "ideal": 0.35,
+          "deviation": 0.1094,
+          "confidence": 0.9722434336488898,
+          "formula": "Gaussian(Gini(text_visual_weight))",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "consistency",
+      "label": "设计一致性",
+      "score": 55.67,
+      "weight": 15.0,
+      "metrics": [
+        {
+          "name": "alignment",
+          "dimension": "consistency",
+          "score": 65.0,
+          "value": 0.65,
+          "ideal": 1.0,
+          "deviation": 0.35,
+          "confidence": 0.9722434336488898,
+          "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "typography_rhythm",
+          "dimension": "consistency",
+          "score": 80.07,
+          "value": 2,
+          "ideal": 3.0,
+          "deviation": 1.0,
+          "confidence": 0.9722434336488898,
+          "formula": "Gaussian(font_size_level_count)",
+          "status": "ok",
+          "details": {
+            "levels": [
+              16,
+              20
+            ]
+          }
+        },
+        {
+          "name": "component_size",
+          "dimension": "consistency",
+          "score": null,
+          "value": 1,
+          "ideal": ">=2 components",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient component samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 detected components",
+            "component_count": 1
+          }
+        },
+        {
+          "name": "corner_radius_consistency",
+          "dimension": "consistency",
+          "score": 57.69,
+          "value": {
+            "unique_radius_count": 3,
+            "radii": [
+              3.52,
+              4.13,
+              5.14,
+              7.04,
+              8.01
+            ]
+          },
+          "ideal": {
+            "unique_radius_count": 2.0
+          },
+          "deviation": 1.0,
+          "confidence": 0.9722434336488898,
+          "formula": "100 * exp(-0.55 * max(0, unique_radius_count - 2.0))",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "padding_consistency",
+          "dimension": "consistency",
+          "score": 16.56,
+          "value": 0.5994,
+          "ideal": 0.0,
+          "deviation": 0.5994,
+          "confidence": 0.9722434336488898,
+          "formula": "100 * exp(-3.0 * CV)",
+          "status": "ok",
+          "details": {
+            "component_count": 1,
+            "padding_values": [
+              51.0,
+              56.0,
+              14.0,
+              13.0
+            ]
+          }
+        },
+        {
+          "name": "icon_size_consistency",
+          "dimension": "consistency",
+          "score": 26.93,
+          "value": 0.3748,
+          "ideal": 0.0,
+          "deviation": 0.3748,
+          "confidence": 0.9722434336488898,
+          "formula": "100 * exp(-3.5 * CV)",
+          "status": "ok",
+          "details": {
+            "icon_count": 3,
+            "sizes": [
+              8.37,
+              8.94,
+              18.0
+            ]
+          }
+        },
+        {
+          "name": "grid",
+          "dimension": "consistency",
+          "score": 62.5,
+          "value": 0.625,
+          "ideal": 1.0,
+          "deviation": 0.375,
+          "confidence": 0.9722434336488898,
+          "formula": "mean(x snap ratio, y snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "style_simplicity",
+          "dimension": "consistency",
+          "score": 60.65,
+          "value": 6,
+          "ideal": 4.0,
+          "deviation": 2.0,
+          "confidence": 0.9722434336488898,
+          "formula": "Gaussian(dominant_color_count)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "name": "alignment",
+      "dimension": "consistency",
+      "score": 65.0,
+      "value": 0.65,
+      "ideal": 1.0,
+      "deviation": 0.35,
+      "confidence": 0.9722434336488898,
+      "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "typography_rhythm",
+      "dimension": "consistency",
+      "score": 80.07,
+      "value": 2,
+      "ideal": 3.0,
+      "deviation": 1.0,
+      "confidence": 0.9722434336488898,
+      "formula": "Gaussian(font_size_level_count)",
+      "status": "ok",
+      "details": {
+        "levels": [
+          16,
+          20
+        ]
+      }
+    },
+    {
+      "name": "component_size",
+      "dimension": "consistency",
+      "score": null,
+      "value": 1,
+      "ideal": ">=2 components",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient component samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 detected components",
+        "component_count": 1
+      }
+    },
+    {
+      "name": "corner_radius_consistency",
+      "dimension": "consistency",
+      "score": 57.69,
+      "value": {
+        "unique_radius_count": 3,
+        "radii": [
+          3.52,
+          4.13,
+          5.14,
+          7.04,
+          8.01
+        ]
+      },
+      "ideal": {
+        "unique_radius_count": 2.0
+      },
+      "deviation": 1.0,
+      "confidence": 0.9722434336488898,
+      "formula": "100 * exp(-0.55 * max(0, unique_radius_count - 2.0))",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "padding_consistency",
+      "dimension": "consistency",
+      "score": 16.56,
+      "value": 0.5994,
+      "ideal": 0.0,
+      "deviation": 0.5994,
+      "confidence": 0.9722434336488898,
+      "formula": "100 * exp(-3.0 * CV)",
+      "status": "ok",
+      "details": {
+        "component_count": 1,
+        "padding_values": [
+          51.0,
+          56.0,
+          14.0,
+          13.0
+        ]
+      }
+    },
+    {
+      "name": "icon_size_consistency",
+      "dimension": "consistency",
+      "score": 26.93,
+      "value": 0.3748,
+      "ideal": 0.0,
+      "deviation": 0.3748,
+      "confidence": 0.9722434336488898,
+      "formula": "100 * exp(-3.5 * CV)",
+      "status": "ok",
+      "details": {
+        "icon_count": 3,
+        "sizes": [
+          8.37,
+          8.94,
+          18.0
+        ]
+      }
+    },
+    {
+      "name": "grid",
+      "dimension": "consistency",
+      "score": 62.5,
+      "value": 0.625,
+      "ideal": 1.0,
+      "deviation": 0.375,
+      "confidence": 0.9722434336488898,
+      "formula": "mean(x snap ratio, y snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "style_simplicity",
+      "dimension": "consistency",
+      "score": 60.65,
+      "value": 6,
+      "ideal": 4.0,
+      "deviation": 2.0,
+      "confidence": 0.9722434336488898,
+      "formula": "Gaussian(dominant_color_count)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "coverage",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 1.0,
+      "ideal": 1.0,
+      "deviation": 0.0,
+      "confidence": 0.9722434336488898,
+      "formula": "score = 100 * coverage",
+      "status": "ok",
+      "details": {
+        "matched": [
+          "下一个日程",
+          "Agent需求评审会",
+          "14:00-15:30",
+          "距离会议还有17分",
+          "专注模式"
+        ],
+        "missing": [],
+        "required_count": 5
+      }
+    },
+    {
+      "name": "truncation",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.9722434336488898,
+      "formula": "score = 100 * (1 - truncation_rate)",
+      "status": "ok",
+      "details": {
+        "truncated": [],
+        "ellipsis": [],
+        "low_confidence_texts": []
+      }
+    },
+    {
+      "name": "duplicate",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.9722434336488898,
+      "formula": "score = 100 * (1 - duplicate_rate)",
+      "status": "ok",
+      "details": {
+        "duplicates": []
+      }
+    },
+    {
+      "name": "whitespace",
+      "dimension": "layout",
+      "score": 97.41,
+      "value": 0.4867,
+      "ideal": 0.45,
+      "deviation": 0.0367,
+      "confidence": 0.9722434336488898,
+      "formula": "Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "margin_consistency",
+      "dimension": "layout",
+      "score": 5.81,
+      "value": 0.9487,
+      "ideal": 0.0,
+      "deviation": 0.9487,
+      "confidence": 0.9722434336488898,
+      "formula": "100 * exp(-3.0 * CV)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "spacing_rhythm",
+      "dimension": "layout",
+      "score": 31.23,
+      "value": 0.291,
+      "ideal": 0.0,
+      "deviation": 0.291,
+      "confidence": 0.9722434336488898,
+      "formula": "100 * exp(-4.0 * CV)",
+      "status": "ok",
+      "details": {
+        "gap_count": 5
+      }
+    },
+    {
+      "name": "density",
+      "dimension": "layout",
+      "score": 97.41,
+      "value": 0.5133,
+      "ideal": 0.55,
+      "deviation": 0.0367,
+      "confidence": 0.9722434336488898,
+      "formula": "Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "overlap",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.9722434336488898,
+      "formula": "max(0, 100 - 100.0 * max_iou)",
+      "status": "ok",
+      "details": {
+        "pairs": []
+      }
+    },
+    {
+      "name": "overflow",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.9722434336488898,
+      "formula": "max(0, 100 - 100.0 * overflow)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "color_harmony",
+      "dimension": "visual",
+      "score": 24.04,
+      "value": {
+        "color_count": 6,
+        "avg_lab_distance": 81.47
+      },
+      "ideal": {
+        "color_count": 4,
+        "avg_lab_distance": 32
+      },
+      "deviation": null,
+      "confidence": 0.9722434336488898,
+      "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+      "status": "ok",
+      "details": {
+        "colors": [
+          [
+            121,
+            81,
+            57
+          ],
+          [
+            98,
+            65,
+            46
+          ],
+          [
+            148,
+            106,
+            76
+          ],
+          [
+            173,
+            135,
+            103
+          ],
+          [
+            248,
+            246,
+            247
+          ],
+          [
+            221,
+            201,
+            172
+          ]
+        ],
+        "proportions": [
+          0.28625,
+          0.233125,
+          0.210625,
+          0.142875,
+          0.085125,
+          0.042
+        ]
+      }
+    },
+    {
+      "name": "contrast",
+      "dimension": "visual",
+      "score": 28.82,
+      "value": 3.747,
+      "ideal": 4.5,
+      "deviation": 0.753,
+      "confidence": 0.9722434336488898,
+      "formula": "Sigmoid(min_contrast)",
+      "status": "ok",
+      "details": {
+        "ratios": [
+          5.511,
+          7.558,
+          6.252,
+          4.555,
+          3.747
+        ]
+      }
+    },
+    {
+      "name": "visual_focus",
+      "dimension": "visual",
+      "score": 71.33,
+      "value": 0.272,
+      "ideal": 0.42,
+      "deviation": 0.148,
+      "confidence": 0.9722434336488898,
+      "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "visual_balance",
+      "dimension": "visual",
+      "score": 99.24,
+      "value": 0.0345,
+      "ideal": 0.0,
+      "deviation": 0.0345,
+      "confidence": 0.9722434336488898,
+      "formula": "Euclidean distance + Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "text_image_ratio",
+      "dimension": "visual",
+      "score": 98.09,
+      "value": 0.5009,
+      "ideal": 0.55,
+      "deviation": 0.0491,
+      "confidence": 0.9722434336488898,
+      "formula": "Gaussian(text_area / occupied_area)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "reading_flow",
+      "dimension": "visual",
+      "score": 90.73,
+      "value": {
+        "path_norm": 0.5147,
+        "backtracks": 0
+      },
+      "ideal": {
+        "path_norm": "low",
+        "backtracks": 0
+      },
+      "deviation": null,
+      "confidence": 0.9722434336488898,
+      "formula": "100 - path_penalty - backtrack_penalty",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "hierarchy",
+      "dimension": "visual",
+      "score": 79.14,
+      "value": 0.2406,
+      "ideal": 0.35,
+      "deviation": 0.1094,
+      "confidence": 0.9722434336488898,
+      "formula": "Gaussian(Gini(text_visual_weight))",
+      "status": "ok",
+      "details": {}
+    }
+  ],
+  "required_texts": [
+    {
+      "text": "下一个日程",
+      "source": "text.content",
+      "component_id": "scheduleLabel"
+    },
+    {
+      "text": "Agent需求评审会",
+      "source": "text.content",
+      "component_id": "meetingTitle"
+    },
+    {
+      "text": "14:00-15:30",
+      "source": "text.content",
+      "component_id": "meetingTime"
+    },
+    {
+      "text": "距离会议还有17分",
+      "source": "text.content",
+      "component_id": "alertText"
+    },
+    {
+      "text": "专注模式",
+      "source": "text.content",
+      "component_id": "focusLabel"
+    }
+  ],
+  "missing_texts": [],
+  "warnings": [
+    "指标跳过：组件尺寸一致性：检测到的组件少于 2 个"
+  ]
+}
