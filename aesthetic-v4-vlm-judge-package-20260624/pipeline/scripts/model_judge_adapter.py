@@ -118,12 +118,20 @@ def score_only_prompt() -> str:
 def custom_prompt_from_file(request: dict[str, Any], prompt_path: str) -> str:
     prompt = Path(prompt_path).resolve().read_text(encoding="utf-8")
     image = request.get("image") if isinstance(request.get("image"), dict) else {}
+    sample_metadata = request.get("sample_metadata") if isinstance(request.get("sample_metadata"), dict) else {}
+    metadata_context = {
+        key: sample_metadata[key]
+        for key in ("query", "query_text", "prompt", "instruction", "task", "description", "scene_type")
+        if sample_metadata.get(key)
+    }
     runtime_context = {
         "viewport": image.get("viewport"),
         "screenshot_size": f"{image.get('width')}x{image.get('height')}",
         "rubric_version": request.get("rubric_version"),
         "quality_config": request.get("quality_config"),
     }
+    if metadata_context:
+        runtime_context["sample_metadata"] = metadata_context
     return (
         prompt.strip()
         + "\n\nRuntime context:\n"

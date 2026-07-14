@@ -44,7 +44,7 @@ layout:
     # score = Gaussian(whitespace, mean, sigma)
     # mean 调大：更偏好空一些的卡片；mean 调小：更偏好信息密一些的卡片。
     whitespace:
-      weight: 20
+      weight: 18
       min: 0.10
       max: 0.65
       sigma_low: 0.18
@@ -58,21 +58,21 @@ layout:
     # score = 100 * exp(-cv_k * CV)
     # cv_k 调大：左右/上下边距不一致时扣分更重。
     margin_consistency:
-      weight: 14
-      cv_k: 2.0
+      weight: 16
+      cv_k: 2.4
 
     # 间距节奏：CV = std(vertical_gaps) / mean(vertical_gaps)
     # score = 100 * exp(-cv_k * CV)
     # 少于 2 个有效间距样本时跳过，不参与维度加权，避免虚高。
     spacing_rhythm:
-      weight: 12
-      cv_k: 1.8
+      weight: 16
+      cv_k: 2.2
 
     # 元素密度：density = occupied_area / card_area
     # score = Gaussian(density, mean, sigma)
     # 和 whitespace 使用同一占用面积，但关注角度不同。
     density:
-      weight: 24
+      weight: 20
       min: 0.35
       max: 0.90
       sigma_low: 0.10
@@ -137,7 +137,7 @@ visual:
     # score = Gaussian(focus, mean, sigma)
     # mean 太低会鼓励平均无重点；mean 太高会鼓励单元素压制。
     visual_focus:
-      weight: 0
+      weight: 14
       mean: 0.45
       sigma: 0.26
 
@@ -156,6 +156,21 @@ visual:
       weight: 5
       mean: 0.55
       sigma: 0.32
+
+    # Sparse text stack:
+    # occupied_density = occupied element mask / card area
+    # text_dominance = text mask / occupied element mask
+    # score = 100 - 100 * clamp(penalty_k * density_gap * text_gap)
+    # Only penalizes cards that are both sparse and text-dominant.
+    sparse_text_stack:
+      weight: 25
+      min_density: 0.35
+      max_text_ratio: 0.75
+      penalty_k: 4.5
+      pixel_foreground_enabled: true
+      pixel_foreground_lab_threshold: 35
+      background_border_ratio: 0.05
+      pixel_foreground_open_kernel: 2
 
     # 阅读路径：
     # path_norm = sum(distance(text_center_i, text_center_i+1)) / image_diagonal

@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-"""aesthetic-v4 rubric prompt factory.
-
-This package intentionally exposes only the aesthetic-v4 prompt profile.
-"""
+"""aesthetic-v4 rubric prompt factory."""
 
 from __future__ import annotations
 
 import json
 import re
+from pathlib import Path
 from typing import Any
 
 from aesthetic_contract import AXIS_WEIGHTS, clamp_score as contract_clamp_score
 
 
 WEIGHTS: dict[str, float] = AXIS_WEIGHTS
+PIPELINE_ROOT = Path(__file__).resolve().parents[1]
+PROMPT_FILES = {
+    "harmony-card-teacher-v1": PIPELINE_ROOT / "prompts" / "harmony-card-teacher-v1.md",
+}
 
 OCCLUSION_OVERLAP_CHECK = "always_on"
 QUALITY_SWITCHES_DEFAULT = {
@@ -792,13 +794,42 @@ Return JSON only:
 """.strip()
 
 
+def build_prompt_from_markdown(request: dict[str, Any], prompt_path: Path) -> str:
+    if not prompt_path.exists():
+        raise ValueError(f"prompt file not found: {prompt_path}")
+    prompt = prompt_path.read_text(encoding="utf-8")
+    image = request.get("image") if isinstance(request.get("image"), dict) else {}
+    sample_metadata = request.get("sample_metadata") if isinstance(request.get("sample_metadata"), dict) else {}
+    metadata_context = {
+        key: sample_metadata[key]
+        for key in ("query", "query_text", "prompt", "instruction", "task", "description", "scene_type")
+        if sample_metadata.get(key)
+    }
+    runtime_context = {
+        "viewport": image.get("viewport"),
+        "screenshot_size": f"{image.get('width')}x{image.get('height')}",
+        "rubric_version": request.get("rubric_version"),
+        "quality_config": request.get("quality_config"),
+    }
+    if metadata_context:
+        runtime_context["sample_metadata"] = metadata_context
+    return (
+        prompt.strip()
+        + "\n\nRuntime context:\n"
+        + json.dumps(runtime_context, ensure_ascii=False, sort_keys=True)
+        + "\n\nReturn JSON only."
+    )
+
+
 def build_prompt(request: dict[str, Any], prompt_version: str) -> str:
     if prompt_version in {
         "aesthetic-v4",
         "aesthetic_v4",
     }:
         return build_prompt_aesthetic_v4(request)
+    if prompt_version in PROMPT_FILES:
+        return build_prompt_from_markdown(request, PROMPT_FILES[prompt_version])
     raise ValueError(
         "unsupported prompt version for this package: "
-        f"{prompt_version}; use aesthetic-v4"
+        f"{prompt_version}; use aesthetic-v4 or {', '.join(sorted(PROMPT_FILES))}"
     )

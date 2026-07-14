@@ -1,5 +1,81 @@
 {
+  "bad_case_count": 1,
   "bias": 0.67,
+  "bottom_k_overlap": 0.6,
+  "bucket_accuracy": 0.7,
+  "buckets": [
+    {
+      "bad_case_type": "ok",
+      "bucket_match": true,
+      "rule_bucket": "high",
+      "sample_id": "battery",
+      "teacher_bucket": "high"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": true,
+      "rule_bucket": "mid",
+      "sample_id": "care",
+      "teacher_bucket": "mid"
+    },
+    {
+      "bad_case_type": "large_error",
+      "bucket_match": true,
+      "rule_bucket": "low",
+      "sample_id": "earbuds",
+      "teacher_bucket": "low"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": true,
+      "rule_bucket": "high",
+      "sample_id": "focus",
+      "teacher_bucket": "high"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": false,
+      "rule_bucket": "mid",
+      "sample_id": "marathon",
+      "teacher_bucket": "high"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": true,
+      "rule_bucket": "mid",
+      "sample_id": "meeting",
+      "teacher_bucket": "mid"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": false,
+      "rule_bucket": "mid",
+      "sample_id": "sleep",
+      "teacher_bucket": "high"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": false,
+      "rule_bucket": "high",
+      "sample_id": "status",
+      "teacher_bucket": "mid"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": true,
+      "rule_bucket": "high",
+      "sample_id": "warn",
+      "teacher_bucket": "high"
+    },
+    {
+      "bad_case_type": "ok",
+      "bucket_match": true,
+      "rule_bucket": "mid",
+      "sample_id": "weather",
+      "teacher_bucket": "mid"
+    }
+  ],
+  "dangerous_high_rule_low_teacher_count": 0,
   "dimensions": [
     {
       "abs_error": 13.69,
@@ -2109,76 +2185,232 @@
       "sample_id": "weather"
     }
   ],
+  "pearson": 0.9499,
+  "ranks": [
+    {
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_overall": 76.01,
+      "rule_rank": 3,
+      "sample_id": "battery",
+      "teacher_overall": 76.38,
+      "teacher_rank": 3
+    },
+    {
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_overall": 70.56,
+      "rule_rank": 9,
+      "sample_id": "care",
+      "teacher_overall": 71.06,
+      "teacher_rank": 9
+    },
+    {
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_overall": 52.09,
+      "rule_rank": 10,
+      "sample_id": "earbuds",
+      "teacher_overall": 42.19,
+      "teacher_rank": 10
+    },
+    {
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_overall": 78.61,
+      "rule_rank": 1,
+      "sample_id": "focus",
+      "teacher_overall": 79.06,
+      "teacher_rank": 1
+    },
+    {
+      "rank_delta_rule_minus_teacher": 3,
+      "rule_overall": 72.07,
+      "rule_rank": 7,
+      "sample_id": "marathon",
+      "teacher_overall": 75.94,
+      "teacher_rank": 4
+    },
+    {
+      "rank_delta_rule_minus_teacher": -2,
+      "rule_overall": 74.66,
+      "rule_rank": 5,
+      "sample_id": "meeting",
+      "teacher_overall": 73.06,
+      "teacher_rank": 7
+    },
+    {
+      "rank_delta_rule_minus_teacher": 6,
+      "rule_overall": 71.52,
+      "rule_rank": 8,
+      "sample_id": "sleep",
+      "teacher_overall": 76.81,
+      "teacher_rank": 2
+    },
+    {
+      "rank_delta_rule_minus_teacher": -4,
+      "rule_overall": 75.76,
+      "rule_rank": 4,
+      "sample_id": "status",
+      "teacher_overall": 71.75,
+      "teacher_rank": 8
+    },
+    {
+      "rank_delta_rule_minus_teacher": -3,
+      "rule_overall": 76.56,
+      "rule_rank": 2,
+      "sample_id": "warn",
+      "teacher_overall": 75.0,
+      "teacher_rank": 5
+    },
+    {
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_overall": 74.39,
+      "rule_rank": 6,
+      "sample_id": "weather",
+      "teacher_overall": 74.31,
+      "teacher_rank": 6
+    }
+  ],
+  "rmse": 4.03,
   "samples": [
     {
       "abs_error": 0.37,
+      "bad_case_type": "ok",
+      "bucket_match": true,
       "error_rule_minus_teacher": -0.37,
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_bucket": "high",
       "rule_overall": 76.01,
+      "rule_rank": 3,
       "sample_id": "battery",
-      "teacher_overall": 76.38
+      "teacher_bucket": "high",
+      "teacher_overall": 76.38,
+      "teacher_rank": 3
     },
     {
       "abs_error": 0.5,
+      "bad_case_type": "ok",
+      "bucket_match": true,
       "error_rule_minus_teacher": -0.5,
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_bucket": "mid",
       "rule_overall": 70.56,
+      "rule_rank": 9,
       "sample_id": "care",
-      "teacher_overall": 71.06
+      "teacher_bucket": "mid",
+      "teacher_overall": 71.06,
+      "teacher_rank": 9
     },
     {
       "abs_error": 9.9,
+      "bad_case_type": "large_error",
+      "bucket_match": true,
       "error_rule_minus_teacher": 9.9,
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_bucket": "low",
       "rule_overall": 52.09,
+      "rule_rank": 10,
       "sample_id": "earbuds",
-      "teacher_overall": 42.19
+      "teacher_bucket": "low",
+      "teacher_overall": 42.19,
+      "teacher_rank": 10
     },
     {
       "abs_error": 0.45,
+      "bad_case_type": "ok",
+      "bucket_match": true,
       "error_rule_minus_teacher": -0.45,
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_bucket": "high",
       "rule_overall": 78.61,
+      "rule_rank": 1,
       "sample_id": "focus",
-      "teacher_overall": 79.06
+      "teacher_bucket": "high",
+      "teacher_overall": 79.06,
+      "teacher_rank": 1
     },
     {
       "abs_error": 3.87,
+      "bad_case_type": "ok",
+      "bucket_match": false,
       "error_rule_minus_teacher": -3.87,
+      "rank_delta_rule_minus_teacher": 3,
+      "rule_bucket": "mid",
       "rule_overall": 72.07,
+      "rule_rank": 7,
       "sample_id": "marathon",
-      "teacher_overall": 75.94
+      "teacher_bucket": "high",
+      "teacher_overall": 75.94,
+      "teacher_rank": 4
     },
     {
       "abs_error": 1.6,
+      "bad_case_type": "ok",
+      "bucket_match": true,
       "error_rule_minus_teacher": 1.6,
+      "rank_delta_rule_minus_teacher": -2,
+      "rule_bucket": "mid",
       "rule_overall": 74.66,
+      "rule_rank": 5,
       "sample_id": "meeting",
-      "teacher_overall": 73.06
+      "teacher_bucket": "mid",
+      "teacher_overall": 73.06,
+      "teacher_rank": 7
     },
     {
       "abs_error": 5.29,
+      "bad_case_type": "ok",
+      "bucket_match": false,
       "error_rule_minus_teacher": -5.29,
+      "rank_delta_rule_minus_teacher": 6,
+      "rule_bucket": "mid",
       "rule_overall": 71.52,
+      "rule_rank": 8,
       "sample_id": "sleep",
-      "teacher_overall": 76.81
+      "teacher_bucket": "high",
+      "teacher_overall": 76.81,
+      "teacher_rank": 2
     },
     {
       "abs_error": 4.01,
+      "bad_case_type": "ok",
+      "bucket_match": false,
       "error_rule_minus_teacher": 4.01,
+      "rank_delta_rule_minus_teacher": -4,
+      "rule_bucket": "high",
       "rule_overall": 75.76,
+      "rule_rank": 4,
       "sample_id": "status",
-      "teacher_overall": 71.75
+      "teacher_bucket": "mid",
+      "teacher_overall": 71.75,
+      "teacher_rank": 8
     },
     {
       "abs_error": 1.56,
+      "bad_case_type": "ok",
+      "bucket_match": true,
       "error_rule_minus_teacher": 1.56,
+      "rank_delta_rule_minus_teacher": -3,
+      "rule_bucket": "high",
       "rule_overall": 76.56,
+      "rule_rank": 2,
       "sample_id": "warn",
-      "teacher_overall": 75.0
+      "teacher_bucket": "high",
+      "teacher_overall": 75.0,
+      "teacher_rank": 5
     },
     {
       "abs_error": 0.08,
+      "bad_case_type": "ok",
+      "bucket_match": true,
       "error_rule_minus_teacher": 0.08,
+      "rank_delta_rule_minus_teacher": 0,
+      "rule_bucket": "mid",
       "rule_overall": 74.39,
+      "rule_rank": 6,
       "sample_id": "weather",
-      "teacher_overall": 74.31
+      "teacher_bucket": "mid",
+      "teacher_overall": 74.31,
+      "teacher_rank": 6
     }
-  ]
+  ],
+  "spearman": 0.5515,
+  "top_k_overlap": 0.6
 }

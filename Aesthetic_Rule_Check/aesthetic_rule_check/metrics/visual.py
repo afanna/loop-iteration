@@ -1,13 +1,15 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Callable
 
 import cv2
 import numpy as np
 
-from ..math_utils import gaussian_score, gini, sigmoid_score
+from ..math_utils import clamp, gaussian_score, gini, sigmoid_score
 from ..models import MetricResult, VisualElement
 from .base import BaseMetric, MetricContext, register_metric
+from .layout import pixel_foreground_ratio
 
 
 @register_metric
@@ -183,6 +185,87 @@ class TextImageRatioMetric(BaseMetric):
 
 
 @register_metric
+class SparseTextStackMetric(BaseMetric):
+    name = "sparse_text_stack"
+    dimension = "visual"
+
+    def evaluate(self, context: MetricContext) -> MetricResult:
+        cfg = self.cfg(context)
+        if not context.vision.text_blocks:
+            return MetricResult(
+                name=self.name,
+                dimension=self.dimension,
+                score=None,
+                value=0,
+                ideal=">=1 text block",
+                formula="insufficient text samples",
+                confidence=0.0,
+                status="skipped",
+                details={"reason": "no OCR text found"},
+            )
+        if not context.vision.elements:
+            return MetricResult(
+                name=self.name,
+                dimension=self.dimension,
+                score=0.0,
+                value=None,
+                ideal={"min_density": float(cfg.get("min_density", 0.35))},
+                formula="no visual elements -> score 0",
+                confidence=0.0,
+                details={"reason": "no visual elements found"},
+            )
+
+        element_density = element_mask_ratio(context, lambda _: True)
+        pixel_density = pixel_foreground_ratio(context, cfg)
+        occupied_density = max(element_density, pixel_density or 0.0)
+        text_density = element_mask_ratio(context, lambda item: item.kind == "text")
+        text_dominance = text_density / occupied_density if occupied_density > 0 else 0.0
+
+        min_density = float(cfg.get("min_density", 0.35))
+        max_text_ratio = float(cfg.get("max_text_ratio", 0.75))
+        penalty_k = float(cfg.get("penalty_k", 4.5))
+        density_gap = clamp((min_density - occupied_density) / max(min_density, 1e-6), 0.0, 1.0)
+        text_gap = clamp((text_dominance - max_text_ratio) / max(1.0 - max_text_ratio, 1e-6), 0.0, 1.0)
+        value = {
+            "occupied_density": round(occupied_density, 4),
+            "element_density": round(element_density, 4),
+            "pixel_foreground_density": round(pixel_density, 4) if pixel_density is not None else None,
+            "text_density": round(text_density, 4),
+            "text_dominance": round(text_dominance, 4),
+        }
+        ideal = {"min_density": min_density, "max_text_ratio": max_text_ratio}
+        deviation = {"density_gap": round(density_gap, 4), "text_gap": round(text_gap, 4)}
+        if density_gap <= 0.0 or text_gap <= 0.0:
+            return MetricResult(
+                name=self.name,
+                dimension=self.dimension,
+                score=None,
+                value=value,
+                ideal=ideal,
+                deviation=deviation,
+                formula="condition not triggered",
+                confidence=context.vision.confidence,
+                status="not_applicable",
+                details={"text_block_count": len(context.vision.text_blocks)},
+            )
+
+        penalty = 100.0 * clamp(penalty_k * density_gap * text_gap, 0.0, 1.0)
+        score = 100.0 - penalty
+
+        return MetricResult(
+            name=self.name,
+            dimension=self.dimension,
+            score=round(score, 2),
+            value=value,
+            ideal=ideal,
+            deviation=deviation,
+            formula=f"100 - 100 * clamp({penalty_k} * density_gap * text_gap)",
+            confidence=context.vision.confidence,
+            details={"text_block_count": len(context.vision.text_blocks)},
+        )
+
+
+@register_metric
 class ReadingFlowMetric(BaseMetric):
     name = "reading_flow"
     dimension = "visual"
@@ -287,6 +370,20 @@ def visual_weight(element: VisualElement, context: MetricContext | None = None) 
         font_factor = max(0.6, min(2.0, font_size / max(1.0, font_reference)))
         return base * kind_factor * contrast_factor * font_factor
     return base * kind_factor
+
+
+def element_mask_ratio(context: MetricContext, predicate: Callable[[VisualElement], bool]) -> float:
+    mask = np.zeros((context.vision.height, context.vision.width), dtype=np.uint8)
+    for element in context.vision.elements:
+        if not predicate(element):
+            continue
+        x1 = max(0, int(element.bbox.x))
+        y1 = max(0, int(element.bbox.y))
+        x2 = min(context.vision.width, int(element.bbox.x2))
+        y2 = min(context.vision.height, int(element.bbox.y2))
+        if x2 > x1 and y2 > y1:
+            mask[y1:y2, x1:x2] = 1
+    return float(mask.mean())
 
 
 def average_lab_distance(colors: list[tuple[int, int, int]]) -> float:

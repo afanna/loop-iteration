@@ -33,6 +33,7 @@ REQUIRED = [
     ".gitignore",
     "pipeline/run_aesthetic_v4.sh",
     "pipeline/package.json",
+    "pipeline/prompts/harmony-card-teacher-v1.md",
     "pipeline/scripts/aesthetic_contract.py",
     "pipeline/scripts/build_html_manifest.py",
     "pipeline/scripts/build_aesthetic_v4_report.py",
@@ -79,6 +80,10 @@ def main() -> int:
         return fail("env example must default Pangu to Claude 4.7")
     if "PANGU_JUDGE_OUTPUT_MODE=full" not in env_text:
         return fail("env example must default to full output mode")
+    if "PANGU_JUDGE_PROMPT_VERSION=harmony-card-teacher-v1" not in env_text:
+        return fail("env example must default Pangu to harmony-card-teacher-v1")
+    if "ARK_JUDGE_PROMPT_VERSION=harmony-card-teacher-v1" not in env_text:
+        return fail("env example must default Ark to harmony-card-teacher-v1")
     expected_env_defaults = [
         "AESTHETIC_V4_SCREENSHOT_MODE=fullpage",
         "AESTHETIC_V4_MANIFEST_VIEWPORT=all",
@@ -122,6 +127,15 @@ def main() -> int:
     )
     if "aesthetic-v4" not in prompt or prompt_forbidden_hits:
         return fail("prompt public naming validation failed")
+    harmony_prompt = module.build_prompt(
+        {
+            "rubric_version": "aesthetic_static_v1",
+            "image": {"sample_id": "validate", "viewport": "image", "width": 160, "height": 160},
+        },
+        "harmony-card-teacher-v1",
+    )
+    if "harmony-card-teacher-v1" not in harmony_prompt or "Runtime context:" not in harmony_prompt:
+        return fail("harmony-card-teacher-v1 prompt validation failed")
 
     print("OK: aesthetic-v4 package validated")
     return 0

@@ -59,6 +59,8 @@ $PACKAGE_ROOT/config/aesthetic-v4.env
 
 模型入口使用 Pangu OpenAI-compatible API。第一次使用时只需要在 `config/aesthetic-v4.env` 里填好 `PANGU_API_KEY`；之后传入 HTML 或 PNG/JPG 图片，就可以直接输出 clean JSON。
 
+默认提示词版本是 `harmony-card-teacher-v1`，用于 HarmonyOS 卡片离线标定。它读取 `pipeline/prompts/harmony-card-teacher-v1.md`，也就是卡片视觉老师提示词。需要回溯原始泛 UI baseline 时，把 `PANGU_JUDGE_PROMPT_VERSION` 或 `ARK_JUDGE_PROMPT_VERSION` 改回 `aesthetic-v4`。
+
 默认 Pangu 配置通过 `PANGU_JUDGE_MODEL` 切换模型：
 
 ```text
@@ -77,6 +79,7 @@ Claude 4.7: PANGU_JUDGE_MODEL=claude-opus-4-7-thinking
 PANGU_BASE_URL=http://43.139.21.243:4000
 PANGU_API_KEY=
 PANGU_JUDGE_MODEL=claude-opus-4-7-thinking
+PANGU_JUDGE_PROMPT_VERSION=harmony-card-teacher-v1
 ```
 
 同事正常使用时不需要直接调用 Pangu 脚本，也不需要手写 `curl`。把 key 和模型写进 `config/aesthetic-v4.env` 后，运行下面的主命令即可。

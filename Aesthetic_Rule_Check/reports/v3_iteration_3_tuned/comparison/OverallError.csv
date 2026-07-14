@@ -1,0 +1,11 @@
+﻿sample_id,rule_overall,teacher_overall,error_rule_minus_teacher,abs_error,rule_rank,teacher_rank,rank_delta_rule_minus_teacher,rule_bucket,teacher_bucket,bucket_match,bad_case_type
+battery,73.46,76.81,-3.35,3.35,3,3,0,mid,high,False,ok
+care,64.44,57.06,7.38,7.38,9,9,0,mid,low,False,ok
+earbuds,48.81,37.75,11.06,11.06,10,10,0,low,low,True,large_error
+focus,76.0,84.06,-8.06,8.06,1,1,0,high,high,True,large_error
+marathon,69.67,73.19,-3.52,3.52,7,4,3,mid,mid,True,ok
+meeting,71.34,57.44,13.9,13.9,5,8,-3,mid,low,False,large_error
+sleep,69.52,78.88,-9.36,9.36,8,2,6,mid,high,False,large_error
+status,71.0,66.56,4.44,4.44,6,7,-1,mid,mid,True,ok
+warn,73.8,72.44,1.36,1.36,2,6,-4,mid,mid,True,ok
+weather,72.33,72.69,-0.36,0.36,4,5,-1,mid,mid,True,ok

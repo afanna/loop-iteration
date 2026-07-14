@@ -1,0 +1,224 @@
+﻿sample_id,dimension,metric,metric_score,metric_value,overall_error_rule_minus_teacher
+battery,consistency,alignment,69.23,0.6923,-0.8
+battery,consistency,typography_rhythm,45.78,5,-0.8
+battery,consistency,corner_radius_consistency,36.79,"{""radii"": [6.72, 6.72, 6.48, 11.63, 43.03, 9.49], ""unique_radius_count"": 4}",-0.8
+battery,consistency,padding_consistency,11.35,0.777,-0.8
+battery,consistency,icon_size_consistency,29.88,0.3451,-0.8
+battery,consistency,grid,80.77,0.8077,-0.8
+battery,consistency,style_simplicity,88.25,5,-0.8
+battery,information,coverage,100.0,1.0,-0.8
+battery,information,truncation,100.0,0.0,-0.8
+battery,information,duplicate,85.71,0.1429,-0.8
+battery,layout,whitespace,100.0,0.4131,-0.8
+battery,layout,margin_consistency,20.98,0.7808,-0.8
+battery,layout,spacing_rhythm,35.41,0.5768,-0.8
+battery,layout,density,100.0,0.5869,-0.8
+battery,layout,overlap,90.85,0.0915,-0.8
+battery,layout,overflow,100.0,0.0,-0.8
+battery,visual,color_harmony,95.04,"{""avg_lab_distance"": 77.45, ""color_count"": 5}",-0.8
+battery,visual,contrast,24.79,2.39,-0.8
+battery,visual,visual_focus,85.46,0.3042,-0.8
+battery,visual,visual_balance,88.49,0.1384,-0.8
+battery,visual,text_image_ratio,66.29,0.2598,-0.8
+battery,visual,reading_flow,68.19,"{""backtracks"": 1, ""path_norm"": 1.1004}",-0.8
+battery,visual,hierarchy,96.75,0.2383,-0.8
+care,consistency,alignment,40.0,0.4,8.98
+care,consistency,typography_rhythm,82.26,4,8.98
+care,consistency,grid,60.0,0.6,8.98
+care,consistency,style_simplicity,60.65,6,8.98
+care,information,coverage,40.0,0.4,8.98
+care,information,truncation,40.0,0.6,8.98
+care,information,duplicate,100.0,0.0,8.98
+care,layout,whitespace,100.0,0.2084,8.98
+care,layout,margin_consistency,39.24,0.4677,8.98
+care,layout,spacing_rhythm,28.38,0.6997,8.98
+care,layout,density,100.0,0.7916,8.98
+care,layout,overlap,100.0,0.0,8.98
+care,layout,overflow,100.0,0.0,8.98
+care,visual,color_harmony,67.43,"{""avg_lab_distance"": 97.96, ""color_count"": 6}",8.98
+care,visual,contrast,16.64,1.889,8.98
+care,visual,visual_focus,30.17,0.8525,8.98
+care,visual,visual_balance,57.52,0.2945,8.98
+care,visual,text_image_ratio,37.2,1.0,8.98
+care,visual,sparse_text_stack,0.0,"{""occupied_density"": 0.1394, ""text_density"": 0.1394, ""text_dominance"": 1.0}",8.98
+care,visual,reading_flow,85.39,"{""backtracks"": 0, ""path_norm"": 0.8114}",8.98
+care,visual,hierarchy,99.72,0.3178,8.98
+earbuds,consistency,alignment,90.91,0.9091,10.42
+earbuds,consistency,typography_rhythm,45.78,5,10.42
+earbuds,consistency,corner_radius_consistency,60.65,"{""radii"": [4.21, 8.04, 6.74], ""unique_radius_count"": 3}",10.42
+earbuds,consistency,padding_consistency,25.77,0.4843,10.42
+earbuds,consistency,icon_size_consistency,45.7,0.2237,10.42
+earbuds,consistency,grid,93.18,0.9318,10.42
+earbuds,consistency,style_simplicity,88.25,3,10.42
+earbuds,information,coverage,100.0,1.0,10.42
+earbuds,information,truncation,85.71,0.1429,10.42
+earbuds,information,duplicate,100.0,0.0,10.42
+earbuds,layout,whitespace,43.97,0.8038,10.42
+earbuds,layout,margin_consistency,31.08,0.5843,10.42
+earbuds,layout,spacing_rhythm,17.18,0.9786,10.42
+earbuds,layout,density,30.63,0.1962,10.42
+earbuds,layout,overlap,100.0,0.0,10.42
+earbuds,layout,overflow,100.0,0.0,10.42
+earbuds,visual,color_harmony,45.41,"{""avg_lab_distance"": 127.65, ""color_count"": 3}",10.42
+earbuds,visual,contrast,36.41,2.943,10.42
+earbuds,visual,visual_focus,97.44,0.5092,10.42
+earbuds,visual,visual_balance,89.8,0.1299,10.42
+earbuds,visual,text_image_ratio,58.66,0.8805,10.42
+earbuds,visual,sparse_text_stack,0.0,"{""occupied_density"": 0.1962, ""text_density"": 0.1776, ""text_dominance"": 0.9055}",10.42
+earbuds,visual,reading_flow,79.1,"{""backtracks"": 0, ""path_norm"": 1.1613}",10.42
+earbuds,visual,hierarchy,95.58,0.3722,10.42
+focus,consistency,alignment,65.0,0.65,-5.45
+focus,consistency,typography_rhythm,82.26,2,-5.45
+focus,consistency,corner_radius_consistency,60.65,"{""radii"": [3.52, 4.13, 5.14, 7.04, 8.01], ""unique_radius_count"": 3}",-5.45
+focus,consistency,padding_consistency,18.67,0.5994,-5.45
+focus,consistency,icon_size_consistency,26.93,0.3748,-5.45
+focus,consistency,grid,62.5,0.625,-5.45
+focus,consistency,style_simplicity,60.65,6,-5.45
+focus,information,coverage,100.0,1.0,-5.45
+focus,information,truncation,100.0,0.0,-5.45
+focus,information,duplicate,100.0,0.0,-5.45
+focus,layout,whitespace,100.0,0.4867,-5.45
+focus,layout,margin_consistency,15.0,0.9487,-5.45
+focus,layout,spacing_rhythm,59.23,0.291,-5.45
+focus,layout,density,100.0,0.5133,-5.45
+focus,layout,overlap,100.0,0.0,-5.45
+focus,layout,overflow,100.0,0.0,-5.45
+focus,visual,color_harmony,80.09,"{""avg_lab_distance"": 81.47, ""color_count"": 6}",-5.45
+focus,visual,contrast,56.13,3.747,-5.45
+focus,visual,visual_focus,79.12,0.272,-5.45
+focus,visual,visual_balance,99.24,0.0345,-5.45
+focus,visual,text_image_ratio,98.83,0.5009,-5.45
+focus,visual,reading_flow,90.73,"{""backtracks"": 0, ""path_norm"": 0.5147}",-5.45
+focus,visual,hierarchy,96.98,0.2406,-5.45
+marathon,consistency,alignment,41.67,0.4167,-6.07
+marathon,consistency,typography_rhythm,45.78,5,-6.07
+marathon,consistency,grid,62.5,0.625,-6.07
+marathon,consistency,style_simplicity,60.65,6,-6.07
+marathon,information,coverage,100.0,1.0,-6.07
+marathon,information,truncation,100.0,0.0,-6.07
+marathon,information,duplicate,100.0,0.0,-6.07
+marathon,layout,whitespace,100.0,0.1801,-6.07
+marathon,layout,margin_consistency,34.81,0.5276,-6.07
+marathon,layout,spacing_rhythm,36.61,0.5582,-6.07
+marathon,layout,density,100.0,0.8199,-6.07
+marathon,layout,overlap,100.0,0.0,-6.07
+marathon,layout,overflow,100.0,0.0,-6.07
+marathon,visual,color_harmony,67.11,"{""avg_lab_distance"": 98.33, ""color_count"": 6}",-6.07
+marathon,visual,contrast,38.59,3.035,-6.07
+marathon,visual,visual_focus,93.6,0.3555,-6.07
+marathon,visual,visual_balance,90.43,0.1256,-6.07
+marathon,visual,text_image_ratio,37.2,1.0,-6.07
+marathon,visual,sparse_text_stack,0.0,"{""occupied_density"": 0.1821, ""text_density"": 0.1821, ""text_dominance"": 1.0}",-6.07
+marathon,visual,reading_flow,83.01,"{""backtracks"": 0, ""path_norm"": 0.9439}",-6.07
+marathon,visual,hierarchy,88.61,0.182,-6.07
+meeting,consistency,alignment,95.0,0.95,17.22
+meeting,consistency,typography_rhythm,82.26,4,17.22
+meeting,consistency,corner_radius_consistency,36.79,"{""radii"": [4.46, 5.25, 12.41, 10.31], ""unique_radius_count"": 4}",17.22
+meeting,consistency,padding_consistency,14.16,0.6982,17.22
+meeting,consistency,icon_size_consistency,95.12,0.0143,17.22
+meeting,consistency,grid,80.0,0.8,17.22
+meeting,consistency,style_simplicity,60.65,6,17.22
+meeting,information,coverage,100.0,1.0,17.22
+meeting,information,truncation,100.0,0.0,17.22
+meeting,information,duplicate,100.0,0.0,17.22
+meeting,layout,whitespace,100.0,0.5981,17.22
+meeting,layout,margin_consistency,24.48,0.7036,17.22
+meeting,layout,spacing_rhythm,54.44,0.3378,17.22
+meeting,layout,density,100.0,0.4019,17.22
+meeting,layout,overlap,100.0,0.0,17.22
+meeting,layout,overflow,100.0,0.0,17.22
+meeting,visual,color_harmony,70.39,"{""avg_lab_distance"": 94.49, ""color_count"": 6}",17.22
+meeting,visual,contrast,21.32,2.194,17.22
+meeting,visual,visual_focus,72.31,0.2406,17.22
+meeting,visual,visual_balance,95.28,0.087,17.22
+meeting,visual,text_image_ratio,99.23,0.5897,17.22
+meeting,visual,reading_flow,80.91,"{""backtracks"": 0, ""path_norm"": 1.0603}",17.22
+meeting,visual,hierarchy,99.04,0.2666,17.22
+sleep,consistency,alignment,50.0,0.5,-12.03
+sleep,consistency,typography_rhythm,82.26,4,-12.03
+sleep,consistency,grid,50.0,0.5,-12.03
+sleep,consistency,style_simplicity,60.65,6,-12.03
+sleep,information,coverage,33.33,0.3333,-12.03
+sleep,information,truncation,66.67,0.3333,-12.03
+sleep,information,duplicate,100.0,0.0,-12.03
+sleep,layout,whitespace,100.0,0.1814,-12.03
+sleep,layout,margin_consistency,29.77,0.6059,-12.03
+sleep,layout,spacing_rhythm,43.38,0.464,-12.03
+sleep,layout,density,100.0,0.8186,-12.03
+sleep,layout,overlap,100.0,0.0,-12.03
+sleep,layout,overflow,100.0,0.0,-12.03
+sleep,visual,color_harmony,55.97,"{""avg_lab_distance"": 111.56, ""color_count"": 6}",-12.03
+sleep,visual,contrast,52.7,3.608,-12.03
+sleep,visual,visual_focus,99.5,0.4239,-12.03
+sleep,visual,visual_balance,85.25,0.1582,-12.03
+sleep,visual,text_image_ratio,37.2,1.0,-12.03
+sleep,visual,sparse_text_stack,0.0,"{""occupied_density"": 0.1834, ""text_density"": 0.1834, ""text_dominance"": 1.0}",-12.03
+sleep,visual,reading_flow,88.7,"{""backtracks"": 0, ""path_norm"": 0.6278}",-12.03
+sleep,visual,hierarchy,72.95,0.1094,-12.03
+status,consistency,alignment,50.0,0.5,3.95
+status,consistency,typography_rhythm,82.26,4,3.95
+status,consistency,grid,50.0,0.5,3.95
+status,consistency,style_simplicity,88.25,5,3.95
+status,information,coverage,100.0,1.0,3.95
+status,information,truncation,100.0,0.0,3.95
+status,information,duplicate,100.0,0.0,3.95
+status,layout,whitespace,100.0,0.1587,3.95
+status,layout,margin_consistency,35.57,0.5168,3.95
+status,layout,spacing_rhythm,50.92,0.375,3.95
+status,layout,density,100.0,0.8413,3.95
+status,layout,overlap,100.0,0.0,3.95
+status,layout,overflow,100.0,0.0,3.95
+status,visual,color_harmony,82.75,"{""avg_lab_distance"": 94.99, ""color_count"": 5}",3.95
+status,visual,contrast,7.73,1.02,3.95
+status,visual,visual_focus,48.68,0.762,3.95
+status,visual,visual_balance,83.12,0.1703,3.95
+status,visual,text_image_ratio,37.2,1.0,3.95
+status,visual,sparse_text_stack,0.0,"{""occupied_density"": 0.1392, ""text_density"": 0.1392, ""text_dominance"": 1.0}",3.95
+status,visual,reading_flow,91.31,"{""backtracks"": 0, ""path_norm"": 0.4828}",3.95
+status,visual,hierarchy,97.75,0.3512,3.95
+warn,consistency,alignment,68.18,0.6818,4.12
+warn,consistency,typography_rhythm,82.26,2,4.12
+warn,consistency,component_size,25.67,0.68,4.12
+warn,consistency,corner_radius_consistency,36.79,"{""radii"": [1.88, 8.87, 8.96, 5.62, 9.48], ""unique_radius_count"": 4}",4.12
+warn,consistency,padding_consistency,21.86,0.543,4.12
+warn,consistency,grid,75.0,0.75,4.12
+warn,consistency,style_simplicity,88.25,5,4.12
+warn,information,coverage,100.0,1.0,4.12
+warn,information,truncation,100.0,0.0,4.12
+warn,information,duplicate,100.0,0.0,4.12
+warn,layout,whitespace,100.0,0.4868,4.12
+warn,layout,margin_consistency,22.37,0.7488,4.12
+warn,layout,spacing_rhythm,51.51,0.3685,4.12
+warn,layout,density,100.0,0.5132,4.12
+warn,layout,overlap,98.74,0.0126,4.12
+warn,layout,overflow,100.0,0.0,4.12
+warn,visual,color_harmony,61.31,"{""avg_lab_distance"": 122.11, ""color_count"": 5}",4.12
+warn,visual,contrast,99.21,8.333,4.12
+warn,visual,visual_focus,80.88,0.2806,4.12
+warn,visual,visual_balance,98.65,0.0462,4.12
+warn,visual,text_image_ratio,77.45,0.3213,4.12
+warn,visual,reading_flow,74.11,"{""backtracks"": 0, ""path_norm"": 1.4382}",4.12
+warn,visual,hierarchy,85.09,0.1636,4.12
+weather,consistency,alignment,61.54,0.6154,1.7
+weather,consistency,typography_rhythm,100.0,3,1.7
+weather,consistency,corner_radius_consistency,13.53,"{""radii"": [3.47, 6.74, 6.35, 5.3, 13.28, 15.41, 8.15, 9.07], ""unique_radius_count"": 6}",1.7
+weather,consistency,padding_consistency,16.25,0.649,1.7
+weather,consistency,icon_size_consistency,15.81,0.5271,1.7
+weather,consistency,grid,78.85,0.7885,1.7
+weather,consistency,style_simplicity,60.65,6,1.7
+weather,information,coverage,80.0,0.8,1.7
+weather,information,truncation,80.0,0.2,1.7
+weather,information,duplicate,100.0,0.0,1.7
+weather,layout,whitespace,100.0,0.3597,1.7
+weather,layout,margin_consistency,16.0,0.9164,1.7
+weather,layout,spacing_rhythm,32.91,0.6174,1.7
+weather,layout,density,100.0,0.6403,1.7
+weather,layout,overlap,97.08,0.0292,1.7
+weather,layout,overflow,100.0,0.0,1.7
+weather,visual,color_harmony,84.49,"{""avg_lab_distance"": 71.46, ""color_count"": 6}",1.7
+weather,visual,contrast,23.83,2.338,1.7
+weather,visual,visual_focus,95.21,0.3685,1.7
+weather,visual,visual_balance,95.94,0.0806,1.7
+weather,visual,text_image_ratio,67.97,0.2688,1.7
+weather,visual,reading_flow,88.73,"{""backtracks"": 0, ""path_norm"": 0.6261}",1.7
+weather,visual,hierarchy,78.92,0.1349,1.7

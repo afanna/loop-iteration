@@ -10,6 +10,7 @@ from aesthetic_rule_check.reports import write_batch_index
 
 
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".bmp", ".webp"}
+DSL_SUFFIXES = (".jsonl", ".json", ".dat")
 
 
 def parse_args() -> argparse.Namespace:
@@ -90,7 +91,7 @@ def find_images(input_dir: Path, *, recursive: bool = False) -> list[Path]:
 def find_matching_dsl(image_path: Path, dsl_dir: Path | None) -> Path | None:
     if dsl_dir is None:
         return None
-    for suffix in (".jsonl", ".json"):
+    for suffix in DSL_SUFFIXES:
         candidate = dsl_dir / f"{image_path.stem}{suffix}"
         if candidate.exists():
             return candidate.resolve()

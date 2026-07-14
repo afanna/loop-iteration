@@ -1,0 +1,944 @@
+{
+  "image_path": "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\warn.png",
+  "dsl_path": "C:\\Users\\afan\\Desktop\\loop iteration\\dsl\\warn.dat",
+  "query": "",
+  "overall": 76.56,
+  "grade": "B",
+  "confidence": 0.9957,
+  "dimensions": [
+    {
+      "name": "information",
+      "label": "信息完整性",
+      "score": 100.0,
+      "weight": 0.0,
+      "metrics": [
+        {
+          "name": "coverage",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 1.0,
+          "ideal": 1.0,
+          "deviation": 0.0,
+          "confidence": 0.995686799287796,
+          "formula": "score = 100 * coverage",
+          "status": "ok",
+          "details": {
+            "matched": [
+              "抖音使用时长",
+              "时长设定",
+              "3h 45m",
+              "只超时",
+              "15m",
+              "设定管控时间"
+            ],
+            "missing": [],
+            "required_count": 6
+          }
+        },
+        {
+          "name": "truncation",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.995686799287796,
+          "formula": "score = 100 * (1 - truncation_rate)",
+          "status": "ok",
+          "details": {
+            "truncated": [],
+            "ellipsis": [],
+            "low_confidence_texts": []
+          }
+        },
+        {
+          "name": "duplicate",
+          "dimension": "information",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.995686799287796,
+          "formula": "score = 100 * (1 - duplicate_rate)",
+          "status": "ok",
+          "details": {
+            "duplicates": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "label": "布局美学",
+      "score": 82.79,
+      "weight": 46.0,
+      "metrics": [
+        {
+          "name": "whitespace",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.4868,
+          "ideal": {
+            "min": 0.1,
+            "max": 0.65
+          },
+          "deviation": 0.0,
+          "confidence": 0.995686799287796,
+          "formula": "BandGaussian",
+          "status": "ok",
+          "details": {
+            "element_occupied_ratio": 0.5132,
+            "pixel_foreground_ratio": 0.218,
+            "combined_occupied_ratio": 0.5132
+          }
+        },
+        {
+          "name": "margin_consistency",
+          "dimension": "layout",
+          "score": 22.37,
+          "value": 0.7488,
+          "ideal": 0.0,
+          "deviation": 0.7488,
+          "confidence": 0.995686799287796,
+          "formula": "100 * exp(-2.0 * CV)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "spacing_rhythm",
+          "dimension": "layout",
+          "score": 51.51,
+          "value": 0.3685,
+          "ideal": 0.0,
+          "deviation": 0.3685,
+          "confidence": 0.995686799287796,
+          "formula": "100 * exp(-1.8 * CV)",
+          "status": "ok",
+          "details": {
+            "gap_count": 4
+          }
+        },
+        {
+          "name": "density",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.5132,
+          "ideal": {
+            "min": 0.35,
+            "max": 0.9
+          },
+          "deviation": 0.0,
+          "confidence": 0.995686799287796,
+          "formula": "BandGaussian",
+          "status": "ok",
+          "details": {
+            "element_occupied_ratio": 0.5132,
+            "pixel_foreground_ratio": 0.218,
+            "combined_occupied_ratio": 0.5132
+          }
+        },
+        {
+          "name": "overlap",
+          "dimension": "layout",
+          "score": 98.74,
+          "value": 0.0126,
+          "ideal": 0.0,
+          "deviation": 0.0126,
+          "confidence": 0.995686799287796,
+          "formula": "max(0, 100 - 100.0 * max_iou)",
+          "status": "ok",
+          "details": {
+            "pairs": []
+          }
+        },
+        {
+          "name": "overflow",
+          "dimension": "layout",
+          "score": 100.0,
+          "value": 0.0,
+          "ideal": 0.0,
+          "deviation": 0.0,
+          "confidence": 0.995686799287796,
+          "formula": "max(0, 100 - 100.0 * overflow)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "visual",
+      "label": "视觉设计",
+      "score": 72.58,
+      "weight": 35.0,
+      "metrics": [
+        {
+          "name": "color_harmony",
+          "dimension": "visual",
+          "score": 61.31,
+          "value": {
+            "color_count": 5,
+            "avg_lab_distance": 122.11
+          },
+          "ideal": {
+            "color_count": 4.5,
+            "avg_lab_distance": 65
+          },
+          "deviation": null,
+          "confidence": 0.995686799287796,
+          "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+          "status": "ok",
+          "details": {
+            "colors": [
+              [
+                42,
+                45,
+                50
+              ],
+              [
+                199,
+                238,
+                2
+              ],
+              [
+                245,
+                246,
+                246
+              ],
+              [
+                103,
+                109,
+                115
+              ],
+              [
+                187,
+                186,
+                188
+              ]
+            ],
+            "proportions": [
+              0.769875,
+              0.082875,
+              0.057375,
+              0.050875,
+              0.029375
+            ]
+          }
+        },
+        {
+          "name": "contrast",
+          "dimension": "visual",
+          "score": 99.21,
+          "value": 8.333,
+          "ideal": 3.5,
+          "deviation": 0.0,
+          "confidence": 0.995686799287796,
+          "formula": "Sigmoid(min_contrast)",
+          "status": "ok",
+          "details": {
+            "ratios": [
+              10.858,
+              8.333,
+              8.524,
+              13.973,
+              13.79,
+              13.897
+            ]
+          }
+        },
+        {
+          "name": "visual_focus",
+          "dimension": "visual",
+          "score": 80.88,
+          "value": 0.2806,
+          "ideal": 0.45,
+          "deviation": 0.1694,
+          "confidence": 0.995686799287796,
+          "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "visual_balance",
+          "dimension": "visual",
+          "score": 98.65,
+          "value": 0.0462,
+          "ideal": 0.0,
+          "deviation": 0.0462,
+          "confidence": 0.995686799287796,
+          "formula": "Euclidean distance + Gaussian",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "text_image_ratio",
+          "dimension": "visual",
+          "score": 77.45,
+          "value": 0.3213,
+          "ideal": 0.55,
+          "deviation": 0.2287,
+          "confidence": 0.995686799287796,
+          "formula": "Gaussian(text_area / occupied_area)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "sparse_text_stack",
+          "dimension": "visual",
+          "score": null,
+          "value": {
+            "occupied_density": 0.5132,
+            "text_density": 0.1755,
+            "text_dominance": 0.342
+          },
+          "ideal": {
+            "min_density": 0.35,
+            "max_text_ratio": 0.75
+          },
+          "deviation": {
+            "density_gap": 0.0,
+            "text_gap": 0.0
+          },
+          "confidence": 0.995686799287796,
+          "formula": "condition not triggered",
+          "status": "not_applicable",
+          "details": {
+            "text_block_count": 6
+          }
+        },
+        {
+          "name": "reading_flow",
+          "dimension": "visual",
+          "score": 74.11,
+          "value": {
+            "path_norm": 1.4382,
+            "backtracks": 0
+          },
+          "ideal": {
+            "path_norm": "low",
+            "backtracks": 0
+          },
+          "deviation": null,
+          "confidence": 0.995686799287796,
+          "formula": "100 - path_penalty - backtrack_penalty",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "hierarchy",
+          "dimension": "visual",
+          "score": 85.09,
+          "value": 0.1636,
+          "ideal": 0.3,
+          "deviation": 0.1364,
+          "confidence": 0.995686799287796,
+          "formula": "Gaussian(Gini(text_visual_weight))",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "name": "consistency",
+      "label": "设计一致性",
+      "score": 58.17,
+      "weight": 8.0,
+      "metrics": [
+        {
+          "name": "alignment",
+          "dimension": "consistency",
+          "score": 68.18,
+          "value": 0.6818,
+          "ideal": 1.0,
+          "deviation": 0.3182,
+          "confidence": 0.995686799287796,
+          "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "typography_rhythm",
+          "dimension": "consistency",
+          "score": 82.26,
+          "value": 2,
+          "ideal": 3.0,
+          "deviation": 1.0,
+          "confidence": 0.995686799287796,
+          "formula": "Gaussian(font_size_level_count)",
+          "status": "ok",
+          "details": {
+            "levels": [
+              16,
+              20
+            ]
+          }
+        },
+        {
+          "name": "component_size",
+          "dimension": "consistency",
+          "score": 25.67,
+          "value": 0.68,
+          "ideal": 0.0,
+          "deviation": 0.68,
+          "confidence": 0.995686799287796,
+          "formula": "100 * exp(-2.0 * CV)",
+          "status": "ok",
+          "details": {
+            "component_count": 2
+          }
+        },
+        {
+          "name": "corner_radius_consistency",
+          "dimension": "consistency",
+          "score": 36.79,
+          "value": {
+            "unique_radius_count": 4,
+            "radii": [
+              1.88,
+              8.87,
+              8.96,
+              5.62,
+              9.48
+            ]
+          },
+          "ideal": {
+            "unique_radius_count": 2.0
+          },
+          "deviation": 2.0,
+          "confidence": 0.995686799287796,
+          "formula": "100 * exp(-0.5 * max(0, unique_radius_count - 2.0))",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "padding_consistency",
+          "dimension": "consistency",
+          "score": 21.86,
+          "value": 0.543,
+          "ideal": 0.0,
+          "deviation": 0.543,
+          "confidence": 0.995686799287796,
+          "formula": "100 * exp(-2.8 * CV)",
+          "status": "ok",
+          "details": {
+            "component_count": 1,
+            "padding_values": [
+              58.0,
+              29.0,
+              17.0,
+              18.0
+            ]
+          }
+        },
+        {
+          "name": "icon_size_consistency",
+          "dimension": "consistency",
+          "score": null,
+          "value": 1,
+          "ideal": ">=2 icons",
+          "deviation": null,
+          "confidence": 0.0,
+          "formula": "insufficient icon samples",
+          "status": "skipped",
+          "details": {
+            "reason": "fewer than 2 detected icons"
+          }
+        },
+        {
+          "name": "grid",
+          "dimension": "consistency",
+          "score": 75.0,
+          "value": 0.75,
+          "ideal": 1.0,
+          "deviation": 0.25,
+          "confidence": 0.995686799287796,
+          "formula": "mean(x snap ratio, y snap ratio)",
+          "status": "ok",
+          "details": {}
+        },
+        {
+          "name": "style_simplicity",
+          "dimension": "consistency",
+          "score": 88.25,
+          "value": 5,
+          "ideal": 4.0,
+          "deviation": 1.0,
+          "confidence": 0.995686799287796,
+          "formula": "Gaussian(dominant_color_count)",
+          "status": "ok",
+          "details": {}
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "name": "alignment",
+      "dimension": "consistency",
+      "score": 68.18,
+      "value": 0.6818,
+      "ideal": 1.0,
+      "deviation": 0.3182,
+      "confidence": 0.995686799287796,
+      "formula": "mean(x-edge snap ratio, x-center snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "typography_rhythm",
+      "dimension": "consistency",
+      "score": 82.26,
+      "value": 2,
+      "ideal": 3.0,
+      "deviation": 1.0,
+      "confidence": 0.995686799287796,
+      "formula": "Gaussian(font_size_level_count)",
+      "status": "ok",
+      "details": {
+        "levels": [
+          16,
+          20
+        ]
+      }
+    },
+    {
+      "name": "component_size",
+      "dimension": "consistency",
+      "score": 25.67,
+      "value": 0.68,
+      "ideal": 0.0,
+      "deviation": 0.68,
+      "confidence": 0.995686799287796,
+      "formula": "100 * exp(-2.0 * CV)",
+      "status": "ok",
+      "details": {
+        "component_count": 2
+      }
+    },
+    {
+      "name": "corner_radius_consistency",
+      "dimension": "consistency",
+      "score": 36.79,
+      "value": {
+        "unique_radius_count": 4,
+        "radii": [
+          1.88,
+          8.87,
+          8.96,
+          5.62,
+          9.48
+        ]
+      },
+      "ideal": {
+        "unique_radius_count": 2.0
+      },
+      "deviation": 2.0,
+      "confidence": 0.995686799287796,
+      "formula": "100 * exp(-0.5 * max(0, unique_radius_count - 2.0))",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "padding_consistency",
+      "dimension": "consistency",
+      "score": 21.86,
+      "value": 0.543,
+      "ideal": 0.0,
+      "deviation": 0.543,
+      "confidence": 0.995686799287796,
+      "formula": "100 * exp(-2.8 * CV)",
+      "status": "ok",
+      "details": {
+        "component_count": 1,
+        "padding_values": [
+          58.0,
+          29.0,
+          17.0,
+          18.0
+        ]
+      }
+    },
+    {
+      "name": "icon_size_consistency",
+      "dimension": "consistency",
+      "score": null,
+      "value": 1,
+      "ideal": ">=2 icons",
+      "deviation": null,
+      "confidence": 0.0,
+      "formula": "insufficient icon samples",
+      "status": "skipped",
+      "details": {
+        "reason": "fewer than 2 detected icons"
+      }
+    },
+    {
+      "name": "grid",
+      "dimension": "consistency",
+      "score": 75.0,
+      "value": 0.75,
+      "ideal": 1.0,
+      "deviation": 0.25,
+      "confidence": 0.995686799287796,
+      "formula": "mean(x snap ratio, y snap ratio)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "style_simplicity",
+      "dimension": "consistency",
+      "score": 88.25,
+      "value": 5,
+      "ideal": 4.0,
+      "deviation": 1.0,
+      "confidence": 0.995686799287796,
+      "formula": "Gaussian(dominant_color_count)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "coverage",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 1.0,
+      "ideal": 1.0,
+      "deviation": 0.0,
+      "confidence": 0.995686799287796,
+      "formula": "score = 100 * coverage",
+      "status": "ok",
+      "details": {
+        "matched": [
+          "抖音使用时长",
+          "时长设定",
+          "3h 45m",
+          "只超时",
+          "15m",
+          "设定管控时间"
+        ],
+        "missing": [],
+        "required_count": 6
+      }
+    },
+    {
+      "name": "truncation",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.995686799287796,
+      "formula": "score = 100 * (1 - truncation_rate)",
+      "status": "ok",
+      "details": {
+        "truncated": [],
+        "ellipsis": [],
+        "low_confidence_texts": []
+      }
+    },
+    {
+      "name": "duplicate",
+      "dimension": "information",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.995686799287796,
+      "formula": "score = 100 * (1 - duplicate_rate)",
+      "status": "ok",
+      "details": {
+        "duplicates": []
+      }
+    },
+    {
+      "name": "whitespace",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.4868,
+      "ideal": {
+        "min": 0.1,
+        "max": 0.65
+      },
+      "deviation": 0.0,
+      "confidence": 0.995686799287796,
+      "formula": "BandGaussian",
+      "status": "ok",
+      "details": {
+        "element_occupied_ratio": 0.5132,
+        "pixel_foreground_ratio": 0.218,
+        "combined_occupied_ratio": 0.5132
+      }
+    },
+    {
+      "name": "margin_consistency",
+      "dimension": "layout",
+      "score": 22.37,
+      "value": 0.7488,
+      "ideal": 0.0,
+      "deviation": 0.7488,
+      "confidence": 0.995686799287796,
+      "formula": "100 * exp(-2.0 * CV)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "spacing_rhythm",
+      "dimension": "layout",
+      "score": 51.51,
+      "value": 0.3685,
+      "ideal": 0.0,
+      "deviation": 0.3685,
+      "confidence": 0.995686799287796,
+      "formula": "100 * exp(-1.8 * CV)",
+      "status": "ok",
+      "details": {
+        "gap_count": 4
+      }
+    },
+    {
+      "name": "density",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.5132,
+      "ideal": {
+        "min": 0.35,
+        "max": 0.9
+      },
+      "deviation": 0.0,
+      "confidence": 0.995686799287796,
+      "formula": "BandGaussian",
+      "status": "ok",
+      "details": {
+        "element_occupied_ratio": 0.5132,
+        "pixel_foreground_ratio": 0.218,
+        "combined_occupied_ratio": 0.5132
+      }
+    },
+    {
+      "name": "overlap",
+      "dimension": "layout",
+      "score": 98.74,
+      "value": 0.0126,
+      "ideal": 0.0,
+      "deviation": 0.0126,
+      "confidence": 0.995686799287796,
+      "formula": "max(0, 100 - 100.0 * max_iou)",
+      "status": "ok",
+      "details": {
+        "pairs": []
+      }
+    },
+    {
+      "name": "overflow",
+      "dimension": "layout",
+      "score": 100.0,
+      "value": 0.0,
+      "ideal": 0.0,
+      "deviation": 0.0,
+      "confidence": 0.995686799287796,
+      "formula": "max(0, 100 - 100.0 * overflow)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "color_harmony",
+      "dimension": "visual",
+      "score": 61.31,
+      "value": {
+        "color_count": 5,
+        "avg_lab_distance": 122.11
+      },
+      "ideal": {
+        "color_count": 4.5,
+        "avg_lab_distance": 65
+      },
+      "deviation": null,
+      "confidence": 0.995686799287796,
+      "formula": "mean(Gaussian(color_count), Gaussian(avg_lab_distance))",
+      "status": "ok",
+      "details": {
+        "colors": [
+          [
+            42,
+            45,
+            50
+          ],
+          [
+            199,
+            238,
+            2
+          ],
+          [
+            245,
+            246,
+            246
+          ],
+          [
+            103,
+            109,
+            115
+          ],
+          [
+            187,
+            186,
+            188
+          ]
+        ],
+        "proportions": [
+          0.769875,
+          0.082875,
+          0.057375,
+          0.050875,
+          0.029375
+        ]
+      }
+    },
+    {
+      "name": "contrast",
+      "dimension": "visual",
+      "score": 99.21,
+      "value": 8.333,
+      "ideal": 3.5,
+      "deviation": 0.0,
+      "confidence": 0.995686799287796,
+      "formula": "Sigmoid(min_contrast)",
+      "status": "ok",
+      "details": {
+        "ratios": [
+          10.858,
+          8.333,
+          8.524,
+          13.973,
+          13.79,
+          13.897
+        ]
+      }
+    },
+    {
+      "name": "visual_focus",
+      "dimension": "visual",
+      "score": 80.88,
+      "value": 0.2806,
+      "ideal": 0.45,
+      "deviation": 0.1694,
+      "confidence": 0.995686799287796,
+      "formula": "Gaussian(max_visual_weight / sum_visual_weight)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "visual_balance",
+      "dimension": "visual",
+      "score": 98.65,
+      "value": 0.0462,
+      "ideal": 0.0,
+      "deviation": 0.0462,
+      "confidence": 0.995686799287796,
+      "formula": "Euclidean distance + Gaussian",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "text_image_ratio",
+      "dimension": "visual",
+      "score": 77.45,
+      "value": 0.3213,
+      "ideal": 0.55,
+      "deviation": 0.2287,
+      "confidence": 0.995686799287796,
+      "formula": "Gaussian(text_area / occupied_area)",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "sparse_text_stack",
+      "dimension": "visual",
+      "score": null,
+      "value": {
+        "occupied_density": 0.5132,
+        "text_density": 0.1755,
+        "text_dominance": 0.342
+      },
+      "ideal": {
+        "min_density": 0.35,
+        "max_text_ratio": 0.75
+      },
+      "deviation": {
+        "density_gap": 0.0,
+        "text_gap": 0.0
+      },
+      "confidence": 0.995686799287796,
+      "formula": "condition not triggered",
+      "status": "not_applicable",
+      "details": {
+        "text_block_count": 6
+      }
+    },
+    {
+      "name": "reading_flow",
+      "dimension": "visual",
+      "score": 74.11,
+      "value": {
+        "path_norm": 1.4382,
+        "backtracks": 0
+      },
+      "ideal": {
+        "path_norm": "low",
+        "backtracks": 0
+      },
+      "deviation": null,
+      "confidence": 0.995686799287796,
+      "formula": "100 - path_penalty - backtrack_penalty",
+      "status": "ok",
+      "details": {}
+    },
+    {
+      "name": "hierarchy",
+      "dimension": "visual",
+      "score": 85.09,
+      "value": 0.1636,
+      "ideal": 0.3,
+      "deviation": 0.1364,
+      "confidence": 0.995686799287796,
+      "formula": "Gaussian(Gini(text_visual_weight))",
+      "status": "ok",
+      "details": {}
+    }
+  ],
+  "required_texts": [
+    {
+      "text": "抖音使用时长",
+      "source": "text.content",
+      "component_id": "titleText"
+    },
+    {
+      "text": "时长设定",
+      "source": "text.content",
+      "component_id": "usedLabel"
+    },
+    {
+      "text": "3h 45m",
+      "source": "text.content",
+      "component_id": "usedValue"
+    },
+    {
+      "text": "只超时",
+      "source": "text.content",
+      "component_id": "remainLabel"
+    },
+    {
+      "text": "15m",
+      "source": "text.content",
+      "component_id": "remainValue"
+    },
+    {
+      "text": "设定管控时间",
+      "source": "text.content",
+      "component_id": "actionLabel"
+    }
+  ],
+  "missing_texts": [],
+  "warnings": [
+    "指标跳过：图标尺寸一致性：检测到的图标少于 2 个",
+    "指标权重未配置为正数：视觉焦点",
+    "指标权重未配置为正数：视觉层级"
+  ]
+}

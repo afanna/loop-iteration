@@ -13,8 +13,8 @@ from aesthetic_rule_check.metrics.consistency import (
 )
 from aesthetic_rule_check.metrics.information import DuplicateMetric, TruncationMetric
 from aesthetic_rule_check.metrics.layout import SpacingRhythmMetric, occupied_mask_ratio
-from aesthetic_rule_check.metrics.visual import ContrastMetric, visual_weight
-from aesthetic_rule_check.models import DslInfo, Rect, RequiredText, VisionContext, VisualElement
+from aesthetic_rule_check.metrics.visual import ContrastMetric, SparseTextStackMetric, visual_weight
+from aesthetic_rule_check.models import DslInfo, Rect, RequiredText, TextBlock, VisionContext, VisualElement
 
 
 def make_context() -> MetricContext:
@@ -106,6 +106,76 @@ def test_visual_weight_uses_text_contrast_and_font_size() -> None:
     )
 
     assert visual_weight(strong, context) > visual_weight(small, context)
+
+
+def test_sparse_text_stack_penalizes_only_sparse_text_dominant_cards() -> None:
+    context = make_context()
+    sparse_blocks = [
+        TextBlock("title", Rect(10, 10, 80, 8), 1.0, 8),
+        TextBlock("body", Rect(10, 35, 80, 8), 1.0, 8),
+    ]
+    sparse_vision = VisionContext(
+        image_path=Path("sample.png"),
+        width=100,
+        height=100,
+        card_bbox=Rect(0, 0, 100, 100),
+        text_blocks=sparse_blocks,
+        elements=[VisualElement(kind="text", bbox=block.bbox) for block in sparse_blocks],
+        dominant_colors=[(255, 255, 255)],
+        color_proportions=[1.0],
+        confidence=1.0,
+    )
+    dense_block = TextBlock("content", Rect(5, 5, 90, 80), 1.0, 80)
+    dense_vision = VisionContext(
+        image_path=Path("sample.png"),
+        width=100,
+        height=100,
+        card_bbox=Rect(0, 0, 100, 100),
+        text_blocks=[dense_block],
+        elements=[VisualElement(kind="text", bbox=dense_block.bbox)],
+        dominant_colors=[(255, 255, 255)],
+        color_proportions=[1.0],
+        confidence=1.0,
+    )
+
+    sparse_context = MetricContext(context.query, context.dsl, sparse_vision, context.config)
+    dense_context = MetricContext(context.query, context.dsl, dense_vision, context.config)
+
+    assert SparseTextStackMetric().evaluate(sparse_context).score < 20
+    dense_result = SparseTextStackMetric().evaluate(dense_context)
+    assert dense_result.score is None
+    assert dense_result.status == "not_applicable"
+
+
+def test_sparse_text_stack_uses_pixel_foreground_when_graphics_are_missed(tmp_path: Path) -> None:
+    image_path = tmp_path / "graphic_card.png"
+    image = np.full((100, 100, 3), 255, dtype=np.uint8)
+    image[10:90, 10:90] = (32, 80, 180)
+    assert cv2.imwrite(str(image_path), image)
+
+    context = make_context()
+    blocks = [
+        TextBlock("6", Rect(35, 30, 20, 18), 1.0, 18),
+        TextBlock("hours", Rect(35, 55, 35, 10), 1.0, 10),
+    ]
+    vision = VisionContext(
+        image_path=image_path,
+        width=100,
+        height=100,
+        card_bbox=Rect(0, 0, 100, 100),
+        text_blocks=blocks,
+        elements=[VisualElement(kind="text", bbox=block.bbox) for block in blocks],
+        dominant_colors=[(255, 255, 255), (180, 80, 32)],
+        color_proportions=[0.36, 0.64],
+        confidence=1.0,
+    )
+    context = MetricContext(context.query, context.dsl, vision, context.config)
+
+    result = SparseTextStackMetric().evaluate(context)
+
+    assert result.score is None
+    assert result.status == "not_applicable"
+    assert result.value["pixel_foreground_density"] > result.value["element_density"]
 
 
 def test_layout_occupancy_uses_pixel_foreground_when_elements_miss_large_shapes(tmp_path: Path) -> None:

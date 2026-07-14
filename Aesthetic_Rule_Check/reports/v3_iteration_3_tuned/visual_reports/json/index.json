@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "record_count": 10,
+  "records": [
+    {
+      "id": "battery",
+      "qid": "battery",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\battery.json",
+      "score": 76.813,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\battery.png"
+      ]
+    },
+    {
+      "id": "care",
+      "qid": "care",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\care.json",
+      "score": 57.063,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\care.png"
+      ]
+    },
+    {
+      "id": "earbuds",
+      "qid": "earbuds",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\earbuds.json",
+      "score": 37.751,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\earbuds.png"
+      ]
+    },
+    {
+      "id": "focus",
+      "qid": "focus",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\focus.json",
+      "score": 84.063,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\focus.png"
+      ]
+    },
+    {
+      "id": "marathon",
+      "qid": "marathon",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\marathon.json",
+      "score": 73.188,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\marathon.png"
+      ]
+    },
+    {
+      "id": "meeting",
+      "qid": "meeting",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\meeting.json",
+      "score": 57.438,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": true,
+        "status": "fail",
+        "failed_views": [
+          "image"
+        ],
+        "passed_views": []
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\meeting.png"
+      ]
+    },
+    {
+      "id": "sleep",
+      "qid": "sleep",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\sleep.json",
+      "score": 78.876,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\sleep.png"
+      ]
+    },
+    {
+      "id": "status",
+      "qid": "status",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\status.json",
+      "score": 66.563,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\status.png"
+      ]
+    },
+    {
+      "id": "warn",
+      "qid": "warn",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\warn.json",
+      "score": 72.438,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\warn.png"
+      ]
+    },
+    {
+      "id": "weather",
+      "qid": "weather",
+      "html_path": null,
+      "json_path": "C:\\Users\\afan\\Desktop\\loop iteration\\Aesthetic_Rule_Check\\reports\\v3_iteration_3_probe\\visual_reports\\json\\weather.json",
+      "score": 72.689,
+      "aggregate_view": "image",
+      "occlusion_overlap_check": {
+        "detected": false,
+        "status": "pass",
+        "failed_views": [],
+        "passed_views": [
+          "image"
+        ]
+      },
+      "screenshots": [
+        "C:\\Users\\afan\\Desktop\\loop iteration\\picture\\weather.png"
+      ]
+    }
+  ]
+}

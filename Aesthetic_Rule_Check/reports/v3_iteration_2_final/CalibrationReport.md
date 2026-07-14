@@ -1,11 +1,19 @@
 # V3 Rule Calibration Iteration 1
 
-- generated_at: 2026-07-10T14:31:53
+- generated_at: 2026-07-12T17:42:21
 - sample_count: 10
 - visual_prompt: C:\Users\afan\Desktop\loop iteration\new_cleaned.md
 - distillation_scope: formula-computable axes only; visual_impact_originality is excluded from rule-dimension mapping
 - overall_mae: 2.76
+- overall_rmse: 4.03
 - overall_bias_rule_minus_teacher: 0.67
+- pearson: 0.9499
+- spearman: 0.5515
+- top_k_overlap: 0.6
+- bottom_k_overlap: 0.6
+- bucket_accuracy: 0.7
+- bad_case_count: 1
+- dangerous_high_rule_low_teacher_count: 0
 
 ## Overall Error
 
@@ -66,5 +74,8 @@
 - Overall CSV: `C:\Users\afan\Desktop\loop iteration\Aesthetic_Rule_Check\reports\v3_iteration_2_final\comparison\OverallError.csv`
 - Dimension CSV: `C:\Users\afan\Desktop\loop iteration\Aesthetic_Rule_Check\reports\v3_iteration_2_final\comparison\DimensionError.csv`
 - Metric CSV: `C:\Users\afan\Desktop\loop iteration\Aesthetic_Rule_Check\reports\v3_iteration_2_final\comparison\MetricError.csv`
+- Rank CSV: `C:\Users\afan\Desktop\loop iteration\Aesthetic_Rule_Check\reports\v3_iteration_2_final\comparison\RankError.csv`
+- Bucket CSV: `C:\Users\afan\Desktop\loop iteration\Aesthetic_Rule_Check\reports\v3_iteration_2_final\comparison\BucketConfusion.csv`
+- Bad cases: `C:\Users\afan\Desktop\loop iteration\Aesthetic_Rule_Check\reports\v3_iteration_2_final\comparison\BadCases.md`
 
 Note: suggestions are candidates for human review. This script does not modify rule config automatically.

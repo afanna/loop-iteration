@@ -61,6 +61,8 @@ Gemini 3.5: PANGU_JUDGE_MODEL=gemini-3.5-flash
 Claude 4.7: PANGU_JUDGE_MODEL=claude-opus-4-7-thinking
 ```
 
+默认提示词版本是 `harmony-card-teacher-v1`，用于 HarmonyOS 卡片离线标定，并读取 `pipeline/prompts/harmony-card-teacher-v1.md`。如需回溯原始泛 UI baseline，可将 `PANGU_JUDGE_PROMPT_VERSION` 或 `ARK_JUDGE_PROMPT_VERSION` 改为 `aesthetic-v4`。
+
 ## 输出
 
 默认输出 clean JSON：

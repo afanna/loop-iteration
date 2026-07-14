@@ -7,6 +7,7 @@ import os
 import subprocess
 import sys
 from datetime import datetime
+from math import sqrt
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,11 @@ WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
 RULE_ROOT = WORKSPACE_ROOT / "Aesthetic_Rule_Check"
 VLM_ROOT = WORKSPACE_ROOT / "aesthetic-v4-vlm-judge-package-20260624"
 DEFAULT_PROMPT = WORKSPACE_ROOT / "new_cleaned.md"
+DEFAULT_SAMPLES_FILE = WORKSPACE_ROOT / "calibration_workspace" / "datasets" / "cards_v1" / "samples.jsonl"
+QUERY_FILE = WORKSPACE_ROOT / "query" / "queries.jsonl"
+HIGH_SCORE_THRESHOLD = 75.0
+LOW_SCORE_THRESHOLD = 60.0
+BAD_CASE_THRESHOLD = 8.0
 
 TEACHER_TO_RULE = {
     "information": {
@@ -66,20 +72,97 @@ def write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
 
 
-def sample_pairs(limit: int) -> list[dict[str, str]]:
+def load_queries(path: Path = QUERY_FILE) -> dict[str, str]:
+    if not path.exists():
+        return {}
+    queries: dict[str, str] = {}
+    for raw in path.read_text(encoding="utf-8-sig").splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        qid = str(item.get("id") or "").strip()
+        query = str(item.get("query") or "").strip()
+        if qid:
+            queries[qid] = query
+    return queries
+
+
+def infer_query(sample_id: str, queries: dict[str, str]) -> str:
+    if sample_id in queries:
+        return queries[sample_id]
+    if "_" in sample_id:
+        prefix = sample_id.split("_", 1)[0]
+        if prefix in queries:
+            return queries[prefix]
+    if "." in sample_id:
+        prefix = sample_id.split(".", 1)[0]
+        qid = f"q{prefix}"
+        if qid in queries:
+            return queries[qid]
+    return ""
+
+
+def normalize_sample(raw: dict[str, Any], queries: dict[str, str]) -> dict[str, str]:
+    sample_id = str(raw.get("sample_id") or raw.get("card_id") or raw.get("id") or "").strip()
+    if not sample_id:
+        raise ValueError(f"sample missing id: {raw}")
+    image_path = Path(str(raw.get("image_path") or raw.get("screenshot_path") or raw.get("file_path") or "")).expanduser()
+    dsl_value = raw.get("dsl_path")
+    dsl_path = Path(str(dsl_value)).expanduser() if dsl_value else Path("")
+    query = str(raw.get("query") or infer_query(sample_id, queries) or "")
+    if not image_path.is_absolute():
+        image_path = (WORKSPACE_ROOT / image_path).resolve()
+    if dsl_value and not dsl_path.is_absolute():
+        dsl_path = (WORKSPACE_ROOT / dsl_path).resolve()
+    if not image_path.exists():
+        raise FileNotFoundError(f"sample image not found: {image_path}")
+    if dsl_value and not dsl_path.exists():
+        raise FileNotFoundError(f"sample dsl not found: {dsl_path}")
+    return {
+        "sample_id": sample_id,
+        "image_path": str(image_path.resolve()),
+        "dsl_path": str(dsl_path.resolve()) if dsl_value else "",
+        "query": query,
+        "scene_type": str(raw.get("scene_type") or sample_id.split("_", 1)[0]),
+        "split": str(raw.get("split") or "train"),
+    }
+
+
+def load_samples_file(path: Path, limit: int) -> list[dict[str, str]]:
+    queries = load_queries()
+    samples: list[dict[str, str]] = []
+    for raw in path.read_text(encoding="utf-8-sig").splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        samples.append(normalize_sample(json.loads(line), queries))
+    return samples[:limit] if limit > 0 else samples
+
+
+def sample_pairs(limit: int, samples_file: Path | None = None) -> list[dict[str, str]]:
+    if samples_file and samples_file.exists():
+        return load_samples_file(samples_file, limit)
     image_dir = WORKSPACE_ROOT / "picture"
     dsl_dir = WORKSPACE_ROOT / "dsl"
+    queries = load_queries()
     pairs: list[dict[str, str]] = []
     for image_path in sorted(image_dir.glob("*.png")):
-        dsl_path = dsl_dir / f"{image_path.stem}.dat"
-        if not dsl_path.exists():
+        dsl_candidates = [dsl_dir / f"{image_path.stem}.dat", dsl_dir / f"{image_path.stem}.jsonl", dsl_dir / f"{image_path.stem}.json"]
+        dsl_path = next((candidate for candidate in dsl_candidates if candidate.exists()), None)
+        if not dsl_path:
             continue
         pairs.append(
             {
                 "sample_id": image_path.stem,
                 "image_path": str(image_path.resolve()),
                 "dsl_path": str(dsl_path.resolve()),
-                "query": "",
+                "query": infer_query(image_path.stem, queries),
+                "scene_type": image_path.stem.split("_", 1)[0],
+                "split": "train",
             }
         )
     return pairs[:limit] if limit > 0 else pairs
@@ -94,7 +177,7 @@ def run_rule_reports(samples: list[dict[str, str]], out_dir: Path) -> list[dict[
         sample_dir = out_dir / sample["sample_id"]
         result = evaluate_card(
             image_path=sample["image_path"],
-            dsl_path=sample["dsl_path"],
+            dsl_path=sample.get("dsl_path") or None,
             query=sample.get("query", ""),
             output_dir=sample_dir,
             config_dir=RULE_ROOT / "config",
@@ -120,7 +203,7 @@ def write_visual_manifest(samples: list[dict[str, str]], manifest_path: Path) ->
             "input_type": "image",
             "input_path": str(image_path.resolve()),
             "sample_metadata": {
-                "dsl_path": sample["dsl_path"],
+                "dsl_path": sample.get("dsl_path", ""),
                 "query": sample.get("query", ""),
             },
             "render_status": "ok",
@@ -275,6 +358,99 @@ def visual_score_100(teacher_record: dict[str, Any]) -> float:
     return round(normalize_teacher_score(teacher_record.get("final_score", 0.0)), 2)
 
 
+def pearson(xs: list[float], ys: list[float]) -> float | None:
+    if len(xs) < 2 or len(xs) != len(ys):
+        return None
+    mx = sum(xs) / len(xs)
+    my = sum(ys) / len(ys)
+    num = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+    den_x = sqrt(sum((x - mx) ** 2 for x in xs))
+    den_y = sqrt(sum((y - my) ** 2 for y in ys))
+    if den_x == 0 or den_y == 0:
+        return None
+    return round(num / (den_x * den_y), 4)
+
+
+def ranks(values: list[float]) -> list[float]:
+    indexed = sorted(enumerate(values), key=lambda item: item[1])
+    out = [0.0] * len(values)
+    i = 0
+    while i < len(indexed):
+        j = i
+        while j + 1 < len(indexed) and indexed[j + 1][1] == indexed[i][1]:
+            j += 1
+        avg_rank = (i + j + 2) / 2.0
+        for k in range(i, j + 1):
+            out[indexed[k][0]] = avg_rank
+        i = j + 1
+    return out
+
+
+def spearman(xs: list[float], ys: list[float]) -> float | None:
+    if len(xs) < 2 or len(xs) != len(ys):
+        return None
+    return pearson(ranks(xs), ranks(ys))
+
+
+def score_bucket(score: float) -> str:
+    if score >= HIGH_SCORE_THRESHOLD:
+        return "high"
+    if score >= LOW_SCORE_THRESHOLD:
+        return "mid"
+    return "low"
+
+
+def top_k_overlap(rows: list[dict[str, Any]], k: int, reverse: bool = True) -> float | None:
+    if not rows:
+        return None
+    k = min(k, len(rows))
+    rule_ids = {row["sample_id"] for row in sorted(rows, key=lambda row: row["rule_overall"], reverse=reverse)[:k]}
+    teacher_ids = {row["sample_id"] for row in sorted(rows, key=lambda row: row["teacher_overall"], reverse=reverse)[:k]}
+    return round(len(rule_ids & teacher_ids) / k, 4)
+
+
+def add_rank_and_bucket_rows(sample_rows: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    rule_sorted = sorted(sample_rows, key=lambda row: row["rule_overall"], reverse=True)
+    teacher_sorted = sorted(sample_rows, key=lambda row: row["teacher_overall"], reverse=True)
+    rule_rank = {row["sample_id"]: idx + 1 for idx, row in enumerate(rule_sorted)}
+    teacher_rank = {row["sample_id"]: idx + 1 for idx, row in enumerate(teacher_sorted)}
+    rank_rows: list[dict[str, Any]] = []
+    bucket_rows: list[dict[str, Any]] = []
+    for row in sample_rows:
+        sample_id = row["sample_id"]
+        rb = score_bucket(float(row["rule_overall"]))
+        tb = score_bucket(float(row["teacher_overall"]))
+        row["rule_rank"] = rule_rank[sample_id]
+        row["teacher_rank"] = teacher_rank[sample_id]
+        row["rank_delta_rule_minus_teacher"] = rule_rank[sample_id] - teacher_rank[sample_id]
+        row["rule_bucket"] = rb
+        row["teacher_bucket"] = tb
+        row["bucket_match"] = rb == tb
+        if rb == "high" and tb == "low":
+            row["bad_case_type"] = "dangerous_high_rule_low_teacher"
+        elif rb == "low" and tb == "high":
+            row["bad_case_type"] = "missed_good_card"
+        elif abs(float(row["error_rule_minus_teacher"])) >= BAD_CASE_THRESHOLD:
+            row["bad_case_type"] = "large_error"
+        else:
+            row["bad_case_type"] = "ok"
+        rank_rows.append({"sample_id": sample_id, "rule_rank": row["rule_rank"], "teacher_rank": row["teacher_rank"], "rank_delta_rule_minus_teacher": row["rank_delta_rule_minus_teacher"], "rule_overall": row["rule_overall"], "teacher_overall": row["teacher_overall"]})
+        bucket_rows.append({"sample_id": sample_id, "rule_bucket": rb, "teacher_bucket": tb, "bucket_match": rb == tb, "bad_case_type": row["bad_case_type"]})
+    return rank_rows, bucket_rows
+
+
+def write_bad_cases(path: Path, rows: list[dict[str, Any]]) -> None:
+    bad_rows = [row for row in rows if row.get("bad_case_type") != "ok"]
+    bad_rows.sort(key=lambda row: (row.get("bad_case_type") != "dangerous_high_rule_low_teacher", -float(row["abs_error"])))
+    lines = ["# Bad Cases", "", f"- threshold_abs_error: {BAD_CASE_THRESHOLD}", f"- high_bucket: >= {HIGH_SCORE_THRESHOLD}", f"- low_bucket: < {LOW_SCORE_THRESHOLD}", "", "| sample | type | rule | teacher | error | rule_bucket | teacher_bucket | rank_delta |", "| --- | --- | ---: | ---: | ---: | --- | --- | ---: |"]
+    for row in bad_rows:
+        lines.append(f"| {row['sample_id']} | {row['bad_case_type']} | {row['rule_overall']:.2f} | {row['teacher_overall']:.2f} | {row['error_rule_minus_teacher']:.2f} | {row['rule_bucket']} | {row['teacher_bucket']} | {row['rank_delta_rule_minus_teacher']} |")
+    if not bad_rows:
+        lines.append("| - | no bad cases | - | - | - | - | - | - |")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def compare(rule_records: list[dict[str, Any]], visual_records: dict[str, dict[str, Any]], out_dir: Path) -> dict[str, Any]:
     sample_rows: list[dict[str, Any]] = []
     dimension_rows: list[dict[str, Any]] = []
@@ -287,55 +463,32 @@ def compare(rule_records: list[dict[str, Any]], visual_records: dict[str, dict[s
             continue
         rule_overall = float(rule["overall"])
         teacher_overall = visual_score_100(teacher)
-        sample_rows.append(
-            {
-                "sample_id": sample_id,
-                "rule_overall": rule_overall,
-                "teacher_overall": teacher_overall,
-                "error_rule_minus_teacher": round(rule_overall - teacher_overall, 2),
-                "abs_error": round(abs(rule_overall - teacher_overall), 2),
-            }
-        )
+        sample_rows.append({"sample_id": sample_id, "rule_overall": rule_overall, "teacher_overall": teacher_overall, "error_rule_minus_teacher": round(rule_overall - teacher_overall, 2), "abs_error": round(abs(rule_overall - teacher_overall), 2)})
         axis = visual_axis_scores(teacher)
         dims = rule_dimensions(rule)
         for dimension, mapping in TEACHER_TO_RULE.items():
             teacher_dim = score_100_from_teacher_axis(axis, mapping)
             rule_dim = dims.get(dimension, 0.0)
-            dimension_rows.append(
-                {
-                    "sample_id": sample_id,
-                    "dimension": dimension,
-                    "rule_score": round(rule_dim, 2),
-                    "teacher_mapped_score": teacher_dim,
-                    "error_rule_minus_teacher": round(rule_dim - teacher_dim, 2),
-                    "abs_error": round(abs(rule_dim - teacher_dim), 2),
-                    "mapping": json.dumps(mapping, ensure_ascii=False, sort_keys=True),
-                }
-            )
+            dimension_rows.append({"sample_id": sample_id, "dimension": dimension, "rule_score": round(rule_dim, 2), "teacher_mapped_score": teacher_dim, "error_rule_minus_teacher": round(rule_dim - teacher_dim, 2), "abs_error": round(abs(rule_dim - teacher_dim), 2), "mapping": json.dumps(mapping, ensure_ascii=False, sort_keys=True)})
         for metric in rule.get("metrics", []):
             if metric.get("score") is None:
                 continue
-            metric_rows.append(
-                {
-                    "sample_id": sample_id,
-                    "dimension": metric.get("dimension"),
-                    "metric": metric.get("name"),
-                    "metric_score": round(float(metric["score"]), 2),
-                    "metric_value": json.dumps(metric.get("value"), ensure_ascii=False, sort_keys=True),
-                    "overall_error_rule_minus_teacher": round(rule_overall - teacher_overall, 2),
-                }
-            )
+            metric_rows.append({"sample_id": sample_id, "dimension": metric.get("dimension"), "metric": metric.get("name"), "metric_score": round(float(metric["score"]), 2), "metric_value": json.dumps(metric.get("value"), ensure_ascii=False, sort_keys=True), "overall_error_rule_minus_teacher": round(rule_overall - teacher_overall, 2)})
 
+    rank_rows, bucket_rows = add_rank_and_bucket_rows(sample_rows)
     write_csv(out_dir / "OverallError.csv", sample_rows)
     write_csv(out_dir / "DimensionError.csv", dimension_rows)
     write_csv(out_dir / "MetricError.csv", metric_rows)
-    summary = {
-        "samples": sample_rows,
-        "dimensions": dimension_rows,
-        "metrics": metric_rows,
-        "mae": round(sum(row["abs_error"] for row in sample_rows) / len(sample_rows), 2) if sample_rows else None,
-        "bias": round(sum(row["error_rule_minus_teacher"] for row in sample_rows) / len(sample_rows), 2) if sample_rows else None,
-    }
+    write_csv(out_dir / "RankError.csv", rank_rows)
+    write_csv(out_dir / "BucketConfusion.csv", bucket_rows)
+    write_bad_cases(out_dir / "BadCases.md", sample_rows)
+
+    rule_scores = [float(row["rule_overall"]) for row in sample_rows]
+    teacher_scores = [float(row["teacher_overall"]) for row in sample_rows]
+    errors = [float(row["error_rule_minus_teacher"]) for row in sample_rows]
+    bucket_matches = [row for row in sample_rows if row.get("bucket_match")]
+    bad_cases = [row for row in sample_rows if row.get("bad_case_type") != "ok"]
+    summary = {"samples": sample_rows, "dimensions": dimension_rows, "metrics": metric_rows, "ranks": rank_rows, "buckets": bucket_rows, "mae": round(sum(row["abs_error"] for row in sample_rows) / len(sample_rows), 2) if sample_rows else None, "rmse": round(sqrt(sum(error ** 2 for error in errors) / len(errors)), 2) if errors else None, "bias": round(sum(errors) / len(errors), 2) if errors else None, "pearson": pearson(rule_scores, teacher_scores), "spearman": spearman(rule_scores, teacher_scores), "top_k_overlap": top_k_overlap(sample_rows, 5, True), "bottom_k_overlap": top_k_overlap(sample_rows, 5, False), "bucket_accuracy": round(len(bucket_matches) / len(sample_rows), 4) if sample_rows else None, "bad_case_count": len(bad_cases), "dangerous_high_rule_low_teacher_count": sum(1 for row in bad_cases if row.get("bad_case_type") == "dangerous_high_rule_low_teacher")}
     write_json(out_dir / "comparison_summary.json", summary)
     return summary
 
@@ -379,34 +532,7 @@ def top_metric_patterns(metric_rows: list[dict[str, Any]]) -> list[dict[str, Any
 
 
 def _legacy_recommendation_text(summary: dict[str, Any]) -> list[str]:
-    recommendations: list[str] = []
-    bias = float(summary.get("bias") or 0.0)
-    dim_bias = mean_by(summary["dimensions"], "dimension", "error_rule_minus_teacher")
-    if bias > 5:
-        recommendations.append(
-            f"整体规则分平均高于视觉老师 {bias:.2f} 分，第一轮建议收紧扣分或降低偏高维度权重。"
-        )
-    elif bias < -5:
-        recommendations.append(
-            f"整体规则分平均低于视觉老师 {abs(bias):.2f} 分，第一轮建议放宽过严指标或提高被低估维度权重。"
-        )
-    else:
-        recommendations.append(
-            f"整体偏差 {bias:.2f} 分，先优先处理维度级和指标级局部误差。"
-        )
-
-    for dimension, error in sorted(dim_bias.items(), key=lambda item: abs(item[1]), reverse=True):
-        if abs(error) < 5:
-            continue
-        if error > 0:
-            recommendations.append(
-                f"`{dimension}` 规则分平均高于映射后的老师分 {error:.2f} 分：建议提高该维度内低质样本的惩罚敏感度，或下调该维度总权重。"
-            )
-        else:
-            recommendations.append(
-                f"`{dimension}` 规则分平均低于映射后的老师分 {abs(error):.2f} 分：建议检查该维度是否被 OCR/CV 启发式误伤，优先放宽对应阈值。"
-            )
-    return recommendations
+    return recommendation_text(summary)
 
 
 def recommendation_text(summary: dict[str, Any]) -> list[str]:
@@ -415,11 +541,11 @@ def recommendation_text(summary: dict[str, Any]) -> list[str]:
     dim_bias = mean_by(summary["dimensions"], "dimension", "error_rule_minus_teacher")
     if bias > 5:
         recommendations.append(
-            f"整体规则分平均高于视觉老师 {bias:.2f} 分：第一轮应优先收紧高估维度，降低过于宽松指标的通过率。"
+            f"整体规则分平均高于视觉老师 {bias:.2f} 分：本轮应优先收紧高估维度，降低过宽松指标的通过率。"
         )
     elif bias < -5:
         recommendations.append(
-            f"整体规则分平均低于视觉老师 {abs(bias):.2f} 分：第一轮应优先放宽明显误伤的启发式指标，避免规则系统系统性低估。"
+            f"整体规则分平均低于视觉老师 {abs(bias):.2f} 分：本轮应优先放宽明显误伤的启发式指标，避免规则系统性低估。"
         )
     else:
         recommendations.append(
@@ -491,7 +617,15 @@ def write_markdown_report(samples: list[dict[str, str]], summary: dict[str, Any]
         f"- visual_prompt: {prompt_path}",
         "- distillation_scope: formula-computable axes only; visual_impact_originality is excluded from rule-dimension mapping",
         f"- overall_mae: {summary.get('mae')}",
+        f"- overall_rmse: {summary.get('rmse')}",
         f"- overall_bias_rule_minus_teacher: {summary.get('bias')}",
+        f"- pearson: {summary.get('pearson')}",
+        f"- spearman: {summary.get('spearman')}",
+        f"- top_k_overlap: {summary.get('top_k_overlap')}",
+        f"- bottom_k_overlap: {summary.get('bottom_k_overlap')}",
+        f"- bucket_accuracy: {summary.get('bucket_accuracy')}",
+        f"- bad_case_count: {summary.get('bad_case_count')}",
+        f"- dangerous_high_rule_low_teacher_count: {summary.get('dangerous_high_rule_low_teacher_count')}",
         "",
         "## Overall Error",
         "",
@@ -530,6 +664,9 @@ def write_markdown_report(samples: list[dict[str, str]], summary: dict[str, Any]
             f"- Overall CSV: `{out_dir / 'comparison' / 'OverallError.csv'}`",
             f"- Dimension CSV: `{out_dir / 'comparison' / 'DimensionError.csv'}`",
             f"- Metric CSV: `{out_dir / 'comparison' / 'MetricError.csv'}`",
+            f"- Rank CSV: `{out_dir / 'comparison' / 'RankError.csv'}`",
+            f"- Bucket CSV: `{out_dir / 'comparison' / 'BucketConfusion.csv'}`",
+            f"- Bad cases: `{out_dir / 'comparison' / 'BadCases.md'}`",
             "",
             "Note: suggestions are candidates for human review. This script does not modify rule config automatically.",
         ]
@@ -540,6 +677,7 @@ def write_markdown_report(samples: list[dict[str, str]], summary: dict[str, Any]
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run one offline V3 rule calibration iteration.")
     parser.add_argument("--limit", type=int, default=10)
+    parser.add_argument("--samples", default=str(DEFAULT_SAMPLES_FILE), help="Optional JSONL dataset manifest. Falls back to workspace picture/dsl scan when missing.")
     parser.add_argument("--out", default=str(RULE_ROOT / "reports" / "v3_iteration_1"))
     parser.add_argument("--prompt", default=str(DEFAULT_PROMPT))
     parser.add_argument("--skip-visual", action="store_true")
@@ -548,7 +686,7 @@ def main() -> int:
 
     out_dir = Path(args.out).resolve()
     prompt_path = Path(args.prompt).resolve()
-    samples = sample_pairs(args.limit)
+    samples = sample_pairs(args.limit, Path(args.samples).resolve())
     if not samples:
         raise SystemExit("no image/dsl sample pairs found")
     write_json(out_dir / "samples.json", samples)

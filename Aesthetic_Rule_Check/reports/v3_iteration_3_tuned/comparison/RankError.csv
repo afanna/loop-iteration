@@ -1,0 +1,11 @@
+﻿sample_id,rule_rank,teacher_rank,rank_delta_rule_minus_teacher,rule_overall,teacher_overall
+battery,3,3,0,73.46,76.81
+care,9,9,0,64.44,57.06
+earbuds,10,10,0,48.81,37.75
+focus,1,1,0,76.0,84.06
+marathon,7,4,3,69.67,73.19
+meeting,5,8,-3,71.34,57.44
+sleep,8,2,6,69.52,78.88
+status,6,7,-1,71.0,66.56
+warn,2,6,-4,73.8,72.44
+weather,4,5,-1,72.33,72.69

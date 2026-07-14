@@ -1,0 +1,11 @@
+﻿sample_id,rule_bucket,teacher_bucket,bucket_match,bad_case_type
+battery,mid,high,False,ok
+care,mid,low,False,ok
+earbuds,low,low,True,large_error
+focus,high,high,True,large_error
+marathon,mid,mid,True,ok
+meeting,mid,low,False,large_error
+sleep,mid,high,False,large_error
+status,mid,mid,True,ok
+warn,mid,mid,True,ok
+weather,mid,mid,True,ok

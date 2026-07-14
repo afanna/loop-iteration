@@ -16,3 +16,14 @@ def test_find_images_and_matching_dsl(tmp_path: Path) -> None:
 
     assert find_images(input_dir) == [image.resolve()]
     assert find_matching_dsl(image, dsl_dir) == dsl.resolve()
+
+
+def test_find_matching_dsl_accepts_dat_files(tmp_path: Path) -> None:
+    image = tmp_path / "meeting.png"
+    image.write_bytes(b"fake")
+    dsl_dir = tmp_path / "dsl"
+    dsl_dir.mkdir()
+    dsl = dsl_dir / "meeting.dat"
+    dsl.write_text("{}", encoding="utf-8")
+
+    assert find_matching_dsl(image, dsl_dir) == dsl.resolve()
